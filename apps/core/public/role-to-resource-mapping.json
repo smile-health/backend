@@ -1,0 +1,18 @@
+[
+  {
+      "http_method": "get",
+      "resource_type": "be",
+      "role_list": "super admin, admin",
+      "route_handler": "/core/users",
+      "status": 1,
+      "created_by": "Super Admin"
+  },
+  {
+      "http_method": "post",
+      "resource_type": "be",
+      "role_list": "super admin, admin",
+      "route_handler": "/core/users",
+      "status": 1,
+      "created_by": "Super Admin"
+  }
+]

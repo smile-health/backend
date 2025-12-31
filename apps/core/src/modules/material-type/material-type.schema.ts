@@ -1,0 +1,31 @@
+import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { z } from "zod"
+
+// Schemas
+export const MaterialTypeSchema = z.object({
+  id: z.preprocess(
+    (value) => (typeof value === "string" ? parseInt(value, 10) : value),
+    z
+      .number()
+      .int({ message: "ID must be an integer." })
+      .nonnegative({ message: "ID must be a positive number." })
+  ),
+  name: z
+    .string({ required_error: "Name is required" })
+    .max(255, { message: "Name must not exceed 255 characters." }),
+  created_at: z.date(),
+  updated_at: z.date(),
+  deleted_at: z.date().nullable(),
+})
+
+export const GetMaterialTypesQueryParamsSchema = PaginationQueriesSchema
+
+// Request
+export type GetMaterialTypesQueryParams = z.infer<
+  typeof GetMaterialTypesQueryParamsSchema
+>
+
+// Response
+export type MaterialTypeResponse = z.infer<
+  typeof MaterialTypeSchema
+>

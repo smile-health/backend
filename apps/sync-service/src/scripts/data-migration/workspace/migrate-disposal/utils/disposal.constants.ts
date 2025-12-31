@@ -1,0 +1,1 @@
+export const TYPE_ID_DISPOSAL_SHIPMENT = 5

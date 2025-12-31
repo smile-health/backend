@@ -1,0 +1,39 @@
+{
+  "all": true,
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "extension": [
+    ".js",
+    ".ts"
+  ],
+  "require": [
+    "@babel/register"
+  ],
+  "source-map": false,
+  "instrument": false,
+  "include": [
+    "../../apps/core/src/**/*.js",
+    "../../apps/core/src/**/*.ts",
+    "../../apps/warehouse-service/src/**/*.js",
+    "../../apps/warehouse-service/src/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.spec.js",
+    "**/*.test.js",
+    "**/*.test.ts",
+    "../../apps/core/src/cli.ts",
+    "../../apps/core/src/server.ts",
+    "../../apps/core/src/tests/**",
+    "../../apps/warehouse-service/src/tests/**"
+  ],
+  "reporter": [
+    "html",
+    "text",
+    "lcov"
+  ],
+  "report-dir": "coverage",
+  "check-coverage": true,
+  "branches": 80,
+  "lines": 80,
+  "functions": 80,
+  "statements": 80
+}

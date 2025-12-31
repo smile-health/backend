@@ -1,0 +1,7 @@
+# Service Routes Endpoints List using clickhouse
+- GET /main/orders
+- GET /main/transactions
+- GET /main/stocks
+- GET /main/entities
+- GET /main/app/notif/order
+- GET /main/transfer-stock/stocks

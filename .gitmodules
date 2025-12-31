@@ -1,0 +1,18 @@
+[submodule "apps/3.0/main-api"]
+	path = apps/3.0/main-api
+	url = git@gitlab.badr.co.id:undp/smile-main-api.git
+	branch = dev
+[submodule "apps/3.0/iot-api"]
+	path = apps/3.0/iot-api
+	url = git@gitlab.badr.co.id:undp/smile-iot-api.git
+	branch = development
+[submodule "apps/3.0/notification"]
+	path = apps/3.0/notification
+	url = git@gitlab.badr.co.id:undp/smile-notification.git
+	branch = platform
+[submodule "apps/3.0/warehouse-api"]
+	path = apps/3.0/warehouse-api
+	url = git@gitlab.badr.co.id:undp/smile-warehouse-api.git
+[submodule "apps/3.0/report"]
+	path = apps/3.0/report
+	url = https://gitlab.badr.co.id/undp/smile-report

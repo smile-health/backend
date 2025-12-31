@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    /* Base Options: */
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "jsx": "react-jsx",
+
+    /* Module system: */
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+
+    /* Import options: */
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* Strictness: */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": false,
+
+    /* Directory */
+    "outDir": "dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    
+    /* Types */
+    "types": ["node", "vitest/globals", "bun-types"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

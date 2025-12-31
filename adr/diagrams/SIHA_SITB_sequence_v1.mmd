@@ -1,0 +1,87 @@
+sequenceDiagram
+  autonumber
+  participant SYS as SIHA/SITB System
+  participant SMILE as SMILE System (Main API /api)
+  participant M as Middlewares
+  participant CTRL as SihaController
+  participant MOD as SihaModule
+  participant REPO as DB Repositories
+  participant G as SihaGateway (External)
+  participant EXT as SIHA External API
+
+  Note over SMILE: OpenAPIHono routes, Bearer JWT
+  Note over SYS,SMILE: Flow: create at SIHA/SITB → SMILE validates → SIHA/SITB confirms
+
+  rect rgba(200, 200, 255, 0.15)
+    SYS->>SMILE: POST /auth/login
+    SMILE->>CTRL: route authLoginRoute
+    CTRL->>MOD: login()
+    MOD->>REPO: AuthKeycloakService
+    REPO-->>MOD: user info
+    MOD-->>CTRL: user info
+    CTRL-->>SYS: 200 OK (LoginResponse)
+  end
+
+  rect rgba(200,255,200,0.15)
+    SYS->>SMILE: POST /v2/order/integration (Bearer)
+    SMILE->>M: Request, DB load, Transaction, authorize, log
+    M->>CTRL: prepared create request
+    CTRL->>MOD: createOrder(req, parsed)
+    MOD->>REPO: OrderRepository.create + mappings
+    REPO-->>MOD: created order ID
+    MOD->>REPO: update audit + create mappings
+    MOD->>MOD: getDetail(orderId)
+    MOD-->>CTRL: OrderDetails (validated by SMILE)
+    CTRL-->>SYS: 200 OK (OrderDetails)
+  end
+
+  rect rgba(255,230,200,0.15)
+    SYS->>SMILE: PUT /v2/order/:key_ssl/confirm/integration (Bearer)
+    SMILE->>M: Request validations
+    M->>CTRL: prepared confirm request
+    CTRL->>MOD: confirm via OrderStatusConfirmModule.update
+    MOD->>G: validateOrder(payload)  
+    G->>EXT: POST validate_* endpoint (Basic Auth)
+    EXT-->>G: 200/4xx + message
+    G-->>MOD: Result (status, error)
+    MOD->>REPO: update order status/history
+    CTRL-->>SYS: 204 No Content
+  end
+
+  rect rgba(255,200,200,0.15)
+    SYS->>SMILE: PUT /v2/order/:key_ssl/cancel/integration (Bearer)
+    SMILE->>M: Request validations
+    CTRL->>MOD: cancel via OrderStatusCancelModule.update
+    MOD->>G: cancelOrder(payload)
+    G->>EXT: POST cancel_* endpoint (Basic Auth)
+    EXT-->>G: 200/4xx
+    G-->>MOD: Result
+    MOD->>REPO: update cancel status/history
+    CTRL-->>SYS: 204 No Content
+  end
+
+  rect rgba(230,230,230,0.15)
+    SYS->>SMILE: GET /v2/order/:key_ssl/integration (Bearer)
+    SMILE->>M: authorize + loadSlaveDB
+    CTRL->>MOD: getDetail(orderId)
+    MOD->>REPO: fetch order + kfa mappings
+    REPO-->>MOD: Order model
+    MOD-->>CTRL: OrderDetails
+    CTRL-->>SYS: 200 OK (OrderDetails)
+  end
+
+  SYS->>SMILE: GET /v2/orders (filters)
+  SMILE->>CTRL: getOrdersRoute
+  CTRL->>MOD: getOrdersList(query)
+  MOD->>REPO: query orders (pagination)
+  REPO-->>MOD: results
+  MOD-->>CTRL: OrdersList
+  CTRL-->>SYS: 200 OK
+
+  SYS->>SMILE: GET /v2/materials | /entities | /manufactures | /budget-sources
+  SMILE->>CTRL: respective routes
+  CTRL->>MOD: repo calls
+  MOD->>REPO: read datasets
+  REPO-->>MOD: datasets
+  MOD-->>CTRL: responses
+  CTRL-->>SYS: 200 OK

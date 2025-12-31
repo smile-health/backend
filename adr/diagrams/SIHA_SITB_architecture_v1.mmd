@@ -1,0 +1,65 @@
+flowchart LR
+  SYS((SIHA/SITB System))
+  SMILE([SMILE System])
+  subgraph Client
+    U[SIHA/SITB Client]
+  end
+
+  subgraph MainAPI
+    direction LR
+    O[OpenAPIHono]
+    M1[RequestMiddleware]
+    M2[CommonMiddleware: loadSlaveDB]
+    M3[TransactionMiddleware]
+    M4[Authorize]
+    M5[LogRequest]
+    C[SihaController]
+    SM[SihaModule]
+  end
+
+  subgraph Persistence
+    OR[OrderRepository]
+    OIR[OrderIntegrationRepository]
+    ER[EntityRepository]
+    MR[MaterialRepository]
+    MFR[ManufactureRepository]
+    BR[BudgetSourceRepository]
+    AHR[OrderHistory/Audit/Comment]
+  end
+
+  subgraph StatusModules
+    OSC[OrderStatusConfirmModule]
+    OSCan[OrderStatusCancelModule]
+  end
+
+  subgraph External
+    GW[SihaGateway - Basic Auth]
+    EXT[(SIHA APIs)]
+  end
+
+  SYS --> U
+  SYS --> O
+  SMILE -- manages --> O
+  U -->|HTTP /api| O
+  O --> M1 --> M2 --> M3 --> M4 --> M5 --> C
+  C --> SM
+  SM --> OR
+  SM --> OIR
+  SM --> ER
+  SM --> MR
+  SM --> MFR
+  SM --> BR
+  SM --> AHR
+  C --> OSC
+  C --> OSCan
+
+  OSC --> GW
+  OSCan --> GW
+  GW --> EXT
+  EXT --> GW
+
+  style O fill:#eef,stroke:#88f
+  style GW fill:#fee,stroke:#f88
+  style EXT fill:#fff,stroke:#f88,stroke-dasharray: 5 5
+  style SYS fill:#ffd,stroke:#c90,stroke-width:2px
+  style SMILE fill:#eef,stroke:#88f,stroke-width:2px

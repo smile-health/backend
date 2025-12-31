@@ -1,0 +1,3532 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Default module",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/warehouse-report/inventory/stocks/overview": {
+      "get": {
+        "summary": "Stock Overview",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-01",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-31",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2,3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "Province/state id",
+            "required": false,
+            "example": "34",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "Regency/city id",
+            "required": false,
+            "example": "3404",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "Entity tags",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "current_time": {
+                      "type": "string"
+                    },
+                    "last_updated": {
+                      "type": "string"
+                    },
+                    "map_name": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id", "name"]
+                    },
+                    "regency": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id", "name"]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "is_selected": {
+                            "type": "boolean"
+                          },
+                          "value": {
+                            "type": "integer"
+                          },
+                          "totals": {
+                            "type": "integer"
+                          },
+                          "percent": {
+                            "type": "number"
+                          },
+                          "tooltip": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "type",
+                          "is_selected",
+                          "value",
+                          "totals",
+                          "percent",
+                          "tooltip"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "current_time",
+                    "last_updated",
+                    "map_name",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "current_time": "26/06/2025 3:03",
+                  "last_updated": "2025-06-05",
+                  "map_name": "yogyakarta",
+                  "province": {
+                    "id": 34,
+                    "name": "PROV. DI YOGYAKARTA"
+                  },
+                  "data": [
+                    {
+                      "label": "Normal",
+                      "type": "normal",
+                      "is_selected": true,
+                      "value": 567,
+                      "totals": 1437,
+                      "percent": 39.46,
+                      "tooltip": "Normal: 39.46% (13 material in 128 entitas in 1 aktivitas from 13 material in 128 entitas in 1 aktivitas)"
+                    },
+                    {
+                      "label": "< Min",
+                      "type": "min",
+                      "is_selected": false,
+                      "value": 160,
+                      "totals": 1437,
+                      "percent": 11.13,
+                      "tooltip": "< Min: 11.13% (8 material in 111 entitas in 1 aktivitas from 13 material in 128 entitas in 1 aktivitas)"
+                    },
+                    {
+                      "label": "> Max",
+                      "type": "max",
+                      "is_selected": false,
+                      "value": 410,
+                      "totals": 1437,
+                      "percent": 28.53,
+                      "tooltip": "> Max: 28.53% (7 material in 125 entitas in 1 aktivitas from 13 material in 128 entitas in 1 aktivitas)"
+                    },
+                    {
+                      "label": "Habis",
+                      "type": "zero_stock",
+                      "is_selected": false,
+                      "value": 300,
+                      "totals": 1437,
+                      "percent": 20.88,
+                      "tooltip": "Habis: 20.88% (11 material in 128 entitas in 1 aktivitas from 13 material in 128 entitas in 1 aktivitas)"
+                    }
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": ["message", "errors"]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": ["Username tidak boleh kosong"],
+                    "password": ["Kata Sandi tidak boleh kosong"]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/warehouse-report/inventory/stocks/location": {
+      "get": {
+        "summary": "Stock Location",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-01",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-31",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2,3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "Province/state id",
+            "required": false,
+            "example": "34",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "Regency/city id",
+            "required": false,
+            "example": "3404",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "Entity tags",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "normal": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        },
+                        "min": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        },
+                        "max": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        },
+                        "zero_stock": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        }
+                      },
+                      "required": ["normal", "min", "max", "zero_stock"]
+                    }
+                  },
+                  "required": ["data"]
+                },
+                "example": {
+                  "data": {
+                    "normal": [
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 130,
+                        "percent": 43.33,
+                        "tooltip": "KAB. SLEMAN: 43.33% (11 material in 27 entitas in 1 aktivitas from 13 material in 27 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 148,
+                        "percent": 41.34,
+                        "tooltip": "KAB. GUNUNG KIDUL: 41.34% (12 material in 31 entitas in 1 aktivitas from 13 material in 31 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 125,
+                        "percent": 39.68,
+                        "tooltip": "KAB. BANTUL: 39.68% (12 material in 28 entitas in 1 aktivitas from 13 material in 28 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 88,
+                        "percent": 35.92,
+                        "tooltip": "KAB. KULON PROGO: 35.92% (11 material in 22 entitas in 1 aktivitas from 13 material in 22 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 72,
+                        "percent": 34.78,
+                        "tooltip": "KOTA YOGYAKARTA: 34.78% (12 material in 19 entitas in 1 aktivitas from 13 material in 19 entitas in 1 aktivitas)"
+                      }
+                    ],
+                    "min": [
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 41,
+                        "percent": 13.02,
+                        "tooltip": "KAB. BANTUL: 13.02% (8 material in 26 entitas in 1 aktivitas from 13 material in 28 entitas 1 aktivitas)"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 40,
+                        "percent": 11.17,
+                        "tooltip": "KAB. GUNUNG KIDUL: 11.17% (8 material in 27 entitas in 1 aktivitas from 13 material in 31 entitas 1 aktivitas)"
+                      },
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 27,
+                        "percent": 11.02,
+                        "tooltip": "KAB. KULON PROGO: 11.02% (6 material in 20 entitas in 1 aktivitas from 13 material in 22 entitas 1 aktivitas)"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 22,
+                        "percent": 10.63,
+                        "tooltip": "KOTA YOGYAKARTA: 10.63% (6 material in 15 entitas in 1 aktivitas from 13 material in 19 entitas 1 aktivitas)"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 28,
+                        "percent": 9.33,
+                        "tooltip": "KAB. SLEMAN: 9.33% (7 material in 22 entitas in 1 aktivitas from 13 material in 27 entitas 1 aktivitas)"
+                      }
+                    ],
+                    "max": [
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 77,
+                        "percent": 31.43,
+                        "tooltip": "KAB. KULON PROGO: 31.43% (7 material in 22 entitas in 1 aktivitas from 13 material in 22 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 59,
+                        "percent": 28.5,
+                        "tooltip": "KOTA YOGYAKARTA: 28.50% (7 material in 19 entitas in 1 aktivitas from 13 material in 19 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 85,
+                        "percent": 28.33,
+                        "tooltip": "KAB. SLEMAN: 28.33% (7 material in 25 entitas in 1 aktivitas from 13 material in 27 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 87,
+                        "percent": 27.62,
+                        "tooltip": "KAB. BANTUL: 27.62% (7 material in 28 entitas in 1 aktivitas from 13 material in 28 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 98,
+                        "percent": 27.37,
+                        "tooltip": "KAB. GUNUNG KIDUL: 27.37% (7 material in 30 entitas in 1 aktivitas from 13 material in 31 entitas in 1 aktivitas)"
+                      }
+                    ],
+                    "zero_stock": [
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 54,
+                        "percent": 26.09,
+                        "tooltip": "KOTA YOGYAKARTA: 26.09% (9 material in 19 entitas in 1 aktivitas from 13 material in 19 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 53,
+                        "percent": 21.63,
+                        "tooltip": "KAB. KULON PROGO: 21.63% (8 material in 22 entitas in 1 aktivitas from 13 material in 22 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 72,
+                        "percent": 20.11,
+                        "tooltip": "KAB. GUNUNG KIDUL: 20.11% (6 material in 31 entitas in 1 aktivitas from 13 material in 31 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 62,
+                        "percent": 19.68,
+                        "tooltip": "KAB. BANTUL: 19.68% (8 material in 28 entitas in 1 aktivitas from 13 material in 28 entitas in 1 aktivitas)"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 57,
+                        "percent": 19,
+                        "tooltip": "KAB. SLEMAN: 19% (5 material in 27 entitas in 1 aktivitas from 13 material in 27 entitas in 1 aktivitas)"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": ["message", "errors"]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": ["Username tidak boleh kosong"],
+                    "password": ["Kata Sandi tidak boleh kosong"]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/warehouse-report/inventory/stocks/materials": {
+      "get": {
+        "summary": "Stock Material",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-01",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-31",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2,3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "Province/state id",
+            "required": false,
+            "example": "34",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "Regency/city id",
+            "required": false,
+            "example": "3404",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "Entity tags",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "normal": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              },
+                              "entities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "integer"
+                                    },
+                                    "province": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["id", "name"]
+                                    },
+                                    "regency": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["id", "name"]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "min": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              },
+                              "entities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "integer"
+                                    },
+                                    "province": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["id", "name"]
+                                    },
+                                    "regency": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["id", "name"]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "max": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              },
+                              "entities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "integer"
+                                    },
+                                    "province": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["id", "name"]
+                                    },
+                                    "regency": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["id", "name"]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "zero_stock": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              },
+                              "entities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "integer"
+                                    },
+                                    "province": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["id", "name"]
+                                    },
+                                    "regency": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": ["id", "name"]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "required": ["normal", "min", "max", "zero_stock"]
+                    }
+                  },
+                  "required": ["data"]
+                },
+                "example": {
+                  "data": {
+                    "normal": [
+                      {
+                        "id": 95,
+                        "name": "BCG @20 ds (Biofarma)",
+                        "value": 100,
+                        "tooltip": "BCG @20 ds (Biofarma): 100% (1 material in 66 entitas in 1 aktivitas from 1 material in 66 entitas in 1 aktivitas)",
+                        "entities": [
+                          {
+                            "id": 22563,
+                            "name": "PUSKESMAS NGLIPAR II",
+                            "value": 100,
+                            "province": {
+                              "id": 34,
+                              "name": "PROV. DI YOGYAKARTA"
+                            },
+                            "regency": {
+                              "id": 3403,
+                              "name": "KAB. GUNUNG KIDUL"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "min": [
+                      {
+                        "id": 11,
+                        "name": "BCG @20 ds (SII)",
+                        "value": 77.34,
+                        "tooltip": "BCG @20 ds (SII): 77.34% (1 material in 99 entitas in 1 aktivitas from 1 material in 128 entitas in 1 aktivitas)",
+                        "entities": [
+                          {
+                            "id": 13864,
+                            "name": "PUSKESMAS DEPOK II",
+                            "value": 100,
+                            "province": {
+                              "id": 34,
+                              "name": "PROV. DI YOGYAKARTA"
+                            },
+                            "regency": {
+                              "id": 3404,
+                              "name": "KAB. SLEMAN"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "max": [
+                      {
+                        "id": 36,
+                        "name": "IPV @5 ds",
+                        "value": 83.59,
+                        "tooltip": "IPV @5 ds: 83.59% (1 material in 107 entitas in 1 aktivitas from 1 material in 128 entitas in 1 aktivitas)",
+                        "entities": [
+                          {
+                            "id": 13942,
+                            "name": "PUSKESMAS PAJANGAN",
+                            "value": 100,
+                            "province": {
+                              "id": 34,
+                              "name": "PROV. DI YOGYAKARTA"
+                            },
+                            "regency": {
+                              "id": 3402,
+                              "name": "KAB. BANTUL"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "zero_stock": [
+                      {
+                        "id": 91,
+                        "name": "DPT-HB-Hib @10 ds (Pentavac)",
+                        "value": 97.64,
+                        "tooltip": "DPT-HB-Hib @10 ds (Pentavac): 97.64% (1 material in 124 entitas in 1 aktivitas from 1 material in 127 entitas in 1 aktivitas)",
+                        "entities": [
+                          {
+                            "id": 13920,
+                            "name": "PUSKESMAS BANTUL I",
+                            "value": 100,
+                            "province": {
+                              "id": 34,
+                              "name": "PROV. DI YOGYAKARTA"
+                            },
+                            "regency": {
+                              "id": 3402,
+                              "name": "KAB. BANTUL"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": ["message", "errors"]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": ["Username tidak boleh kosong"],
+                    "password": ["Kata Sandi tidak boleh kosong"]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/warehouse-report/inventory/temperatures/overview": {
+      "get": {
+        "summary": "Temperature Overview",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-01",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-31",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2,3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "Province/state id",
+            "required": false,
+            "example": "34",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "Regency/city id",
+            "required": false,
+            "example": "3404",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "Entity tags",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "current_time": {
+                      "type": "string"
+                    },
+                    "last_updated": {
+                      "type": "string"
+                    },
+                    "map_name": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id", "name"]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "is_selected": {
+                            "type": "boolean"
+                          },
+                          "value": {
+                            "type": "integer"
+                          },
+                          "totals": {
+                            "type": "integer"
+                          },
+                          "percent": {
+                            "type": "number"
+                          },
+                          "tooltip": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "is_selected",
+                          "label",
+                          "type",
+                          "value",
+                          "totals",
+                          "percent",
+                          "tooltip"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "current_time",
+                    "last_updated",
+                    "map_name",
+                    "province",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "current_time": "13/06/2025 11:38",
+                  "last_updated": "2024-08-17 14:08:05",
+                  "map_name": "yogyakarta",
+                  "province": {
+                    "id": 34,
+                    "name": "PROV. DI YOGYAKARTA"
+                  },
+                  "data": [
+                    {
+                      "label": "Normal",
+                      "type": "normal",
+                      "is_selected": true,
+                      "value": 38392,
+                      "totals": 39782,
+                      "percent": 96.51,
+                      "tooltip": "Normal: 38392 from 39782 asset"
+                    },
+                    {
+                      "is_selected": false,
+                      "label": "Low",
+                      "type": "low",
+                      "value": 469,
+                      "totals": 39782,
+                      "percent": 1.18,
+                      "tooltip": "Rendah: 469 from 39782 asset"
+                    },
+                    {
+                      "label": "High",
+                      "type": "high",
+                      "is_selected": false,
+                      "value": 875,
+                      "totals": 39782,
+                      "percent": 2.2,
+                      "tooltip": "Tinggi: 875 from 39782 asset"
+                    },
+                    {
+                      "label": "Unknown",
+                      "type": "unknown",
+                      "is_selected": false,
+                      "value": 46,
+                      "totals": 39782,
+                      "percent": 0.12,
+                      "tooltip": "Tidak diketahui: 46 from 39782 asset"
+                    }
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": ["message", "errors"]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": ["Username tidak boleh kosong"],
+                    "password": ["Kata Sandi tidak boleh kosong"]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/warehouse-report/inventory/temperatures/location": {
+      "get": {
+        "summary": "Temperature Location",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-01",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-31",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2,3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "Province/state id",
+            "required": false,
+            "example": "34",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "Regency/city id",
+            "required": false,
+            "example": "3404",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "Entity tags",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "normal": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "integer"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        },
+                        "low": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "integer"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        },
+                        "high": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "integer"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        },
+                        "unknown": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "integer"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        }
+                      },
+                      "required": ["normal", "low", "high", "unknown"]
+                    }
+                  },
+                  "required": ["data"]
+                },
+                "example": {
+                  "data": {
+                    "normal": [
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 11717,
+                        "percent": 91,
+                        "tooltip": "KAB. KULON PROGO: 11717 from 12876 asset"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 14752,
+                        "percent": 91,
+                        "tooltip": "KAB. BANTUL: 14752 from 16226 asset"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 15719,
+                        "percent": 92,
+                        "tooltip": "KAB. GUNUNG KIDUL: 15719 from 17134 asset"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 16215,
+                        "percent": 91,
+                        "tooltip": "KAB. SLEMAN: 16215 from 17859 asset"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 9237,
+                        "percent": 92,
+                        "tooltip": "KOTA YOGYAKARTA: 9237 from 10017 asset"
+                      }
+                    ],
+                    "low": [
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 48,
+                        "percent": 0,
+                        "tooltip": "KAB. KULON PROGO: 48 from 12876 asset"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 104,
+                        "percent": 0,
+                        "tooltip": "KAB. BANTUL: 104 from 16226 asset"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 18,
+                        "percent": 0,
+                        "tooltip": "KAB. GUNUNG KIDUL: 18 from 17134 asset"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 217,
+                        "percent": 1,
+                        "tooltip": "KAB. SLEMAN: 217 from 17859 asset"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 64,
+                        "percent": 0,
+                        "tooltip": "KOTA YOGYAKARTA: 64 from 10017 asset"
+                      }
+                    ],
+                    "high": [
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 260,
+                        "percent": 2,
+                        "tooltip": "KAB. KULON PROGO: 260 from 12876 asset"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 288,
+                        "percent": 1,
+                        "tooltip": "KAB. BANTUL: 288 from 16226 asset"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 258,
+                        "percent": 1,
+                        "tooltip": "KAB. GUNUNG KIDUL: 258 from 17134 asset"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 87,
+                        "percent": 0,
+                        "tooltip": "KAB. SLEMAN: 87 from 17859 asset"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 50,
+                        "percent": 0,
+                        "tooltip": "KOTA YOGYAKARTA: 50 from 10017 asset"
+                      }
+                    ],
+                    "unknown": [
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 851,
+                        "percent": 6,
+                        "tooltip": "KAB. KULON PROGO: 851 from 12876 asset"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 1082,
+                        "percent": 6,
+                        "tooltip": "KAB. BANTUL: 1082 from 16226 asset"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 1139,
+                        "percent": 6,
+                        "tooltip": "KAB. GUNUNG KIDUL: 1139 from 17134 asset"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 1340,
+                        "percent": 7,
+                        "tooltip": "KAB. SLEMAN: 1340 from 17859 asset"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 666,
+                        "percent": 6,
+                        "tooltip": "KOTA YOGYAKARTA: 666 from 10017 asset"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": ["message", "errors"]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": ["Username tidak boleh kosong"],
+                    "password": ["Kata Sandi tidak boleh kosong"]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/inventory/activities/overview": {
+      "get": {
+        "summary": "Activity Overview",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-01",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-31",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2,3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "Province/state id",
+            "required": false,
+            "example": "34",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "Regency/city id",
+            "required": false,
+            "example": "3404",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "Entity tags",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "last_updated": {
+                      "type": "string"
+                    },
+                    "axis_name": {
+                      "type": "string"
+                    },
+                    "map_name": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id", "name"]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "integer"
+                          },
+                          "percent": {
+                            "type": "integer"
+                          },
+                          "tooltip": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "type",
+                          "value",
+                          "percent",
+                          "tooltip"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "last_updated",
+                    "axis_name",
+                    "map_name",
+                    "province",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "last_updated": "2025-06-03 18:38:12",
+                  "axis_name": "Activity",
+                  "map_name": "yogyakarta",
+                  "province": {
+                    "id": 34,
+                    "name": "PROV. DI YOGYAKARTA"
+                  },
+                  "data": [
+                    {
+                      "name": "Active",
+                      "type": "active",
+                      "value": 14,
+                      "percent": 10,
+                      "tooltip": "Active:1 0% (14 from 140 entitas)"
+                    },
+                    {
+                      "name": "Inactive",
+                      "type": "inactive",
+                      "value": 140,
+                      "percent": 100,
+                      "tooltip": "Inactive: 100% (140 from 140 entitas)"
+                    }
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": ["message", "errors"]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": ["Username tidak boleh kosong"],
+                    "password": ["Kata Sandi tidak boleh kosong"]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/inventory/activities/location": {
+      "get": {
+        "summary": "Activity Location",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-01",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-31",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2,3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "Province/state id",
+            "required": false,
+            "example": "34",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "Regency/city id",
+            "required": false,
+            "example": "3404",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "Entity tags",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "active": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "integer"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        },
+                        "inactive": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "percent": {
+                                "type": "integer"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "value",
+                              "percent",
+                              "tooltip"
+                            ]
+                          }
+                        }
+                      },
+                      "required": ["active", "inactive"]
+                    }
+                  },
+                  "required": ["data"]
+                },
+                "example": {
+                  "data": {
+                    "active": [
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 0,
+                        "percent": 0,
+                        "tooltip": "KAB. KULON PROGO: 0% (0 from 24 entitas)"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 0,
+                        "percent": 0,
+                        "tooltip": "KAB. BANTUL: 0% (0 from 30 entitas)"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 0,
+                        "percent": 0,
+                        "tooltip": "KAB. GUNUNG KIDUL: 0% (0 from 32 entitas)"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 14,
+                        "percent": 48.28,
+                        "tooltip": "KAB. SLEMAN: 48.28% (14 from 29 entitas)"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 0,
+                        "percent": 0,
+                        "tooltip": "KOTA YOGYAKARTA: 0% (0 from 24 entitas)"
+                      }
+                    ],
+                    "inactive": [
+                      {
+                        "id": 3401,
+                        "name": "KAB. KULON PROGO",
+                        "value": 24,
+                        "percent": 100,
+                        "tooltip": "KAB. KULON PROGO: 100% (24 from 24 entitas)"
+                      },
+                      {
+                        "id": 3402,
+                        "name": "KAB. BANTUL",
+                        "value": 30,
+                        "percent": 100,
+                        "tooltip": "KAB. BANTUL: 100% (30 from 30 entitas)"
+                      },
+                      {
+                        "id": 3403,
+                        "name": "KAB. GUNUNG KIDUL",
+                        "value": 32,
+                        "percent": 100,
+                        "tooltip": "KAB. GUNUNG KIDUL: 100% (32 from 32 entitas)"
+                      },
+                      {
+                        "id": 3404,
+                        "name": "KAB. SLEMAN",
+                        "value": 15,
+                        "percent": 51.72,
+                        "tooltip": "KAB. SLEMAN: 51.72% (15 from 29 entitas)"
+                      },
+                      {
+                        "id": 3471,
+                        "name": "KOTA YOGYAKARTA",
+                        "value": 24,
+                        "percent": 100,
+                        "tooltip": "KOTA YOGYAKARTA: 100% (24 from 24 entitas)"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": ["message", "errors"]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": ["Username tidak boleh kosong"],
+                    "password": ["Kata Sandi tidak boleh kosong"]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/inventory/assets": {
+      "get": {
+        "summary": "Asset List",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "is_stock_opname",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "paginate",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "10",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": ["11,12,10", "11"],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "only_type_logger",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "0",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": ["", "test"],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": ["5,2,1", "9"],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "working_status_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "21,22,1,3,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1101",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "52661",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "manufacture_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "26",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "relation_asset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "21,22,20,12",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "example": {
+                  "data": [
+                    {
+                      "id": 101044,
+                      "serial_number": "BS135689",
+                      "prod_year": "2019",
+                      "temp": null,
+                      "manufacture_id": 34,
+                      "entity_id": 1186322,
+                      "name": "",
+                      "type_id": 1,
+                      "status": 1,
+                      "lat": null,
+                      "lng": null,
+                      "model_id": 135,
+                      "created_at": "2024-06-15T03:30:16.000Z",
+                      "updated_at": "2025-08-20T08:51:29.000Z",
+                      "deleted_at": null,
+                      "domain_name": null,
+                      "activity_status": null,
+                      "activity_time": null,
+                      "activity_duration": null,
+                      "alarm_status": null,
+                      "alarm_type": null,
+                      "alarm_updated_at": null,
+                      "alarm_duration": null,
+                      "power_available": null,
+                      "power_updated_at": null,
+                      "created_by": {
+                        "id": 55207,
+                        "username": "p01012723_far",
+                        "email": "nilawati082168573897@gmail.com",
+                        "firstname": "Nilawati, S.Farm",
+                        "lastname": null,
+                        "gender": 2,
+                        "date_of_birth": null,
+                        "mobile_phone": "082168573897",
+                        "role": 4,
+                        "village_id": null,
+                        "entity_id": 1186322,
+                        "timezone_id": null,
+                        "created_by": 1957,
+                        "updated_by": 1957,
+                        "status": 1,
+                        "last_login": "2025-08-24T22:50:42.000Z",
+                        "last_device": 2,
+                        "created_at": "2024-01-19T02:11:05.000Z",
+                        "updated_at": "2025-08-24T22:53:01.000Z",
+                        "address": null,
+                        "view_only": 0,
+                        "change_password": 0,
+                        "manufacture_id": null,
+                        "fcm_token": null
+                      },
+                      "updated_by": {
+                        "id": 55207,
+                        "username": "p01012723_far",
+                        "email": "nilawati082168573897@gmail.com",
+                        "firstname": "Nilawati, S.Farm",
+                        "lastname": null,
+                        "gender": 2,
+                        "date_of_birth": null,
+                        "mobile_phone": "082168573897",
+                        "role": 4,
+                        "village_id": null,
+                        "entity_id": 1186322,
+                        "timezone_id": null,
+                        "created_by": 1957,
+                        "updated_by": 1957,
+                        "status": 1,
+                        "last_login": "2025-08-24T22:50:42.000Z",
+                        "last_device": 2,
+                        "created_at": "2024-01-19T02:11:05.000Z",
+                        "updated_at": "2025-08-24T22:53:01.000Z",
+                        "address": null,
+                        "view_only": 0,
+                        "change_password": 0,
+                        "manufacture_id": null,
+                        "fcm_token": null
+                      },
+                      "working_status": "Berfungsi",
+                      "parent_id": null,
+                      "child_pos": null,
+                      "budget_year": 2022,
+                      "budget_src": 1,
+                      "max_temp": 8,
+                      "min_temp": 2,
+                      "other_type_asset": "",
+                      "other_min_temp": 2,
+                      "other_max_temp": 8,
+                      "other_model_asset": "",
+                      "other_capacity_nett": 204,
+                      "other_capacity_gross": 204,
+                      "other_manufacture": "",
+                      "other_budget_src": "",
+                      "unused_reason_id": null,
+                      "is_stock_opname": 1,
+                      "working_status_id": 1,
+                      "status_device": false,
+                      "battery": null,
+                      "signal": null,
+                      "power": null,
+                      "deleted_reason": null,
+                      "asset_vendor_id": null,
+                      "asset_communication_provider_id": null,
+                      "ownership_qty": null,
+                      "ownership_status": 1,
+                      "borrowed_from": null,
+                      "electricity_available_id": 4,
+                      "logger_status_id": null,
+                      "logger_status": null,
+                      "coldchain_capacity_equipment_id": null,
+                      "warranty_start_date": null,
+                      "warranty_end_date": null,
+                      "maintenance_schedule_id": null,
+                      "last_maintenance_date": null,
+                      "calibration_schedule_id": null,
+                      "last_calibration_date": null,
+                      "max_temp_2": null,
+                      "min_temp_2": null,
+                      "max_temp_3": null,
+                      "min_temp_3": null,
+                      "entity": {
+                        "id": 1186322,
+                        "name": "PUSKESMAS BULOH SEUMA",
+                        "address": "KEC. TRUMON",
+                        "code": "1012723",
+                        "village_id": null,
+                        "region_id": null,
+                        "province_id": "11",
+                        "regency_id": "1101",
+                        "sub_district_id": "110109",
+                        "created_by": 1957,
+                        "updated_by": 1957,
+                        "deleted_by": null,
+                        "type": 3,
+                        "is_vendor": 1,
+                        "created_at": "2024-01-19T01:10:09.000Z",
+                        "updated_at": "2025-08-24T22:52:54.000Z",
+                        "deleted_at": null,
+                        "province": {
+                          "id": "11",
+                          "name": "PROV. ACEH",
+                          "created_at": "2020-12-02T09:43:31.000Z",
+                          "updated_at": "2024-01-19T22:19:58.000Z",
+                          "deleted_at": null
+                        },
+                        "regency": {
+                          "id": "1101",
+                          "name": "KAB. ACEH SELATAN",
+                          "province_id": "11",
+                          "created_at": "2023-10-24T16:44:31.000Z",
+                          "updated_at": "2024-01-19T22:20:03.000Z",
+                          "deleted_at": null,
+                          "provinceId": "11"
+                        },
+                        "sub_district": {
+                          "id": "110109",
+                          "name": "KEC. TRUMON",
+                          "regency_id": "1101",
+                          "created_at": "2021-01-26T08:19:00.000Z",
+                          "updated_at": "2024-01-19T21:43:46.000Z",
+                          "deleted_at": null,
+                          "regencyId": "1101"
+                        },
+                        "entity_tags": [
+                          {
+                            "id": 9,
+                            "title": "Puskesmas",
+                            "entity_entity_tags": {
+                              "entity_id": 1186322,
+                              "entity_tag_id": 9
+                            }
+                          }
+                        ]
+                      },
+                      "asset_type": {
+                        "id": 1,
+                        "name": "Vaccine Refrigerator",
+                        "created_at": "2020-12-31T01:16:30.000Z",
+                        "updated_at": "2024-02-12T19:20:41.000Z",
+                        "deleted_at": null,
+                        "updated_by": 40900,
+                        "created_by": 40900,
+                        "min_temp": 2,
+                        "max_temp": 8,
+                        "min_temp_2": null,
+                        "max_temp_2": null,
+                        "min_temp_3": null,
+                        "max_temp_3": null,
+                        "is_coldstorage": 1,
+                        "is_electricity": 1,
+                        "description": null,
+                        "is_selection": false,
+                        "treshold_temperatures": null
+                      },
+                      "asset_model": {
+                        "id": 135,
+                        "name": "HBD 286",
+                        "capacity": 204,
+                        "created_at": "2021-08-02T07:22:38.000Z",
+                        "updated_at": "2024-04-04T04:52:36.000Z",
+                        "deleted_at": null,
+                        "updated_by": 1955,
+                        "created_by": 1955,
+                        "only_logger": 0,
+                        "capacity_gross": 204,
+                        "capacity_nett": 204,
+                        "capacity_gross_2": null,
+                        "capacity_nett_2": null,
+                        "capacity_gross_3": null,
+                        "capacity_nett_3": null
+                      },
+                      "manufacture": {
+                        "id": 34,
+                        "name": "Haier",
+                        "reference_id": null,
+                        "description": null,
+                        "contact_name": null,
+                        "phone_number": null,
+                        "email": null,
+                        "address": null,
+                        "village_id": null,
+                        "created_by": null,
+                        "updated_by": null,
+                        "deleted_by": null,
+                        "type": 2,
+                        "created_at": "2020-12-28T00:00:00.000Z",
+                        "updated_at": "2020-12-28T00:00:00.000Z",
+                        "deleted_at": null
+                      },
+                      "maintenance_schedule": null,
+                      "calibration_schedule": null,
+                      "childs": [
+                        {
+                          "id": 110397,
+                          "serial_number": "90709922734063258104",
+                          "temp": 3.4,
+                          "min_temp": null,
+                          "max_temp": null,
+                          "updated_at": "2025-08-28T03:34:56.000Z",
+                          "other_model_asset": null,
+                          "other_manufacture": null,
+                          "manufacture": {
+                            "id": 69,
+                            "name": "Telkomsel IoT",
+                            "reference_id": "telkomsel",
+                            "description": null,
+                            "contact_name": null,
+                            "phone_number": null,
+                            "email": "tsel@mail.com",
+                            "address": null,
+                            "village_id": null,
+                            "created_by": 17191,
+                            "updated_by": 17191,
+                            "deleted_by": null,
+                            "type": 3,
+                            "created_at": "2021-04-23T07:07:55.000Z",
+                            "updated_at": "2021-04-23T09:36:05.000Z",
+                            "deleted_at": null
+                          },
+                          "asset_model": {
+                            "id": 634,
+                            "name": "Elitech RCW-360 Pro 4G/2G+Wifi",
+                            "capacity": 0,
+                            "created_at": "2024-12-12T10:04:33.000Z",
+                            "updated_at": "2024-12-12T10:04:33.000Z",
+                            "deleted_at": null,
+                            "updated_by": 53467,
+                            "created_by": 53467,
+                            "only_logger": 1,
+                            "capacity_gross": 0,
+                            "capacity_nett": 0,
+                            "capacity_gross_2": null,
+                            "capacity_nett_2": null,
+                            "capacity_gross_3": null,
+                            "capacity_nett_3": null
+                          }
+                        }
+                      ],
+                      "budget_source": {
+                        "id": 1,
+                        "name": "APBN"
+                      },
+                      "asset_status": {
+                        "id": 1,
+                        "name": "Berfungsi"
+                      },
+                      "unused_reason": null,
+                      "asset_communication_provider": null,
+                      "asset_vendor": null,
+                      "borrowed_entity": null,
+                      "asset_electricity": {
+                        "id": 4,
+                        "name": "24 hours"
+                      },
+                      "coldchain_capacity_equipment": null,
+                      "parent": null,
+                      "maintainers": [
+                        {
+                          "id": 55208,
+                          "username": "p01012723_imun",
+                          "email": "ernisarwita99@gmail.com",
+                          "firstname": "Erni Sarwita",
+                          "lastname": null,
+                          "gender": 2,
+                          "date_of_birth": null,
+                          "mobile_phone": "081264313188",
+                          "role": 4,
+                          "village_id": null,
+                          "entity_id": 1186322,
+                          "timezone_id": null,
+                          "created_by": 1957,
+                          "updated_by": 1957,
+                          "status": 1,
+                          "last_login": "2025-08-13T03:37:26.000Z",
+                          "last_device": 2,
+                          "created_at": "2024-01-19T02:12:56.000Z",
+                          "updated_at": "2025-08-13T03:37:26.000Z",
+                          "address": null,
+                          "view_only": 0,
+                          "change_password": 0,
+                          "manufacture_id": null,
+                          "fcm_token": "cBboNHcsSWKzmt6wsjwGPO:APA91bEOqYiK3c2X-kU14HaOximvU_9yY1L-li7ISH0MmsMR52Z-fT87wjIUMAPBWoLHjSfSAh_qutq_EX-8CdQEchqLA3tE4rU_n3-g04PdJsyCqnUAHAVcBceXSK5dYKU48hN9QXpx"
+                        }
+                      ],
+                      "offline": 1,
+                      "latest_log": {
+                        "temp": 3.4,
+                        "updated_at": "2025-08-28T03:28:30.000Z",
+                        "min_temp": null,
+                        "max_temp": null
+                      }
+                    }
+                  ],
+                  "page": 2,
+                  "item_per_page": 10,
+                  "total_item": 148840,
+                  "total_page": 14884,
+                  "list_pagination": [10, 25, 50, 100],
+                  "last_updated": "2025-07-14 12:10:40"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": ["message", "errors"]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": ["Username tidak boleh kosong"],
+                    "password": ["Kata Sandi tidak boleh kosong"]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [],
+  "security": []
+}

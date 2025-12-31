@@ -1,0 +1,4 @@
+include:
+  - project: "smile-platform/cicd"
+    ref: "main"
+    file: "/backend.yml"

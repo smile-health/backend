@@ -1,0 +1,53 @@
+# Service Routes Summary - Export/Import Endpoints
+
+## Core Service Routes
+- GET /xls
+- GET /xls-template
+- POST /xls
+- GET /export-history
+- GET /entities/xls
+- GET /entities/xls-template
+- POST /entities/xls
+- GET /users/xls
+- GET /users/xls-template
+- POST /users/xls
+- GET /budget-sources/xls
+- GET /budget-sources/xls-template
+- POST /budget-sources/xls
+- GET /manufactures/xls
+- GET /manufactures/xls-template
+- POST /manufactures/xls
+- GET /materials/xls
+- GET /materials/xls-template
+- POST /materials/xls
+- GET /programs/xls
+- GET /programs/xls-template
+- POST /programs/xls
+- GET /activities/xls
+- GET /activities/xls-template
+- POST /activities/xls
+- GET /asset-vendors/xls
+- GET /asset-vendors/xls-template
+- POST /asset-vendors/xls
+- GET /asset-types/xls
+- GET /asset-types/xls-template
+- POST /asset-types/xls
+- GET /asset-models/xls
+- GET /asset-models/xls-template
+- POST /asset-models/xls
+
+## Main Service Routes
+- POST /entity-materials/bulk-template
+- POST /entity-materials/bulk-import
+
+## Warehouse Service Routes
+- GET /monitoring-stock/export
+- GET /monitoring-transaction/export
+- GET /stock-book/export
+- GET /stock-book/export-all
+- GET /stock-opname/compliance/export
+- GET /stock-opname/result/export
+- GET /stock-opname/materials/export
+- GET /reconciliation/entities-report/export
+- GET /user-activity/entity/export
+- GET /download-report/code/:code

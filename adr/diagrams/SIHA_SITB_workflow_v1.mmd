@@ -1,0 +1,39 @@
+flowchart TD
+  %% SIHA/SITB API Workflow (Top-Down)
+  SYS((SIHA/SITB System))
+  SMILE([SMILE System - Main API])
+  style SYS fill:#ffd,stroke:#c90,stroke-width:2px
+  style SMILE fill:#eef,stroke:#88f,stroke-width:2px
+  SYS --> A[User Login - POST /auth/login]
+  A --> B{Bearer token present?}
+  B -- No --> A
+  B -- Yes --> C[Create Order - POST /v2/order/integration]
+
+  C --> D[SMILE validates order - business rules & mappings]
+  D --> E[Return OrderDetails to SIHA/SITB]
+
+  E --> H[SIHA/SITB confirms]
+  H --> I[Confirm Order - PUT /v2/order/:key_ssl/confirm/integration]
+  I --> J[Validate to SIHA via Gateway]
+  J --> K{Gateway success}
+  K -- Yes --> L[Update status, 204 No Content]
+  K -- No --> X[Return 400 BadRequest]
+
+  H --> M[Cancel Order - PUT /v2/order/:key_ssl/cancel/integration]
+  M --> N[Cancel via SihaGateway]
+  N --> O{Gateway success}
+  O -- Yes --> P[Update cancel status, 204 No Content]
+  O -- No --> X
+
+  %% Query endpoints (read-only)
+  Q[Get Integration Detail - GET /v2/order/:key_ssl/integration] --> R[Return OrderDetails]
+  S[Get Order Detail - GET /v2/order/:order_id] --> T[Return OrderDetails]
+  U[Get Orders - GET /v2/orders] --> V[Return OrdersList]
+  W[Get Materials - GET /v2/materials] --> Y[Return MaterialsResponse]
+  AA[Get Entities - GET /entities] --> AB[Return EntitiesResponse]
+  AC[Get Manufactures - GET /manufactures] --> AD[Return ManufacturesResponse]
+  AE[Get Budget Sources - GET /budget-sources] --> AF[Return BudgetSources]
+
+  style X fill:#fee,stroke:#f66
+  style L fill:#efe,stroke:#6a6
+  style P fill:#efe,stroke:#6a6

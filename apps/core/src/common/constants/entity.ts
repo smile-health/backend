@@ -1,0 +1,27 @@
+export enum ENTITY_TYPE {
+  PROVINCE = 1,
+  CITY = 2,
+  HEALTH_FACILITY = 3,
+  VACCINE_CENTER = 4,
+  PRIMARY_VENDOR = 5,
+  TNIPOLRI = 30,
+  BIOFARMA = 97,
+  VACCINE_STORAGE = 98,
+}
+
+export enum IS_VENDOR {
+  YES = 1,
+  NO = 0,
+}
+
+export enum ENTITY_STATUS {
+  ACTIVE = 1,
+  INACTIVE = 0,
+}
+
+export enum ENTITY_TAG {
+  MAIN_SUPPLIER = 1,
+  PROVINCE_HEALTH_OFFICE = 5,
+  CITY_DISTRICT_HEALTH_OFFICE = 7,
+  MINISTRY_OF_HEALTH = 3,
+}

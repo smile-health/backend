@@ -1,0 +1,426 @@
+import { Kysely, sql } from "kysely"
+import { Database } from "../types/index.js"
+import { NOTIFICATION_TYPE } from "@smile/lib/rabbitmq/notification"
+
+export async function seed(db: Kysely<Database>): Promise<void> {
+  // Seed notification_types first
+  const notificationTypes = [
+    {
+      id: 3,
+      title: "notification.type.zero_stock",
+      type: NOTIFICATION_TYPE.ZERO_STOCK,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 4,
+      title: "notification.type.less_stock",
+      type: NOTIFICATION_TYPE.LESS_STOCK,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 5,
+      title: "notification.type.ed_1",
+      type: NOTIFICATION_TYPE.EXPIRED_1,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 6,
+      title: "notification.type.ed_3",
+      type: NOTIFICATION_TYPE.EXPIRED_3,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 7,
+      title: "notification.type.ed_10",
+      type: NOTIFICATION_TYPE.EXPIRED_10,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 8,
+      title: "notification.type.ed_14",
+      type: NOTIFICATION_TYPE.EXPIRED_14,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 9,
+      title: "notification.type.ed_30",
+      type: NOTIFICATION_TYPE.EXPIRED_30,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 10,
+      title: "notification.type.ed_60",
+      type: NOTIFICATION_TYPE.EXPIRED_60,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 11,
+      title: "notification.type.ed_90",
+      type: NOTIFICATION_TYPE.EXPIRED_90,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 12,
+      title: "notification.type.order_ship",
+      type: NOTIFICATION_TYPE.ORDER_SHIP,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 13,
+      title: "notification.type.order_relocation",
+      type: NOTIFICATION_TYPE.ORDER_RELOCATION,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 14,
+      title: "notification.type.asset_maintenance",
+      type: NOTIFICATION_TYPE.ASSET_MAINTENANCE,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 15,
+      title: "notification.type.asset_calibration",
+      type: NOTIFICATION_TYPE.ASSET_CALIBRATION,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 16,
+      title: "notification.type.cap-80",
+      type: NOTIFICATION_TYPE.CAPACITY_80,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 18,
+      title: "notification.type.asset_status_changed",
+      type: NOTIFICATION_TYPE.ASSET_STATUS_CHANGED,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 26,
+      title: "notification.type.inactive_entity",
+      type: NOTIFICATION_TYPE.INACTIVE_ENTITY,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 31,
+      title: "notification.type.stock_back_to_normal",
+      type: NOTIFICATION_TYPE.STOCK_BACK_TO_NORMAL,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 40,
+      title: "notification.type.asset_warranty",
+      type: NOTIFICATION_TYPE.ASSET_WARRANTY,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 41,
+      title: "notification.type.above_excursion",
+      type: NOTIFICATION_TYPE.ABOVE_EXCURSION,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+    {
+      id: 42,
+      title: "notification.type.below_excursion",
+      type: NOTIFICATION_TYPE.BELOW_EXCURSION,
+      email_enabled: 1,
+      whatsapp_enabled: 1,
+      fcm_enabled: 1,
+    },
+  ]
+
+  const NOTIFICATION_TYPE_ID = {
+    ZERO_STOCK: 3,
+    LESS_STOCK: 4,
+    ED_1: 5,
+    ED_3: 6,
+    ED_10: 7,
+    ED_14: 8,
+    ED_30: 9,
+    ED_60: 10,
+    ED_90: 11,
+    ORDER_SHIP: 12,
+    ORDER_RELOCATION: 13,
+    ASSET_MAINTENANCE: 14,
+    ASSET_CALIBRATION: 15,
+    CAP_80: 16,
+    ASSET_STATUS_CHANGED: 18,
+    INACTIVE_ENTITY: 26,
+    STOCK_BACK_TO_NORMAL: 31,
+    ASSET_WARRANTY: 40,
+    ABOVE_EXCURSION: 41,
+    BELOW_EXCURSION: 42,
+  }
+
+  const notificationRecaps = [
+    {
+      id: 1,
+      notification_type_id: NOTIFICATION_TYPE_ID.ZERO_STOCK,
+      sorter: 1.0,
+      section: "notification.type.zero_stock",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 2,
+      notification_type_id: NOTIFICATION_TYPE_ID.LESS_STOCK,
+      sorter: 2.0,
+      section: "notification.type.stock_below_minimum",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 3,
+      notification_type_id: NOTIFICATION_TYPE_ID.ED_1,
+      sorter: 3.0,
+      section: "notification.type.material_near_expiry",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 4,
+      notification_type_id: NOTIFICATION_TYPE_ID.ED_3,
+      sorter: 3.01,
+      section: "notification.type.material_near_expiry",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 5,
+      notification_type_id: NOTIFICATION_TYPE_ID.ED_10,
+      sorter: 3.02,
+      section: "notification.type.material_near_expiry",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 6,
+      notification_type_id: NOTIFICATION_TYPE_ID.ED_14,
+      sorter: 3.03,
+      section: "notification.type.material_near_expiry",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 7,
+      notification_type_id: NOTIFICATION_TYPE_ID.ED_30,
+      sorter: 3.04,
+      section: "notification.type.material_near_expiry",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 8,
+      notification_type_id: NOTIFICATION_TYPE_ID.ED_60,
+      sorter: 3.05,
+      section: "notification.type.material_near_expiry",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 9,
+      notification_type_id: NOTIFICATION_TYPE_ID.ED_90,
+      sorter: 3.06,
+      section: "notification.type.material_near_expiry",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 10,
+      notification_type_id: NOTIFICATION_TYPE_ID.ORDER_SHIP,
+      sorter: 4.0,
+      section: "notification.type.order_ship",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 11,
+      notification_type_id: NOTIFICATION_TYPE_ID.ORDER_RELOCATION,
+      sorter: 4.01,
+      section: "notification.type.order_relocation",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 12,
+      notification_type_id: NOTIFICATION_TYPE_ID.INACTIVE_ENTITY,
+      sorter: 5.0,
+      section: "notification.type.inactive_entity",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 13,
+      notification_type_id: NOTIFICATION_TYPE_ID.STOCK_BACK_TO_NORMAL,
+      sorter: 6.0,
+      section: "notification.type.stock_back_to_normal",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 14,
+      notification_type_id: NOTIFICATION_TYPE_ID.ABOVE_EXCURSION,
+      sorter: 7.0,
+      section: "notification.type.temperature_excursion_above_max_threshold",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 15,
+      notification_type_id: NOTIFICATION_TYPE_ID.BELOW_EXCURSION,
+      sorter: 8.0,
+      section: "notification.type.temperature_excursion_below_min_threshold",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 16,
+      notification_type_id: NOTIFICATION_TYPE_ID.ASSET_STATUS_CHANGED,
+      sorter: 9.0,
+      section: "notification.type.asset_status_changed",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 17,
+      notification_type_id: NOTIFICATION_TYPE_ID.ASSET_MAINTENANCE,
+      sorter: 10.0,
+      section: "notification.type.asset_maintenance",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 18,
+      notification_type_id: NOTIFICATION_TYPE_ID.ASSET_CALIBRATION,
+      sorter: 11.0,
+      section: "notification.type.asset_calibration",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 19,
+      notification_type_id: NOTIFICATION_TYPE_ID.ASSET_WARRANTY,
+      sorter: 12.0,
+      section: "notification.type.asset_warranty",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+    {
+      id: 20,
+      notification_type_id: NOTIFICATION_TYPE_ID.CAP_80,
+      sorter: 13.0,
+      section: "notification.type.cap-80",
+      created_by: 29882,
+      updated_by: 29882,
+      deleted_at: null,
+      deleted_by: null,
+    },
+  ]
+
+  // Ignore Constraint, because some notification types are changed, so to avoid foreign key error
+  await sql`SET FOREIGN_KEY_CHECKS=0`.execute(db)
+
+  // Seed notification_types
+  await db.deleteFrom("notification_types").execute()
+
+  await db
+    .insertInto("notification_types")
+    .values(notificationTypes)
+    .onDuplicateKeyUpdate(() => ({
+      updated_at: new Date(),
+    }))
+    .execute()
+
+  console.log("Notification types seeded.")
+
+  // Seed notification_recaps
+  await db.deleteFrom("notification_recaps").execute()
+
+  await db
+    .insertInto("notification_recaps")
+    .values(notificationRecaps)
+    .onDuplicateKeyUpdate(() => ({
+      updated_at: new Date(),
+    }))
+    .execute()
+
+  await sql`SET FOREIGN_KEY_CHECKS=1`.execute(db)
+
+  console.log("Notification recaps seeded.")
+}

@@ -1,0 +1,622 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Default module",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/inventory/stocks/materials": {
+      "get": {
+        "summary": "Stock Material",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-01",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "2025-01-31",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2,3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_type_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "material_ids",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1,2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province_id",
+            "in": "query",
+            "description": "Province/state id",
+            "required": false,
+            "example": "34",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "regency_id",
+            "in": "query",
+            "description": "Regency/city id",
+            "required": false,
+            "example": "3404",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity_tag_id",
+            "in": "query",
+            "description": "Entity tags",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "normal": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "integer"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              },
+                              "entities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "integer"
+                                    },
+                                    "province": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name"
+                                      ]
+                                    },
+                                    "regency": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name"
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "min": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              },
+                              "entities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "integer"
+                                    },
+                                    "province": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name"
+                                      ]
+                                    },
+                                    "regency": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name"
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "max": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              },
+                              "entities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "integer"
+                                    },
+                                    "province": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name"
+                                      ]
+                                    },
+                                    "regency": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name"
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "zero_stock": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "number"
+                              },
+                              "tooltip": {
+                                "type": "string"
+                              },
+                              "entities": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "integer"
+                                    },
+                                    "province": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name"
+                                      ]
+                                    },
+                                    "regency": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name"
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "normal",
+                        "min",
+                        "max",
+                        "zero_stock"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                },
+                "example": {
+                  "data": {
+                    "normal": [
+                      {
+                        "id": 95,
+                        "name": "BCG @20 ds (Biofarma)",
+                        "value": 100,
+                        "tooltip": "BCG @20 ds (Biofarma): 100% (1 material in 66 entitas in 1 aktivitas from 1 material in 66 entitas in 1 aktivitas)",
+                        "entities": [
+                          {
+                            "id": 22563,
+                            "name": "PUSKESMAS NGLIPAR II",
+                            "value": 100,
+                            "province": {
+                              "id": 34,
+                              "name": "PROV. DI YOGYAKARTA"
+                            },
+                            "regency": {
+                              "id": 3403,
+                              "name": "KAB. GUNUNG KIDUL"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "min": [
+                      {
+                        "id": 11,
+                        "name": "BCG @20 ds (SII)",
+                        "value": 77.34,
+                        "tooltip": "BCG @20 ds (SII): 77.34% (1 material in 99 entitas in 1 aktivitas from 1 material in 128 entitas in 1 aktivitas)",
+                        "entities": [
+                          {
+                            "id": 13864,
+                            "name": "PUSKESMAS DEPOK II",
+                            "value": 100,
+                            "province": {
+                              "id": 34,
+                              "name": "PROV. DI YOGYAKARTA"
+                            },
+                            "regency": {
+                              "id": 3404,
+                              "name": "KAB. SLEMAN"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "max": [
+                      {
+                        "id": 36,
+                        "name": "IPV @5 ds",
+                        "value": 83.59,
+                        "tooltip": "IPV @5 ds: 83.59% (1 material in 107 entitas in 1 aktivitas from 1 material in 128 entitas in 1 aktivitas)",
+                        "entities": [
+                          {
+                            "id": 13942,
+                            "name": "PUSKESMAS PAJANGAN",
+                            "value": 100,
+                            "province": {
+                              "id": 34,
+                              "name": "PROV. DI YOGYAKARTA"
+                            },
+                            "regency": {
+                              "id": 3402,
+                              "name": "KAB. BANTUL"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "zero_stock": [
+                      {
+                        "id": 91,
+                        "name": "DPT-HB-Hib @10 ds (Pentavac)",
+                        "value": 97.64,
+                        "tooltip": "DPT-HB-Hib @10 ds (Pentavac): 97.64% (1 material in 124 entitas in 1 aktivitas from 1 material in 127 entitas in 1 aktivitas)",
+                        "entities": [
+                          {
+                            "id": 13920,
+                            "name": "PUSKESMAS BANTUL I",
+                            "value": 100,
+                            "province": {
+                              "id": 34,
+                              "name": "PROV. DI YOGYAKARTA"
+                            },
+                            "regency": {
+                              "id": 3402,
+                              "name": "KAB. BANTUL"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A human-readable message describing the outcome of the operation."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {},
+                      "description": "An object containing detailed error messages, typically keyed by field names."
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "message": "Unprocessable Entity",
+                  "errors": {
+                    "username": [
+                      "Username tidak boleh kosong"
+                    ],
+                    "password": [
+                      "Kata Sandi tidak boleh kosong"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "x-200:Success 200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "status"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "ID"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "token_login": {
+                      "type": "string"
+                    },
+                    "entity_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "email",
+                    "token_login",
+                    "entity_id"
+                  ]
+                },
+                "example": {
+                  "id": 48545,
+                  "username": "wira_admin",
+                  "email": "wiraa@badr-interactive.com",
+                  "firstname": "wira",
+                  "lastname": null,
+                  "gender": 1,
+                  "date_of_birth": null,
+                  "role": 1,
+                  "token_login": "token here",
+                  "village_id": null,
+                  "entity_id": 40900,
+                  "timezone_id": null,
+                  "status": 1,
+                  "view_only": 0,
+                  "change_password": 0,
+                  "manufacture_id": null,
+                  "fcm_token": null,
+                  "mobile_phone": null,
+                  "entity": {
+                    "id": 40900,
+                    "name": "UNDP",
+                    "address": " Jl. MH. Thamrin Kav. 3 Kebon Sirih Menteng Jakarta Pusat ",
+                    "type": 0,
+                    "code": "UNDP-1",
+                    "province_id": null,
+                    "regency_id": null,
+                    "sub_district_id": null,
+                    "village_id": null,
+                    "is_ayosehat": 0,
+                    "province": null,
+                    "regency": null,
+                    "sub_district": null,
+                    "village": null
+                  },
+                  "manufacture": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [],
+  "security": []
+}

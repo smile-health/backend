@@ -1,0 +1,68 @@
+export const ORDER_STATUS = {
+  PENDING: 1,
+  CONFIRMED: 2,
+  ALLOCATED: 3,
+  SHIPPED: 4,
+  FULFILLED: 5,
+  CANCELED: 6,
+  INDEPENDENT_EXTERMINATION: 7,
+  DRAFT: 8,
+}
+
+export const ORDER_STOCK_STATUSES = {
+  VVMA: 1,
+  VVMB: 2,
+  VVMC: 3,
+  VVMD: 4,
+}
+
+export const ORDER_REASON = {
+  EMPTY: -1,
+  LOW_STOCK: 1,
+  POPULATION_GROWTH: 2,
+  OUTBREAK: 3,
+  SUFFICIENT_STOCK: 4,
+  OTHERS: 9,
+}
+
+export const ORDER_TYPE = {
+  REQUEST: 1,
+  DISTRIBUTION: 2,
+  RETURN: 3,
+  CENTRAL_DISTRIBUTION: 4,
+  EXTERMINATION: 5,
+  INDEPENDENT_EXTERMINATION: 6,
+  RELOCATION: 7,
+}
+
+export const IS_ALLOCATED = {
+  TRUE: 1,
+  FALSE: 0,
+}
+
+export const IS_MANUAL = {
+  TRUE: 1,
+  FALSE: 0,
+}
+
+export const ORDER_CANCEL_REASON = {
+  REQUEST: 1,
+  DOUBLE: 2,
+  WRONG: 3,
+  OTHERS: 4,
+}
+
+export const IS_RELOCATION = {
+  TRUE: 1,
+  FALSE: 0,
+}
+
+export const IS_VENDOR = {
+  TRUE: 1,
+  FALSE: 0,
+}
+
+export const IS_FROM_TICKETING = {
+  TRUE: 1,
+  FALSE: 0,
+}

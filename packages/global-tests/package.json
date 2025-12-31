@@ -1,0 +1,35 @@
+{
+  "name": "@smile/global-tests",
+  "version": "1.0.0",
+  "description": "Global API and Web UI tests for SMILE Platform microservices",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "mocha --require @babel/register --timeout 10000 $1",
+    "test:coverage": "nyc --nycrc-path .nycrc mocha --require ts-node/register --require source-map-support/register --recursive --timeout 10000 test/**/*.test.js",
+    "test:coverage:check": "nyc check-coverage --nycrc-path .nycrc",
+    "test:coverage:name": "nyc --nycrc-path .nycrc mocha --require @babel/register --timeout 10000 $1",
+    "test:ui": "playwright test",
+    "test:ui:headed": "playwright test --headed",
+    "test:ui:debug": "playwright test --debug",
+    "test:ui:report": "playwright show-report",
+    "test:all": "npm run test && npm run test:ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/register": "^7.28.3",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@playwright/test": "^1.56.0",
+    "chai": "^4.5.0",
+    "chai-http": "^4.4.0",
+    "dotenv": "^16.6.1",
+    "mocha": "^9.2.2",
+    "nyc": "^15.1.0",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.2"
+  }
+}

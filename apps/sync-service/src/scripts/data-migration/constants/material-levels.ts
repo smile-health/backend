@@ -1,0 +1,38 @@
+export const materialLevelsData = [
+  {
+    id: 1,
+    name: "ingredient",
+    order: 1,
+    created_at: "2024-12-06 09:49:23",
+    updated_at: "2024-12-06 09:49:23",
+    deleted_at: null,
+    enable: 0,
+  },
+  {
+    id: 2,
+    name: "template",
+    order: 2,
+    created_at: "2024-12-06 09:49:23",
+    updated_at: "2025-06-17 07:32:56",
+    deleted_at: null,
+    enable: 1,
+  },
+  {
+    id: 3,
+    name: "variant",
+    order: 3,
+    created_at: "2024-12-06 09:49:23",
+    updated_at: "2025-06-17 07:32:56",
+    deleted_at: null,
+    enable: 1,
+  },
+  {
+    id: 4,
+    name: "packaging",
+    order: 4,
+    created_at: "2024-12-06 09:49:23",
+    updated_at: "2024-12-06 09:49:23",
+    deleted_at: null,
+    enable: 0,
+  },
+]

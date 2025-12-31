@@ -1,0 +1,5 @@
+export { DisposalShipmentController } from "./shipment.controller.js"
+export { DisposalShipmentRepository } from "./shipment.repository.js"
+export { DisposalShipmentMiddleware } from "./shipment.middleware.js"
+export { shipmentRoutes } from "./shipment.routes.js"
+export * from "./shipment.schema.js"

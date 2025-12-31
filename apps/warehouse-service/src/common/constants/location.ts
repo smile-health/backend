@@ -1,0 +1,5 @@
+export const LOCATION_LEVEL = {
+  PROVINCE: 0,
+  REGENCY: 1,
+  SUB_DISTRICT: 3,
+}

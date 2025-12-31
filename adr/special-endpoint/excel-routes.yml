@@ -1,0 +1,238 @@
+# Excel Export/Import Routes Configuration
+# This file contains all Excel-related routes for the platform services
+
+services:
+  core:
+    base_url: "{BASE_URL}/api/core"
+    endpoints:
+      entities:
+        base_path: "/entities"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export entities to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import entities from Excel"
+      
+      users:
+        base_path: "/users"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export users to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import users from Excel"
+      
+      budget_sources:
+        base_path: "/budget-sources"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export budget sources to Excel"
+      
+      manufactures:
+        base_path: "/manufactures"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export manufactures to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import manufactures from Excel"
+      
+      materials:
+        base_path: "/materials"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export materials to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import materials from Excel"
+      
+      programs:
+        base_path: "/programs"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export programs to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import programs from Excel"
+      
+      activities:
+        base_path: "/programs/:program_id/activities"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export activities to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import activities from Excel"
+      
+      asset_vendors:
+        base_path: "/asset-vendors"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export asset vendors to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import asset vendors from Excel"
+      
+      asset_types:
+        base_path: "/asset-types"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export asset types to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import asset types from Excel"
+      
+      asset_models:
+        base_path: "/asset-models"
+        routes:
+          - method: GET
+            path: "/xls"
+            description: "Export asset models to Excel"
+          - method: GET
+            path: "/xls-template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import asset models from Excel"
+  
+  main:
+    base_url: "{BASE_URL}/api/main"
+    endpoints:
+      entity_materials_bulk:
+        base_path: "/entities-materials-bulk"
+        routes:
+          - method: GET
+            path: "/template"
+            description: "Download Excel template"
+          - method: POST
+            path: "/xls"
+            description: "Import entity materials from Excel"
+          - method: GET
+            path: "/"
+            description: "List import operations"
+  
+  warehouse:
+    base_url: "{BASE_URL}/api/warehouse"
+    endpoints:
+      monitoring_stock:
+        base_path: "/monitoring/stock"
+        routes:
+          - method: GET
+            path: "/export"
+            description: "Export stock monitoring data to CSV"
+            format: "CSV"
+      
+      monitoring_transaction:
+        base_path: "/monitoring/transaction"
+        routes:
+          - method: GET
+            path: "/export"
+            description: "Export transaction monitoring data to CSV"
+            format: "CSV"
+      
+      stock_book:
+        base_path: "/stock-book"
+        routes:
+          - method: GET
+            path: "/export"
+            description: "Export stock book data to Excel"
+            format: "Excel"
+          - method: GET
+            path: "/export-all"
+            description: "Export all stock book data (async processing)"
+            format: "Excel"
+      
+      stock_opname:
+        base_path: "/stock-opname"
+        routes:
+          - method: GET
+            path: "/compliance/export"
+            description: "Export stock opname compliance report to Excel"
+            format: "Excel"
+          - method: GET
+            path: "/result/export"
+            description: "Export stock opname results to Excel"
+            format: "Excel"
+          - method: GET
+            path: "/materials/export"
+            description: "Export stock opname materials to Excel"
+            format: "Excel"
+      
+      reconciliation:
+        base_path: "/reconciliation"
+        routes:
+          - method: GET
+            path: "/entities-report/export"
+            description: "Export reconciliation entity report to Excel"
+            format: "Excel"
+      
+      user_activity:
+        base_path: "/activity"
+        routes:
+          - method: GET
+            path: "/entity/export"
+            description: "Export user activity by entity to Excel"
+            format: "Excel"
+      
+      download_report:
+        base_path: "/download"
+        routes:
+          - method: GET
+            path: "/list"
+            description: "List available download reports"
+          - method: GET
+            path: "/code/:code"
+            description: "Download report by code (format determined by code)"
+            formats: ["CSV", "Excel"]
+
+# Additional endpoints (related but not using ExcelMiddleware)
+related_endpoints:
+  core:
+    export_history:
+      base_path: "/export-histories"
+      description: "Tracks and manages export operation history"
+
+# Notes:
+# - Replace {BASE_URL} with your actual API base URL
+# - Most endpoints use ExcelMiddleware for Excel processing (.xlsx format)
+# - Stock monitoring and transaction monitoring use ExcelMiddleware but export CSV format
+# - Most endpoints include role validation middleware
+# - Budget sources only support export operations
+# - Entity materials bulk operations are in the Main service
+# - Warehouse service provides comprehensive export functionality across multiple modules
+# - Download report endpoints support both CSV and Excel formats based on report code
+# - Async exports are available for large datasets (e.g., stock-book/export-all)

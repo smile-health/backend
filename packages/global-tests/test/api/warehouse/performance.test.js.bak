@@ -1,0 +1,526 @@
+const { WarehouseTestUtils, expect } = require('./base-warehouse.test');
+
+describe('Warehouse Service - Performance Benchmarks', function() {
+    this.timeout(60000); // Extended timeout for performance tests
+
+    describe('Response Time Benchmarks', function() {
+        const performanceThresholds = {
+            fast: 2000,      // 2 seconds
+            medium: 5000,    // 5 seconds
+            slow: 10000,     // 10 seconds
+            export: 30000    // 30 seconds for exports
+        };
+
+        it('should meet response time requirements for consumption-supply endpoints', async function() {
+            const endpoints = [
+                { path: '/consumption-supply/all', threshold: performanceThresholds.medium },
+                { path: '/consumption-supply/location', threshold: performanceThresholds.fast },
+                { path: '/consumption-supply/entity', threshold: performanceThresholds.fast },
+                { path: '/consumption-supply/material', threshold: performanceThresholds.fast },
+                { path: '/consumption-supply/period-switcher', threshold: performanceThresholds.fast },
+                { path: '/consumption-supply/last-updated', threshold: performanceThresholds.fast }
+            ];
+
+            for (const endpoint of endpoints) {
+                const queryParams = WarehouseTestUtils.getTestQueryParams();
+                
+                const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                    () => WarehouseTestUtils.request()
+                        .get(endpoint.path)
+                        .query(queryParams)
+                );
+
+                expect(response).to.have.status(200);
+                expect(responseTime).to.be.below(endpoint.threshold, 
+                    `${endpoint.path} took ${responseTime}ms, expected < ${endpoint.threshold}ms`);
+            }
+        });
+
+        it('should meet response time requirements for monitoring-stock endpoints', async function() {
+            const endpoints = [
+                { path: '/monitoring-stock/chart', threshold: performanceThresholds.medium },
+                { path: '/monitoring-stock/province', threshold: performanceThresholds.fast },
+                { path: '/monitoring-stock/regency', threshold: performanceThresholds.fast },
+                { path: '/monitoring-stock/entity', threshold: performanceThresholds.fast },
+                { path: '/monitoring-stock/entity-stock', threshold: performanceThresholds.medium },
+                { path: '/monitoring-stock/material-entity', threshold: performanceThresholds.fast }
+            ];
+
+            for (const endpoint of endpoints) {
+                const queryParams = WarehouseTestUtils.getTestQueryParams();
+                
+                const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                    () => WarehouseTestUtils.request()
+                        .get(endpoint.path)
+                        .query(queryParams)
+                );
+
+                expect(response).to.have.status(200);
+                expect(responseTime).to.be.below(endpoint.threshold, 
+                    `${endpoint.path} took ${responseTime}ms, expected < ${endpoint.threshold}ms`);
+            }
+        });
+
+        it('should meet response time requirements for export endpoints', async function() {
+            const exportEndpoints = [
+                { path: '/consumption-supply/export', threshold: performanceThresholds.export },
+                { path: '/monitoring-stock/export', threshold: performanceThresholds.export },
+                { path: '/reconciliation/entities-report/export', threshold: performanceThresholds.export }
+            ];
+
+            for (const endpoint of exportEndpoints) {
+                const queryParams = WarehouseTestUtils.getTestQueryParams({
+                    from: '2024-01-01',
+                    to: '2024-01-31' // Limited range for performance
+                });
+                
+                const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                    () => WarehouseTestUtils.request()
+                        .get(endpoint.path)
+                        .query(queryParams)
+                );
+
+                expect(response).to.have.status(200);
+                expect(responseTime).to.be.below(endpoint.threshold, 
+                    `${endpoint.path} took ${responseTime}ms, expected < ${endpoint.threshold}ms`);
+            }
+        });
+
+        it('should maintain consistent response times across multiple calls', async function() {
+            const endpoint = '/consumption-supply/all';
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+            const iterations = 5;
+            const responseTimes = [];
+
+            for (let i = 0; i < iterations; i++) {
+                const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                    () => WarehouseTestUtils.request()
+                        .get(endpoint)
+                        .query(queryParams)
+                );
+
+                expect(response).to.have.status(200);
+                responseTimes.push(responseTime);
+            }
+
+            // Calculate variance in response times
+            const avgResponseTime = responseTimes.reduce((a, b) => a + b, 0) / responseTimes.length;
+            const variance = responseTimes.reduce((acc, time) => acc + Math.pow(time - avgResponseTime, 2), 0) / responseTimes.length;
+            const standardDeviation = Math.sqrt(variance);
+
+            // Standard deviation should be reasonable (less than 50% of average)
+            expect(standardDeviation).to.be.below(avgResponseTime * 0.5, 
+                `Response time variance too high: avg=${avgResponseTime}ms, stddev=${standardDeviation}ms`);
+        });
+    });
+
+    describe('Concurrent Request Handling', function() {
+        it('should handle concurrent requests to same endpoint efficiently', async function() {
+            const concurrencyLevels = [5, 10, 15];
+            const endpoint = '/consumption-supply/all';
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+
+            for (const concurrency of concurrencyLevels) {
+                const requestFn = () => WarehouseTestUtils.request()
+                    .get(endpoint)
+                    .query(queryParams);
+
+                const startTime = Date.now();
+                const results = await WarehouseTestUtils.runConcurrentRequests(requestFn, concurrency);
+                const totalTime = Date.now() - startTime;
+
+                // All requests should succeed
+                results.forEach((result, index) => {
+                    expect(result.response).to.have.status(200, 
+                        `Request ${index + 1}/${concurrency} failed`);
+                });
+
+                // Average response time should be reasonable
+                const avgResponseTime = results.reduce((sum, result) => sum + result.responseTime, 0) / results.length;
+                expect(avgResponseTime).to.be.below(15000, 
+                    `Average response time ${avgResponseTime}ms too high for ${concurrency} concurrent requests`);
+
+                // Total time should be efficient (not much more than sequential)
+                const maxExpectedTime = Math.max(...results.map(r => r.responseTime)) * 1.5;
+                expect(totalTime).to.be.below(maxExpectedTime, 
+                    `Total time ${totalTime}ms too high for ${concurrency} concurrent requests`);
+            }
+        });
+
+        it('should handle concurrent requests to different endpoints', async function() {
+            const endpoints = [
+                '/consumption-supply/all',
+                '/monitoring-stock/chart',
+                '/reconciliation/summary-report',
+                '/consumption-supply/location',
+                '/monitoring-stock/province'
+            ];
+
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+            
+            const requestFunctions = endpoints.map(endpoint => 
+                () => WarehouseTestUtils.request()
+                    .get(endpoint)
+                    .query(queryParams)
+            );
+
+            const startTime = Date.now();
+            const results = await Promise.all(
+                requestFunctions.map(fn => WarehouseTestUtils.measureResponseTime(fn))
+            );
+            const totalTime = Date.now() - startTime;
+
+            // All requests should succeed
+            results.forEach((result, index) => {
+                expect(result.response).to.have.status(200, 
+                    `Request to ${endpoints[index]} failed`);
+            });
+
+            // Total time should be reasonable for concurrent execution
+            expect(totalTime).to.be.below(20000, 
+                `Total time ${totalTime}ms too high for concurrent different endpoints`);
+        });
+
+        it('should maintain performance under sustained load', async function() {
+            const endpoint = '/consumption-supply/location';
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+            const duration = 30000; // 30 seconds
+            const requestInterval = 1000; // 1 second between requests
+            
+            const startTime = Date.now();
+            const results = [];
+            
+            while (Date.now() - startTime < duration) {
+                const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                    () => WarehouseTestUtils.request()
+                        .get(endpoint)
+                        .query(queryParams)
+                );
+
+                results.push({ response, responseTime, timestamp: Date.now() });
+                
+                // Wait before next request
+                await new Promise(resolve => setTimeout(resolve, requestInterval));
+            }
+
+            // All requests should succeed
+            results.forEach((result, index) => {
+                expect(result.response).to.have.status(200, 
+                    `Request ${index + 1} failed during sustained load test`);
+            });
+
+            // Performance should not degrade significantly over time
+            const firstHalf = results.slice(0, Math.floor(results.length / 2));
+            const secondHalf = results.slice(Math.floor(results.length / 2));
+            
+            const firstHalfAvg = firstHalf.reduce((sum, r) => sum + r.responseTime, 0) / firstHalf.length;
+            const secondHalfAvg = secondHalf.reduce((sum, r) => sum + r.responseTime, 0) / secondHalf.length;
+            
+            // Second half should not be more than 50% slower than first half
+            expect(secondHalfAvg).to.be.below(firstHalfAvg * 1.5, 
+                `Performance degraded: first half avg=${firstHalfAvg}ms, second half avg=${secondHalfAvg}ms`);
+        });
+    });
+
+    describe('Throughput Capacity', function() {
+        it('should achieve minimum throughput for read operations', async function() {
+            const endpoint = '/consumption-supply/location';
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+            const testDuration = 10000; // 10 seconds
+            const minRequestsPerSecond = 5;
+            
+            const startTime = Date.now();
+            let requestCount = 0;
+            const errors = [];
+            
+            // Send requests as fast as possible for the test duration
+            const promises = [];
+            while (Date.now() - startTime < testDuration) {
+                const promise = WarehouseTestUtils.request()
+                    .get(endpoint)
+                    .query(queryParams)
+                    .then(response => {
+                        requestCount++;
+                        if (response.status !== 200) {
+                            errors.push(`Request ${requestCount} returned status ${response.status}`);
+                        }
+                        return response;
+                    })
+                    .catch(error => {
+                        errors.push(`Request ${requestCount} failed: ${error.message}`);
+                    });
+                
+                promises.push(promise);
+                
+                // Small delay to prevent overwhelming the server
+                await new Promise(resolve => setTimeout(resolve, 50));
+            }
+            
+            // Wait for all requests to complete
+            await Promise.all(promises);
+            
+            const actualDuration = Date.now() - startTime;
+            const requestsPerSecond = (requestCount * 1000) / actualDuration;
+            
+            // Should achieve minimum throughput
+            expect(requestsPerSecond).to.be.at.least(minRequestsPerSecond, 
+                `Achieved ${requestsPerSecond} req/s, expected at least ${minRequestsPerSecond} req/s`);
+            
+            // Error rate should be low
+            const errorRate = errors.length / requestCount;
+            expect(errorRate).to.be.below(0.05, 
+                `Error rate ${errorRate * 100}% too high. Errors: ${errors.slice(0, 5).join(', ')}`);
+        });
+
+        it('should handle burst traffic patterns', async function() {
+            const endpoint = '/consumption-supply/entity';
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+            
+            // Simulate burst pattern: high load, then low load, then high load again
+            const burstPatterns = [
+                { concurrency: 10, duration: 3000 }, // High load
+                { concurrency: 2, duration: 2000 },  // Low load
+                { concurrency: 8, duration: 3000 }   // High load again
+            ];
+            
+            for (const pattern of burstPatterns) {
+                const startTime = Date.now();
+                const results = [];
+                
+                while (Date.now() - startTime < pattern.duration) {
+                    const requestFn = () => WarehouseTestUtils.request()
+                        .get(endpoint)
+                        .query(queryParams);
+                    
+                    const batchResults = await WarehouseTestUtils.runConcurrentRequests(
+                        requestFn, 
+                        pattern.concurrency
+                    );
+                    
+                    results.push(...batchResults);
+                    
+                    // Small delay between batches
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+                
+                // All requests in this pattern should succeed
+                results.forEach((result, index) => {
+                    expect(result.response).to.have.status(200, 
+                        `Request ${index + 1} failed in burst pattern (concurrency: ${pattern.concurrency})`);
+                });
+                
+                // Average response time should be reasonable
+                const avgResponseTime = results.reduce((sum, r) => sum + r.responseTime, 0) / results.length;
+                expect(avgResponseTime).to.be.below(10000, 
+                    `Average response time ${avgResponseTime}ms too high for burst pattern`);
+            }
+        });
+    });
+
+    describe('Latency Metrics', function() {
+        it('should measure and validate P95 latency', async function() {
+            const endpoint = '/consumption-supply/all';
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+            const sampleSize = 20;
+            const responseTimes = [];
+            
+            for (let i = 0; i < sampleSize; i++) {
+                const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                    () => WarehouseTestUtils.request()
+                        .get(endpoint)
+                        .query(queryParams)
+                );
+                
+                expect(response).to.have.status(200);
+                responseTimes.push(responseTime);
+                
+                // Small delay between requests
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            // Sort response times
+            responseTimes.sort((a, b) => a - b);
+            
+            // Calculate percentiles
+            const p50 = responseTimes[Math.floor(sampleSize * 0.5)];
+            const p95 = responseTimes[Math.floor(sampleSize * 0.95)];
+            const p99 = responseTimes[Math.floor(sampleSize * 0.99)];
+            
+            // Validate latency requirements
+            expect(p50).to.be.below(3000, `P50 latency ${p50}ms too high`);
+            expect(p95).to.be.below(8000, `P95 latency ${p95}ms too high`);
+            expect(p99).to.be.below(15000, `P99 latency ${p99}ms too high`);
+        });
+
+        it('should measure latency for different data sizes', async function() {
+            const testCases = [
+                { endpoint: '/consumption-supply/location', expectedSize: 'small', maxLatency: 2000 },
+                { endpoint: '/consumption-supply/entity', expectedSize: 'medium', maxLatency: 3000 },
+                { endpoint: '/consumption-supply/all', expectedSize: 'large', maxLatency: 5000 }
+            ];
+            
+            for (const testCase of testCases) {
+                const queryParams = WarehouseTestUtils.getTestQueryParams();
+                
+                const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                    () => WarehouseTestUtils.request()
+                        .get(testCase.endpoint)
+                        .query(queryParams)
+                );
+                
+                expect(response).to.have.status(200);
+                expect(responseTime).to.be.below(testCase.maxLatency, 
+                    `${testCase.endpoint} (${testCase.expectedSize} data) took ${responseTime}ms, expected < ${testCase.maxLatency}ms`);
+            }
+        });
+
+        it('should measure network vs processing time', async function() {
+            const endpoint = '/consumption-supply/location';
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+            
+            // Measure multiple requests to get average
+            const measurements = [];
+            for (let i = 0; i < 5; i++) {
+                const startTime = Date.now();
+                
+                const response = await WarehouseTestUtils.request()
+                    .get(endpoint)
+                    .query(queryParams);
+                
+                const totalTime = Date.now() - startTime;
+                
+                expect(response).to.have.status(200);
+                
+                measurements.push({
+                    totalTime,
+                    dataSize: JSON.stringify(response.body).length
+                });
+            }
+            
+            // Calculate averages
+            const avgTotalTime = measurements.reduce((sum, m) => sum + m.totalTime, 0) / measurements.length;
+            const avgDataSize = measurements.reduce((sum, m) => sum + m.dataSize, 0) / measurements.length;
+            
+            // Validate that response time is reasonable for data size
+            const timePerKB = avgTotalTime / (avgDataSize / 1024);
+            expect(timePerKB).to.be.below(100, 
+                `Time per KB (${timePerKB}ms/KB) too high, suggests inefficient processing`);
+        });
+    });
+
+    describe('Resource Usage Monitoring', function() {
+        it('should not cause memory leaks during extended testing', async function() {
+            const endpoint = '/consumption-supply/location';
+            const queryParams = WarehouseTestUtils.getTestQueryParams();
+            const iterations = 50;
+            
+            // Measure initial memory if available
+            const initialMemory = process.memoryUsage ? process.memoryUsage().heapUsed : null;
+            
+            for (let i = 0; i < iterations; i++) {
+                const response = await WarehouseTestUtils.request()
+                    .get(endpoint)
+                    .query(queryParams);
+                
+                expect(response).to.have.status(200);
+                
+                // Force garbage collection periodically if available
+                if (global.gc && i % 10 === 0) {
+                    global.gc();
+                }
+            }
+            
+            // Measure final memory if available
+            if (initialMemory && process.memoryUsage) {
+                const finalMemory = process.memoryUsage().heapUsed;
+                const memoryIncrease = finalMemory - initialMemory;
+                const memoryIncreasePerRequest = memoryIncrease / iterations;
+                
+                // Memory increase per request should be minimal
+                expect(memoryIncreasePerRequest).to.be.below(1024 * 10, // 10KB per request
+                    `Memory increase per request (${memoryIncreasePerRequest} bytes) suggests memory leak`);
+            }
+        });
+
+        it('should handle large response payloads efficiently', async function() {
+            const endpoint = '/consumption-supply/all';
+            const queryParams = WarehouseTestUtils.getTestQueryParams({
+                from: '2024-01-01',
+                to: '2024-12-31' // Large date range
+            });
+            
+            const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                () => WarehouseTestUtils.request()
+                    .get(endpoint)
+                    .query(queryParams)
+            );
+            
+            expect(response).to.have.status(200);
+            
+            // Calculate response size
+            const responseSize = JSON.stringify(response.body).length;
+            const responseSizeKB = responseSize / 1024;
+            
+            // Time per KB should be reasonable
+            const timePerKB = responseTime / responseSizeKB;
+            expect(timePerKB).to.be.below(50, 
+                `Processing time per KB (${timePerKB}ms/KB) too high for large payload`);
+            
+            // Response should not be excessively large
+            expect(responseSizeKB).to.be.below(5 * 1024, // 5MB
+                `Response size (${responseSizeKB}KB) too large`);
+        });
+    });
+
+    describe('Performance Regression Detection', function() {
+        it('should establish baseline performance metrics', async function() {
+            const endpoints = [
+                '/consumption-supply/all',
+                '/monitoring-stock/chart',
+                '/reconciliation/summary-report'
+            ];
+            
+            const baselines = {};
+            
+            for (const endpoint of endpoints) {
+                const queryParams = WarehouseTestUtils.getTestQueryParams();
+                const measurements = [];
+                
+                // Take multiple measurements for accuracy
+                for (let i = 0; i < 5; i++) {
+                    const { response, responseTime } = await WarehouseTestUtils.measureResponseTime(
+                        () => WarehouseTestUtils.request()
+                            .get(endpoint)
+                            .query(queryParams)
+                    );
+                    
+                    expect(response).to.have.status(200);
+                    measurements.push(responseTime);
+                }
+                
+                // Calculate baseline metrics
+                const avgResponseTime = measurements.reduce((sum, time) => sum + time, 0) / measurements.length;
+                const maxResponseTime = Math.max(...measurements);
+                const minResponseTime = Math.min(...measurements);
+                
+                baselines[endpoint] = {
+                    average: avgResponseTime,
+                    max: maxResponseTime,
+                    min: minResponseTime,
+                    variance: measurements.reduce((acc, time) => acc + Math.pow(time - avgResponseTime, 2), 0) / measurements.length
+                };
+                
+                // Log baseline for reference
+                console.log(`Baseline for ${endpoint}: avg=${avgResponseTime.toFixed(2)}ms, max=${maxResponseTime}ms, min=${minResponseTime}ms`);
+            }
+            
+            // Validate that baselines are reasonable
+            Object.entries(baselines).forEach(([endpoint, metrics]) => {
+                expect(metrics.average).to.be.below(10000, 
+                    `Baseline average for ${endpoint} (${metrics.average}ms) too high`);
+                expect(metrics.max).to.be.below(20000, 
+                    `Baseline max for ${endpoint} (${metrics.max}ms) too high`);
+            });
+        });
+    });
+});

@@ -1,0 +1,52 @@
+{
+  "name": "smile-monorepo",
+  "private": true,
+  "scripts": {
+    "init": "pnpm install",
+    "reinitiate": "rm -rf node_modules apps/core/node_modules apps/main/node_modules apps/3.0/main-api/node_modules apps/platform/node_modules apps/sync-service/node_modules apps/warehouse-service/node_modules packages/lib/node_modules && pnpm install",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "lint:package": "npx sherif@latest",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test": "turbo run test --filter=@smile/smile-warehouse",
+    "test:coverage": "turbo run test:coverage --filter=@smile/smile-warehouse"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "turbo": "^2.5.8",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.0"
+  },
+  "optionalDependencies": {
+    "@oven/bun-windows-x64": "^1.2.23",
+    "@oven/bun-windows-x64-baseline": "^1.2.23"
+  },
+  "workspaces": [
+    "apps/*",
+    "apps/3.0/*",
+    "packages/*"
+  ],
+  "packageManager": "pnpm@9.12.3",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@smile/lib": "^1.0.235",
+    "bun": "^1.2.23",
+    "kysely-ctl": "^0.18.0",
+    "pnpm": "^10.18.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "nanoid@<3.3.8": ">=3.3.8",
+      "esbuild": ">=0.25.0",
+      "serialize-javascript@>=6.0.0 <6.0.2": ">=6.0.2",
+      "vite@<=5.4.20": ">=5.4.21"
+    }
+  }
+}
