@@ -1,6 +1,8 @@
-# Node Typescript ESM
 
-Opinionated project template for a Node.js & TypeScript apps with native ESM
+# SMILE Backend
+
+## About
+This document purpose to provide information about SMILE backend installation.
 
 ## Stacks
 
