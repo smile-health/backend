@@ -2,7 +2,7 @@
 # SMILE Backend
 
 ## About
-This document purpose to provide information about SMILE backend installation.
+This document aims to provide a guide for installing the SMILE backend.
 
 ## Stacks
 
