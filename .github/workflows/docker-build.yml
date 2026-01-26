@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd packages/lib
-          pnpm install
+          npm install
 
       - name: Build lib
         run: pnpm --filter @smile/lib build
