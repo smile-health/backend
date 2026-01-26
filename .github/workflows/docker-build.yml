@@ -33,6 +33,11 @@ jobs:
         with:
           version: 9.12.3
 
+      - name: Configure .npmrc for GitHub Packages
+        run: |
+          echo "@smile:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=\${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+
       - name: Get lib version
         id: get-version
         run: |
@@ -83,6 +88,11 @@ jobs:
             type=ref,event=pr
             type=sha,prefix={{branch}}-
             type=raw,value=${{ matrix.service }}-latest,enable={{is_default_branch}}
+
+      - name: Create .npmrc for GitHub Packages
+        run: |
+          echo "@smile:registry=https://npm.pkg.github.com" > ./apps/${{ matrix.service }}/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=\${{ secrets.GITHUB_TOKEN }}" >> ./apps/${{ matrix.service }}/.npmrc
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
