@@ -35,7 +35,7 @@ jobs:
 
       - name: Configure .npmrc for GitHub Packages
         run: |
-          echo "@smile:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "@smile-health:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,7 +52,7 @@ jobs:
           npm install
 
       - name: Build lib
-        run: pnpm --filter @smile/lib build
+        run: pnpm --filter @smile-health/lib build
 
       - name: Publish to GitHub Package Registry
         run: |
@@ -97,7 +97,7 @@ jobs:
 
       - name: Create .npmrc for GitHub Packages
         run: |
-          echo "@smile:registry=https://npm.pkg.github.com" > ./apps/${{ matrix.service }}/.npmrc
+          echo "@smile-health:registry=https://npm.pkg.github.com" > ./apps/${{ matrix.service }}/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ./apps/${{ matrix.service }}/.npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
