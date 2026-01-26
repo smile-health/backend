@@ -52,5 +52,12 @@
     "@types/bun": "latest",
     "bun-types": "latest",
     "sonarqube-scanner": "^3.5.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smile/lib.git"
   }
 }
