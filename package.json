@@ -36,7 +36,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@smile/lib": "^1.0.235",
+    "@smile-health/lib": "^1.0.235",
     "bun": "^1.2.23",
     "kysely-ctl": "^0.18.0",
     "pnpm": "^10.18.1"

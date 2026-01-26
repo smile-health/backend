@@ -2,7 +2,7 @@
   "name": "@smile/auth-service",
   "type": "module",
   "scripts": {
-    "dev": "pnpm link @smile/lib && tsx watch src/index.ts",
+    "dev": "pnpm link @smile-health/lib && tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/src/index.js",
     "test": "vitest"
@@ -12,7 +12,7 @@
     "@hono/node-server": "^1.19.5",
     "@hono/swagger-ui": "^0.5.2",
     "@hono/zod-openapi": "^0.18.4",
-    "@smile/lib": "^1.0.238",
+    "@smile-health/lib": "^1.0.238",
     "axios": "^1.12.2",
     "bun": "^1.2.23",
     "commander": "^14.0.1",
