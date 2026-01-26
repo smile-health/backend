@@ -12,7 +12,7 @@
     "@hono/node-server": "^1.19.5",
     "@hono/swagger-ui": "^0.5.2",
     "@hono/zod-openapi": "^0.18.4",
-    "@smile-health/lib": "^1.0.238",
+    "@smile-health/lib": "^1.0.239",
     "axios": "^1.12.2",
     "bun": "^1.2.23",
     "commander": "^14.0.1",
