@@ -36,7 +36,7 @@ jobs:
       - name: Configure .npmrc for GitHub Packages
         run: |
           echo "@smile:registry=https://npm.pkg.github.com" >> .npmrc
-          echo "//npm.pkg.github.com/:_authToken=\${{ secrets.PACKAGE_TOKEN }}" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=\${{ secrets.GITHUB_TOKEN }}" >> .npmrc
 
       - name: Get lib version
         id: get-version
@@ -57,7 +57,7 @@ jobs:
           cd packages/lib
           npm publish --registry https://npm.pkg.github.com
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-and-push-images:
     needs: build-and-push-lib
@@ -96,7 +96,7 @@ jobs:
       - name: Create .npmrc for GitHub Packages
         run: |
           echo "@smile:registry=https://npm.pkg.github.com" > ./apps/${{ matrix.service }}/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=\${{ secrets.PACKAGE_TOKEN }}" >> ./apps/${{ matrix.service }}/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=\${{ secrets.GITHUB_TOKEN }}" >> ./apps/${{ matrix.service }}/.npmrc
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
