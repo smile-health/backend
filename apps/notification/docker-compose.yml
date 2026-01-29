@@ -1,0 +1,19 @@
+version: "3"
+services:
+  smile-notification:
+    container_name: smile-notification
+    hostname: "smile-notification"
+    image: registry.badr.co.id/undp/smile-notification:dev
+    restart: always
+    ports:
+        - 6007:6006
+    environment:
+        - TZ=Asia/Jakarta
+        - PORT=6007
+    env_file:
+        - .env
+    user: "0"
+networks:
+    default:
+        external:
+            name: devel_network
