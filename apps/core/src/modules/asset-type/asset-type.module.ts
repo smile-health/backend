@@ -2,9 +2,9 @@ import {
   ASSET_CLASSIFICATION,
   TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE,
 } from "@/common/constants/assets.js"
-import { NotFoundError } from "@smile/lib/error.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { collect, merge, pick } from "@smile/lib/utils.js"
+import { NotFoundError } from "@smile-health/lib/error.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { collect, merge, pick } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import moment from "moment"
 import { AssetTypesClassificationRepository } from "../asset-types-classification/asset-types-classification.repository.js"

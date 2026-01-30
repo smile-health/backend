@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { PeriodSchema } from "@/common/schemas/period.schema.js"
 import { QueryParamsSchema } from "@/common/schemas/query-param.schema.js"
-import { IdsSchema } from "@smile/lib/types/param.js"
+import { IdsSchema } from "@smile-health/lib/types/param.js"
 
 /**
  * Base query parameter validation schema for add-remove-discard modules

@@ -1,7 +1,7 @@
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 import path from "path"
-import { MasterData } from "@smile/lib/types/param.js"
+import { MasterData } from "@smile-health/lib/types/param.js"
 
 interface MasterDataTemperatureThreshold {
   id: number

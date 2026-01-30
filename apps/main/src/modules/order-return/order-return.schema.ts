@@ -1,5 +1,5 @@
 import z from "zod"
-import { DateSchema } from "@smile/lib/types/param.js"
+import { DateSchema } from "@smile-health/lib/types/param.js"
 
 /* Base Schema */
 export const OrderReturnSchema = z.object({

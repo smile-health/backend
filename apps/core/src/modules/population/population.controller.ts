@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Hono, type Context } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { PopulationModule } from "./population.module.js"

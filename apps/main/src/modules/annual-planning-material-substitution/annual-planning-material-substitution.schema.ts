@@ -1,10 +1,10 @@
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import z from "zod"
 import { Context } from "hono"
 import {
   IdParamsSchema,
   IdSchema as numberInParamSchema,
-} from "@smile/lib/types/param.js"
+} from "@smile-health/lib/types/param.js"
 
 export const GetListMaterialSubstitutionSchema = PaginationQueriesSchema.extend(
   {

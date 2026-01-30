@@ -1,6 +1,6 @@
 import env from "@/config/env.js"
 import { ClickhouseDialect } from "@founderpath/kysely-clickhouse"
-import { DatabaseManager } from "@smile/lib/database.js"
+import { DatabaseManager } from "@smile-health/lib/database.js"
 import { CompiledQuery } from "kysely"
 import { DB } from "../../../scripts/db.platform.js"
 

@@ -9,7 +9,7 @@ import {
   partition,
 } from "@/scripts/helper.js"
 import { DB } from "@/scripts/types.platform.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Kysely, Transaction } from "kysely"
 import { getMigrationDB } from "../../db.migration.js"
 import { MigrationDB } from "../../types.js"

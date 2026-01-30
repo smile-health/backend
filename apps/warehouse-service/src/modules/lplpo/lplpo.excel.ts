@@ -1,5 +1,5 @@
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 import moment from "moment"
 import { TFunction } from "i18next"
 

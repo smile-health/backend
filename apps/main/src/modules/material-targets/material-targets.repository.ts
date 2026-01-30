@@ -1,4 +1,4 @@
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { MaterialTargetsPaginatedRequestDTO } from "./material-targets.schema.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
 

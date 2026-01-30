@@ -17,7 +17,7 @@ import {
 } from "./download-report.util.js"
 import { StockMaterialGenerateReport } from "./generate-report/stock-material.generate-report.js"
 import { ConsumptionGenerateReport } from "./generate-report/consumption.generate-report.js"
-import { ForbiddenError } from "@smile/lib/error.js"
+import { ForbiddenError } from "@smile-health/lib/error.js"
 import { DiscardGenerateReport } from "./generate-report/discard.generate-report.js"
 import { ExpiredMaterialGenerateReport } from "./generate-report/expired-material.generate-report.js"
 import { StockAvailabilityGenerateReport } from "./generate-report/stock-availability.generate-report.js"

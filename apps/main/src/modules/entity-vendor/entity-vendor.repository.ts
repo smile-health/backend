@@ -1,7 +1,7 @@
 import { IS_RELOCATION, IS_VENDOR } from "@/common/constants/order.js"
 import { db } from "@/common/infrastructure/database/index.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { Context as CtxHono } from "hono"
 import { CompiledQuery, sql } from "kysely"
 import { ListCustomerVendorActivityDTO } from "../app-mobile-data/app-mobile-data.schema.js"

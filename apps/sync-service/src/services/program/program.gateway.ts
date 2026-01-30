@@ -1,7 +1,7 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import { logError } from "@/common/logger.repository.js"
 import { insertMapping } from "@/common/mapping.repository.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { AxiosError } from "axios"
 import type { CreateProgramIncomingMessage } from "./program.schema.js"
 

@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import moment from "moment-timezone"
 import { DownloadReportRepository } from "../download-report.repository.js"
 import { ExpiredMaterialGenerateReport } from "../generate-report/expired-material.generate-report.js"

@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { GetOrderReasonsQueryParam } from "./order-reason.schema.js"
 import { BaseRepository } from "../base.repository.js"
 

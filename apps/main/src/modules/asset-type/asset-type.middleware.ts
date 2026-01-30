@@ -1,4 +1,4 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
 import { Context } from "hono"
 import { z } from "zod"
 import { AssetTypeRepository } from "./asset-type.repository.js"
@@ -9,7 +9,7 @@ import {
   GetAssetTypesQueryParams,
 } from "./asset-type.schema.js"
 import { createMiddleware } from "hono/factory"
-import { NotFoundError } from "@smile/lib/error.js"
+import { NotFoundError } from "@smile-health/lib/error.js"
 
 export class AssetTypeMiddleware extends BaseMiddleware {
   constructor(private readonly repository: AssetTypeRepository) {

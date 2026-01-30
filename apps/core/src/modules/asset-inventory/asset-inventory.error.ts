@@ -1,4 +1,4 @@
-import { ValidationError } from "@smile/lib/error"
+import { ValidationError } from "@smile-health/lib/error"
 
 export class InvalidAsset extends ValidationError {
   constructor() {

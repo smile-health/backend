@@ -1,6 +1,6 @@
 import { ROW_SHEET_USER } from "@/common/constants/users.js"
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { PROCESSOR } from "@smile/lib/excel/types"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types"
 
 export class UserTemplateXlsx extends BaseTemplate {
   constructor(

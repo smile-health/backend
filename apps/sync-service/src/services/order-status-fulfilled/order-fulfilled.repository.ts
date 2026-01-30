@@ -1,6 +1,6 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { CustomContext } from "@smile/lib/types/context.js"
-import { collect } from "@smile/lib/utils.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
+import { collect } from "@smile-health/lib/utils.js"
 
 export class OrderStatusFulfilledRepository {
   async findOrderStockByOrderItemAndStockIdPlatform(

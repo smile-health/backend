@@ -1,6 +1,6 @@
 import { LOCATION_KEY } from "@/common/constants/location.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context as CtxLib } from "@smile/lib/types/context.js"
+import { Context as CtxLib } from "@smile-health/lib/types/context.js"
 import { Context } from "hono"
 
 export class LocationRepository {

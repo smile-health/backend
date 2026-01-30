@@ -1,6 +1,6 @@
 import { Kysely, sql } from "kysely"
 import { Database } from "../types/index.js"
-import { NOTIFICATION_TYPE } from "@smile/lib/rabbitmq/notification"
+import { NOTIFICATION_TYPE } from "@smile-health/lib/rabbitmq/notification"
 
 export async function seed(db: Kysely<Database>): Promise<void> {
   // Seed notification_types first

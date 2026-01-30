@@ -1,4 +1,4 @@
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Kysely, Transaction } from "kysely"
 import { getMapPatientIds, getMapSequenceIds } from "../../../helper.js"
 import { MigrationDB } from "../../../types.js"

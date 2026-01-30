@@ -1,7 +1,7 @@
-import { ValidationError } from "@smile/lib/error.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { collect } from "@smile/lib/utils.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { BaseModule } from "../base.module.js"
 import ExportHistoryRepository from "../export-history/export-history.repository.js"
@@ -13,7 +13,7 @@ import {
   ListReconciliationItemDTO,
   ListReconciliationItemReasonActionDTO,
 } from "./reconciliation.schema.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 
 export class ReconciliationModule extends BaseModule {
   constructor(

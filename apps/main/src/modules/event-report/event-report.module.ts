@@ -7,7 +7,7 @@ import {
   STATUS_LABEL_MAP,
   DraftStatusValues,
 } from "@/common/constants/event-report.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { EventReportRepository } from "./event-report.repository.js"
 import {
   CreateEventReportRequest,

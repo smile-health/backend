@@ -1,6 +1,6 @@
 import { KFA_LEVEL_ID } from "@/common/constants/material.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { Context as ContextHono } from "hono"
 import { BaseRepository } from "../base.repository.js"
 

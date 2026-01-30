@@ -1,6 +1,6 @@
 import { KFA_LEVEL_ID } from "@/common/constants/material.js"
 import { WsBatches } from "@/common/infrastructure/database/types/db.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { Selectable } from "kysely"
 import { z } from "zod"
 

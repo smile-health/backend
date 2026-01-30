@@ -15,7 +15,7 @@ import {
 } from "./order-relocation.schema.js"
 import { Context } from "hono"
 import { z } from "zod"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { BaseRepository } from "../base.repository.js"
 import { STATUS } from "@/common/constants/material.js"
 import { IS_RELOCATION } from "@/common/constants/order.js"

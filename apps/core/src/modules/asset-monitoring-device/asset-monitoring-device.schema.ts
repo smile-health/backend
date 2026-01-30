@@ -1,6 +1,6 @@
 import z from "zod"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { Selectable } from "kysely"
 import { CONTACT_PERSON_SOURCE_TYPE } from "@/common/constants/assets.js"
 import { STATUS, FLAG } from "@/common/constants/general.js"

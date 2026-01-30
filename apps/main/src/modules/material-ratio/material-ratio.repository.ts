@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { Selectable, sql } from "kysely"
 import { BaseRepository } from "../base.repository.js"

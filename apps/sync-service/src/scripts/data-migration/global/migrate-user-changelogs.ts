@@ -2,7 +2,7 @@ import { db } from "@/scripts/db.platform.js"
 import { getMapGlobalUserIds, insertTableMapping } from "@/scripts/helper.js"
 import { getMigrationDB } from "../../db.migration.js"
 import { MAP_EXISTING_TO_PLATFORM } from "../const.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 
 const formatDuration = (startTime: Date, endTime: Date): string => {
   const durationMs = endTime.getTime() - startTime.getTime()

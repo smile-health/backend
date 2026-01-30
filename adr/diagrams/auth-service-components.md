@@ -11,8 +11,8 @@ Component(AuthController, "AuthController", "src/controllers/authController.ts",
 Component(UserController, "UserController", "src/controllers/userController.ts", "Implements user profile endpoints")
 Component(KeycloakClient, "KeycloakClient", "src/keycloakClient.ts", "Interacts with Keycloak Admin and Token endpoints")
 Component(UserServiceClient, "UserServiceClient", "src/userServiceClient.ts", "Calls external User Service API for last-login updates")
-Component(HTTPLogger, "HTTP Logger", "@smile/lib/logger", "Logs HTTP requests and application events")
-Component(RequestMiddleware, "Request Middleware", "@smile/lib/middlewares", "Validates and enriches incoming requests")
+Component(HTTPLogger, "HTTP Logger", "@smile-health/lib/logger", "Logs HTTP requests and application events")
+Component(RequestMiddleware, "Request Middleware", "@smile-health/lib/middlewares", "Validates and enriches incoming requests")
 Component(SwaggerUI, "Swagger UI", "@hono/swagger-ui", "Renders OpenAPI documentation")
 
 Rel(OpenAPIApp, HTTPLogger, "Uses")

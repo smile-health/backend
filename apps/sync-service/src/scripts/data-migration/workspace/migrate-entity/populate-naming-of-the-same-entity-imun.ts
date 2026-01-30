@@ -1,7 +1,7 @@
 import { db } from "@/scripts/db.platform.js"
 import "@tensorflow/tfjs-node"
 import * as use from "@tensorflow-models/universal-sentence-encoder"
-import { createMinioClientFromEnv } from "@smile/lib/minio.js"
+import { createMinioClientFromEnv } from "@smile-health/lib/minio.js"
 import * as fs from "fs/promises"
 import * as path from "path"
 import * as tf from "@tensorflow/tfjs-node"

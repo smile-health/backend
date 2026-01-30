@@ -1,5 +1,5 @@
-import { ValidationError } from "@smile/lib/error.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares/excel.middleware.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares/excel.middleware.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { BaseController } from "../base.controller.js"

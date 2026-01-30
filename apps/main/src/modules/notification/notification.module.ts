@@ -3,10 +3,10 @@ import {
   NOTIFICATION_MEDIA,
   NOTIFICATION_TYPE,
   NOTIFICATION_WORKER,
-} from "@smile/lib/rabbitmq/notification.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { generateEventCode } from "@smile/lib/utils.js"
+} from "@smile-health/lib/rabbitmq/notification.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { generateEventCode } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { BaseModule } from "../base.module.js"
 import { PatientCron } from "../transaction/patient/patient.cron.js"

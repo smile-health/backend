@@ -1,12 +1,12 @@
 import { DEVICE_TYPE } from "@/common/constants/device.js"
 import { ENTITY_TYPE } from "@/common/constants/entity.js"
 import { USER_ROLE } from "@/common/constants/user.js"
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
 import {
   ForbiddenError,
   NotFoundError,
   ValidationError,
-} from "@smile/lib/error.js"
+} from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { createMiddleware } from "hono/factory"
 import { z } from "zod"

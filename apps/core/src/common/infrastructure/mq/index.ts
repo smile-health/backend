@@ -1,6 +1,6 @@
 import amqp from "amqplib"
 import env from "@/config/env.js"
-import { logger } from "@smile/lib/logger"
+import { logger } from "@smile-health/lib/logger"
 
 let connection: amqp.Connection | undefined
 let connectionStatus: 'disconnected' | 'connecting' | 'connected' | 'error' = 'disconnected'

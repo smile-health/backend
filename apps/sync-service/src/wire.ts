@@ -1,5 +1,5 @@
-import { TransactionManager } from "@smile/lib/database.js"
-import { Consumer } from "@smile/lib/rabbitmq/consumer.js"
+import { TransactionManager } from "@smile-health/lib/database.js"
+import { Consumer } from "@smile-health/lib/rabbitmq/consumer.js"
 import { env } from "process"
 import { db } from "./common/infrastructure/database/index.js"
 import { getConnection } from "./common/infrastructure/mq/index.js"

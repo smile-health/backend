@@ -1,4 +1,4 @@
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Kysely, Transaction, sql } from "kysely"
 import { insertTableMapping } from "../../../helper.js"
 import { TYPE_ID_DISPOSAL_SHIPMENT } from "./utils/disposal.constants.js"

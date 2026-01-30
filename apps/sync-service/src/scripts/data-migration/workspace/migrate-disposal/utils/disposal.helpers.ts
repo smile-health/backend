@@ -1,7 +1,7 @@
 import { db } from "@/common/infrastructure/database/index.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import { MappingItem } from "@/common/types.js"
-import { associateField } from "@smile/lib/utils.js"
+import { associateField } from "@smile-health/lib/utils.js"
 import pluralize from "pluralize"
 
 export const partition = <T>(

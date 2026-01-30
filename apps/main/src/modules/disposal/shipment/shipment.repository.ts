@@ -3,7 +3,7 @@ import { DEVICE_TYPE } from "@/common/constants/device.js"
 import { USER_ROLE } from "@/common/constants/user.js"
 import { db } from "@/common/infrastructure/database/index.js"
 import { BaseRepository } from "@/modules/base.repository.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context as HonoContext } from "hono"
 import { sql } from "kysely"
 import _ from "lodash"
@@ -16,7 +16,7 @@ import {
   GetShipmentQueries,
   GetStatusCountQueries,
 } from "./shipment.schema.js"
-import { collect, differ } from "@smile/lib/utils.js"
+import { collect, differ } from "@smile-health/lib/utils.js"
 import { EntityMaterialRepository } from "../../entity-material/entity-material.repository.js"
 import { StockRepository } from "../../stock/stock.repository.js"
 import { EntityMaterialDTO } from "@/modules/entity-material/entity-material.schema.js"

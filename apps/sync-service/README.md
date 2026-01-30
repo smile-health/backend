@@ -245,7 +245,7 @@ RABBITMQ_PASSWORD=guest
 npm install
 
 # Link shared library
-pnpm link @smile/lib
+pnpm link @smile-health/lib
 
 # Generate database types
 npm run build

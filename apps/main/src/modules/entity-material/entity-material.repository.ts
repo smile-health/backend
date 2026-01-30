@@ -7,8 +7,8 @@ import {
   DB,
   WsEntityMaterialActivities,
 } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
-import { associate } from "@smile/lib/utils.js"
+import { Context } from "@smile-health/lib/types/context.js"
+import { associate } from "@smile-health/lib/utils.js"
 import {
   ComparisonOperatorExpression,
   Expression,

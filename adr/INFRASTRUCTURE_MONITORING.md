@@ -28,7 +28,7 @@ This document outlines the enhanced observability features implemented across al
 - **Enhanced Client Creation**: Centralized client creation with monitoring capabilities
 - **Health Check Function**: `healthCheck()` - Tests connection by listing buckets
 - **Status Getter**: `getConnectionStatus()` - Returns current connection state
-- **Shared Library**: Centralized MinIO client creation in `@smile/lib/minio.js`
+- **Shared Library**: Centralized MinIO client creation in `@smile-health/lib/minio.js`
 
 ### 5. Elasticsearch
 - **Connection Status Tracking**: Real-time status monitoring (`disconnected`, `connecting`, `connected`, `error`)

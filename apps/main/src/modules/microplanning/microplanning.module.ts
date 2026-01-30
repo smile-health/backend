@@ -7,7 +7,7 @@ import {
   SubmitMicroplanningResponse,
 } from "./microplanning.schema.js"
 import { MicroplanningRepository } from "./microplanning.repository.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 
 export class MicroplanningModule {
   constructor(private readonly repository: MicroplanningRepository) {}

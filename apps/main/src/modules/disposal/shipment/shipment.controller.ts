@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Context } from "hono"
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { USER_ROLE } from "@/common/constants/user.js"
 import { RoleMiddleware } from "@/common/middlewares/role-validation.middleware.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares/excel.middleware.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares/excel.middleware.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { DisposalShipmentModule } from "./shipment.module.js";
 import { DisposalShipmentMiddleware } from "./shipment.middleware.js";
 import { DEVICE_TYPE } from "@/common/constants/device.js"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 
 import {
   GetListShipmentSchema,

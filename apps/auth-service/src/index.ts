@@ -1,14 +1,14 @@
 import { serve } from "@hono/node-server";
 import { swaggerUI } from "@hono/swagger-ui";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { httpLogger } from "@smile/lib/logger";
-import { RequestMiddleware } from "@smile/lib/middlewares";
+import { httpLogger } from "@smile-health/lib/logger";
+import { RequestMiddleware } from "@smile-health/lib/middlewares";
 import dotenv from "dotenv";
 import { cors } from "hono/cors";
 import { env } from "process";
 import { AuthController } from "./controllers/authController";
 import { UserController } from "./controllers/userController";
-import { quickSetupService } from "@smile/lib/tracing-config";
+import { quickSetupService } from "@smile-health/lib/tracing-config";
 
 dotenv.config();
 

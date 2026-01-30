@@ -11,7 +11,7 @@ import {
   UpdateWhoPqsSchema,
 } from "./who-pqs.schema"
 import z, { ZodSchema } from "zod"
-import { NotFoundError, ValidationError } from "@smile/lib/error"
+import { NotFoundError, ValidationError } from "@smile-health/lib/error"
 import { AssetModelRepository } from "../asset-model/asset-model.repository"
 
 export class WhoPqsMiddleware {

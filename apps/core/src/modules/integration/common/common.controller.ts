@@ -1,8 +1,8 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import { AuthKeycloakMiddleware } from "@/common/middlewares/auth.middleware.js"
 import { OpenAPIHono } from "@hono/zod-openapi"
-import { RequestMiddleware } from "@smile/lib/middlewares/request.middleware.js"
-import { TransactionMiddleware } from "@smile/lib/middlewares/transaction.middleware.js"
+import { RequestMiddleware } from "@smile-health/lib/middlewares/request.middleware.js"
+import { TransactionMiddleware } from "@smile-health/lib/middlewares/transaction.middleware.js"
 import { StatusCodes } from "http-status-codes"
 import { CommonModule } from "./common.module.js"
 import {

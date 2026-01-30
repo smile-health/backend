@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { HTTPException } from "hono/http-exception"
 import { AnnualNeedRepository } from "./annual-needs.repository.js"

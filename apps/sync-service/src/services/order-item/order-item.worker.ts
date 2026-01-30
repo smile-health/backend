@@ -1,6 +1,6 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Consumer } from "@smile/lib/rabbitmq/consumer.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
+import { Consumer } from "@smile-health/lib/rabbitmq/consumer.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
 import { OrderItemGateway } from "./order-item.gateway.js"
 import { OrderClickhouse } from "../order/order.clickhouse.js"
 

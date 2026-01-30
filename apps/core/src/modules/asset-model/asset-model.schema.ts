@@ -1,6 +1,6 @@
 import z from "zod"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { TYPE_DOWNLOAD_TEMPLATE_ASSET_MODEL } from "@/common/constants/assets"
 
 const capacityField = () =>

@@ -1,4 +1,4 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
 import { Context } from "hono"
 import { z } from "zod"
 import { AssetTypeRepository } from "./asset-type.repository.js"
@@ -16,11 +16,11 @@ import {
   ImportTemplateQueryParams,
 } from "./asset-type.schema.js"
 import { createMiddleware } from "hono/factory"
-import { ValidationError, NotFoundError } from "@smile/lib/error.js"
+import { ValidationError, NotFoundError } from "@smile-health/lib/error.js"
 import { validator } from "hono/validator"
 import { AssetTypeImport } from "./asset-type.excel.js"
-import { formatExcelErrors } from "@smile/lib/zod.js"
-import { collect } from "@smile/lib/utils.js"
+import { formatExcelErrors } from "@smile-health/lib/zod.js"
+import { collect } from "@smile-health/lib/utils.js"
 import {
   ASSET_CLASSIFICATION,
   TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE,

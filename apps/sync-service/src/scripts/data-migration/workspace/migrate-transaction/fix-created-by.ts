@@ -5,7 +5,7 @@ import { getMigrationDB } from "../../../db.migration.js"
 import { Kysely, Transaction, sql } from "kysely"
 import { DB } from "../../../types.platform.js"
 import { MigrationDB } from "../../../types.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { getMapUserIds, getMapTransactionIds } from "../../../helper.js"
 
 export const fixCreatedByRaw = async (

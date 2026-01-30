@@ -4,7 +4,7 @@ import { RoleMiddleware } from "@/common/middlewares/role-validation.middleware.
 import { Hono, Context } from "hono"
 import { TransactionListModule } from "./transaction-list.module.js"
 import { TransactionListPaginatedRequestSchema } from "./transaction-list.schema.js"
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { StatusCodes } from "http-status-codes"
 import { DEVICE_TYPE } from "@/common/constants/headers.js"
 

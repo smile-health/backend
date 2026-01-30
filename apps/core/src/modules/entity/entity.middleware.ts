@@ -12,8 +12,8 @@ import {
   TCreateEntityRequest,
 } from "@/modules/entity/entity.schema.js"
 import { zValidator } from "@hono/zod-validator"
-import { ValidationError } from "@smile/lib/error.js"
-import { collect } from "@smile/lib/utils.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { validator } from "hono/validator"
 import { z } from "zod"

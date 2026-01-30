@@ -4,9 +4,9 @@ import { BiasImmunizationLogisticsRepository } from "@/modules/bias-immunization
 import { MaterialRepository } from "@/modules/material/material.repository.js"
 import { TargetEstimationRepository } from "@/modules/target-estimation/target-estimation.repository.js"
 import { TargetsRepository } from "@/modules/targets/targets.repository.js"
-import { TransactionManager } from "@smile/lib/database.js"
-import i18n from "@smile/lib/i18n.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { TransactionManager } from "@smile-health/lib/database.js"
+import i18n from "@smile-health/lib/i18n.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 
 export const dailyBiasImmunizationRecalculation = async () => {
   const biasImmunizationCron = new BiasImmunizationCron(

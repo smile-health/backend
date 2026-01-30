@@ -1,5 +1,5 @@
 import { MAP_USER_ROLE_LABEL } from "@/common/constants/user.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { EntityUserRepository } from "./entity-user.repository.js"
 import { GetEntitiesUsersQueries } from "./entity-user.schema.js"

@@ -1,5 +1,5 @@
 import { ORDER_STATUS } from "@/common/constants/order.js"
-import { logger } from "@smile/lib/logger.js"
+import { logger } from "@smile-health/lib/logger.js"
 import { Context } from "hono"
 import { AppMobileNotifRepository } from "./app-mobile-notif.repository.js"
 import {

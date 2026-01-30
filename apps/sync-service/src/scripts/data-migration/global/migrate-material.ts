@@ -12,7 +12,7 @@ import {
 } from "@/scripts/helper.js"
 import { MasterMaterials, Materials } from "@/scripts/types.js"
 import { DB, MaterialRelations } from "@/scripts/types.platform.js"
-import { associateField, collect } from "@smile/lib/utils.js"
+import { associateField, collect } from "@smile-health/lib/utils.js"
 import { Selectable, Transaction, sql } from "kysely"
 import { getMigrationDB } from "../../db.migration.js"
 import { MAP_EXISTING_TO_PLATFORM } from "../const.js"

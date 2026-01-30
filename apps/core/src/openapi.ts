@@ -1,10 +1,10 @@
 import { swaggerUI } from "@hono/swagger-ui"
 import { OpenAPIHono } from "@hono/zod-openapi"
-import { errorHandler } from "@smile/lib/error.js"
+import { errorHandler } from "@smile-health/lib/error.js"
 import { basicAuth } from "hono/basic-auth"
 import { env } from "process"
 import { commonApp, iotApp } from "./modules/integration"
-import { RequestMiddleware } from "@smile/lib/middlewares"
+import { RequestMiddleware } from "@smile-health/lib/middlewares"
 
 export const app = new OpenAPIHono<object>({
   defaultHook: (result, c) => {

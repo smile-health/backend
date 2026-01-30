@@ -18,10 +18,10 @@ import {
   patientId,
   ValidateNikSchema
 } from "./dengue-case.schema.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { DengueCaseRepository } from "./dengue-case.repository.js"
 import { EntityRepository } from "@/modules/entity/entity.repository.js"
-import BaseTemplate from "@smile/lib/excel/index.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
 import moment from "moment"
 
 export class DengueCaseMiddleware {

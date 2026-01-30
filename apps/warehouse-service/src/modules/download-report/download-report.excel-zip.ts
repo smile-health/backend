@@ -1,7 +1,7 @@
 import {
   MultiSheetZipExporter,
   MultiSheetZipExportOptions,
-} from "@smile/lib/excel/multi-sheet-zip.js"
+} from "@smile-health/lib/excel/multi-sheet-zip.js"
 import {
   ColumnExcel,
   ExcelProvinceOrRegencyDTO,

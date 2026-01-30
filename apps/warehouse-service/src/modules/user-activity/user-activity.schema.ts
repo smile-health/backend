@@ -1,5 +1,5 @@
 import { QueryParamSchema } from "@/common/schemas/query-param.schema.js"
-import { IdsSchema } from "@smile/lib/types/param.js"
+import { IdsSchema } from "@smile-health/lib/types/param.js"
 import { z } from "zod"
 
 export const UserActivitySchema = QueryParamSchema.and(

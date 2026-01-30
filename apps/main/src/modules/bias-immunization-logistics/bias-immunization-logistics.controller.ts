@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { BiasImmunizationLogisticsModule } from "./bias-immunization-logistics.module.js"
@@ -11,7 +11,7 @@ import {
   UpdateBiasImmunizationLogisticsSchema,
 } from "./bias-immunization-logistics.schema.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { TransactionMiddleware } from "@smile/lib/middlewares/transaction.middleware.js"
+import { TransactionMiddleware } from "@smile-health/lib/middlewares/transaction.middleware.js"
 
 export class BiasImmunizationLogisticsController extends BaseController {
   constructor(

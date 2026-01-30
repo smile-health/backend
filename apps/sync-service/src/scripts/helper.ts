@@ -3,7 +3,7 @@ import { db } from "@/common/infrastructure/database/index.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import { MappingItem } from "@/common/types.js"
 import { db as platformDB } from "@/scripts/db.platform.js"
-import { associateField } from "@smile/lib/utils.js"
+import { associateField } from "@smile-health/lib/utils.js"
 import { sql } from "kysely"
 import pluralize from "pluralize"
 

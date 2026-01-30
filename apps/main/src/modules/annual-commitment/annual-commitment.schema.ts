@@ -1,5 +1,5 @@
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
-import { DateSchema } from "@smile/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
+import { DateSchema } from "@smile-health/lib/types/param.js"
 import z from "zod"
 
 /* Filter Schema */

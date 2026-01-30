@@ -3,7 +3,7 @@ import { USER_ROLE } from "@/common/constants/role.js"
 import { RoleMiddleware } from "@/common/middlewares/role-validation.middleware.js"
 import { Hono } from "hono"
 import { StockOpnameModule } from "./stock-opname.module.js"
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { StockOpnameQueryParamsSchema } from "./stock-opname.schema.js"
 import { StatusCodes } from "http-status-codes"
 

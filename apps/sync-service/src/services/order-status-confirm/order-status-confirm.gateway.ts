@@ -11,7 +11,7 @@ import {
   getSmile,
   PutV2OrderConfirmBodyOrderItemsItem,
 } from "@/openapi/order-status-confirm.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { AxiosError } from "axios"
 import { OrderStatusConfirmIncomingMessage } from "./order-status-confirm.schema.js"
 

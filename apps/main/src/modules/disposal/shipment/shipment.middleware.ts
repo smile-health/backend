@@ -1,4 +1,4 @@
-import { ValidationError, NotFoundError } from "@smile/lib/error.js"
+import { ValidationError, NotFoundError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { createMiddleware } from "hono/factory"
 import { z } from "zod"

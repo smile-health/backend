@@ -1,15 +1,15 @@
 import { NotificationTypeRepository } from "@/common/repository/notification-type"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 import { ColdstorageRepository } from "../coldstorage.repository"
 import { UserRepository } from "@/modules/user/user.repository"
-// import { Context } from "@smile/lib/types/context.js"
+// import { Context } from "@smile-health/lib/types/context.js"
 import { Context } from "hono"
 import {
   NOTIFICATION_MEDIA,
   NOTIFICATION_TYPE,
-} from "@smile/lib/rabbitmq/notification"
-import { generateEventCode } from "@smile/lib/utils.js"
+} from "@smile-health/lib/rabbitmq/notification"
+import { generateEventCode } from "@smile-health/lib/utils.js"
 
 interface DataMessage {
   entity_name?: string

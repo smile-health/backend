@@ -7,8 +7,8 @@ import {
   insertMapping,
 } from "@/common/mapping.repository.js"
 import { getSmile, PostV2TransactionsBodyItem } from "@/openapi/transaction.js"
-import { CustomContext } from "@smile/lib/types/context.js"
-import { collect, merge } from "@smile/lib/utils.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
+import { collect, merge } from "@smile-health/lib/utils.js"
 import { AxiosError } from "axios"
 import { Insertable } from "kysely"
 import {

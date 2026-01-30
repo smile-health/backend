@@ -1,0 +1,6 @@
+projectKey=smile-notification
+serverUrl=https://sonarqube.badr.co.id
+serverVersion=8.8.0.42792
+dashboardUrl=https://sonarqube.badr.co.id/dashboard?id=smile-notification
+ceTaskId=AX0f3orgXMWfp343AhXr
+ceTaskUrl=https://sonarqube.badr.co.id/api/ce/task?id=AX0f3orgXMWfp343AhXr

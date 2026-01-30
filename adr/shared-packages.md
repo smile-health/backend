@@ -16,13 +16,13 @@ Shared packages is not strict to being dependent with the core backend functions
 
 ## How to use
 
-1. Install the `@smile/lib` to each of the apps/\* `package.json`
-2. For local usage, use the `pnpm` as package manager and keep the version like this `"@smile/lib": "workspace:*"` in `package.json`
-3. For deployment, use the latest version of the package. e.g: `"@smile/lib": "^1.0.21"`
+1. Install the `@smile-health/lib` to each of the apps/\* `package.json`
+2. For local usage, use the `pnpm` as package manager and keep the version like this `"@smile-health/lib": "workspace:*"` in `package.json`
+3. For deployment, use the latest version of the package. e.g: `"@smile-health/lib": "^1.0.21"`
 4. Please import the packages in the BASE functions like using public libraries. e.g.
 
 ```
-import { RequestMiddleware } from "@smile/lib/middlewares"
+import { RequestMiddleware } from "@smile-health/lib/middlewares"
 
 const requestMiddleware = new RequestMiddleware()
 mainApp.use("*", requestMiddleware.handle)

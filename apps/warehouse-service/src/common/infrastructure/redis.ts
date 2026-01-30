@@ -1,7 +1,7 @@
 import { Redis } from "ioredis"
 import env from "@/config/env.js"
-import { logger } from "@smile/lib/logger.js"
-import { createTokenCache } from "@smile/lib"
+import { logger } from "@smile-health/lib/logger.js"
+import { createTokenCache } from "@smile-health/lib"
 
 let connectionStatus: 'disconnected' | 'connecting' | 'connected' | 'error' = 'disconnected'
 let lastConnectionAttempt: Date | null = null

@@ -1,6 +1,6 @@
 import { Context } from "hono"
 import { QueryParams } from "../schemas/query-param.schema.js"
-import { Filter } from "@smile/lib/excel/types.js"
+import { Filter } from "@smile-health/lib/excel/types.js"
 
 export function getExportLocationFileName(
   c: Context,

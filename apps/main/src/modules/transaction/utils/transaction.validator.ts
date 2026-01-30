@@ -1,6 +1,6 @@
 import { TRANSACTION_TYPE } from "@/common/constants/transaction.js"
-import { getDefaultNumber } from "@smile/lib/utils.js"
-import { conditionsMessage } from "@smile/lib/zod.js"
+import { getDefaultNumber } from "@smile-health/lib/utils.js"
+import { conditionsMessage } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import { MaterialRequest } from "../transaction.schema.js"
 

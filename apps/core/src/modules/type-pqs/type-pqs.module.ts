@@ -1,6 +1,6 @@
 import { Context } from "hono"
 import { GetTypePQsQueryParams } from "./type-pqs.schema"
-import { PaginatedResponse } from "@smile/lib/types/paginate"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate"
 import { TypePQsepository } from "./type-pqs.repository"
 
 export class TypePQsModule {

@@ -3,11 +3,11 @@ import {
   MATERIAL_LEVEL,
 } from "@/common/constants/material.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { OptionalIdsSchema } from "@smile/lib/types/param.js"
+import { OptionalIdsSchema } from "@smile-health/lib/types/param.js"
 import {
   collect,
   transformStringNumbersToArrayNumbers,
-} from "@smile/lib/utils.js"
+} from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { ReferenceExpression, sql } from "kysely"
 import { isStringObject } from "util/types"

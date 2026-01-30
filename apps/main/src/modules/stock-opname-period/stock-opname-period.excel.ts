@@ -1,5 +1,5 @@
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 
 export class StockOpnamePeriodTemplate extends BaseTemplate {
   constructor(startRow = 2, startSheet = 1, processor = PROCESSOR.SHEETJS) {

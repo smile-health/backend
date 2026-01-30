@@ -1,8 +1,8 @@
 import { STATUS } from "@/common/constants/general.js"
-import { NotFoundError, ValidationError } from "@smile/lib/error.js"
+import { NotFoundError, ValidationError } from "@smile-health/lib/error.js"
 
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { collect, group, merge, pick } from "@smile/lib/utils.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { collect, group, merge, pick } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import moment from "moment"
 import { IntegrationRepository } from "../integration/integration.repository.js"
@@ -25,10 +25,10 @@ import {
   UpdateMaterialRequest,
   UpdateStatusMaterialRequest,
 } from "./material.schema.js"
-import { FileResponse } from "@smile/lib/types/file.js"
+import { FileResponse } from "@smile-health/lib/types/file.js"
 import { MATERIAL_LEVEL } from "@/common/constants/material.js"
 import { MaterialTemplate } from "./material.excel.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 
 type IdAndName = {
   id: number

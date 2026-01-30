@@ -1,5 +1,5 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { z } from "zod"
 import { OrderReturnRepository } from "./order-return.repository.js"

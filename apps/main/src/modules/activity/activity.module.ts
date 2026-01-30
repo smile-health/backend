@@ -1,5 +1,5 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { collect, merge, pick } from "@smile/lib/utils.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { collect, merge, pick } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import moment from "moment"
 import { ActivityRepository } from "../activity/activity.repository.js"

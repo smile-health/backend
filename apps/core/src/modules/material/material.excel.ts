@@ -1,6 +1,6 @@
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
-import { MasterData } from "@smile/lib/types/param"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
+import { MasterData } from "@smile-health/lib/types/param"
 import path from "path"
 
 export class MaterialTemplate extends BaseTemplate {

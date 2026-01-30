@@ -1,5 +1,5 @@
 import { env } from "@/config/env.js"
-import { createMinioClient, MinioClientWithMonitoring, ConnectionStatus } from "@smile/lib/minio.js"
+import { createMinioClient, MinioClientWithMonitoring, ConnectionStatus } from "@smile-health/lib/minio.js"
 
 export type { ConnectionStatus, MinioClientWithMonitoring };
 

@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { StockQualityRepository } from "./stock-quality.repository.js"
 import { GetListStockQualityQueries } from "./stock-quality.schema.js"

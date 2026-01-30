@@ -1,4 +1,4 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware"
 import { Context } from "hono"
 import { AddColdStorageRequestSchema } from "./coldstorage.shcema"
 

@@ -7,7 +7,7 @@ import {
   MonitoringStockSchemaQueryParamsShchema,
 } from "./stock.schema.js"
 import { ActivityRepository } from "@/modules/activity/activity.repository.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 
 export class MonitoringStockMiddleware {
   constructor(

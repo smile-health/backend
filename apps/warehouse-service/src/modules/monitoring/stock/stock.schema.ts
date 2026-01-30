@@ -3,7 +3,7 @@ import {
   stringCommaSeparatedNumberArr,
   stringDate,
 } from "@/common/schemas/query-param.schema.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { z } from "zod"
 
 export const MonitoringStockSchema = PaginationQueriesSchema.extend({

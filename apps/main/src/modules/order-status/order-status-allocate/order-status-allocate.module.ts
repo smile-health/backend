@@ -1,5 +1,5 @@
 import { ORDER_STATUS } from "@/common/constants/order.js"
-import { group } from "@smile/lib/utils.js"
+import { group } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { OrderStatusAllocateRepository } from "./order-status-allocate.repository.js"
 import {

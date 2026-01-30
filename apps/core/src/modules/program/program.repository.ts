@@ -1,5 +1,5 @@
 import { Workspaces } from "@/common/infrastructure/database/types/db.js"
-import { convertToBoolean, flattenToNestedObject } from "@smile/lib/utils.js"
+import { convertToBoolean, flattenToNestedObject } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { OrderByDirectionExpression, sql } from "kysely"
 import { BaseRepository } from "../base.repository.js"

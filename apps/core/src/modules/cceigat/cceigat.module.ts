@@ -1,6 +1,6 @@
 import { Context } from "hono"
 import { GetCceigatQueryParams } from "./ccigat.schema"
-import { PaginatedResponse } from "@smile/lib/types/paginate"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate"
 import { CceigatRepository } from "./cceigat.repository"
 
 export class CceigatModule {

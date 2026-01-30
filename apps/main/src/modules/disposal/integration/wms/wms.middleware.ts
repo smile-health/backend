@@ -1,6 +1,6 @@
 import { UserRepository } from "@/modules/user/user.repository.js"
-import { AuthKeycloakService } from "@smile/lib/api/auth.service.js"
-import { logger } from "@smile/lib/logger.js"
+import { AuthKeycloakService } from "@smile-health/lib/api/auth.service.js"
+import { logger } from "@smile-health/lib/logger.js"
 import { Context } from "hono"
 import { createMiddleware } from "hono/factory"
 import { IntegrationRepository } from "../integration.repository.js"

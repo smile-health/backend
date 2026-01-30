@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { AnnualPlanningProgramPlanModule } from "./annual-planning-program-plan.module.js"
@@ -7,7 +7,7 @@ import {
   SubmitProgramPlanSchema,
 } from "./annual-planning-program-plan.schema.js"
 import { AnnualPlanningProgramPlanMiddleware } from "./annual-planning-program-plan.middleware.js"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 
 export class AnnualPlanningProgramPlanController extends BaseController {
   constructor(

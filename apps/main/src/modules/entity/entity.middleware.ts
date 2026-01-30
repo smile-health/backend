@@ -1,6 +1,6 @@
-import { ValidationError } from "@smile/lib/error.js"
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { collect, getDefaultNumber } from "@smile/lib/utils.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { collect, getDefaultNumber } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { EntityRepository } from "./entity.repository.js"
 import {

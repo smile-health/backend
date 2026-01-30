@@ -5,8 +5,8 @@ import { AssetMonitoringDeviceModule } from "@/modules/asset-monitoring-device/a
 import { AssetMonitoringTemperatureModule } from "@/modules/asset-monitoring-temperature/asset-monitoring-temperature.module.js"
 import { AssetTypeModule } from "@/modules/asset-type/asset-type.module.js"
 import { OpenAPIHono } from "@hono/zod-openapi"
-import { RequestMiddleware } from "@smile/lib/middlewares/request.middleware.js"
-import { TransactionMiddleware } from "@smile/lib/middlewares/transaction.middleware.js"
+import { RequestMiddleware } from "@smile-health/lib/middlewares/request.middleware.js"
+import { TransactionMiddleware } from "@smile-health/lib/middlewares/transaction.middleware.js"
 import { StatusCodes } from "http-status-codes"
 import { IotModule } from "./iot.module.js"
 import {

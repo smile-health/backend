@@ -1,5 +1,5 @@
 import { db } from "@/common/infrastructure/database/index.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Kysely, Transaction } from "kysely"
 import { insertTableMapping } from "../../../helper.js"
 import {

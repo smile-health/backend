@@ -21,7 +21,7 @@
  * - ws_microplan_targets_consumptions (source - for promoted counts)
  * - ws_daily_target_count_snapshots (destination)
  */
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import moment from "moment"
 import { TargetsRepository } from "./targets.repository.js"

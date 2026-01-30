@@ -1,4 +1,4 @@
-import { ValidationError, NotFoundError } from "@smile/lib/error.js"
+import { ValidationError, NotFoundError } from "@smile-health/lib/error.js"
 import { ShipmentExport, DetailShipmentExport } from "./shipment.excel.js"
 import _ from "lodash"
 import moment from "moment"

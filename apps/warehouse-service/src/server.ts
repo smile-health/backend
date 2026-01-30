@@ -7,19 +7,19 @@ import {
   userActivityConsumer
 } from "@/wire.js"
 import { SpanStatusCode, trace } from "@opentelemetry/api"
-import { errorHandler } from "@smile/lib/error.js"
-import { httpLogger } from "@smile/lib/logger.js"
-import "@smile/lib/tracing.ts"
+import { errorHandler } from "@smile-health/lib/error.js"
+import { httpLogger } from "@smile-health/lib/logger.js"
+import "@smile-health/lib/tracing.ts"
 import {
   httpRequestTracer,
   middlewareTracer,
   getCurrentTraceContext,
   recordPerformanceMetric,
-} from "@smile/lib/tracing.js"
+} from "@smile-health/lib/tracing.js"
 import { Hono } from "hono"
 import env from "./config/env.js"
 import moment from "moment"
-import { quickSetupService } from "@smile/lib/tracing-config"
+import { quickSetupService } from "@smile-health/lib/tracing-config"
 
 // construct app
 const app = new Hono()

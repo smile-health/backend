@@ -43,7 +43,7 @@ export async function up(db: Kysely<Database>): Promise<void> {
     )
     .addColumn("available_worker", "integer", (col) => col.defaultTo(0))
     .addColumn("gap_health_worker", "integer", (col) => col.defaultTo(0))
-    .addColumn("notes", "text", (col) => col.defaultTo(""))
+    .addColumn("notes", "text")
     .$call(addTimestampColumns)
     .$call(addAuditColumns)
     .execute()

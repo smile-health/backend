@@ -1,7 +1,7 @@
 import { db as syncDB } from "@/common/infrastructure/database/index.js"
 import { db } from "@/scripts/db.platform.js"
 import { getMigrationDB } from "../../db.migration.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 
 const MAP_MATERIAL_UNIT_CONSUMPTION = {
   pcs: 1,

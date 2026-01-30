@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { MaterialLevelRepository } from "./material-level.repository.js"
 import { GetMaterialLevelsQueryParams } from "./material-level.schema.js"

@@ -7,14 +7,14 @@ import {
   StockBookItemDTO,
   MapStockBookOptionDataDTO,
 } from "./stock-book.schema.js"
-import { group } from "@smile/lib/utils.js"
+import { group } from "@smile-health/lib/utils.js"
 import {
   TRANSACTION_CHANGE_TYPE,
   TRANSACTION_TYPE,
 } from "@/common/constants/transaction.js"
 import { Context } from "hono"
 import { ExcelExportOption } from "@/common/types/excel.js"
-import { Column, Filter } from "@smile/lib/excel/types.js"
+import { Column, Filter } from "@smile-health/lib/excel/types.js"
 
 type StockBookExcelExportOption = ExcelExportOption & {
   rows: number

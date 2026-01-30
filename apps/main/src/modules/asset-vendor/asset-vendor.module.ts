@@ -4,7 +4,7 @@ import {
   GetAssetVendorsQueryParams,
   EditStatusAssetVendorRequest,
 } from "./asset-vendor.schema.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { AssetVendorExport } from "./asset-vendor.excel.js"
 import moment from "moment"
 

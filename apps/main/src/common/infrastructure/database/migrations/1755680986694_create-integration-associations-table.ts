@@ -10,7 +10,7 @@ export async function up(db: Kysely<Database>): Promise<void> {
     .addColumn("type", "varchar(255)", (col) => col.notNull())
     .addColumn("internal_id", "bigint", (col) => col.notNull())
     .addColumn("client_id", "bigint")
-    .addColumn("metadata", "text", (col) => col.defaultTo(""))
+    .addColumn("metadata", "text")
     .$call(addTimestampColumns)
     .addUniqueConstraint("unique_constraint_type_internal_id_client_id", [
       "type",

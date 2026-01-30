@@ -1,7 +1,7 @@
 import { ENTITY_TYPE } from "@/common/constants/entity.js"
 import { USER_ROLE } from "@/common/constants/user.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
-import { IdSchema, MasterData } from "@smile/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
+import { IdSchema, MasterData } from "@smile-health/lib/types/param.js"
 import { isArray, isObject, isString } from "lodash"
 import z, { ZodTypeAny } from "zod"
 

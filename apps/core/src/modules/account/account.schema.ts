@@ -1,6 +1,6 @@
 import { REGEX_PASS } from "@/common/constants/users.js"
 import { Users } from "@/common/infrastructure/database/types/db.js"
-import { conditionsMessage } from "@smile/lib/zod.js"
+import { conditionsMessage } from "@smile-health/lib/zod.js"
 import { Selectable } from "kysely"
 import z from "zod"
 

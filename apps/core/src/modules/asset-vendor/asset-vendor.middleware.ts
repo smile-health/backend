@@ -1,4 +1,4 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
 import { Context } from "hono"
 import { z } from "zod"
 import { AssetVendorRepository } from "./asset-vendor.repository.js"
@@ -14,10 +14,10 @@ import {
   ImportAssetVendorArrayRequest,
 } from "./asset-vendor.schema.js"
 import { createMiddleware } from "hono/factory"
-import { ValidationError, NotFoundError } from "@smile/lib/error.js"
+import { ValidationError, NotFoundError } from "@smile-health/lib/error.js"
 import { validator } from "hono/validator"
 import { AssetVendorImport } from "./asset-vendor.excel.js"
-import { formatExcelErrors } from "@smile/lib/zod.js"
+import { formatExcelErrors } from "@smile-health/lib/zod.js"
 
 export class AssetVendorMiddleware extends BaseMiddleware {
   constructor(private readonly repository: AssetVendorRepository) {

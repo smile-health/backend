@@ -2,7 +2,7 @@
 import { BudgetSourceRepository } from "@/modules/budget-source/budget-source.repository.js"
 import { OrderCentralDeliveryModule } from "@/modules/order-central-delivery/order-central-delivery.module.js"
 import { OrderStatusCancelModule } from "@/modules/order-status/order-status-cancel/order-status-cancel.module.js"
-import { AuthKeycloakService } from "@smile/lib/api/auth.service.js"
+import { AuthKeycloakService } from "@smile-health/lib/api/auth.service.js"
 import { Context } from "hono"
 import z from "zod"
 import { DinContext } from "./din.context.js"

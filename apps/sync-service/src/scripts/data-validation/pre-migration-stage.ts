@@ -3,8 +3,8 @@ import { getMigrationDB } from "../db.migration.js"
 import { materialChildren } from "../pre-data-migration/constants/material-children.js"
 import { materialParents } from "../pre-data-migration/constants/material-parents.js"
 import { sql } from "kysely"
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 import path from "path"
 
 interface ValidationRecord {

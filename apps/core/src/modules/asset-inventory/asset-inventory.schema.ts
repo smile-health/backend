@@ -1,6 +1,6 @@
 import { FLAG, STATUS } from "@/common/constants/general.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
-import { DateSchema, IdParamsSchema } from "@smile/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
+import { DateSchema, IdParamsSchema } from "@smile-health/lib/types/param.js"
 import z from "zod"
 
 /* Base Schema */

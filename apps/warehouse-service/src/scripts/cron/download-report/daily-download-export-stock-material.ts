@@ -3,9 +3,9 @@ import { DownloadReportStockMaterialCron } from "@/modules/download-report/cron/
 import { DownloadReportQuery } from "@/modules/download-report/download-report.query.js"
 import { DownloadReportRepository } from "@/modules/download-report/download-report.repository.js"
 import { StockMaterialGenerateReport } from "@/modules/download-report/generate-report/stock-material.generate-report.js"
-import { TransactionManager } from "@smile/lib/database.js"
-import i18n from "@smile/lib/i18n.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { TransactionManager } from "@smile-health/lib/database.js"
+import i18n from "@smile-health/lib/i18n.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 
 export const dailyDownloadExportStockMaterial = async () => {
   const downloadReportRepo = new DownloadReportRepository(

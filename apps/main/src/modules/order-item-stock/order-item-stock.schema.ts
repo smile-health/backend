@@ -1,5 +1,5 @@
 import z from "zod"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 
 const preprocessToString = (value: unknown) =>
   typeof value === "number" ? String(value) : value

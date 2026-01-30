@@ -1,4 +1,4 @@
-import { IdParamsSchema } from "@smile/lib/types/param.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import z from "zod"
 
 export const GetPopulationByProgramPlanParamsSchema = IdParamsSchema

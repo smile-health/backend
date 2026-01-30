@@ -8,7 +8,7 @@ import { EntityRepository } from "@/modules/entity/entity.repository.js"
 import { ActivityRepository } from "@/modules/activity/activity.repository.js"
 import { MaterialRepository } from "@/modules/material/material.repository.js"
 import { UserRepository } from "@/modules/user/user.repository.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares/excel.middleware.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares/excel.middleware.js"
 import { IntegrationRepository } from "../integration/integration.repository.js"
 
 export class DisposalInstructionModule {

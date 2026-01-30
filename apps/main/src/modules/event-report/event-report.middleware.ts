@@ -19,7 +19,7 @@ import {
   DraftStatusValues,
 } from "@/common/constants/event-report.js"
 import { USER_ROLE } from "@/common/constants/user.js"
-import { BadRequestError, NotFoundError } from "@smile/lib/error.js"
+import { BadRequestError, NotFoundError } from "@smile-health/lib/error.js"
 
 export class EventReportMiddleware {
   constructor(

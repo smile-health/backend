@@ -1,5 +1,5 @@
-import { BaseController } from "@smile/lib/base/controller.js"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { ReconciliationMiddleware } from "./reconciliation.middleware.js"

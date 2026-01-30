@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { ImmunizationModule } from "./immunization.module.js"
 import { ImmunizationMiddleware } from "./immunization.middleware.js"
 import { Hono } from "hono"

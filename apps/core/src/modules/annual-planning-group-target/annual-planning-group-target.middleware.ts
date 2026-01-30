@@ -1,4 +1,4 @@
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { AnnualPlanningGroupTargetRepository } from "./annual-planning-group-target.repository.js"
 import {
@@ -6,7 +6,7 @@ import {
   SubmitGroupTargetRequest,
   UpdateGroupTargetRequest,
 } from "./annual-planning-group-target.schema.js"
-import BaseTemplate from "@smile/lib/excel/index.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
 
 export class AnnualPlanningGroupTargetMiddleware {
   constructor(

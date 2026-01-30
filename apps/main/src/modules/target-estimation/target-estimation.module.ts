@@ -35,7 +35,7 @@ import {
   WORKERS_PER_SERVICE_POINT,
   WUS_COVERAGE_PERCENTAGE,
 } from "@/common/constants/target.js"
-import { NotFoundError, ValidationError } from "@smile/lib/error.js"
+import { NotFoundError, ValidationError } from "@smile-health/lib/error.js"
 import {
   createCountMap,
   createCountRecord,

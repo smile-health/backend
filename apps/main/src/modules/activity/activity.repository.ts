@@ -1,6 +1,6 @@
 import { db } from "@/common/infrastructure/database/index.js"
 import { WsActivities } from "@/common/infrastructure/database/types/db.js"
-import { associate, group } from "@smile/lib/utils.js"
+import { associate, group } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import {
   ComparisonOperatorExpression,

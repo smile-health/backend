@@ -1,6 +1,6 @@
 import { RoleValidationMiddleware } from "@/common/middlewares/role-validation.middleware.js"
-import { BaseController } from "@smile/lib/base/controller.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { BaseController } from "@smile-health/lib/base/controller.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { UsersMiddleware } from "./user.middleware.js"

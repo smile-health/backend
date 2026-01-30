@@ -3,8 +3,8 @@ import { WsMaterials } from "@/common/infrastructure/database/types/db.js"
 import {
   BaseMiddleware,
   DBValidationError,
-} from "@smile/lib/base/middleware.js"
-import { NotFoundError } from "@smile/lib/error.js"
+} from "@smile-health/lib/base/middleware.js"
+import { NotFoundError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { ActivityRepository } from "../activity/activity.repository.js"
 import { ManufactureRepository } from "../manufacture/manufacture.repository.js"

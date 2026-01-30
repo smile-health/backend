@@ -5,8 +5,8 @@ import {
   requestMiddleware,
   trxMiddleware,
 } from "@/wire"
-import { AuthKeycloakService } from "@smile/lib/api"
-import { Publisher } from "@smile/lib/rabbitmq"
+import { AuthKeycloakService } from "@smile-health/lib/api"
+import { Publisher } from "@smile-health/lib/rabbitmq"
 import { env } from "process"
 import { AssetInventoryRepository } from "../asset-inventory/asset-inventory.repository"
 import { AssetModelModule } from "../asset-model/asset-model.module"

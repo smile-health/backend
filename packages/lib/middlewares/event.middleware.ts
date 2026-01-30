@@ -1,4 +1,4 @@
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js";
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js";
 import { Context, Next } from "hono";
 import { Event } from "../rabbitmq/type.js";
 

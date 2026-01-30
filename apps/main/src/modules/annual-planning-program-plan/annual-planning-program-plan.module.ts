@@ -1,11 +1,11 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { AnnualPlanningProgramPlanRepository } from "./annual-planning-program-plan.repository.js"
 import {
   GetListProgramPlanQueries,
   SubmitProgramPlanRequest,
 } from "./annual-planning-program-plan.schema.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 
 export class AnnualPlanningProgramPlanModule {
   constructor(

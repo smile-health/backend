@@ -1,9 +1,9 @@
 import { Redis } from "ioredis"
 import env from "@/config/env.js"
 import { trace, context, SpanStatusCode } from "@opentelemetry/api"
-import { TracedRedisClient } from "@smile/lib/tracing.js"
-import { createTokenCache } from "@smile/lib"
-import { logger } from "@smile/lib/logger.js"
+import { TracedRedisClient } from "@smile-health/lib/tracing.js"
+import { createTokenCache } from "@smile-health/lib"
+import { logger } from "@smile-health/lib/logger.js"
 
 let connectionStatus: 'disconnected' | 'connecting' | 'connected' | 'error' = 'disconnected'
 let lastConnectionAttempt: Date | null = null

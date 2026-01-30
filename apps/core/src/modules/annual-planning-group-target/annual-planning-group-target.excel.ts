@@ -1,7 +1,7 @@
 import path from "path"
 import { Context } from "hono"
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 
 export class AnnualPlanningGroupTargetExcel extends BaseTemplate {
   constructor(

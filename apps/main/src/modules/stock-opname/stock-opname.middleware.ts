@@ -1,10 +1,10 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
 import { validator } from "hono/validator"
 import { z } from "zod"
 import StockOpnamePeriodRepository from "../stock-opname-period/stock-opname-period.repository.js"
 import StockOpnameRepository from "./stock-opname.repository.js"
 import { CreateStockOpnameRequest } from "./stock-opname.schema.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 
 export class StockOpnameMiddleware extends BaseMiddleware {
   constructor(

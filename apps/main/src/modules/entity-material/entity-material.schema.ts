@@ -3,8 +3,8 @@ import {
   WsEntityMaterialActivities,
   WsEntityMaterialImportLogs,
 } from "@/common/infrastructure/database/types/db.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
-import { IdSchema } from "@smile/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
+import { IdSchema } from "@smile-health/lib/types/param.js"
 import { Selectable } from "kysely"
 import moment from "moment"
 import z from "zod"

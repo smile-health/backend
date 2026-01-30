@@ -6,7 +6,7 @@ import {
   getMapUserIds,
   insertTableMapping,
 } from "@/scripts/helper.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { getMigrationDB } from "../../db.migration.js"
 import { MAP_EXISTING_TO_PLATFORM } from "../const.js"
 import { IMMUNIZATION } from "../constants/program.js"

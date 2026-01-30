@@ -1,6 +1,6 @@
-# `@smile/lib` Package Documentation
+# `@smile-health/lib` Package Documentation
 
-This document provides an overview and usage guidelines for the `@smile/lib` shared package, which centralizes common functionalities across the SMILE platform.
+This document provides an overview and usage guidelines for the `@smile-health/lib` shared package, which centralizes common functionalities across the SMILE platform.
 
 ---
 
@@ -14,7 +14,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
 - **Usage**:
 
   ```typescript
-  import { DatabaseManager, TransactionManager } from "@smile/lib/database";
+  import { DatabaseManager, TransactionManager } from "@smile-health/lib/database";
   import { Dialect } from "kysely"; // Example dialect, replace with your specific dialect
 
   // Example: MyDatabaseSchema would be your Kysely database schema type
@@ -86,7 +86,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
     SheetNotFound,
     WorkbookNotFound,
     WorkbookEmpty,
-  } from "@smile/lib/error-excel";
+  } from "@smile-health/lib/error-excel";
 
   function processExcelFile(filename: string, sheetName: string, data: any[]) {
     if (!filename) {
@@ -153,7 +153,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
     UnauthorizedError,
     NotFoundError,
     HTTPError,
-  } from "@smile/lib/error";
+  } from "@smile-health/lib/error";
 
   function handleApiRequest(
     userId: string,
@@ -210,7 +210,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
 - **Usage (ExportTemplate)**:
 
   ```typescript
-  import { ExportTemplate } from "@smile/lib/excel";
+  import { ExportTemplate } from "@smile-health/lib/excel";
   import * as fs from "fs"; // Node.js File System module for saving the buffer
 
   async function exportSampleData() {
@@ -289,7 +289,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
 - **Usage (ImportTemplate)**:
 
   ```typescript
-  import { ImportTemplate } from "@smile/lib/excel";
+  import { ImportTemplate } from "@smile-health/lib/excel";
   import * as fs from "fs";
 
   async function importSampleData(filePath: string) {
@@ -333,7 +333,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
   // In your application, import the i18n instance.
   // Ensure that environment variables (TOLGEE_URL, TOLGEE_PROJECT_ID, TOLGEE_API_KEY)
   // are set if you intend to load translations from Tolgee.
-  import i18n from "@smile/lib/i18n"; // Note: might need .js extension for direct ESM import
+  import i18n from "@smile-health/lib/i18n"; // Note: might need .js extension for direct ESM import
 
   async function demonstrateTranslations() {
     // The i18n instance is already initialized when imported due to top-level await.
@@ -372,7 +372,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
 - **Usage (General Logging)**:
 
   ```typescript
-  import { logger } from "@smile/lib/logger";
+  import { logger } from "@smile-health/lib/logger";
 
   logger.info("Application started.");
   logger.debug({ config: { logLevel: "info" } }, "Configuration loaded.");
@@ -387,7 +387,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
 
   ```typescript
   import { Hono } from "hono";
-  import { httpLogger } from "@smile/lib/logger";
+  import { httpLogger } from "@smile-health/lib/logger";
 
   const app = new Hono();
 
@@ -439,7 +439,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
   ```typescript
   // In your main application file (e.g., src/index.ts, main.ts, or app.ts),
   // ensure this import is one of the first lines to properly capture everything.
-  import "@smile/lib/tracing";
+  import "@smile-health/lib/tracing";
 
   // Your main application logic follows here.
   // For example, if you have a Hono app:
@@ -518,7 +518,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
     flattenToNestedObject,
     getUniqueIdsFromFields,
     formatPeriodName,
-  } from "@smile/lib/utils";
+  } from "@smile-health/lib/utils";
 
   // Example data
   const employees = [
@@ -627,8 +627,8 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
 
   ```typescript
   import { z, ZodError } from "zod";
-  import { formatErrors } from "@smile/lib/zod";
-  import i18n from "@smile/lib/i18n"; // Assuming i18n is initialized as shown in i18n.ts documentation
+  import { formatErrors } from "@smile-health/lib/zod";
+  import i18n from "@smile-health/lib/i18n"; // Assuming i18n is initialized as shown in i18n.ts documentation
 
   // Initialize i18n for demonstration if not already
   // For a real app, this would be handled by your app's startup.
@@ -678,8 +678,8 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
 
   ```typescript
   import { z, ZodError } from "zod";
-  import { formatExcelErrors } from "@smile/lib/zod";
-  import i18n from "@smile/lib/i18n"; // Assuming i18n is initialized
+  import { formatExcelErrors } from "@smile-health/lib/zod";
+  import i18n from "@smile-health/lib/i18n"; // Assuming i18n is initialized
 
   const ExcelRowSchema = z.object({
     productName: z.string().min(1, "validator.not_empty^Product Name"),
@@ -731,7 +731,7 @@ This document provides an overview and usage guidelines for the `@smile/lib` sha
 
   ```typescript
   import { z } from "zod";
-  import { conditionsMessage } from "@smile/lib/zod";
+  import { conditionsMessage } from "@smile-health/lib/zod";
 
   const PasswordPolicySchema = z.string().superRefine((val, ctx) => {
     conditionsMessage(

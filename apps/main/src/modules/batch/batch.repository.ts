@@ -1,6 +1,6 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
-import { associate } from "@smile/lib/utils.js"
+import { Context } from "@smile-health/lib/types/context.js"
+import { associate } from "@smile-health/lib/utils.js"
 import { Context as CtxHono } from "hono"
 import { sql } from "kysely"
 import { KFA_LEVEL_ID } from "@/common/constants/material.js"

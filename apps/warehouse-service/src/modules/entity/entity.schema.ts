@@ -1,5 +1,5 @@
 import { QueryParamsSchema } from "@/common/schemas/query-param.schema.js"
-import { DateSchema, IdSchema } from "@smile/lib/types/param.js"
+import { DateSchema, IdSchema } from "@smile-health/lib/types/param.js"
 import { z } from "zod"
 
 /* Schemas */

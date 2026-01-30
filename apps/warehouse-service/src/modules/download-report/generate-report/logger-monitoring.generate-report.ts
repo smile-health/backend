@@ -1,9 +1,9 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { LoggerMonitoringRepository } from "../../logger-monitoring/logger-monitoring.repository.js"
 import { ConfigProgram } from "../download-report.schema.js"
 import moment from "moment-timezone"
-import { MultiSheetZipExporter } from "@smile/lib/excel/multi-sheet-zip.js"
+import { MultiSheetZipExporter } from "@smile-health/lib/excel/multi-sheet-zip.js"
 import env from "../../../config/env.js"
 import { DownloadByCodeLocal } from "../download-report.schema.js"
 

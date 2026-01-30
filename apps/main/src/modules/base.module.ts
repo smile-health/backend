@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { BadRequestError } from "@smile/lib/error.js"
-import { Consumer } from "@smile/lib/rabbitmq/consumer.js"
+import { BadRequestError } from "@smile-health/lib/error.js"
+import { Consumer } from "@smile-health/lib/rabbitmq/consumer.js"
 import { randomUUID } from "crypto"
 import { Context } from "hono"
 import ExportHistoryRepository from "./export-history/export-history.repository.js"

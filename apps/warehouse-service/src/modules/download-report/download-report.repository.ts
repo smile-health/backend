@@ -1,9 +1,9 @@
 import { Context } from "hono"
-import { group } from "@smile/lib/utils.js"
+import { group } from "@smile-health/lib/utils.js"
 import { DownloadReportQuery } from "./download-report.query.js"
 import { execQuery } from "@/common/infrastructure/database/index.js"
 import { ExportLogs } from "./download-report.schema.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
 
 export class DownloadReportRepository {

@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { SubDistrictRepository } from "./sub-district.repository.js"
 import { GetSubDistrictsQueries } from "./sub-district.schema.js"

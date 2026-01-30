@@ -2,7 +2,7 @@ import { TRANSACTION_TYPE } from "@/common/constants/transaction.js"
 import { datamart } from "@/common/infrastructure/database/datamart.js"
 import { slave } from "@/common/infrastructure/database/slave.js"
 import { env } from "@/config/env.js"
-import { associate, group } from "@smile/lib/utils.js"
+import { associate, group } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { sql } from "kysely"
 import moment from "moment"
@@ -17,12 +17,12 @@ import {
   TransactionTypePaginatedRequestDTO,
   UpsertTransactionListDTO,
 } from "./transaction.schema.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate"
 import {
   CursorPaginatedResponse,
   CursorUtils,
   ICursorPaginationParams,
-} from "@smile/lib/types/cursor-paginate"
+} from "@smile-health/lib/types/cursor-paginate"
 
 export class TransactionRepository extends BaseRepository<"ws_transactions"> {
   constructor() {

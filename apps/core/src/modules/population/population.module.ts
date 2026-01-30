@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { UserRepository } from "../user/user.repository.js"
 import { PopulationRepository } from "./population.repository.js"

@@ -2,7 +2,7 @@ import { BaseRepository } from "@/modules/base.repository.js"
 import { Context } from "hono"
 import { SelfDisposalListPaginatedRequestDTO } from "./self-disposal.schema.js"
 import { sql } from "kysely"
-import { associate } from "@smile/lib/utils.js"
+import { associate } from "@smile-health/lib/utils.js"
 import moment from "moment"
 
 interface DisposalStockData {

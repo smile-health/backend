@@ -8,9 +8,9 @@ import {
   WsTransactions,
   WsTransactionTypes,
 } from "@/common/infrastructure/database/types/db.js"
-import { CursorPaginationQueriesSchema } from "@smile/lib/types/cursor-paginate.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
-import { IdSchema } from "@smile/lib/types/param.js"
+import { CursorPaginationQueriesSchema } from "@smile-health/lib/types/cursor-paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
+import { IdSchema } from "@smile-health/lib/types/param.js"
 import { Selectable, Updateable } from "kysely"
 import z from "zod"
 import { RabiesPatientDTO } from "./consumption-rabies/consumption-rabies.schema.js"

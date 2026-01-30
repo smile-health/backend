@@ -1,6 +1,6 @@
 import { notificationDb, db } from "@/common/infrastructure/database"
 import { sql } from "kysely"
-import i18n from "@smile/lib/i18n.js"
+import i18n from "@smile-health/lib/i18n.js"
 import {
   USER_ROLE,
   USER_STATUS,
@@ -10,8 +10,8 @@ import { ENTITY_TYPE } from "@/common/constants/entity"
 
 import moment from "moment"
 import { TranslationModule } from "@/common/modules/translation.module"
-import { CustomContext } from "@smile/lib/types/context"
-import { Mailer } from "@smile/lib/mail/mail"
+import { CustomContext } from "@smile-health/lib/types/context"
+import { Mailer } from "@smile-health/lib/mail/mail"
 import { Context } from "hono"
 
 type VendorRow = {

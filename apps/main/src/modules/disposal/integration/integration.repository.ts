@@ -4,7 +4,7 @@ import { Context } from "hono"
 import { Insertable } from "kysely"
 import { Client } from "./integration.schema.js"
 import { WMSClient } from "./wms/wms.client"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 
 export class IntegrationRepository {
   public getClientByEntityId = async (

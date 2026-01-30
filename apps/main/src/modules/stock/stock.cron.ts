@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { StockRepository } from "./stock.repository.js"
 import { UserRepository } from "../user/user.repository.js"
 import moment from "moment-timezone"
@@ -7,12 +7,12 @@ import { DataMessage, stockNotif } from "./stock.schema.js"
 import {
   NOTIFICATION_MEDIA,
   NOTIFICATION_TYPE,
-} from "@smile/lib/rabbitmq/notification.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+} from "@smile-health/lib/rabbitmq/notification.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 import { EntityCustomerRepository } from "../entity-customer/entity-customer.repository.js"
 import { NotificationTypeRepository } from "@/common/repository/notification-type.js"
 import { Context as HonoContext } from "hono"
-import { generateEventCode } from "@smile/lib/utils.js"
+import { generateEventCode } from "@smile-health/lib/utils.js"
 import { TFunction } from "i18next"
 
 export class StockCron {

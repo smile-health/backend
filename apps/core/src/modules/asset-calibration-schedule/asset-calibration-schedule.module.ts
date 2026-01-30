@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { AssetCalibrationScheduleRepository } from "./asset-calibration-schedule.repository.js"
 import { GetAssetCalibrationSchedulePagination } from "./asset-calibration-schedule.schema.js"

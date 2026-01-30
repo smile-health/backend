@@ -1,6 +1,6 @@
 import { db as syncDB } from "@/common/infrastructure/database/index.js"
 import { deleteTableMapping, getMapUserIds } from "@/scripts/helper.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { getMigrationDB } from "../../db.migration.js"
 import { db } from "../../db.platform.js"
 import { MAP_EXISTING_TO_PLATFORM } from "../const.js"

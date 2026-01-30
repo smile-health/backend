@@ -1,7 +1,7 @@
 import { Context } from "hono"
 import { MaterialTargetsRepository } from "./material-targets.repository.js"
 import { MaterialTargetsPaginatedRequestDTO } from "./material-targets.schema.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 
 export class MaterialTargetsModule {
   constructor(

@@ -1,5 +1,5 @@
 import { DEVICE_TYPE } from "@/common/constants/headers.js"
-import { ForbiddenError } from "@smile/lib/error.js"
+import { ForbiddenError } from "@smile-health/lib/error.js"
 import { createMiddleware } from "hono/factory"
 
 type Item = [number, number]

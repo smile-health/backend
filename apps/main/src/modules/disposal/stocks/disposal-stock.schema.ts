@@ -1,5 +1,5 @@
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
-import { OptionalIdSchema, OptionalIdsSchema } from "@smile/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
+import { OptionalIdSchema, OptionalIdsSchema } from "@smile-health/lib/types/param.js"
 import z from "zod"
 import moment from "moment"
 

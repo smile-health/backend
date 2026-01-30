@@ -1,6 +1,6 @@
 import { STATUS } from "@/common/constants/material.js"
 import { EntityRepository } from "@/modules/entity/entity.repository.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { createMiddleware } from "hono/factory"
 import { toString } from "lodash"

@@ -1,6 +1,6 @@
 import { Context } from "hono"
 import { BaseRepository } from "../base.repository.js"
-import { flattenToNestedObject } from "@smile/lib/utils.js"
+import { flattenToNestedObject } from "@smile-health/lib/utils.js"
 import { WsActivities } from "@/common/infrastructure/database/types/db.js"
 import { OrderByDirectionExpression } from "kysely"
 import { GetActivityQuery } from "./activity.schema.js"

@@ -1,6 +1,6 @@
 import { PaginationOption } from "@/common/schemas/pagination.schema.js"
 import { ExcelExportOption } from "@/common/types/excel.js"
-import { Column, Filter } from "@smile/lib/excel/types.js"
+import { Column, Filter } from "@smile-health/lib/excel/types.js"
 import { Context } from "hono"
 import moment from "moment-timezone"
 import { MasterDataRepository } from "../../common/repositories/master-data.repository.js"

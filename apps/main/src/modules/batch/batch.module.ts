@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { BatchRepository } from "./batch.repository.js"
 import { GetListBatchQueries } from "./batch.schema.js"

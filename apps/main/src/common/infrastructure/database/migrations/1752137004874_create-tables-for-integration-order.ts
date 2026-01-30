@@ -8,7 +8,7 @@ export async function up(db: Kysely<Database>): Promise<void> {
     .addColumn("id", "bigint", (col) => col.primaryKey().autoIncrement())
     .addColumn("key", "varchar(255)", (col) => col.notNull().unique())
     .addColumn("name", "varchar(255)", (col) => col.notNull())
-    .addColumn("config", "text", (col) => col.defaultTo(""))
+    .addColumn("config", "text")
     .$call(addTimestampColumns)
     .execute()
 
@@ -44,14 +44,14 @@ export async function up(db: Kysely<Database>): Promise<void> {
     .addColumn("source_type", "varchar(255)", (col) => col.notNull())
     .addColumn("flow", "varchar(255)", (col) => col.notNull())
     .addColumn("tag", "varchar(255)", (col) => col.notNull())
-    .addColumn("request", sql`LONGTEXT`, (col) => col.defaultTo(""))
-    .addColumn("response", sql`LONGTEXT`, (col) => col.defaultTo(""))
+    .addColumn("request", sql`LONGTEXT`)
+    .addColumn("response", sql`LONGTEXT`)
     .$call(addTimestampColumns)
     .execute()
 
   await db.schema
     .alterTable("ws_orders")
-    .addColumn("metadata", "text", (col) => col.defaultTo(""))
+    .addColumn("metadata", "text")
     .execute()
 
   await db.schema
@@ -64,7 +64,7 @@ export async function up(db: Kysely<Database>): Promise<void> {
 
   await db.schema
     .alterTable("ws_order_item_stocks")
-    .addColumn("metadata", "text", (col) => col.defaultTo(""))
+    .addColumn("metadata", "text")
     .execute()
 }
 

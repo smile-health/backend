@@ -1,7 +1,7 @@
 import { Context } from "hono"
 
-import WarehouseTemplate from "@smile/lib/excel/warehouse-template.js"
-import { Column, Filter } from "@smile/lib/excel/types.js"
+import WarehouseTemplate from "@smile-health/lib/excel/warehouse-template.js"
+import { Column, Filter } from "@smile-health/lib/excel/types.js"
 import { ExcelExportOption } from "@/common/types/excel.js"
 import { getExportLocationFileName } from "@/common/utils/export.js"
 import {

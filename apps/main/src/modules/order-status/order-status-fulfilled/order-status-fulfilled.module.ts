@@ -5,7 +5,7 @@ import { NotificationPublisher } from "@/modules/notification/notification.publi
 import { NotificationRepository } from "@/modules/notification/notification.repository.js"
 import { TransactionPublisher } from "@/modules/transaction/transaction.publisher.js"
 import { PublishTrxDTO } from "@/modules/transaction/transaction.schema.js"
-import { associate } from "@smile/lib/utils.js"
+import { associate } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import moment from "moment"
 import { OrderStatusFulfilledPublisher } from "./order-status-fulfilled.publisher.js"
@@ -17,7 +17,7 @@ import {
   ChangeOrderStatusFulfilledRequest,
   UpdateOrderAuditFulfilledDTO,
 } from "./order-status-fulfilled.schema.js"
-import { BadRequestError } from "@smile/lib/error.js"
+import { BadRequestError } from "@smile-health/lib/error.js"
 import { ColdstoragePublisher } from "@/modules/coldstorage/coldstorage.publisher.js"
 
 export class OrderStatusFulfilledModule {

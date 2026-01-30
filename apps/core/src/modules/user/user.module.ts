@@ -9,14 +9,14 @@ import {
   BadRequestError,
   NotFoundError,
   ValidationError,
-} from "@smile/lib/error.js"
-import { logger } from "@smile/lib/logger.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+} from "@smile-health/lib/error.js"
+import { logger } from "@smile-health/lib/logger.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import {
   collect,
   formatDateWithTimezone,
   getLabelByKey,
-} from "@smile/lib/utils.js"
+} from "@smile-health/lib/utils.js"
 import bcrypt from "bcrypt"
 import { merge } from "es-toolkit"
 import { Context } from "hono"

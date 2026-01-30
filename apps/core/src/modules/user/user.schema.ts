@@ -13,15 +13,15 @@ import {
   Users,
   Workspaces,
 } from "@/common/infrastructure/database/types/db.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import {
   containsOnlyUnderscoresPeriod,
   hasWhiteSpace,
   isDateMoreThanNow,
   isStringNumbers,
   transformStringNumbersToArrayNumbers,
-} from "@smile/lib/utils.js"
-import { conditionsMessage } from "@smile/lib/zod.js"
+} from "@smile-health/lib/utils.js"
+import { conditionsMessage } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import { Selectable } from "kysely"
 import moment from "moment"

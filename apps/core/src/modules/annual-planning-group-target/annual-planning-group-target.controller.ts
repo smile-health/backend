@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { AnnualPlanningGroupTargetModule } from "./annual-planning-group-target.module.js"
@@ -10,7 +10,7 @@ import {
   UpdateGroupTargetSchema,
 } from "./annual-planning-group-target.schema.js"
 import { AnnualPlanningGroupTargetMiddleware } from "./annual-planning-group-target.middleware.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares/excel.middleware.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares/excel.middleware.js"
 import { AnnualPlanningGroupTargetExcel } from "./annual-planning-group-target.excel.js"
 
 export class AnnualPlanningGroupTargetController extends BaseController {

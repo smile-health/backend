@@ -9,7 +9,7 @@ import {
   partition,
 } from "@/scripts/helper.js"
 import { DB } from "@/scripts/types.platform.js"
-import { associateField, collect } from "@smile/lib/utils.js"
+import { associateField, collect } from "@smile-health/lib/utils.js"
 import { Kysely, Transaction } from "kysely"
 import { randomUUID } from "node:crypto"
 import { MigrationDB } from "../../types.js"

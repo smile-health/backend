@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { sql } from "kysely"
 import { GetEntitiesUsersQueries } from "./entity-user.schema.js"
 

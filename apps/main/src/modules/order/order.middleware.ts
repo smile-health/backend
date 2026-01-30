@@ -6,7 +6,7 @@ import {
   ForbiddenError,
   NotFoundError,
   ValidationError,
-} from "@smile/lib/error.js"
+} from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { createMiddleware } from "hono/factory"
 import moment from "moment"

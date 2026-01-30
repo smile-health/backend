@@ -1,4 +1,4 @@
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import {
   GlobalBudgetSourceDTO,
@@ -7,7 +7,7 @@ import {
   StockDetailDTO,
   SubmitTransferStockRequest,
 } from "./transaction-transfer-stock.schema.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { TransactionTransferStockRepository } from "./transaction-transfer-stock.repository.js"
 
 export class TransactionTransferStockMiddleware {

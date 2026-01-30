@@ -3,7 +3,7 @@ import { DB } from "@/common/infrastructure/database/types/db.js"
 import { logError } from "@/common/logger.repository.js"
 import { getExistingId, insertMapping } from "@/common/mapping.repository.js"
 import { getSmile } from "@/openapi/entity-material.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import {
   DeleteEntityMaterialIncomingMessage,
   UpsertEntityMaterialIncomingMessage,

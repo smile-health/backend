@@ -6,21 +6,21 @@ import {
   coldstorageConsumer,
 } from "@/wire.js"
 import { SpanStatusCode, trace } from "@opentelemetry/api"
-import { ExcelError } from "@smile/lib/error-excel.js"
-import { errorHandler, HTTPError } from "@smile/lib/error.js"
+import { ExcelError } from "@smile-health/lib/error-excel.js"
+import { errorHandler, HTTPError } from "@smile-health/lib/error.js"
 import {
   getCurrentTraceContext,
   httpRequestTracer,
   middlewareTracer,
   recordPerformanceMetric,
-} from "@smile/lib/tracing.js"
-import "@smile/lib/tracing.ts"
+} from "@smile-health/lib/tracing.js"
+import "@smile-health/lib/tracing.ts"
 import { Hono } from "hono"
 import { StatusCode } from "hono/utils/http-status"
 import { StatusCodes } from "http-status-codes"
 import env from "./config/env.js"
 import { app as openapiApp } from "./openapi.js"
-import { quickSetupService } from "@smile/lib/tracing-config"
+import { quickSetupService } from "@smile-health/lib/tracing-config"
 
 // construct app
 const app = new Hono()

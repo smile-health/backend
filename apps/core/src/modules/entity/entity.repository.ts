@@ -6,8 +6,8 @@ import {
   GetEntitiesQueries,
   TEntityDto,
 } from "@/modules/entity/entity.schema.js"
-import { Context as ContextDB } from "@smile/lib/types/context.js"
-import { associate, collect } from "@smile/lib/utils.js"
+import { Context as ContextDB } from "@smile-health/lib/types/context.js"
+import { associate, collect } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { Expression, sql, SqlBool } from "kysely"
 import { BaseRepository } from "../base.repository"

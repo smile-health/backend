@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { LplpoModule } from "./lplpo.module.js"
 import { StatusCodes } from "http-status-codes"
 import { Hono } from "hono"

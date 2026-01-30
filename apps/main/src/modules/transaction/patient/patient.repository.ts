@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context as CustomContext } from "@smile/lib/types/context.js"
+import { Context as CustomContext } from "@smile-health/lib/types/context.js"
 import { Context } from "hono"
 import { sql } from "kysely"
 import { maritalStatus } from "../../../common/constants/marital-status.js"

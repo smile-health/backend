@@ -13,7 +13,7 @@ import {
 } from "./stock-opname.schema.js"
 import { StockOpnameRepository } from "./stock-opname.repository.js"
 import { SUMMARY_BOX_ENTITY_TAGS } from "@/common/constants/stock-opname.js"
-import { collect, round } from "@smile/lib/utils.js"
+import { collect, round } from "@smile-health/lib/utils.js"
 import {
   buildSoComplianceResponseData,
   buildSoResultResponseData,
@@ -29,12 +29,12 @@ import { EntityTagRepository } from "../entity-tag/entity-tag.repository.js"
 import { RegionRepository } from "../region/region.repository.js"
 import { ActivityRepository } from "../activity/activity.repository.js"
 import { ENTITY_TAG, ENTITY_TYPE } from "@/common/constants/entity.js"
-import { Filter } from "@smile/lib/excel/types.js"
+import { Filter } from "@smile-health/lib/excel/types.js"
 import { MaterialQueryParams } from "../material/material.schema.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
 import { BaseModule } from "../base.module.js"
 import ExportHistoryRepository from "../export-history/export-history.repository.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 
 export class StockOpnameModule extends BaseModule {
   constructor(

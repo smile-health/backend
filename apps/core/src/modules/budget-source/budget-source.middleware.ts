@@ -1,4 +1,4 @@
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { z, ZodIssueCode } from "zod"
 import { WorkspaceRepository } from "../workspace/workspace.repository.js"

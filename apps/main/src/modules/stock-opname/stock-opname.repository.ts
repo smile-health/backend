@@ -19,8 +19,8 @@ import _ from "lodash"
 import { type z } from "zod"
 import { BaseRepository } from "../base.repository.js"
 import { GetStockOpnamesQueries } from "./stock-opname.schema.js"
-import { CustomContext } from "@smile/lib/types/context.js"
-import { associate } from "@smile/lib/utils.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
+import { associate } from "@smile-health/lib/utils.js"
 
 type StockOpnamesQueries = z.infer<typeof GetStockOpnamesQueries>
 

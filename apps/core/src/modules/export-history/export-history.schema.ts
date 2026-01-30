@@ -1,4 +1,4 @@
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate"
 import { number, z } from "zod"
 
 const preprocessNumber = (value: unknown) => {

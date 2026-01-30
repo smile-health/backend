@@ -1,6 +1,6 @@
 import { UserRepository } from "@/modules/user/user.repository.js"
-import { NotFoundError } from "@smile/lib/error.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { NotFoundError } from "@smile-health/lib/error.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { toResponse } from "./material-ratio.mapper.js"
 import { MaterialRatioRepository } from "./material-ratio.repository.js"

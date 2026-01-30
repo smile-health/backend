@@ -3,7 +3,7 @@ import {
   NOTIFICATION_TYPE,
   NOTIFICATION_MEDIA,
   NOTIFICATION_WORKER,
-} from "@smile/lib/rabbitmq/notification.js"
+} from "@smile-health/lib/rabbitmq/notification.js"
 import { Context } from "hono"
 
 export class EntityNotification {

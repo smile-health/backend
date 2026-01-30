@@ -1,6 +1,6 @@
 import { RoleValidationMiddleware } from "@/common/middlewares/role-validation.middleware.js"
 import { zValidator } from "@hono/zod-validator"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Hono } from "hono"
 import { WorkspaceModule } from "./workspace.module.js"
 import { GetWorkspacesParamsSchema } from "./workspace.schema.js"

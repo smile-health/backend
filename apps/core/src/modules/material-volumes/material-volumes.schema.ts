@@ -1,8 +1,8 @@
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import {
   isStringNumbers,
   transformStringNumbersToArrayNumbers,
-} from "@smile/lib/utils.js"
+} from "@smile-health/lib/utils.js"
 import { Materials } from "@/common/infrastructure/database/types/db.js"
 import { z } from "zod"
 import { Selectable } from "kysely"

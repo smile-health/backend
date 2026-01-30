@@ -1,5 +1,5 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
-import { NotFoundError, ValidationError } from "@smile/lib/error.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
+import { NotFoundError, ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { createMiddleware } from "hono/factory"
 import { z } from "zod"

@@ -114,7 +114,7 @@ This document provides a comprehensive overview of the SMILE Platform architectu
 
 ## Shared Libraries (`packages/lib`)
 
-### Core Utilities (`@smile/lib`)
+### Core Utilities (`@smile-health/lib`)
 
 #### Database Management (`database.ts`)
 - **TransactionManager**: Database transaction handling

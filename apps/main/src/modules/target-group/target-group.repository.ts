@@ -1,4 +1,4 @@
-import { associate } from "@smile/lib/utils.js"
+import { associate } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { BaseRepository } from "../base.repository.js"
 

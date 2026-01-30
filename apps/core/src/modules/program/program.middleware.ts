@@ -1,4 +1,4 @@
-import { conditionsMessage } from "@smile/lib/zod.js"
+import { conditionsMessage } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import { z } from "zod"
 import { ProgramRepository } from "./program.repository.js"

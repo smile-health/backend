@@ -1,6 +1,6 @@
 import { STATUS } from "@/common/constants/general.js"
 import { SourceMaterials } from "@/common/infrastructure/database/types/db.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { Selectable } from "kysely"
 import { z } from "zod"
 import { UserResponse } from "../user/user.schema.js"

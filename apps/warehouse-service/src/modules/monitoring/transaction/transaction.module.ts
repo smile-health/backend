@@ -1,6 +1,6 @@
 import { DASHBOARD_TRANSACTION_TYPE } from "@/common/constants/monitoring.js"
-import { BadRequestError } from "@smile/lib/error.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { BadRequestError } from "@smile-health/lib/error.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import _ from "lodash"
 import { default as moment, default as momentTZ } from "moment-timezone"

@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { GetListStockQualityQueries } from "./stock-quality.schema.js"
 
 export class StockQualityRepository {

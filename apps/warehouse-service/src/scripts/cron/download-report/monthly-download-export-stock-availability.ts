@@ -18,9 +18,9 @@ import { RegionRepository } from "@/modules/region/region.repository.js"
 import { EntityTagRepository } from "@/modules/entity-tag/entity-tag.repository.js"
 import { RegionQuery } from "@/modules/region/region.query.js"
 import { EntityTagQuery } from "@/modules/entity-tag/entity-tag.query.js"
-import { TransactionManager } from "@smile/lib/database.js"
-import i18n from "@smile/lib/i18n.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { TransactionManager } from "@smile-health/lib/database.js"
+import i18n from "@smile-health/lib/i18n.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import moment from "moment-timezone"
 
 export const monthlyDownloadExportStockAvailability = async (

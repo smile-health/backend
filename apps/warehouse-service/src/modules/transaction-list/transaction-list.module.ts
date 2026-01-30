@@ -1,5 +1,5 @@
 import { Context } from "hono"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { TransactionListPaginatedRequestDTO } from "./transaction-list.schema.js"
 import { TransactionListRepository } from "./transaction-list.repository.js"
 
