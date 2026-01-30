@@ -11,7 +11,7 @@ export async function down(db: Kysely<Database>): Promise<void> {
     .createTable("ws_target_estimations")
     .addColumn("id", "bigint", (col) => col.autoIncrement().primaryKey())
     .addColumn("entity_id", "bigint", (col) => col.notNull())
-    .addColumn("notes", "text", (col) => col.defaultTo(""))
+    .addColumn("notes", "text")
     .$call(addTimestampColumns)
     .$call(addAuditColumns)
     .execute()
