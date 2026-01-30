@@ -11,7 +11,7 @@ import {
   sentinelSurveillanceId,
 } from "./sentinel-surveillance.schema.js"
 import { SentinelSurveillanceRepository } from "./sentinel-surveillance.repository.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 
 export class SentinelSurveillanceMiddleware {
   constructor(

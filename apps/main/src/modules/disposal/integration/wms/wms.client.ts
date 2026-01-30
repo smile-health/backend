@@ -1,5 +1,5 @@
 import { IntegrationClients } from "@/common/infrastructure/database/types/db.js"
-import { logger } from "@smile/lib/logger.js"
+import { logger } from "@smile-health/lib/logger.js"
 import axios, { AxiosError } from "axios"
 import https from "https"
 import { Selectable } from "kysely"

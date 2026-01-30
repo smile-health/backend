@@ -1,6 +1,6 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { BaseRepository } from "@smile/lib/base/repository.js"
-import { associate, collect, group } from "@smile/lib/utils.js"
+import { BaseRepository } from "@smile-health/lib/base/repository.js"
+import { associate, collect, group } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import {
   ComparisonOperatorExpression,
@@ -13,7 +13,7 @@ import {
   UserChangeLogsResponse,
   UserResponse,
 } from "./user.schema.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { ENTITY_TAG } from "@/common/constants/entity.js"
 
 type TableUser = keyof Pick<DB, "ws_users">

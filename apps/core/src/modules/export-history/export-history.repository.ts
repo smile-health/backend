@@ -6,7 +6,7 @@ import { z } from "zod"
 import { BaseRepository } from "../base.repository.js"
 import { GetExportHistoriesQueries } from "./export-history.schema.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 
 export class ExportHistoryRepository extends BaseRepository<"export_histories"> {
   constructor() {

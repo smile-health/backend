@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { IContextVariableMap } from "@smile/lib/types/context.js"
+import { IContextVariableMap } from "@smile-health/lib/types/context.js"
 import { Context } from "hono"
 
 export interface AppContextVariableMap extends IContextVariableMap<DB> {

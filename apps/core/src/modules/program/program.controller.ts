@@ -1,10 +1,10 @@
 import { Hono } from "hono"
 import { ProgramModule } from "./program.module.js"
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { StatusCodes } from "http-status-codes"
 import { ProgramMiddleware } from "./program.middleware.js"
 import { DetailSchema } from "./program.schema.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares/excel.middleware.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares/excel.middleware.js"
 
 export class ProgramController extends BaseController {
   constructor(

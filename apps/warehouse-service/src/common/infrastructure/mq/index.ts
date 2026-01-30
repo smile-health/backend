@@ -1,5 +1,5 @@
 import env from "@/config/env.js"
-import { logger } from "@smile/lib/logger.js"
+import { logger } from "@smile-health/lib/logger.js"
 import amqp from "amqplib"
 
 let connection: amqp.Connection | undefined

@@ -1,7 +1,7 @@
 import env from "@/config/env.js"
 import { ClickhouseDialect } from "@founderpath/kysely-clickhouse"
-import { DatabaseManager } from "@smile/lib/database.js"
-import { TracedClickHouseClient, clickhouseTracer } from "@smile/lib/tracing.js"
+import { DatabaseManager } from "@smile-health/lib/database.js"
+import { TracedClickHouseClient, clickhouseTracer } from "@smile-health/lib/tracing.js"
 import { CompiledQuery } from "kysely"
 import { Database } from "./types/index.js"
 

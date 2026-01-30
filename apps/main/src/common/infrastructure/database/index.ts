@@ -1,5 +1,5 @@
 import env from "@/config/env.js"
-import { DatabaseManager } from "@smile/lib/database.js"
+import { DatabaseManager } from "@smile-health/lib/database.js"
 import { promises as fs } from "fs"
 import { FileMigrationProvider, Migrator, MysqlDialect } from "kysely"
 import { createPool } from "mysql2"

@@ -1,4 +1,4 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
 import { Context } from "hono"
 import { z } from "zod"
 import { NotificationRepository } from "./notification.repository.js"

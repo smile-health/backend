@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 
 export const CreateImmunizationSchema = z.object({
   nik: z.string().optional(),

@@ -1,4 +1,4 @@
-import { collect, getUniqueIdsFromFields } from "@smile/lib/utils.js"
+import { collect, getUniqueIdsFromFields } from "@smile-health/lib/utils.js"
 import { Kysely, Transaction, sql } from "kysely"
 import {
   getMapActivityIds,

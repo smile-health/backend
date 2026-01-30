@@ -1,4 +1,4 @@
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { getMigrationDB } from "../../../db.migration.js"
 import { db } from "../../../db.platform.js"
 import {

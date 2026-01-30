@@ -6,7 +6,7 @@ import {
   WsPurchases,
   WsStocks,
 } from "@/common/infrastructure/database/types/db.js"
-import { conditionsMessage } from "@smile/lib/zod.js"
+import { conditionsMessage } from "@smile-health/lib/zod.js"
 import { Insertable, Selectable } from "kysely"
 import { z } from "zod"
 import { CreateOrderRequestSchema } from "../order/order.schema.js"

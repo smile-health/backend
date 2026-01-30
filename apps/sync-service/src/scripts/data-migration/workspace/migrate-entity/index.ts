@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { sql } from "kysely"
 import { db as mappingDB } from "../../../../common/infrastructure/database/index.js"
 import { getMigrationDB } from "../../../db.migration.js"

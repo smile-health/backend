@@ -1,7 +1,7 @@
 import { DEVICE_TYPE } from "@/common/constants/device.js"
 import { USER_ROLE } from "@/common/constants/user.js"
 import { RoleMiddleware } from "@/common/middlewares/role-validation.middleware.js"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { BaseController } from "../base.controller.js"

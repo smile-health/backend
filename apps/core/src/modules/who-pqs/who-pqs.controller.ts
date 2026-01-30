@@ -1,10 +1,10 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { WhoPqsModule } from "./who-pqs.module.js"
 import { GetWhoPqsQueryParamSchema } from "./who-pqs.schema.js"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 import { WhoPqsMiddleware } from "./who-pqs.middleware.js"
 
 export class WhoPqsController extends BaseController {

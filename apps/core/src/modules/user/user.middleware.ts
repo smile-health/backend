@@ -12,9 +12,9 @@ import {
   transformImportUserRowSchema,
   update,
 } from "@/modules/user/user.schema.js"
-import { ValidationError } from "@smile/lib/error.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
-import { conditionsMessage, translateError } from "@smile/lib/zod.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
+import { conditionsMessage, translateError } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import { validator } from "hono/validator"
 import { z } from "zod"

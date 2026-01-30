@@ -2,7 +2,7 @@ import { IMMUNIZATION_PROGRAM_IDS } from "@/common/constants/common.js"
 import { KFA_LEVEL_ID } from "@/common/constants/material.js"
 import { ORDER_STATUS } from "@/common/constants/order.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { associate, associateField, collect, group } from "@smile/lib/utils.js"
+import { associate, associateField, collect, group } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { Insertable, sql } from "kysely" // Import Insertable
 

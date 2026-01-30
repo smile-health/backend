@@ -26,7 +26,7 @@ This directory organizes all architecture and design documentation for the SMILE
 ## Shared Packages
 
 - [Shared Packages Overview](shared-packages.md)
-- [`@smile/lib` Documentation](lib-documentation.md)
+- [`@smile-health/lib` Documentation](lib-documentation.md)
 
 ## Configuration & Environment
 

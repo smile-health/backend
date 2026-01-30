@@ -1,7 +1,7 @@
 import { KFA_LEVEL_ID } from "@/common/constants/material.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { associate, collect, group, pick } from "@smile/lib/utils.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { associate, collect, group, pick } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import _ from "lodash"
 import { ActivityRepository } from "../activity/activity.repository.js"
@@ -22,7 +22,7 @@ import {
 import { StockCron } from "./stock.cron.js"
 import { UserRepository } from "../user/user.repository.js"
 import { EntityCustomerRepository } from "../entity-customer/entity-customer.repository.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 import { NotificationTypeRepository } from "@/common/repository/notification-type.js"
 
 export class StockModule extends BaseModule {

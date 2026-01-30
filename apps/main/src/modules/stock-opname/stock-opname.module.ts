@@ -1,12 +1,12 @@
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import {
   associate,
   collect,
   formatPeriodName,
   getUniqueIdsFromFields,
   pick,
-} from "@smile/lib/utils.js"
+} from "@smile-health/lib/utils.js"
 import { type Context } from "hono"
 import { type z } from "zod"
 import { ActivityRepository } from "../activity/activity.repository.js"
@@ -21,7 +21,7 @@ import {
   CreateStockOpnameRequest,
   GetStockOpnamesQueries,
 } from "./stock-opname.schema.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 
 type StockOpnamesQueries = z.infer<typeof GetStockOpnamesQueries>
 

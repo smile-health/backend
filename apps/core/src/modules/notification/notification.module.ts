@@ -1,6 +1,6 @@
 import { USER_ROLE } from "@/common/constants/users.js"
 import tracedRedis from "@/common/infrastructure/redis.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { NotificationRepository } from "./notification.repository.js"
 import {

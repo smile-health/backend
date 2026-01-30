@@ -1,7 +1,7 @@
 import { PostgresDialect } from "kysely"
 import { Pool } from "pg"
 import { env } from "@/config/env.js"
-import { DatabaseManager } from "@smile/lib/database.js"
+import { DatabaseManager } from "@smile-health/lib/database.js"
 
 let connectionStatus: 'disconnected' | 'connecting' | 'connected' | 'error' = 'disconnected'
 let lastConnectionAttempt: Date | null = null

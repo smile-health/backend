@@ -7,8 +7,8 @@ import {
   MAP_MATERIAL_CONDITION_TYPE,
   MAP_TRANSACTION_TYPE_LABEL,
 } from "@/common/constants/transaction.js"
-import { ValidationError } from "@smile/lib/error.js"
-import { associate, group, pick } from "@smile/lib/utils.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { associate, group, pick } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { BaseRepository } from "../base.repository.js"
 import {

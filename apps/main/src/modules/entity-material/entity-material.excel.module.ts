@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { GetEntitiesQueries } from "../entity/entity.schema.js"
 import { MaterialActivityRepository } from "../material-activity/material-activity.repository.js"

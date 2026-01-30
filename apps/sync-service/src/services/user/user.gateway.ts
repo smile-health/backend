@@ -8,7 +8,7 @@ import {
   insertMapping,
 } from "@/common/mapping.repository.js"
 import { getSmile } from "@/openapi/user.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { AxiosError } from "axios"
 import { isEmpty } from "lodash"
 import { DeleteUserIncomingMessage, UpdatePasswordIncomingMessage, UpdateUserStatusIncomingMessage, UpsertUserIncomingMessage, UserDTO } from "./user.schema.js"

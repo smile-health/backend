@@ -1,6 +1,6 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import { execQuery } from "@/common/infrastructure/database/index.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { LoggerMonitoringQuery } from "./logger-monitoring.query.js"
 import {
   LoggerMonitoringSummaryAssetDTO,

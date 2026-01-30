@@ -1,8 +1,8 @@
 import { DB, WsEntities } from "@/common/infrastructure/database/types/db.js"
 import env from "@/config/env.js"
-import { Consumer } from "@smile/lib/rabbitmq/consumer.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { Consumer } from "@smile-health/lib/rabbitmq/consumer.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { Selectable } from "kysely"
 import moment from "moment"
 import momentTZ from "moment-timezone"
@@ -12,7 +12,7 @@ import { OrderRepository } from "./order.repository.js"
 import { GetOrderQueries } from "./order.schema.js"
 import { ORDER_STATUS } from "@/common/constants/order.js"
 import { KFA_LEVEL_ID } from "@/common/constants/material.js"
-import { MultiSheetZipExporter } from "@smile/lib/excel/multi-sheet-zip.js"
+import { MultiSheetZipExporter } from "@smile-health/lib/excel/multi-sheet-zip.js"
 
 export class OrderWorker extends BaseWorker {
   constructor(

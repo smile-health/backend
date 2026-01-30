@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { AnnualPlanningMaterialSubstitutionRepository } from "./annual-planning-material-substitution.repository.js"
 import {
@@ -8,7 +8,7 @@ import {
   ImportMaterialSubstitutionSchema,
 } from "./annual-planning-material-substitution.schema.js"
 import { AnnualPlanningMaterialSubstitutionExport } from "./annual-planning-material-substitution.excel.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 import { AnnualPlanningProgramPlanRepository } from "../annual-planning-program-plan/annual-planning-program-plan.repository.js"
 
 export class AnnualPlanningMaterialSubstitutionModule {

@@ -1,7 +1,7 @@
 import momentTZ from "moment-timezone"
 import { ConfigProgram } from "./download-report.schema.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { UploadExportToMinio } from "./download-report.minio.js"
 import fs from "fs"
 

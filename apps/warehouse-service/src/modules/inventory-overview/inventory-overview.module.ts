@@ -28,7 +28,7 @@ import {
 } from "./inventory-overview.utils.js"
 import { RegionDTO } from "../region/region.schema.js"
 import { PaginationOption } from "@/common/schemas/pagination.schema.js"
-import { round } from "@smile/lib/utils.js"
+import { round } from "@smile-health/lib/utils.js"
 
 export class InventoryOverviewModule {
   constructor(

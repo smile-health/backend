@@ -7,7 +7,7 @@ import {
 } from "@/common/infrastructure/database/types/db.js"
 import { OrderCentralDeliveryModule } from "@/modules/order-central-delivery/order-central-delivery.module.js"
 import { OrderStatusCancelModule } from "@/modules/order-status/order-status-cancel/order-status-cancel.module.js"
-import { collect, differ, group } from "@smile/lib/utils.js"
+import { collect, differ, group } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { Insertable } from "kysely"
 import _ from "lodash"

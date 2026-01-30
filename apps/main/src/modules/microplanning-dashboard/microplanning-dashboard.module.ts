@@ -28,7 +28,7 @@ import {
 } from "./microplanning-dashboard.helper.js"
 import { doDecrypt } from "../transaction/utils/transaction.encryption.js"
 import { MicroplanningDashboardExport } from "./microplanning-dashboard.excel.js"
-import { FileResponse } from "@smile/lib/types/file.js"
+import { FileResponse } from "@smile-health/lib/types/file.js"
 import moment from "moment"
 
 type locationType = "province" | "city" | "district" | "village"

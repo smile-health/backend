@@ -4,8 +4,8 @@ import {
   CONTACT_PERSON_SOURCE_TYPE,
 } from "@/common/constants/assets.js"
 import { FLAG, STATUS } from "@/common/constants/general.js"
-import { ValidationError } from "@smile/lib/error.js"
-import { collect } from "@smile/lib/utils.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { sql } from "kysely"
 import {

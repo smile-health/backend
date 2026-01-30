@@ -8,7 +8,7 @@ import {
 import { TRANSACTION_TYPE } from "@/common/constants/transaction.js"
 import { TransactionPublisher } from "@/modules/transaction/transaction.publisher.js"
 import { PublishTrxDTO } from "@/modules/transaction/transaction.schema.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import _ from "lodash"
 import { OrderDroppingPublisher } from "../base.order-dropping.publisher.js"

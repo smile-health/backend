@@ -14,22 +14,22 @@ import { MasterRepository } from "@/modules/master/master.repository.js"
 import { UserController } from "@/modules/user/user.controller.js"
 import { UsersMiddleware } from "@/modules/user/user.middleware.js"
 import { UserRepository } from "@/modules/user/user.repository.js"
-import { AuthKeycloakService as AuthKcServiceLib } from "@smile/lib/api"
-import { TransactionManager } from "@smile/lib/database.js"
-import { featureFlagsMiddleware } from "@smile/lib/feature-flags/middleware.js"
+import { AuthKeycloakService as AuthKcServiceLib } from "@smile-health/lib/api"
+import { TransactionManager } from "@smile-health/lib/database.js"
+import { featureFlagsMiddleware } from "@smile-health/lib/feature-flags/middleware.js"
 import {
   createRefreshHandler,
   createWebhookHandler,
-} from "@smile/lib/feature-flags/webhook.js"
-import { reloadTranslations } from "@smile/lib/i18n.js"
+} from "@smile-health/lib/feature-flags/webhook.js"
+import { reloadTranslations } from "@smile-health/lib/i18n.js"
 import {
   ExcelMiddleware,
   RequestMiddleware,
   TransactionMiddleware,
-} from "@smile/lib/middlewares"
-import { EventMiddleware } from "@smile/lib/middlewares/event.middleware.js"
-import { Consumer, Publisher, TOPIC } from "@smile/lib/rabbitmq"
-import { middlewareTracer, routeTracer } from "@smile/lib/tracing.js" // Import the enhanced tracing middleware
+} from "@smile-health/lib/middlewares"
+import { EventMiddleware } from "@smile-health/lib/middlewares/event.middleware.js"
+import { Consumer, Publisher, TOPIC } from "@smile-health/lib/rabbitmq"
+import { middlewareTracer, routeTracer } from "@smile-health/lib/tracing.js" // Import the enhanced tracing middleware
 import { randomUUID } from "crypto"
 import { Hono } from "hono"
 import { cors } from "hono/cors"

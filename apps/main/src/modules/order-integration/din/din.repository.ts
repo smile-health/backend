@@ -4,7 +4,7 @@ import { IntegrationLogs } from "@/common/infrastructure/database/types/db.js"
 import { Context } from "hono"
 import { Insertable, sql } from "kysely"
 import { OrderIntegrationRepository } from "../order-integration.repository.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { ORDER_STATUS } from "@/common/constants/order.js"
 export class DinRepository extends OrderIntegrationRepository {
   constructor() {

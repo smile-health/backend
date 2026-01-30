@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { GenderRepository } from "./gender.repository.js"
 import { GenderPaginatedRequestDTO } from "./gender.schema.js"

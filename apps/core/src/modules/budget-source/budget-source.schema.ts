@@ -1,9 +1,9 @@
 import { BudgetSources } from "@/common/infrastructure/database/types/db.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import {
   isStringNumbers,
   transformStringNumbersToArrayNumbers,
-} from "@smile/lib/utils.js"
+} from "@smile-health/lib/utils.js"
 import { Selectable } from "kysely"
 import z from "zod"
 import { TWorkspaces, UserResponse } from "../user/user.schema.js"

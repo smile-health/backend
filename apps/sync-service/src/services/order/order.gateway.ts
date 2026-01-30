@@ -7,7 +7,7 @@ import {
   insertMapping,
 } from "@/common/mapping.repository.js"
 import { getSmile, PostV2OrderBody } from "@/openapi/order.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { AxiosError } from "axios"
 import moment from "moment"
 import { OrderIncomingMessage } from "./order.schema.js"

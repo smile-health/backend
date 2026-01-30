@@ -1,7 +1,7 @@
 import { Kysely, Transaction } from "kysely"
 import { MigrationDB } from "../../../types.js"
 import { DB } from "../../../types.platform.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { insertTableMapping } from "@/scripts/helper.js"
 
 export const migrateOrderItemProjectionCapacities = async (

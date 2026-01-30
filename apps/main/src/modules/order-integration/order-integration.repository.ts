@@ -5,8 +5,8 @@ import {
   WsOrderItemStocks,
 } from "@/common/infrastructure/database/types/db.js"
 import { OrderRepository } from "@/modules/order/order.repository.js"
-import { BadRequestError, NotFoundError } from "@smile/lib/error.js"
-import { associate, associateField } from "@smile/lib/utils.js"
+import { BadRequestError, NotFoundError } from "@smile-health/lib/error.js"
+import { associate, associateField } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { Insertable, Updateable, sql } from "kysely"
 import { DinGateway } from "./din/din.gateway.js"

@@ -1,7 +1,7 @@
-import { SyncPublisher } from "@smile/lib/base/sync-publisher.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
-import { collect } from "@smile/lib/utils.js"
+import { SyncPublisher } from "@smile-health/lib/base/sync-publisher.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { EntityCustomerRepository } from "./entity-customer.repository.js"
 

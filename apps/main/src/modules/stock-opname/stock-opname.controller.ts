@@ -5,8 +5,8 @@ import { StockOpnameMiddleware } from "./stock-opname.middleware.js"
 import { StockOpnameModule } from "./stock-opname.module.js"
 import StockOpnameRepository from "./stock-opname.repository.js"
 import { GetStockOpnamesQueries } from "./stock-opname.schema.js"
-import { ValidationError } from "@smile/lib/error.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 
 export class StockOpnameController extends BaseController {
   constructor(

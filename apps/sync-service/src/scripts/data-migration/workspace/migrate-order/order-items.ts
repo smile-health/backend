@@ -1,5 +1,5 @@
 import { db as mappingDB } from "@/common/infrastructure/database/index.js"
-import { collect, getUniqueIdsFromFields } from "@smile/lib/utils.js"
+import { collect, getUniqueIdsFromFields } from "@smile-health/lib/utils.js"
 import { Kysely, Transaction } from "kysely"
 import {
   getMapMaterialIds,

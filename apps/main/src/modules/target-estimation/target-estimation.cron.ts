@@ -18,7 +18,7 @@
  * - ws_microplanning_school_details (school estimations)
  */
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import moment from "moment-timezone"
 import { TargetsRepository } from "../targets/targets.repository.js"
 import { TargetEstimationRepository } from "./target-estimation.repository.js"

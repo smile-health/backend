@@ -1,5 +1,5 @@
 import { db } from "../../db.platform.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Transaction } from "kysely"
 import { DB } from "../../types.platform.js"
 

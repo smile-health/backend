@@ -1,5 +1,5 @@
 import { Context } from "hono"
-import { NotFoundError, ValidationError } from "@smile/lib/error.js"
+import { NotFoundError, ValidationError } from "@smile-health/lib/error.js"
 import { SelfDisposalRepository } from "./self-disposal.repository.js"
 import { SelfDisposalRequest } from "./self-disposal.schema.js"
 

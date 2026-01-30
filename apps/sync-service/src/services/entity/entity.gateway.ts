@@ -12,8 +12,8 @@ import {
   getMapProgramIds,
   insertMapping,
 } from "@/common/mapping.repository.js"
-import { CustomContext } from "@smile/lib/types/context.js"
-import { collect } from "@smile/lib/utils.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { AxiosError } from "axios"
 import { Selectable } from "kysely"
 import moment from "moment"

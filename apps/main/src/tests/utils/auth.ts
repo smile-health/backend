@@ -1,5 +1,5 @@
 import env from "@/config/env.js"
-import { JWTPayload } from "@smile/lib/types/jwt.js"
+import { JWTPayload } from "@smile-health/lib/types/jwt.js"
 import * as jwt from "jsonwebtoken"
 
 export const createToken = (workspaceID: number) => {

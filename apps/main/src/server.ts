@@ -9,19 +9,19 @@ import {
   transactionConsumer,
 } from "@/wire.js"
 import { SpanStatusCode, trace } from "@opentelemetry/api"
-import { errorHandler } from "@smile/lib/error.js"
-import { httpLogger } from "@smile/lib/logger.js"
+import { errorHandler } from "@smile-health/lib/error.js"
+import { httpLogger } from "@smile-health/lib/logger.js"
 import {
   getCurrentTraceContext,
   httpRequestTracer,
   middlewareTracer,
   recordPerformanceMetric,
-} from "@smile/lib/tracing.js"
-import "@smile/lib/tracing.ts"
+} from "@smile-health/lib/tracing.js"
+import "@smile-health/lib/tracing.ts"
 import { Hono } from "hono"
 import env from "./config/env.js"
 import { app as openapiApp } from "./openapi.js"
-import { quickSetupService } from "@smile/lib/tracing-config"
+import { quickSetupService } from "@smile-health/lib/tracing-config"
 
 // construct app
 const app = new Hono()

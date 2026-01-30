@@ -2,8 +2,8 @@ import { DB } from "../infrastructure/database/types/db.js"
 import {
   NOTIFICATION_MEDIA,
   NOTIFICATION_WORKER,
-} from "@smile/lib/rabbitmq/notification.js"
-import { Context } from "@smile/lib/types/context.js"
+} from "@smile-health/lib/rabbitmq/notification.js"
+import { Context } from "@smile-health/lib/types/context.js"
 
 export class NotificationTypeRepository {
   async generateNotificationChannels(c: Context<DB>, type: string) {

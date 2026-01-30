@@ -1,14 +1,14 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import { NotificationTypeRepository } from "@/common/repository/notification-type.js"
 import { UserRepository } from "@/modules/user/user.repository.js"
-import { mask } from "@smile/lib/masking.js"
+import { mask } from "@smile-health/lib/masking.js"
 import {
   NOTIFICATION_MEDIA,
   NOTIFICATION_TYPE,
-} from "@smile/lib/rabbitmq/notification.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
-import { Context } from "@smile/lib/types/context.js"
-import { generateEventCode } from "@smile/lib/utils.js"
+} from "@smile-health/lib/rabbitmq/notification.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
+import { Context } from "@smile-health/lib/types/context.js"
+import { generateEventCode } from "@smile-health/lib/utils.js"
 import { Context as HonoContext } from "hono"
 import moment from "moment"
 import { doDecrypt } from "../utils/transaction.encryption.js"

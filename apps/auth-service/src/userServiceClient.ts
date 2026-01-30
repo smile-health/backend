@@ -1,4 +1,4 @@
-import { HTTPError } from "@smile/lib/error";
+import { HTTPError } from "@smile-health/lib/error";
 import axios from "axios";
 import userServiceConfig from "./config/userServiceConfig";
 import logger from "./utils/logger";

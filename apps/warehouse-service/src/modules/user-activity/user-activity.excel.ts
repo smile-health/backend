@@ -1,5 +1,5 @@
-import { WorkbookNotFound } from "@smile/lib/error-excel.js"
-import { XLSXPopulateProcessor } from "@smile/lib/excel/processor.xlsxpopulate.js"
+import { WorkbookNotFound } from "@smile-health/lib/error-excel.js"
+import { XLSXPopulateProcessor } from "@smile-health/lib/excel/processor.xlsxpopulate.js"
 import { Context } from "hono"
 import { isEmpty } from "lodash"
 import moment from "moment"

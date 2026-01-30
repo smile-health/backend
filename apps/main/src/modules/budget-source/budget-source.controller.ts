@@ -1,4 +1,4 @@
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { BaseController } from "../base.controller.js"

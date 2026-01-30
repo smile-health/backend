@@ -21,9 +21,9 @@ import {
   OrderRelocationEntityDTO,
 } from "./order-relocation.schema.js"
 import { OrderPublisher } from "../order/order.publisher.js"
-import { NOTIFICATION_MEDIA } from "@smile/lib/rabbitmq/notification.js"
+import { NOTIFICATION_MEDIA } from "@smile-health/lib/rabbitmq/notification.js"
 import { ENTITY_TAG, ENTITY_TYPE } from "@/common/constants/entity.js"
-import { generateEventCode } from "@smile/lib/utils.js"
+import { generateEventCode } from "@smile-health/lib/utils.js"
 import { NotificationTypeRepository } from "@/common/repository/notification-type.js"
 
 export class OrderRelocationModule {

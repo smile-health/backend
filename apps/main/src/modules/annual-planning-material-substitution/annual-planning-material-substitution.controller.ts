@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 
@@ -8,11 +8,11 @@ import {
   SubstitutionIdSchema,
   QuerySchema,
 } from "./annual-planning-material-substitution.schema.js"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import type { AnnualPlanningMaterialSubstitutionModule } from "./annual-planning-material-substitution.module.js"
 import { AnnualPlanningMaterialSubstitutionMiddleware } from "./annual-planning-material-susbstitution.middleware.js"
 import { AnnualPlanningMaterialSubstitutionExport } from "./annual-planning-material-substitution.excel.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 export class AnnualPlanningMaterialSubstitutionController extends BaseController {
   constructor(
     private readonly module: AnnualPlanningMaterialSubstitutionModule,

@@ -4,13 +4,13 @@ import {
   USER_ROLE,
 } from "@/common/constants/users.js"
 import { Database } from "@/common/infrastructure/database/types/index.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import {
   associate,
   associateField,
   getLabelByKey,
   group,
-} from "@smile/lib/utils.js"
+} from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { SelectQueryBuilder, sql } from "kysely"
 import moment from "moment"
@@ -25,7 +25,7 @@ import {
   UserChangeLogsResponse,
   UserResponse,
 } from "./user.schema.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 
 export class UserRepository extends BaseRepository<"users"> {
   constructor() {

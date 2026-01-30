@@ -1,10 +1,10 @@
-import { NotFoundError } from "@smile/lib/error.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { NotFoundError } from "@smile-health/lib/error.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import {
   formatDateWithTimezone,
   formatPeriodName,
   getUniqueIdsFromFields,
-} from "@smile/lib/utils.js"
+} from "@smile-health/lib/utils.js"
 import { type Context } from "hono"
 import moment from "moment"
 import { type z } from "zod"

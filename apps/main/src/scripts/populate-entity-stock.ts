@@ -3,7 +3,7 @@ import {
   WsEntityMaterialActivities,
   WsStocks,
 } from "@/common/infrastructure/database/types/db.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { Selectable } from "kysely"
 
 export const populateEntityStock = async (

@@ -1,9 +1,9 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { DengueCaseModule } from "./dengue-case.module.js"
 import { DengueCaseMiddleware } from "./dengue-case.middleware.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
-import { ExcelMiddleware } from "@smile/lib/middlewares/excel.middleware.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares/excel.middleware.js"
 import { DengueCaseTemplate } from "./dengue-case.excel.js"
 
 export class DengueCaseController extends BaseController {

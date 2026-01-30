@@ -1,6 +1,6 @@
 import { db } from "@/common/infrastructure/database/index.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { Context as CtxHono } from "Hono"
 import { CompiledQuery, sql } from "kysely"
 import moment from "moment"

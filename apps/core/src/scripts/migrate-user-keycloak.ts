@@ -1,6 +1,6 @@
 import { db } from "@/common/infrastructure/database/index.js"
 import { UserTemplateXlsx } from "@/modules/user/user.excel.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 import fs from "fs"
 import { sql } from "kysely"
 import moment from "moment"

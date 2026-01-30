@@ -1,5 +1,5 @@
 import { DEVICE_TYPE } from "@/common/constants/device.js"
-import { ForbiddenError } from "@smile/lib/error.js"
+import { ForbiddenError } from "@smile-health/lib/error.js"
 import { createMiddleware } from "hono/factory"
 import { RolesToResourceMappingRepository } from "../repository/roles.repository.js"
 import { RoleParams } from "../types/roles.js"

@@ -3,8 +3,8 @@ import {
   ForbiddenError,
   HTTPError,
   UnauthorizedError,
-} from "@smile/lib/error.js"
-import { logger } from "@smile/lib/logger.js"
+} from "@smile-health/lib/error.js"
+import { logger } from "@smile-health/lib/logger.js"
 import { createMiddleware } from "hono/factory"
 
 export class AuthMiddleware {

@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import moment from "moment"
 import { UserActivityRepository } from "./user-activity.repository.js"
@@ -12,8 +12,8 @@ import { BaseModule } from "../base.module.js"
 import { UserActivityTemplateExcel } from "./user-activity.excel.js"
 import { MaterialRepository } from "../material/material.repository.js"
 import { KFA_LEVEL_CODE } from "@/common/constants/material.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
 
 export class UserActivityModule extends BaseModule {
   constructor(

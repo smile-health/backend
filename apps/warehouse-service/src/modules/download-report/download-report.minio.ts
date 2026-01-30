@@ -1,6 +1,6 @@
-import { createMinioClientFromEnv } from "@smile/lib/minio.js"
+import { createMinioClientFromEnv } from "@smile-health/lib/minio.js"
 import env from "../../config/env.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import {
   getCurrentMonthYear,

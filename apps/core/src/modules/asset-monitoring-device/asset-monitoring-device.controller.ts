@@ -1,9 +1,9 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Context, Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { AssetMonitoringDeviceModule } from "./asset-monitoring-device.module.js"
 import { AssetMonitoringDeviceMiddleware } from "./asset-monitoring-device.middleware.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 import {
   GetAssetMonitoringDeviceParamSchema,
   UpdateAssetMonitoringDeviceParamSchema,

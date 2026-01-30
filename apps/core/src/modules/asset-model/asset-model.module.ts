@@ -15,11 +15,11 @@ import {
   ImportTemplateQueryParams,
   ImportAssetModelArrayRequest,
 } from "./asset-model.schema.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { AssetModelTemplate, AssetModelExport } from "./asset-model.excel.js"
 import moment from "moment"
 import { AssetTypesTemperatureRepository } from "../asset-types-temperature/asset-types-temperature.repository.js"
-import { collect, merge, pick } from "@smile/lib/utils.js"
+import { collect, merge, pick } from "@smile-health/lib/utils.js"
 import { UserRepository } from "../user/user.repository.js"
 import { TYPE_DOWNLOAD_TEMPLATE_ASSET_MODEL } from "@/common/constants/assets.js"
 import { TemperatureThresholdRepository } from "../temperature-threshold/temperature-threshold.repository.js"

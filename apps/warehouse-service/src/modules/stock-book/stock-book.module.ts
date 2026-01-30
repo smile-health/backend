@@ -3,13 +3,13 @@ import { StockBookQueryParams } from "./stock-book.schema.js"
 import { StockBookRepository } from "./stock-book.repository.js"
 import { buildStockBookExportOption } from "./stock-book.utils.js"
 import moment from "moment"
-import WarehouseTemplate from "@smile/lib/excel/warehouse-template.js"
+import WarehouseTemplate from "@smile-health/lib/excel/warehouse-template.js"
 import { BaseModule } from "../base.module.js"
 import ExportHistoryRepository from "../export-history/export-history.repository.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 import { EntityRepository } from "../entity/entity.repository.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
-import { NotFoundError } from "@smile/lib/error.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
+import { NotFoundError } from "@smile-health/lib/error.js"
 
 export class StockBookModule extends BaseModule {
   constructor(

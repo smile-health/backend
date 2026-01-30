@@ -1,5 +1,5 @@
 import { LOCATION } from "@/common/constants/location.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { RoleRepository } from "../role/role.repository.js"
 import { MasterRepository } from "./master.repository.js"

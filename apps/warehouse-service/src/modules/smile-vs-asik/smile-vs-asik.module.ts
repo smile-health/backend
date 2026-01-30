@@ -10,7 +10,7 @@ import { LocationModule } from "../location/location.module.js"
 import { calculatePercentage } from "./smile-vs-asik.utils.js"
 import { calculatePagination } from "@/common/utils/pagination.js"
 import { SmileVsAsikExcel } from "./smile-vs-asik.excel.js"
-import { round } from "@smile/lib/utils.js"
+import { round } from "@smile-health/lib/utils.js"
 
 export class SmileVsAsikModule {
   constructor(

@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { WhoPqsRepository } from "./who-pqs.repository.js"
 import {
@@ -9,9 +9,9 @@ import {
   WhoPqsDTO,
 } from "./who-pqs.schema.js"
 import { z } from "zod"
-import { collect, merge } from "@smile/lib/utils.js"
+import { collect, merge } from "@smile-health/lib/utils.js"
 import { UserRepository } from "../user/user.repository.js"
-import { NotFoundError } from "@smile/lib/error.js"
+import { NotFoundError } from "@smile-health/lib/error.js"
 import momentTZ from "moment-timezone"
 import { WhoPqsExcel } from "./who-pqs.excel.js"
 import { AssetModelRepository } from "../asset-model/asset-model.repository.js"

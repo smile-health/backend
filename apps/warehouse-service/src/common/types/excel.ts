@@ -1,4 +1,4 @@
-import { Column, Filter } from "@smile/lib/excel/types.js"
+import { Column, Filter } from "@smile-health/lib/excel/types.js"
 
 export type ExcelExportOption = {
   sheetName: string

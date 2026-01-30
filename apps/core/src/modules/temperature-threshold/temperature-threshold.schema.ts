@@ -1,4 +1,4 @@
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate"
 import { z } from "zod"
 
 /* Query Params Schema */

@@ -1,6 +1,6 @@
 import z, { nullable } from "zod"
-import { DateSchema, IdParamsSchema } from "@smile/lib/types/param.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { DateSchema, IdParamsSchema } from "@smile-health/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { STATUS } from "@/common/constants/general.js"
 
 /* Base Schema */

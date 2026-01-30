@@ -6,9 +6,9 @@ import {
 } from "@/common/infrastructure/database/types/db.js"
 import { ElasticSearchQuery } from "@/common/infrastructure/elastic/client.js"
 import { IndexMapping } from "@/common/infrastructure/elastic/types/db.js"
-import { IContextVariableMap } from "@smile/lib/types/context.js"
-import { FileResponse } from "@smile/lib/types/file.js"
-import { WorkspaceConfig } from "@smile/lib/types/jwt.js"
+import { IContextVariableMap } from "@smile-health/lib/types/context.js"
+import { FileResponse } from "@smile-health/lib/types/file.js"
+import { WorkspaceConfig } from "@smile-health/lib/types/jwt.js"
 import { Kysely, Selectable } from "kysely"
 import { Database } from "../common/infrastructure/database/types/index.js"
 declare module "hono" {

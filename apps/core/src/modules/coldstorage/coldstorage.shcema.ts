@@ -1,6 +1,6 @@
-import { IdParamsSchema } from "@smile/lib/types/param"
+import { IdParamsSchema } from "@smile-health/lib/types/param"
 import z from "zod"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { STATUS_CAPACITY_COLDSTORAGE } from "@/common/constants/assets"
 
 export const stringToPositiveInt = (val: unknown): number | undefined => {

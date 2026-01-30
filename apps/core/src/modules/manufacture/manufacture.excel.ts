@@ -1,5 +1,5 @@
 import { IMPORT_START_ROW } from "@/common/constants/manufacture.js"
-import BaseTemplate from "@smile/lib/excel/index.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
 
 export class ManufactureTemplateXlsx extends BaseTemplate {
   constructor(

@@ -5,10 +5,10 @@ import { EntityCustomerRepository } from "@/modules/entity-customer/entity-custo
 import { StockCron } from "@/modules/stock/stock.cron.js"
 import { StockRepository } from "@/modules/stock/stock.repository.js"
 import { UserRepository } from "@/modules/user/user.repository.js"
-import { TransactionManager } from "@smile/lib/database.js"
-import i18n from "@smile/lib/i18n.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { TransactionManager } from "@smile-health/lib/database.js"
+import i18n from "@smile-health/lib/i18n.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { Context } from "hono"
 
 export const dailyStockReminder = async (context: Context) => {

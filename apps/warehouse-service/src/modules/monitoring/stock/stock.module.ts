@@ -7,7 +7,7 @@ import {
   generateMonthYearSequence,
   sliceZeroValueMonths,
 } from "@/common/utils/common.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { groupBy, orderBy, sumBy } from "es-toolkit"
 import { Context } from "hono"
 import _ from "lodash"

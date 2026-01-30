@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { BadRequestError, ValidationError } from "@smile/lib/error.js"
-import { ImportTemplate } from "@smile/lib/excel.js"
-import { Consumer } from "@smile/lib/rabbitmq"
-import { translateError } from "@smile/lib/zod.js"
+import { BadRequestError, ValidationError } from "@smile-health/lib/error.js"
+import { ImportTemplate } from "@smile-health/lib/excel.js"
+import { Consumer } from "@smile-health/lib/rabbitmq"
+import { translateError } from "@smile-health/lib/zod.js"
 import { Context, Hono } from "hono"
 import { validator } from "hono/validator"
 import { ZodError, ZodSchema } from "zod"

@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { BaseRepository } from "../base.repository.js"
 
 export class TargetEstimationRepository extends BaseRepository<"ws_school_estimation_details"> {

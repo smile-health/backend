@@ -1,5 +1,5 @@
 import { Context } from "hono"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { DisposalMethodsRepository } from "./disposal-methods.repository.js"
 import {
   GetDisposalMethodsQueryParam,

@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { AssetVendorTypeRepository } from "./asset-vendor-type.repository.js"
 import { GetAssetVendorTypesPagination } from "./asset-vendor-type.schema.js"

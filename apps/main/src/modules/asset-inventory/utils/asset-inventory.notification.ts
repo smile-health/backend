@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { AssetInventoryRepository } from "../asset-inventory.repository.js"
 import { UserRepository } from "../../user/user.repository.js"
 import moment from "moment-timezone"
@@ -11,11 +11,11 @@ import {
 import {
   NOTIFICATION_MEDIA,
   NOTIFICATION_TYPE,
-} from "@smile/lib/rabbitmq/notification.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+} from "@smile-health/lib/rabbitmq/notification.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 import { Context as HonoContext } from "hono"
 import { ENTITY_TYPE } from "@/common/constants/entity.js"
-import { generateEventCode } from "@smile/lib/utils.js"
+import { generateEventCode } from "@smile-health/lib/utils.js"
 import { NotificationTypeRepository } from "@/common/repository/notification-type.js"
 
 export class AssetInventoryNotification {

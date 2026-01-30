@@ -1,5 +1,5 @@
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { validator } from "hono/validator"
 import { z } from "zod"
 import StockOpnamePeriodRepository from "./stock-opname-period.repository.js"

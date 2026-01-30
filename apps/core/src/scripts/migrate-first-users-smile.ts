@@ -1,6 +1,6 @@
 import { AuthKeycloakService } from "@/modules/auth/auth.keycloak.service.js"
 import { TCreateUserReq } from "@/modules/user/user.schema.js"
-import { logger } from "@smile/lib/logger.js"
+import { logger } from "@smile-health/lib/logger.js"
 import { db } from "../common/infrastructure/database/index.js"
 
 export const initiateFirstUsers = async () => {

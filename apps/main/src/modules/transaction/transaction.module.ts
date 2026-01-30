@@ -3,14 +3,14 @@ import {
   TRANSACTION_CHANGE_TYPE,
   TRANSACTION_TYPE,
 } from "@/common/constants/transaction.js"
-import { BadRequestError } from "@smile/lib/error.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { BadRequestError } from "@smile-health/lib/error.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import {
   associate,
   flattenToNestedObject,
   getDefaultNumber,
-} from "@smile/lib/utils.js"
+} from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { BaseModule } from "../base.module.js"
 import { BatchRepository } from "../batch/batch.repository.js"

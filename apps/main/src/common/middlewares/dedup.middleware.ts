@@ -3,7 +3,7 @@ import { env } from "process"
 import { hasher } from "node-object-hash"
 import { createMiddleware } from "hono/factory"
 import { redis } from "@/common/infrastructure/redis"
-import { BadRequestError } from "@smile/lib/error.js"
+import { BadRequestError } from "@smile-health/lib/error.js"
 
 export class DeduplicationMiddleware {
   private windowSeconds: number

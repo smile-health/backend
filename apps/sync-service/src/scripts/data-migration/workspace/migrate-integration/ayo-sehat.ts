@@ -1,4 +1,4 @@
-import { logger } from "@smile/lib/logger.js"
+import { logger } from "@smile-health/lib/logger.js"
 import { Kysely } from "kysely"
 import { getMigrationDB } from "../../../db.migration.js"
 import { db } from "../../../db.platform.js"

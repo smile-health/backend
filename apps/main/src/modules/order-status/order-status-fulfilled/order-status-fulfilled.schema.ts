@@ -1,4 +1,4 @@
-import { DateSchema, IdParamsSchema } from "@smile/lib/types/param.js"
+import { DateSchema, IdParamsSchema } from "@smile-health/lib/types/param.js"
 import z from "zod"
 
 /* Base Schema */

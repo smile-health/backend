@@ -17,7 +17,7 @@
 import axios from 'axios'
 import moment from 'moment'
 import _ from 'lodash'
-import { logger } from '@smile/lib/logger.js'
+import { logger } from '@smile-health/lib/logger.js'
 
 import { db } from '@/common/infrastructure/database/index.js'
 import { IntegrationBiofarmaOrders, IntegrationBiofarmaSmdvOrders } from '@/common/infrastructure/database/types/db.js'

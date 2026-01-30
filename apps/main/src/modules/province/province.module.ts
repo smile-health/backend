@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { ProvinceRepository } from "./province.repository.js"
 import { GetProvincesQueries } from "./province.schema.js"

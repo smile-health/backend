@@ -1,5 +1,5 @@
 import { ORDER_STATUS } from "@/common/constants/order.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
 import { Context } from "hono"
 import { OrderStatusValidateRepository } from "./order-status-validate.repository.js"
 import {
@@ -10,7 +10,7 @@ import {
   ChangeOrderStatusValidateRequest,
   UpdateOrderAuditValidateDTO,
 } from "./order-status-validate.schema.js"
-import { BadRequestError } from "@smile/lib/error.js"
+import { BadRequestError } from "@smile-health/lib/error.js"
 import { OrderIntegrationWorker } from "@/modules/order-integration/order-integration.worker.js"
 
 export class OrderStatusValidateModule {

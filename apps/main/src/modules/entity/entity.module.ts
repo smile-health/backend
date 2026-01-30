@@ -1,5 +1,5 @@
-import { ValidationError } from "@smile/lib/error.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { UpdateResult } from "kysely"
 import moment from "moment"
@@ -15,8 +15,8 @@ import {
   UpdateStatusVendorEntitiesRequest,
 } from "./entity.schema.js"
 
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
 import { BaseModule } from "../base.module.js"
 import { UserRepository } from "../user/user.repository.js"
 import { EntityCron } from "./entity.cron.js"

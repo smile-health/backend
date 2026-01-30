@@ -7,11 +7,11 @@ import {
   BadRequestError,
   NotFoundError,
   ValidationError,
-} from "@smile/lib/error.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
-import { logger } from "@smile/lib/logger.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { collect, group } from "@smile/lib/utils.js"
+} from "@smile-health/lib/error.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
+import { logger } from "@smile-health/lib/logger.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { collect, group } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import _ from "lodash"
 import { IntegrationRepository } from "../integration/integration.repository.js"
@@ -824,8 +824,8 @@ export class DisposalInstructionService {
     c: Context,
     params: DisposalInstructionListPaginatedRequestDTO
   ) {
-    const BaseTemplate = (await import("@smile/lib/excel/index.js")).default
-    const { mapAsyncIterable } = await import("@smile/lib/utils.js")
+    const BaseTemplate = (await import("@smile-health/lib/excel/index.js")).default
+    const { mapAsyncIterable } = await import("@smile-health/lib/utils.js")
 
     const excelTemplate = new BaseTemplate(14, 1, PROCESSOR.XLSXPOPULATE)
     const { t, language } = c.var

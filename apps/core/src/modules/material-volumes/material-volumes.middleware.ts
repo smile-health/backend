@@ -11,11 +11,11 @@ import {
 } from "./material-volumes.schema.js"
 import { MATERIAL_LEVEL } from "@/common/constants/material.js"
 import { MaterialVolumesRepository } from "./material-volumes.repository.js"
-import { NotFoundError } from "@smile/lib/error.js"
+import { NotFoundError } from "@smile-health/lib/error.js"
 import { getTranslateMaterialVolumeColumnsExcel } from "@/common/constants/material.js"
-import BaseTemplate from "@smile/lib/excel/index.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
 import { MaterialVolumeTemplate } from "./material-volume.excel.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 import { STATUS } from "@/common/constants/general.js"
 
 export class MaterialVolumesMiddleware {

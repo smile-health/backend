@@ -1,11 +1,11 @@
-import { BaseController } from "@smile/lib/base/controller"
+import { BaseController } from "@smile-health/lib/base/controller"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { MaterialVolumesModule } from "./material-volumes.module"
 import { MaterialVolumesMiddleware } from "./material-volumes.middleware"
 import { GetMaterialVolumesQueryParamSchema } from "./material-volumes.schema"
-import { IdParamsSchema } from "@smile/lib/types/param"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { IdParamsSchema } from "@smile-health/lib/types/param"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 
 export class MaterialVolumesController extends BaseController {
   constructor(

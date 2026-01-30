@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { ConfigProgram } from "../download-report.schema.js"
 import { ExcelZipExporter } from "../download-report.excel-zip.js"
 import env from "@/config/env.js"

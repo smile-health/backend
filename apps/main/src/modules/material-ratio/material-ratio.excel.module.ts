@@ -1,5 +1,5 @@
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 import { Context } from "hono"
 import path from "node:path"
 import { MaterialSubtypeRepository } from "../material-subtype/material-subtype.repository.js"

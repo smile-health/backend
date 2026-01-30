@@ -2,12 +2,12 @@ import {
   WsEntityMaterialActivities,
   WsStocks,
 } from "@/common/infrastructure/database/types/db.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import {
   IdSchema,
   OptionalIdSchema,
   OptionalIdsSchema,
-} from "@smile/lib/types/param.js"
+} from "@smile-health/lib/types/param.js"
 import { Insertable, Selectable, Updateable } from "kysely"
 import moment from "moment"
 import z from "zod"

@@ -1,4 +1,4 @@
-import { LIST_PAGINATION } from "@smile/lib/types/paginate.js"
+import { LIST_PAGINATION } from "@smile-health/lib/types/paginate.js"
 import { z } from "zod"
 
 export const LplpoQueryParamsSchema = z

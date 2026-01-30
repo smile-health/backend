@@ -2,7 +2,7 @@ import { AccountRepository } from "@/modules/account/account.repository.js"
 import { zValidator } from "@hono/zod-validator"
 import {
   ValidationError
-} from "@smile/lib/error.js"
+} from "@smile-health/lib/error.js"
 import { LoginSchema } from "./account.schema.js"
 
 export class AccountMiddleware {

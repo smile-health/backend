@@ -1,7 +1,7 @@
 import { DISPOSAL_INSTRUCTIONS } from "@/common/constants/disposal.js"
 import { USER_ROLE } from "@/common/constants/user.js"
 import { BaseRepository } from "@/modules/base.repository.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { sql } from "kysely"
 import {

@@ -149,7 +149,7 @@ The following endpoints utilize the `ExcelMiddleware` to provide Excel export an
 
 ## Notes
 
-- 11 endpoints provide standard Excel functionality (export/import with .xlsx format) using the `ExcelMiddleware` from `@smile/lib/middlewares`
+- 11 endpoints provide standard Excel functionality (export/import with .xlsx format) using the `ExcelMiddleware` from `@smile-health/lib/middlewares`
 - 1 additional endpoint (Stock Monitoring) uses `ExcelMiddleware` but exports CSV format instead of Excel
 - Most endpoints also include `RoleValidationMiddleware` or `RoleMiddleware` for access control
 - The `ExportHistoryController` is related to export operations but doesn't directly use ExcelMiddleware

@@ -1,5 +1,5 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { collect, differ } from "@smile/lib/utils.js"
+import { collect, differ } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { ComparisonOperatorExpression, ReferenceExpression, sql } from "kysely"
 import { CreateBudgetSourceWorkspaceRequest } from "../budget-source/budget-source.schema.js"

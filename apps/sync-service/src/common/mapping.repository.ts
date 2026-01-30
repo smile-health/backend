@@ -1,5 +1,5 @@
-import { CustomContext } from "@smile/lib/types/context.js"
-import { associate, collect } from "@smile/lib/utils.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
+import { associate, collect } from "@smile-health/lib/utils.js"
 import { AnyColumn, Insertable, ReferenceExpression } from "kysely"
 import { isArray } from "lodash"
 import pluralize from "pluralize"

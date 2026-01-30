@@ -1,7 +1,7 @@
 import { Context } from "hono"
 import { TemperatureThresholdRepository } from "./temperature-threshold.repository"
 import { GetTemperatureThresholdsQueryParams } from "./temperature-threshold.schema"
-import { PaginatedResponse } from "@smile/lib/types/paginate"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate"
 
 export class TemperatureThresholdModule {
   constructor(private readonly repository: TemperatureThresholdRepository) {}

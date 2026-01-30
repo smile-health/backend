@@ -1,4 +1,4 @@
-import { DatabaseManager } from "@smile/lib/database.js"
+import { DatabaseManager } from "@smile-health/lib/database.js"
 import { MysqlDialect } from "kysely"
 import { createPool } from "mysql2"
 import { env } from "process"

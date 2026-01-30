@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { DEVICE_TYPE } from "@/common/constants/device.js"
 import { USER_ROLE } from "@/common/constants/user.js"
 import { Hono } from "hono"

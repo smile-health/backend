@@ -1,4 +1,4 @@
-import { collect, merge } from "@smile/lib/utils.js"
+import { collect, merge } from "@smile-health/lib/utils.js"
 import { Kysely, Transaction } from "kysely"
 import {
   getMapActivityIds,

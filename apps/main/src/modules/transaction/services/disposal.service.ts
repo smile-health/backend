@@ -1,6 +1,6 @@
 import { Context } from "hono"
 import { TransactionRepository } from "../transaction.repository.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 
 interface DisposalFromTransactionParams {
   stockId: number

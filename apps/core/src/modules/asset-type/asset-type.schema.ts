@@ -1,6 +1,6 @@
 import z from "zod"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { FLAG } from "@/common/constants/general"
 import { TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE } from "@/common/constants/assets"
 import { tr } from "@faker-js/faker/."

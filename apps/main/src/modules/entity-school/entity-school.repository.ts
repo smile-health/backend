@@ -1,4 +1,4 @@
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { EntitySchoolPaginatedRequestDTO } from "./entity-school.schema.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import { SCHOOL_ENTITY_TAG_ID } from "@/common/constants/target.js"

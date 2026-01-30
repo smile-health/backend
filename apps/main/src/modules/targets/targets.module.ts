@@ -41,8 +41,8 @@ import {
   buildAddressFromLocation,
   getLocationDetailsFromVillageId,
 } from "@/common/utils/address.utils.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { maritalStatus } from "@/common/constants/marital-status.js"
 import moment from "moment"
 

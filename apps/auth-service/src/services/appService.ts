@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HTTPError } from "@smile/lib/error";
+import { HTTPError } from "@smile-health/lib/error";
 import { USER_ROLES } from "../constants";
 import keycloakClient from "../keycloakClient";
 import { KCUserRoleMap, KeycloakRole } from "../models/KeycloakRole";

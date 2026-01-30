@@ -4,9 +4,9 @@ import {
   KFA_LEVEL_ID,
   KFA_LEVEL_LABEL,
 } from "@/common/constants/material.js"
-import { NotFoundError, ValidationError } from "@smile/lib/error.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
-import { collect, group, merge, pick } from "@smile/lib/utils.js"
+import { NotFoundError, ValidationError } from "@smile-health/lib/error.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
+import { collect, group, merge, pick } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
 import { ActivityRepository } from "../activity/activity.repository.js"
 import { EntityTypeRepository } from "../entity-type/entity-type.repository.js"

@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller"
+import { BaseController } from "@smile-health/lib/base/controller"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { profile, UserQueriesSchema } from "../user.schema"

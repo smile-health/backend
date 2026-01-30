@@ -1,7 +1,7 @@
 import { db } from "../../../db.platform.js"
 import { db as syncDB } from "@/common/infrastructure/database/index.js"
 import { getMigrationDB } from "../../../db.migration.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { CompiledQuery, Kysely, Transaction, sql } from "kysely"
 import {
   getMapUserIds,

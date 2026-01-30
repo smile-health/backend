@@ -1,9 +1,9 @@
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { MasterData } from "@smile/lib/types/param.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { MasterData } from "@smile-health/lib/types/param.js"
 import path from "path"
 import { MasterMaterialActivityData } from "./entity-material.schema.js"
-import { FileResponse } from "@smile/lib/types/file.js"
-import { PROCESSOR } from "@smile/lib/excel/types.js"
+import { FileResponse } from "@smile-health/lib/types/file.js"
+import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 
 export class EntityMaterialTemplate extends BaseTemplate {
   constructor(startRow = 10, startSheet = 1, processor = PROCESSOR.SHEETJS) {

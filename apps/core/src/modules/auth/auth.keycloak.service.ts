@@ -1,6 +1,6 @@
-import { fetchData } from "@smile/lib/api/fetch.js"
-import { BadRequestError } from "@smile/lib/error.js"
-import { logger } from "@smile/lib/logger.js"
+import { fetchData } from "@smile-health/lib/api/fetch.js"
+import { BadRequestError } from "@smile-health/lib/error.js"
+import { logger } from "@smile-health/lib/logger.js"
 import { Context } from "hono"
 import { v4 as uuidV4 } from "uuid"
 import {

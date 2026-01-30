@@ -1,5 +1,5 @@
-import { BaseController } from "@smile/lib/base/controller.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares/excel.middleware.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares/excel.middleware.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { MicroplanningDashboardModule } from "./microplanning-dashboard.module.js"

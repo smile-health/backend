@@ -11,7 +11,7 @@ import {
   EditStatusAssetInventoryRequest,
   EditStatusAssetInventoryDTO,
 } from "./asset-inventory.schema.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { AssetInventoryExport } from "./asset-inventory.excel.js"
 import moment from "moment"
 import { USER_ROLE } from "@/common/constants/user.js"

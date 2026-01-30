@@ -1,4 +1,4 @@
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { sql } from "kysely"
 import { CoverageQueries, ListQueries, TaskItem } from "./task.schema.js"

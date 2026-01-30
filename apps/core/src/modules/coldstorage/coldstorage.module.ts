@@ -6,10 +6,10 @@ import {
   GetDetailColdstorageParam,
 } from "./coldstorage.shcema"
 import { ColdstorageRepository } from "./coldstorage.repository"
-import { NotFoundError } from "@smile/lib/error"
+import { NotFoundError } from "@smile-health/lib/error"
 import { EntityRepository } from "../entity/entity.repository"
 import { ColdstorageExport } from "./coldstorage.excel"
-import { PaginatedResponse } from "@smile/lib/types/paginate"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate"
 import moment from "moment"
 import { ColdstorageNotification } from "./utils/coldstorage.notification"
 

@@ -1,5 +1,5 @@
 import { USER_ROLE } from "@/common/constants/users.js"
-import { ForbiddenError, UnauthorizedError } from "@smile/lib/error.js"
+import { ForbiddenError, UnauthorizedError } from "@smile-health/lib/error.js"
 import { Context, Next } from "hono"
 import { createMiddleware } from "hono/factory"
 import { RolesToResourceMappingRepository } from "../repository/roles.repository.js"

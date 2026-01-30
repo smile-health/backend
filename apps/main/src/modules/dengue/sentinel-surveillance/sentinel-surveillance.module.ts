@@ -8,7 +8,7 @@ import {
   GetSentinelSurveillanceRequest,
   UpdateSentinelSurveillanceRequest
 } from "./sentinel-surveillance.schema.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import moment from "moment"
 import { NS1_ID } from "@/common/constants/dengue.js"
 

@@ -8,7 +8,7 @@ import {
   GetColdStorageParamSchema,
   GetDetailColdstorageParamSchema,
 } from "./coldstorage.shcema"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 
 export class ColdstorageController extends BaseController {
   constructor(

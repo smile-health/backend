@@ -1,9 +1,9 @@
-import { Consumer } from "@smile/lib/rabbitmq/consumer.js"
-import { TOPIC } from "@smile/lib/rabbitmq/topic.js"
+import { Consumer } from "@smile-health/lib/rabbitmq/consumer.js"
+import { TOPIC } from "@smile-health/lib/rabbitmq/topic.js"
 import { BaseWorker } from "../base.worker.js"
 import ExportHistoryRepository from "../export-history/export-history.repository.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { MultiSheetZipExporter } from "@smile/lib/excel/multi-sheet-zip.js"
+import { MultiSheetZipExporter } from "@smile-health/lib/excel/multi-sheet-zip.js"
 import env from "../../config/env.js"
 import { StockOpnameModule } from "./stock-opname.module.js"
 import {
@@ -14,7 +14,7 @@ import {
 import { getExportLocationFileName } from "@/common/utils/export.js"
 import { StockBookQueryParams } from "../stock-book/stock-book.schema.js"
 import moment from "moment"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 
 export class StockOpnameWorker extends BaseWorker {
   constructor(

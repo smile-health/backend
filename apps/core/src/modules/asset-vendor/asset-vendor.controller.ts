@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { AssetVendorModule } from "./asset-vendor.module.js"
@@ -7,7 +7,7 @@ import {
   UpdateAssetVendorParamSchema,
   GetAssetVendorParamSchema,
 } from "./asset-vendor.schema.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 
 export class AssetVendorController extends BaseController {
   constructor(

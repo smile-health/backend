@@ -14,9 +14,9 @@ import {
 import { OrderStatusShippedPublisher } from "./order-status-ship.publisher.js"
 import { TransactionPublisher } from "@/modules/transaction/transaction.publisher.js"
 import { PublishTrxDTO } from "@/modules/transaction/transaction.schema.js"
-import { NOTIFICATION_MEDIA } from "@smile/lib/rabbitmq/notification.js"
-import { ValidationError } from "@smile/lib/error.js"
-import { generateEventCode } from "@smile/lib/utils.js"
+import { NOTIFICATION_MEDIA } from "@smile-health/lib/rabbitmq/notification.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { generateEventCode } from "@smile-health/lib/utils.js"
 import { NotificationTypeRepository } from "@/common/repository/notification-type.js"
 import { ColdstoragePublisher } from "@/modules/coldstorage/coldstorage.publisher.js"
 

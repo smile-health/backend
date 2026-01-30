@@ -1,4 +1,4 @@
-# @smile/lib
+# @smile-health/lib
 
 A comprehensive TypeScript library providing shared utilities, database management, tracing, caching, Excel processing, RabbitMQ messaging, and feature flags for the Smile platform.
 
@@ -6,13 +6,13 @@ A comprehensive TypeScript library providing shared utilities, database manageme
 
 ```bash
 # Using pnpm (recommended)
-pnpm add @smile/lib
+pnpm add @smile-health/lib
 
 # Using npm
-npm install @smile/lib
+npm install @smile-health/lib
 
 # Using yarn
-yarn add @smile/lib
+yarn add @smile-health/lib
 ```
 
 ## 🔧 Dependencies
@@ -55,7 +55,7 @@ A Kysely-based database manager for TypeScript-first SQL queries.
 
 **Example Usage**:
 ```typescript
-import { DatabaseManager } from '@smile/lib/database.js';
+import { DatabaseManager } from '@smile-health/lib/database.js';
 import { MysqlDialect } from 'kysely';
 
 const dialect = new MysqlDialect({
@@ -80,7 +80,7 @@ Manages database transactions with automatic rollback on errors.
 
 **Example Usage**:
 ```typescript
-import { TransactionManager } from '@smile/lib/database.js';
+import { TransactionManager } from '@smile-health/lib/database.js';
 
 const trxManager = new TransactionManager(db);
 
@@ -110,7 +110,7 @@ Abstract base class for database repositories with common CRUD operations.
 
 **Example Usage**:
 ```typescript
-import { BaseRepository } from '@smile/lib/base/repository.js';
+import { BaseRepository } from '@smile-health/lib/base/repository.js';
 
 class UserRepository extends BaseRepository<Database, 'users'> {
   constructor() {
@@ -181,7 +181,7 @@ Global error handler for Hono applications.
 
 **Example Usage**:
 ```typescript
-import { errorHandler } from '@smile/lib/error.js';
+import { errorHandler } from '@smile-health/lib/error.js';
 
 app.onError((err, c) => {
   return errorHandler(err, c);
@@ -212,8 +212,8 @@ Base class for Excel file processing with multiple processor support.
 
 **Example Usage**:
 ```typescript
-import BaseTemplate from '@smile/lib/excel/index.js';
-import { PROCESSOR } from '@smile/lib/excel/types.js';
+import BaseTemplate from '@smile-health/lib/excel/index.js';
+import { PROCESSOR } from '@smile-health/lib/excel/types.js';
 
 class UserTemplate extends BaseTemplate {
   constructor() {
@@ -262,7 +262,7 @@ Exports multiple Excel sheets as a ZIP file with MinIO integration.
 
 **Example Usage**:
 ```typescript
-import { MultiSheetZipExporter } from '@smile/lib/excel/multi-sheet-zip.js';
+import { MultiSheetZipExporter } from '@smile-health/lib/excel/multi-sheet-zip.js';
 
 const exporter = new MultiSheetZipExporter({
   minioClient,
@@ -295,7 +295,7 @@ RabbitMQ message publisher with connection management.
 
 **Example Usage**:
 ```typescript
-import { Publisher } from '@smile/lib/rabbitmq/publisher.js';
+import { Publisher } from '@smile-health/lib/rabbitmq/publisher.js';
 
 const publisher = new Publisher(async () => {
   return await amqp.connect(connectionString);
@@ -318,7 +318,7 @@ RabbitMQ message consumer with transaction support.
 
 **Example Usage**:
 ```typescript
-import { Consumer } from '@smile/lib/rabbitmq/consumer.js';
+import { Consumer } from '@smile-health/lib/rabbitmq/consumer.js';
 
 const consumer = new Consumer(getConnection);
 
@@ -334,7 +334,7 @@ Predefined RabbitMQ topic constants.
 
 **Usage**:
 ```typescript
-import { TOPIC } from '@smile/lib/rabbitmq/topic.js';
+import { TOPIC } from '@smile-health/lib/rabbitmq/topic.js';
 
 await publisher.publish(TOPIC.USER_CREATED, userData);
 ```
@@ -374,7 +374,7 @@ Redis-based caching for authentication tokens and user data.
 
 **Example Usage**:
 ```typescript
-import { TokenCache, createTokenCache } from '@smile/lib/cache.js';
+import { TokenCache, createTokenCache } from '@smile-health/lib/cache.js';
 import Redis from 'ioredis';
 
 const redis = new Redis({
@@ -416,7 +416,7 @@ Hono middleware for feature flag integration with GrowthBook.
 
 **Example Usage**:
 ```typescript
-import { featureFlagsMiddleware } from '@smile/lib';
+import { featureFlagsMiddleware } from '@smile-health/lib';
 import { Hono } from 'hono';
 
 const app = new Hono();
@@ -468,7 +468,7 @@ Traces HTTP requests with OpenTelemetry.
 
 **Example Usage**:
 ```typescript
-import { httpRequestTracer } from '@smile/lib/tracing.js';
+import { httpRequestTracer } from '@smile-health/lib/tracing.js';
 
 app.use('*', httpRequestTracer.trace);
 ```
@@ -534,7 +534,7 @@ Groups array elements by a field value.
 **Returns**: `Record<T[K], T[]>` - Grouped object
 
 ```typescript
-import { group } from '@smile/lib/utils.js';
+import { group } from '@smile-health/lib/utils.js';
 
 const users = [{ role: 'admin', name: 'John' }, { role: 'user', name: 'Jane' }];
 const grouped = group(users, 'role');
@@ -551,7 +551,7 @@ Creates an object from array using a field as key.
 **Returns**: `Record<T[K], T>` - Associated object
 
 ```typescript
-import { associate } from '@smile/lib/utils.js';
+import { associate } from '@smile-health/lib/utils.js';
 
 const users = [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }];
 const associated = associate(users, 'id');
@@ -568,7 +568,7 @@ Extracts values from a specific field across all array elements.
 **Returns**: `T[K][]` - Array of extracted values
 
 ```typescript
-import { collect } from '@smile/lib/utils.js';
+import { collect } from '@smile-health/lib/utils.js';
 
 const users = [{ id: 1 }, { id: 2 }, { id: 3 }];
 const ids = collect(users, 'id'); // [1, 2, 3]
@@ -585,7 +585,7 @@ Merges multiple arrays into one.
 **Returns**: `T[]` - Merged array
 
 ```typescript
-import { merge } from '@smile/lib/utils.js';
+import { merge } from '@smile-health/lib/utils.js';
 
 const result = merge([1, 2], [3, 4], [5, 6]); // [1, 2, 3, 4, 5, 6]
 ```
@@ -600,7 +600,7 @@ Creates new objects with only specified fields.
 **Returns**: `Pick<T, K>[]` - Objects with only picked fields
 
 ```typescript
-import { pick } from '@smile/lib/utils.js';
+import { pick } from '@smile-health/lib/utils.js';
 
 const users = [{ id: 1, name: 'John', email: 'john@example.com' }];
 const picked = pick(users, ['id', 'name']); // [{ id: 1, name: 'John' }]
@@ -615,7 +615,7 @@ Converts flat object with dot notation keys to nested structure.
 **Returns**: `NestedObject[]` - Nested objects
 
 ```typescript
-import { flattenToNestedObject } from '@smile/lib/utils.js';
+import { flattenToNestedObject } from '@smile-health/lib/utils.js';
 
 const flat = [{ 'user.name': 'John', 'user.age': 30 }];
 const nested = flattenToNestedObject(flat);
@@ -668,7 +668,7 @@ Rounds number to specified decimal places.
 Hono context with database and custom properties.
 
 ```typescript
-import { Context } from '@smile/lib/types/context.js';
+import { Context } from '@smile-health/lib/types/context.js';
 
 app.get('/users', async (c: Context<Database>) => {
   const users = await c.var.db.selectFrom('users').selectAll().execute();
@@ -690,7 +690,7 @@ Extended context class with additional functionality.
 Zod schema for pagination query parameters.
 
 ```typescript
-import { PaginationQueriesSchema } from '@smile/lib/types/paginate.js';
+import { PaginationQueriesSchema } from '@smile-health/lib/types/paginate.js';
 
 const querySchema = PaginationQueriesSchema.extend({
   search: z.string().optional()
@@ -711,7 +711,7 @@ Generic paginated response wrapper.
 Zod schema for ID validation.
 
 ```typescript
-import { IdSchema } from '@smile/lib/types/param.js';
+import { IdSchema } from '@smile-health/lib/types/param.js';
 
 const schema = z.object({
   id: IdSchema
@@ -753,7 +753,7 @@ Database transaction middleware for Hono.
 
 **Usage**:
 ```typescript
-import { TransactionMiddleware } from '@smile/lib/middlewares/transaction.middleware.js';
+import { TransactionMiddleware } from '@smile-health/lib/middlewares/transaction.middleware.js';
 
 app.use('/api/*', new TransactionMiddleware(dbManager).middleware);
 ```

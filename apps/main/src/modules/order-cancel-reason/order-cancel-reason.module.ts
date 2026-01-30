@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { Context } from "hono"
 import { OrderCancelReasonRepository } from "./order-cancel-reason.repository.js"
 import { GetOrderReasonsQueryParam } from "./order-cancel-reason.schema.js"

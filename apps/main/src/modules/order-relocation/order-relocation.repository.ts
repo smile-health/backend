@@ -1,5 +1,5 @@
 import { BaseRepository } from "../base.repository.js"
-import { Context } from "@smile/lib/types/context.js"
+import { Context } from "@smile-health/lib/types/context.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
 import { ENTITY_TAG } from "@/common/constants/entity.js"
 

@@ -1,5 +1,5 @@
-import { ValidationError } from "@smile/lib/error.js"
-import { formatErrors } from "@smile/lib/zod.js"
+import { ValidationError } from "@smile-health/lib/error.js"
+import { formatErrors } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import z from "zod"
 import {

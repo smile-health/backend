@@ -1,6 +1,6 @@
-import BaseTemplate from "@smile/lib/excel/index.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
 import { Context } from "hono"
-import { NotFoundError, ValidationError } from "@smile/lib/error.js" // Removed ValidationError as it's unused
+import { NotFoundError, ValidationError } from "@smile-health/lib/error.js" // Removed ValidationError as it's unused
 import {
   SelfDisposalRequest,
   SelfDisposalListPaginatedRequestDTO,
@@ -8,11 +8,11 @@ import {
 import { SelfDisposalRepository } from "./self-disposal.repository.js"
 import { SelfDisposalPublisher } from "./self-disposal.publisher.js"
 import { EXTERMINATION_TRANSACTION_TYPE } from "./self-disposal.constants.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { EntityRepository } from "../../entity/entity.repository.js"
 import { MaterialRepository } from "../../material/material.repository.js"
 import { UserRepository } from "../../user/user.repository.js"
-import { associate, collect, mapAsyncIterable, pick } from "@smile/lib/utils.js"
+import { associate, collect, mapAsyncIterable, pick } from "@smile-health/lib/utils.js"
 import { ActivityRepository } from "@/modules/activity/activity.repository.js"
 
 export class SelfDisposalModule {

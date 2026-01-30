@@ -6,7 +6,7 @@ import {
   WsMaterials,
   WsReconciliations,
 } from "@/common/infrastructure/database/types/db.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { Context } from "hono"
 import { Nullable, SelectQueryBuilder, sql } from "kysely"
 import moment from "moment-timezone"

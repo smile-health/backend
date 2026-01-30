@@ -1,5 +1,5 @@
 import z from "zod"
-import { IdParamsSchema, DateSchema } from "@smile/lib/types/param.js"
+import { IdParamsSchema, DateSchema } from "@smile-health/lib/types/param.js"
 
 export type OrderStatusShipEntityDTO =
   | {

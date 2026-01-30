@@ -1,6 +1,6 @@
 import { db } from "@/common/infrastructure/database/index.js"
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { BaseRepository } from "@smile/lib/base/repository.js"
+import { BaseRepository } from "@smile-health/lib/base/repository.js"
 import { Context } from "hono"
 import { CompiledQuery } from "kysely"
 import { ListTransactionTypeReasonDTO } from "../app-mobile-data/app-mobile-data.schema.js"

@@ -37,7 +37,7 @@ Track calls between services with:
 
 ```typescript
 import { Hono } from 'hono';
-import { quickSetupService } from '@smile/lib/tracing-config';
+import { quickSetupService } from '@smile-health/lib/tracing-config';
 
 const app = new Hono();
 
@@ -53,7 +53,7 @@ app.get('/api/users', (c) => {
 ### 2. Manual Service Configuration
 
 ```typescript
-import { configureServiceTracing, applyTracingMiddleware } from '@smile/lib/tracing-config';
+import { configureServiceTracing, applyTracingMiddleware } from '@smile-health/lib/tracing-config';
 import { Hono } from 'hono';
 
 const app = new Hono();
@@ -78,7 +78,7 @@ applyTracingMiddleware(app);
 ### 3. Making Inter-Service Calls
 
 ```typescript
-import { tracedHTTPClient } from '@smile/lib/tracing';
+import { tracedHTTPClient } from '@smile-health/lib/tracing';
 
 // Simple GET request to another service
 const userData = await tracedHTTPClient.get(
@@ -99,7 +99,7 @@ const result = await tracedHTTPClient.post(
 ### 4. Custom Inter-Service Tracing
 
 ```typescript
-import { interServiceTracer } from '@smile/lib/tracing';
+import { interServiceTracer } from '@smile-health/lib/tracing';
 
 // Manual inter-service call tracing
 const result = await interServiceTracer.traceInterServiceCall(
@@ -127,7 +127,7 @@ const result = await interServiceTracer.traceInterServiceCall(
 ### 5. Database Operations with Service Tags
 
 ```typescript
-import { databaseTracer } from '@smile/lib/tracing';
+import { databaseTracer } from '@smile-health/lib/tracing';
 
 // Traced database query
 const users = await databaseTracer.traceQuery(
@@ -143,7 +143,7 @@ const users = await databaseTracer.traceQuery(
 ### 6. Redis Operations with Service Tags
 
 ```typescript
-import { redisTracer } from '@smile/lib/tracing';
+import { redisTracer } from '@smile-health/lib/tracing';
 
 // Traced Redis operations
 await redisTracer.traceOperation('set', 'user:123', userData)(async () => {

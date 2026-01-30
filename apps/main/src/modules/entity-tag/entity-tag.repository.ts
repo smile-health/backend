@@ -1,6 +1,6 @@
 import { DB } from "@/common/infrastructure/database/types/db.js"
-import { Context } from "@smile/lib/types/context.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { Context } from "@smile-health/lib/types/context.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { GetEntityTagsQueries } from "./entity-tag.schema.js"
 
 export class EntityTagRepository {

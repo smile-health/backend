@@ -8,7 +8,7 @@ import {
   EditOrderItemStockRequest,
 } from "../order-item-stock/order-item-stock.schema.js"
 import { OrderItemStockPublisher } from "./order-item-stock.publisher.js"
-import { collect } from "@smile/lib/utils.js"
+import { collect } from "@smile-health/lib/utils.js"
 
 export class OrderItemStockModule {
   constructor(

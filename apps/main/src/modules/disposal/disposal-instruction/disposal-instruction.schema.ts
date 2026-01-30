@@ -1,5 +1,5 @@
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
-import { IdSchema, OptionalIdSchema } from "@smile/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
+import { IdSchema, OptionalIdSchema } from "@smile-health/lib/types/param.js"
 import { z } from "zod"
 
 const DisposalInstructionItemSchema = z

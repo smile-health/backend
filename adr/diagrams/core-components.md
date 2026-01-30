@@ -13,8 +13,8 @@ Component(MigrationCLI, "Migration CLI", "bun src/cli.ts migrate", "Runs databas
 Component(WorkerCLI, "Worker CLI", "bun src/cli.ts run-worker", "Processes background jobs from queue")
 Component(Scheduler, "Scheduler", "tsx watch src/scheduler.ts", "Schedules recurring jobs")
 Component(EmailPreview, "Email Preview", "email preview", "Renders and previews email templates locally")
-Component(LoggerMiddleware, "Logging Middleware", "@smile/lib/logger", "Logs HTTP requests and application events")
-Component(RequestMiddleware, "Request Middleware", "@smile/lib/middlewares", "Validates, enriches, and sanitizes incoming requests")
+Component(LoggerMiddleware, "Logging Middleware", "@smile-health/lib/logger", "Logs HTTP requests and application events")
+Component(RequestMiddleware, "Request Middleware", "@smile-health/lib/middlewares", "Validates, enriches, and sanitizes incoming requests")
 
 Rel(API, Controllers, "Invokes")
 Rel(Controllers, DatabaseModule, "Reads from and writes to", "SQL")

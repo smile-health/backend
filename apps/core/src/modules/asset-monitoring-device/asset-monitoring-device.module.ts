@@ -1,5 +1,5 @@
 import { Context } from "hono"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { STATUS } from "@/common/constants/general.js"
 import { USER_ROLE } from "@/common/constants/user.js"
 import { DEVICE_TYPE } from "@/common/constants/device.js"
@@ -15,8 +15,8 @@ import {
   NotFoundError,
   ValidationError,
   ForbiddenError,
-} from "@smile/lib/error.js"
-import { logger } from "@smile/lib/logger.js"
+} from "@smile-health/lib/error.js"
+import { logger } from "@smile-health/lib/logger.js"
 import { AssetMonitoringDeviceExport } from "./asset-monitoring-device.excel.js"
 import moment from "moment"
 

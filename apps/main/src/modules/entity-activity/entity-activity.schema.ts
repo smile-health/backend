@@ -1,4 +1,4 @@
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import moment from "moment"
 import z from "zod"
 

@@ -1,11 +1,11 @@
 import { USER_ROLE } from "@/common/constants/user.js"
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
 import {
   ForbiddenError,
   NotFoundError,
   ValidationError,
-} from "@smile/lib/error.js"
-import { formatExcelErrors } from "@smile/lib/zod.js"
+} from "@smile-health/lib/error.js"
+import { formatExcelErrors } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import { createMiddleware } from "hono/factory"
 import { validator } from "hono/validator"

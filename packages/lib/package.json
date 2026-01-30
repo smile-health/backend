@@ -1,7 +1,7 @@
 {
   "name": "@smile-health/lib",
   "type": "module",
-  "version": "1.0.239",
+  "version": "1.0.240",
   "scripts": {
     "dev": "bun --watch index.ts",
     "test": "bun test",

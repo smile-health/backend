@@ -1,4 +1,4 @@
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { AnnualPlanningProgramPlanRepository } from "./annual-planning-program-plan.repository.js"
 import { SubmitProgramPlanRequest } from "./annual-planning-program-plan.schema.js"

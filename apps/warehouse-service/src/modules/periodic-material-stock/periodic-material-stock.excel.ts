@@ -4,8 +4,8 @@ import {
   PeriodicMaterialStockQueryParams,
   PeriodicMaterialStockResponse,
 } from "./periodic-material-stock.schema.js"
-import WarehouseTemplate from "@smile/lib/excel/warehouse-template.js"
-import { Column, Filter } from "@smile/lib/excel/types.js"
+import WarehouseTemplate from "@smile-health/lib/excel/warehouse-template.js"
+import { Column, Filter } from "@smile-health/lib/excel/types.js"
 import { ExcelExportOption } from "@/common/types/excel.js"
 import { PaginationOption } from "@/common/schemas/pagination.schema.js"
 import { ActivityRepository } from "../activity/activity.repository.js"

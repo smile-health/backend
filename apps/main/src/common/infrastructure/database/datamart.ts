@@ -1,6 +1,6 @@
 import { ClickhouseDialect } from "@founderpath/kysely-clickhouse"
-import { DatabaseManager } from "@smile/lib/database.js"
-import { TracedClickHouseClient } from "@smile/lib/tracing.js"
+import { DatabaseManager } from "@smile-health/lib/database.js"
+import { TracedClickHouseClient } from "@smile-health/lib/tracing.js"
 import { Datamart } from "./types/datamart.js"
 import env from "@/config/env.js"
 

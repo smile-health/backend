@@ -33,7 +33,7 @@ Add the feature flags middleware to your service's wire configuration:
 
 ```typescript
 // apps/warehouse-service/src/wire.ts
-import { featureFlagsMiddleware } from "@smile/lib/feature-flags/middleware.js";
+import { featureFlagsMiddleware } from "@smile-health/lib/feature-flags/middleware.js";
 
 // Apply middleware to your app
 warehouseApp.use("*", featureFlagsMiddleware);
@@ -112,7 +112,7 @@ Add webhook endpoints for real-time feature flag updates:
 import {
   createWebhookHandler,
   createRefreshHandler,
-} from "@smile/lib/feature-flags";
+} from "@smile-health/lib/feature-flags";
 
 // Webhook endpoint for GrowthBook
 warehouseApp.post("/webhooks/growthbook", createWebhookHandler());

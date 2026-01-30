@@ -4,10 +4,10 @@ import { NotificationTypeRepository } from "@/common/repository/notification-typ
 import { PatientCron } from "@/modules/transaction/patient/patient.cron.js"
 import { PatientRepository } from "@/modules/transaction/patient/patient.repository.js"
 import { UserRepository } from "@/modules/user/user.repository.js"
-import { TransactionManager } from "@smile/lib/database.js"
-import i18n from "@smile/lib/i18n.js"
-import { Publisher } from "@smile/lib/rabbitmq/publisher.js"
-import { CustomContext } from "@smile/lib/types/context.js"
+import { TransactionManager } from "@smile-health/lib/database.js"
+import i18n from "@smile-health/lib/i18n.js"
+import { Publisher } from "@smile-health/lib/rabbitmq/publisher.js"
+import { CustomContext } from "@smile-health/lib/types/context.js"
 import { Context } from "hono"
 
 export const patientReminder = async (context: Context) => {

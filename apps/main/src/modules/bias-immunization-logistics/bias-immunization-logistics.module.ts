@@ -24,7 +24,7 @@ import {
 } from "../immunization-logistics/immunization-logistics.formula.js"
 import { BiasImmunizationLogisticsRepository } from "./bias-immunization-logistics.repository.js"
 import { TargetsRepository } from "../targets/targets.repository.js"
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { StockRepository } from "../stock/stock.repository.js"
 import { MaterialTargetsRepository } from "../material-targets/material-targets.repository.js"
 

@@ -1,5 +1,5 @@
 import { SORT_TYPE, STATUS } from "@/common/constants/general.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { z } from "zod"
 
 /*

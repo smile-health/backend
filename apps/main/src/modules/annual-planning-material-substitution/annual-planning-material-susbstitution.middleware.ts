@@ -1,7 +1,7 @@
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
-import BaseTemplate from "@smile/lib/excel/index.js"
-import { collect } from "@smile/lib/utils.js"
+import BaseTemplate from "@smile-health/lib/excel/index.js"
+import { collect } from "@smile-health/lib/utils.js"
 import { AnnualPlanningMaterialSubstitutionRepository } from "./annual-planning-material-substitution.repository.js"
 import {
   SubmitMaterialSubstitutionRequest,
@@ -9,7 +9,7 @@ import {
   ImportMaterialSubstitutionSchema,
   ImportMaterialSubstitutionRequestSchema,
 } from "./annual-planning-material-substitution.schema.js"
-import { BaseMiddleware } from "@smile/lib/base/middleware.js"
+import { BaseMiddleware } from "@smile-health/lib/base/middleware.js"
 import { createMiddleware } from "hono/factory"
 
 export class AnnualPlanningMaterialSubstitutionMiddleware extends BaseMiddleware {

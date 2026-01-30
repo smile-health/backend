@@ -1,4 +1,4 @@
-import { BaseController } from "@smile/lib/base/controller.js"
+import { BaseController } from "@smile-health/lib/base/controller.js"
 import { Hono } from "hono"
 import { StatusCodes } from "http-status-codes"
 import { AssetInventoryModule } from "./asset-inventory.module.js"
@@ -7,7 +7,7 @@ import {
   UpdateAssetInventoryParamSchema,
   GetAssetInventoryParamSchema,
 } from "./asset-inventory.schema.js"
-import { ExcelMiddleware } from "@smile/lib/middlewares"
+import { ExcelMiddleware } from "@smile-health/lib/middlewares"
 import { AssetInventoryService } from "./utils/asset-inventory.service.js"
 
 export class AssetInventoryController extends BaseController {

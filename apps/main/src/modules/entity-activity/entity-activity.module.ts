@@ -1,4 +1,4 @@
-import { ValidationError } from "@smile/lib/error.js"
+import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import moment from "moment"
 import { EntityActivityPublisher } from "./entity-activity.publisher.js"

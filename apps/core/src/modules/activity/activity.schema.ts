@@ -1,6 +1,6 @@
 import { BOTTOM_UP_TOP_DOWN_LIST } from "@/common/constants/activity.js"
-import { PaginationQueriesSchema } from "@smile/lib/types/paginate.js"
-import { IdParamsSchema } from "@smile/lib/types/param.js"
+import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
+import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import z from "zod"
 
 const requiredTopDownBottomUpRegular = (minValue: number, maxValue: number) => {

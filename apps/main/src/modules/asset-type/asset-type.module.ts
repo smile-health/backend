@@ -4,7 +4,7 @@ import {
   GetAssetTypesQueryParams,
   EditStatusAssetTypeRequest,
 } from "./asset-type.schema.js"
-import { PaginatedResponse } from "@smile/lib/types/paginate.js"
+import { PaginatedResponse } from "@smile-health/lib/types/paginate.js"
 import { AssetTypeExport } from "./asset-type.excel.js"
 import moment from "moment"
 
