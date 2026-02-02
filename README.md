@@ -29,7 +29,7 @@ This document aims to provide a guide for installing the SMILE backend.
 clone repo without commit history
 
 ```bash
-git clone git@git.kemkes.go.id:smile-platform/backend.git
+git clone git@github.com/smile-health/backend.git
 ```
 
 ### 2. Install dependencies
