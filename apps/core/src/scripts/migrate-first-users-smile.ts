@@ -5,10 +5,10 @@ import { db } from "../common/infrastructure/database/index.js"
 
 export const initiateFirstUsers = async () => {
   const user: TCreateUserReq = {
-    username: "hrd_smile",
-    email: "info@smile-indonesia.id",
+    username: "admin",
+    email: "admin@smile-indonesia.id",
     role: 1,
-    firstname: "hrd_smile",
+    firstname: "admin",
     lastname: "smile",
     mobile_phone: "+6282342934829",
     date_of_birth: new Date("2010-01-01"),
