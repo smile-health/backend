@@ -120,7 +120,10 @@ program
 program
   .command("migrate-first-users")
   .description("Create first users smile platform")
-  .action(async () => initiateFirstUsers())
+  .action(async () => {
+    initiateFirstUsers()
+    process.exit(0)
+  })
 
 program
   .command("migrate-roles-resource-mapping")

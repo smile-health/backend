@@ -33,6 +33,26 @@ export class AuthKeycloakService {
       })
   }
 
+  async checkConnection(): Promise<boolean> {
+    try {
+      const response = await fetch(this.serverAuthUrl + "/health", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error(`Auth server returned status: ${response.status}`)
+      }
+
+      return true
+    } catch (error) {
+      logger.error(`Failed to connect to auth server: ${JSON.stringify(error)}`)
+      throw new Error(`Auth server connection failed`)
+    }
+  }
+
   async validateToken(token: string) {
     try {
       const responseAuthKeycloak = await fetchData("validate-token", {
@@ -88,6 +108,7 @@ export class AuthKeycloakService {
           body: JSON.stringify(requestAuthKeycloak),
         }
       )
+      console.log("responseAuthKeycloak", responseAuthKeycloak)
 
       logger.info(
         `Success Create User Auth: ${JSON.stringify(responseAuthKeycloak)} - payload: ${JSON.stringify(requestAuthKeycloak)}`
@@ -97,6 +118,7 @@ export class AuthKeycloakService {
         user_uuid: requestAuthKeycloak.attributes?.appUserId ?? "",
       }
     } catch (error: any) {
+      console.log(error)
       logger.info(`Failed Create User Auth: ${JSON.stringify(error)}`)
       throw new BadRequestError(`Failed Create User`)
     }
