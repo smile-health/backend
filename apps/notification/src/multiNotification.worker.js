@@ -3,9 +3,12 @@ const amqp = require('amqplib/callback_api')
 const { Notification } = require('./db/index')
 const fcmService = require('./services/fcm.service')
 const smsService = require('./services/sms.service')
-const EmailService = require('./services/smtp.service')
+const { initializeMailProvider, getMailProvider } = require('./lib/mail')
 
 const amqServer = process.env.AMQP_SERVER || 'amqp://localhost'
+
+// Initialize mail provider on module load
+initializeMailProvider()
 
 const worker = 'multi-notification'
 const { testPayload } = require('./services/test.service')
@@ -55,7 +58,12 @@ async function processNotif({
         })
       } else if (med === 'email' && user.email) {
         // send email
-        await EmailService.sendMail(user.email, title, message)
+        const provider = getMailProvider()
+        await provider.sendEmail({
+          to: user.email,
+          subject: title,
+          html: message,
+        })
       } else if (med === 'fcm' && user.fcm_token) {
         // send fcm
         console.log(

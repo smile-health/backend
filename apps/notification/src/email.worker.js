@@ -1,11 +1,24 @@
+smile-health\backend\apps\notification\src\email.worker.js
+
+/**
+ * Email Worker
+ *
+ * Processes email notifications from the message queue.
+ * Uses the MailProvider abstraction for sending emails,
+ * allowing switching between SES, SMTP, or other providers
+ * via the MAIL_PROVIDER environment variable.
+ */
+
 const amqp = require('amqplib/callback_api')
-// const EmailService = require('./aws.service')
-const EmailService = require('./services/smtp.service')
+const { initializeMailProvider, getMailProvider } = require('./lib/mail')
 
 const amqServer = process.env.AMQP_SERVER || 'amqp://localhost'
 
 const worker = 'email-notification'
 const { testPayload } = require('./services/test.service')
+
+// Initialize mail provider on module load
+initializeMailProvider()
 
 // Consumer
 const consumeEmail = () => {
@@ -31,17 +44,24 @@ const consumeEmail = () => {
         function (msg) {
           console.log(' [x] Received %s', msg.content.toString())
           if (msg != null) {
-            // get covid data & create
             const { mail, subject, content } = JSON.parse(
               msg.content.toString()
             )
             console.log(' [x] Received %s', mail)
-            // send email via aws ses
-            EmailService.sendMail(mail, subject, content)
+
+            // Send email using MailProvider abstraction
+            const provider = getMailProvider()
+            provider.sendEmail({
+              to: mail,
+              subject: subject,
+              html: content,
+            })
               .then(() => {
+                console.log(' [x] Email sent successfully to %s', mail)
                 channel.ack(msg)
               })
-              .catch(() => {
+              .catch((err) => {
+                console.error(' [x] Failed to send email:', err)
                 channel.ack(msg)
               })
           }
@@ -59,6 +79,7 @@ const testingPayload = {
   subject: 'Forgot Password',
   content: 'Testing Email',
 }
+
 // Publisher
 const testEmailWorker = () => {
   testPayload(worker, testingPayload)
@@ -67,8 +88,16 @@ const testEmailWorker = () => {
 const testEmail = function () {
   const { mail, subject, content } = testingPayload
   console.log('testing send email')
-  EmailService.sendMail(mail, subject, content).then(() => {
+
+  const provider = getMailProvider()
+  provider.sendEmail({
+    to: mail,
+    subject: subject,
+    html: content,
+  }).then(() => {
     console.log('success send email')
+  }).catch((err) => {
+    console.error('Error sending test email:', err)
   })
 }
 
