@@ -1,4 +1,3 @@
-smile-health\backend\apps\notification\src\lib\mail\smtp-provider.js
 
 /**
  * SMTP Mail Provider Implementation

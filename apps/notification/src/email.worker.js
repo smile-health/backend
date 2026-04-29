@@ -1,4 +1,3 @@
-smile-health\backend\apps\notification\src\email.worker.js
 
 /**
  * Email Worker

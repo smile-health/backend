@@ -1,4 +1,3 @@
-smile-health\backend\apps\notification\src\lib\mail\ses-provider.js
 
 /**
  * AWS SES Mail Provider Implementation

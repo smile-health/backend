@@ -1,4 +1,3 @@
-smile-health\backend\apps\notification\src\lib\mail\index.js
 
 /**
  * Mail Provider Factory
