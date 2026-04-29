@@ -55,6 +55,7 @@ jobs:
         run: pnpm --filter @smile-health/lib build
 
       - name: Publish to GitHub Package Registry
+        continue-on-error: true
         run: |
           cd packages/lib
           npm publish --registry https://npm.pkg.github.com
@@ -63,6 +64,7 @@ jobs:
 
   build-and-push-images:
     needs: build-and-push-lib
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
