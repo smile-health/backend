@@ -56,4 +56,38 @@ export async function seed(db: Kysely<Database>): Promise<void> {
       })
       .execute()
   }
+
+  // Assign all active workspaces/programs to the seeded entities
+  const activeWorkspaces = await db
+    .selectFrom("workspaces")
+    .select("id")
+    .where("deleted_at", "is", null)
+    .execute()
+
+  for (const entity of entities) {
+    const existing = await db
+      .selectFrom("entity_workspaces")
+      .select("workspace_id")
+      .where("entity_id", "=", entity.id)
+      .execute()
+
+    const existingIds = new Set(existing.map((r) => r.workspace_id))
+
+    const toInsert = activeWorkspaces.filter((w) => !existingIds.has(w.id))
+
+    if (toInsert.length > 0) {
+      await db
+        .insertInto("entity_workspaces")
+        .values(
+          toInsert.map((w) => ({
+            entity_id: entity.id,
+            workspace_id: w.id,
+            status: 1,
+            is_vendor: 0,
+            is_relocation: 0,
+          }))
+        )
+        .execute()
+    }
+  }
 }
