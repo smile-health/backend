@@ -975,18 +975,6 @@ export class TransactionModule extends BaseModule {
     return new PaginatedResponse(params, transformedData, total)
   }
 
-  async getElasticTransactionList(
-    c: Context,
-    params: TransactionListPaginatedRequestDTO
-  ) {
-    this.setPaginationAndLanguage(c, params)
-
-    const { data, total, lastSortValue } =
-      await this.repository.getElasticTransactionList(c, params)
-
-    return new PaginatedResponse(params, data, total, lastSortValue)
-  }
-
   async getTransactionListCursor(
     c: Context,
     params: TransactionListCursorPaginatedRequestDTO

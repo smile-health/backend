@@ -804,43 +804,6 @@ export class TransactionRepository extends BaseRepository<"ws_transactions"> {
       .execute()
   }
 
-  async getElasticTransactionList(
-    c: Context,
-    params: TransactionListPaginatedRequestDTO
-  ) {
-    let query = c.var.elastic.selectFrom("transactions")
-
-    query = query
-      .$if(!!params.entity_id, (q) =>
-        q.where("entity_id", "=", Number(params.entity_id))
-      )
-      .$if(!!params.activity_id, (q) =>
-        q.where("activity_id", "=", Number(params.activity_id))
-      )
-      .$if(!!params.start_date, (q) => {
-        const startDate = moment
-          .tz(params.start_date, String(params.timezone))
-          .format("YYYY-MM-DDT00:00:00.000Z")
-
-        return q.where("created_at", ">=", startDate)
-      })
-      .$if(!!params.end_date, (q) => {
-        const endDate = moment
-          .tz(params.end_date, String(params.timezone))
-          .format("YYYY-MM-DDT23:59:59.999Z")
-
-        return q.where("created_at", "<=", endDate)
-      })
-
-    query = query.orderBy("id", "asc")
-
-    query = query.paginate(params.page, params.paginate)
-
-    const lastHitSortValue = params.last_sort_value
-
-    return await query.execute(lastHitSortValue)
-  }
-
   async getTransactionListDiscard(
     context: Context,
     params: TransactionListDiscardRequestDTO,

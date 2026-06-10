@@ -667,11 +667,6 @@ warehouseApp.use(
 )
 warehouseApp.use(
   "*",
-  middlewareTracer.traceMiddleware("loadElasticClient"),
-  commonMiddleware.loadElasticClient
-)
-warehouseApp.use(
-  "*",
   middlewareTracer.traceMiddleware("requestMiddleware"),
   requestMiddleware.handle
 )
@@ -821,11 +816,6 @@ featureFlagsWebhookRoutes.use(
   "*",
   middlewareTracer.traceMiddleware("loadSlaveDB"),
   commonMiddleware.loadSlaveDB
-)
-featureFlagsWebhookRoutes.use(
-  "*",
-  middlewareTracer.traceMiddleware("loadElasticClient"),
-  commonMiddleware.loadElasticClient
 )
 featureFlagsWebhookRoutes.use(
   "*",

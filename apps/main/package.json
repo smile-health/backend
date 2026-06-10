@@ -48,7 +48,6 @@
   "dependencies": {
     "@clickhouse/client": "^1.12.1",
     "@dotenvx/dotenvx": "^1.51.0",
-    "@elastic/elasticsearch": "^7.17.14",
     "@faker-js/faker": "^9.9.0",
     "@founderpath/kysely-clickhouse": "^1.7.0",
     "@hono/node-server": "^1.19.5",

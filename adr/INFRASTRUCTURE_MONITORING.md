@@ -30,13 +30,7 @@ This document outlines the enhanced observability features implemented across al
 - **Status Getter**: `getConnectionStatus()` - Returns current connection state
 - **Shared Library**: Centralized MinIO client creation in `@smile-health/lib/minio.js`
 
-### 5. Elasticsearch
-- **Connection Status Tracking**: Real-time status monitoring (`disconnected`, `connecting`, `connected`, `error`)
-- **Initialization Logging**: Client setup and configuration logging
-- **Health Check Function**: `healthCheck()` - Uses `ping` to test Elasticsearch connectivity
-- **Status Getter**: `getConnectionStatus()` - Returns current connection state
-
-### 6. ClickHouse
+### 5. ClickHouse
 - **Connection Status Tracking**: Real-time status monitoring (`disconnected`, `connecting`, `connected`, `error`)
 - **Initialization Logging**: Client setup and configuration logging
 - **Health Check Function**: `healthCheck()` - Executes simple test queries
@@ -50,7 +44,6 @@ This document outlines the enhanced observability features implemented across al
 - ✅ RabbitMQ (`src/common/infrastructure/mq/index.ts`)
 - ✅ ClickHouse Datamart (`src/common/infrastructure/database/datamart.ts`)
 - ✅ ClickHouse Slave (`src/common/infrastructure/database/slave.ts`)
-- ✅ Elasticsearch (`src/common/infrastructure/elastic/index.ts`)
 
 ### Core Service (`apps/core`)
 - ✅ Redis (`src/common/infrastructure/redis.ts`)
@@ -183,11 +176,6 @@ MINIO_PORT=9000
 MINIO_ACCESS_KEY=minioadmin
 MINIO_SECRET_KEY=minioadmin
 MINIO_USE_SSL=false
-
-# Elasticsearch
-ES_HOST=http://localhost:9200
-ES_USERNAME=elastic
-ES_PASSWORD=password
 ```
 
 ### Docker Compose Health Checks

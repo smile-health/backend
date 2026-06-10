@@ -142,16 +142,6 @@ export class TransactionController extends BaseController {
     )
 
     router.get(
-      "/elastic",
-      this.validateRequest("query", TransactionListPaginatedRequestSchema),
-      async (c) => {
-        const query = c.req.valid("query")
-        const response = await this.module.getElasticTransactionList(c, query)
-        return c.json(response, StatusCodes.OK)
-      }
-    )
-
-    router.get(
       "/xls",
       this.validateRequest("query", TransactionListPaginatedRequestSchema),
       async (c) => {

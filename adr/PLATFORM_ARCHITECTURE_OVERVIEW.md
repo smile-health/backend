@@ -107,12 +107,7 @@ This document provides a comprehensive overview of the SMILE Platform architectu
 
 ### Search & Analytics
 
-#### Elasticsearch
-- **Search engine** for advanced querying
-- **Services**: Main
-- **Use Cases**: Full-text search, data indexing
-
-## Shared Libraries (`packages/lib`)
+### Shared Libraries (`packages/lib`)
 
 ### Core Utilities (`@smile-health/lib`)
 

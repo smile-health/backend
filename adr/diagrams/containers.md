@@ -13,7 +13,6 @@ Container(warehouse, "Warehouse Service", "Node.js + Hono", "Handles inventory o
 Container(db, "MySQL Database", "MySQL", "Stores persistent data for all services")
 Container(redis, "Redis Cache", "Redis", "Caches frequently accessed data and manages distributed locks")
 Container(rabbitmq, "RabbitMQ", "RabbitMQ", "Event broker for decoupled communication")
-Container(elasticsearch, "Elasticsearch", "Elasticsearch", "Indexes logs and provides search capabilities")
 Container(keycloak, "Keycloak", "Keycloak", "External identity provider (SSO, OAuth2)")
 
 Rel(user, auth, "Authenticates via", "OIDC/REST")
@@ -26,7 +25,5 @@ Rel(warehouse, db, "Reads from and writes to", "SQL")
 Rel(core, redis, "Reads from and writes to", "Redis")
 Rel(core, rabbitmq, "Publishes and consumes events", "AMQP")
 Rel(warehouse, rabbitmq, "Publishes and consumes events", "AMQP")
-Rel(core, elasticsearch, "Indexes logs and metrics", "HTTP")
-Rel(main, elasticsearch, "Indexes workspace analytics", "HTTP")
 Rel(auth, keycloak, "Delegates authentication to", "OIDC")
 ```

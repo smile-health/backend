@@ -4,8 +4,6 @@ import {
   WsEntities,
   WsUsers,
 } from "@/common/infrastructure/database/types/db.js"
-import { ElasticSearchQuery } from "@/common/infrastructure/elastic/client.js"
-import { IndexMapping } from "@/common/infrastructure/elastic/types/db.js"
 import { IContextVariableMap } from "@smile-health/lib/types/context.js"
 import { FileResponse } from "@smile-health/lib/types/file.js"
 import { WorkspaceConfig } from "@smile-health/lib/types/jwt.js"
@@ -32,7 +30,6 @@ declare module "hono" {
     client: Selectable<IntegrationClients>
     roleId?: number
     entityId?: number
-    elastic: ElasticSearchQuery<IndexMapping>
     deviceType: number
     activityId: number | null | undefined
     timeZone: string // IANA timezone string, e.g., "Asia/Jakarta", default "Etc/UTC"

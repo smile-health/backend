@@ -19,6 +19,9 @@ coverage
 # Turbo
 .turbo
 
+# Graphify artifacts
+graphify-out/
+
 # Vercel
 .vercel
 
