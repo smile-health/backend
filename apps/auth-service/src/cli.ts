@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { promises as fs } from "fs";
+import { FileMigrationProvider, Migrator } from "kysely";
+import path from "path";
 import keycloakClient from "./keycloakClient";
+import { db, dialect } from "./common/infrastructure/database";
+import { DatabaseManager } from "@smile-health/lib/database";
+import { Database } from "./common/infrastructure/database/types/db";
 
 const program = new Command();
 
@@ -8,6 +14,57 @@ program
   .name("auth-service-cli")
   .description("CLI for auth-service utility commands")
   .version("1.0.0");
+
+// Migration commands
+program
+  .command("run-migrate")
+  .description("Run all pending database migrations")
+  .action(async () => {
+    const migrator = new Migrator({
+      db,
+      provider: new FileMigrationProvider({
+        fs,
+        path,
+        migrationFolder: path.resolve(__dirname, "./common/infrastructure/database/migrations"),
+      }),
+      migrationTableName: "auth_kysely_migration",
+      allowUnorderedMigrations: true,
+    });
+
+    const { error, results } = await migrator.migrateToLatest();
+    results?.forEach((r) => console.log(`${r.direction} migration: ${r.migrationName}`));
+    if (error) {
+      console.error("Migration failed:", error);
+      process.exit(1);
+    }
+    console.log("Migrations completed successfully.");
+    process.exit(0);
+  });
+
+program
+  .command("run-rollback")
+  .description("Rollback the last migration")
+  .action(async () => {
+    const migrator = new Migrator({
+      db,
+      provider: new FileMigrationProvider({
+        fs,
+        path,
+        migrationFolder: path.resolve(__dirname, "./common/infrastructure/database/migrations"),
+      }),
+      migrationTableName: "auth_kysely_migration",
+      allowUnorderedMigrations: true,
+    });
+
+    const { error, results } = await migrator.migrateDown();
+    results?.forEach((r) => console.log(`Rolled back: ${r.migrationName}`));
+    if (error) {
+      console.error("Rollback failed:", error);
+      process.exit(1);
+    }
+    console.log("Rollback completed successfully.");
+    process.exit(0);
+  });
 
 program
   .command("delete-users")

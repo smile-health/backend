@@ -9,6 +9,7 @@ import { env } from "process";
 import { AuthController } from "./controllers/authController";
 import { UserController } from "./controllers/userController";
 import { quickSetupService } from "@smile-health/lib/tracing-config";
+import "./common/infrastructure/database";
 
 dotenv.config();
 

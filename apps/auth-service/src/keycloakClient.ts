@@ -344,6 +344,47 @@ class KeycloakClient {
     }
   }
 
+  public async findUserByEmail(
+    email: string
+  ): Promise<{ exists: boolean; id?: string; username?: string } | null> {
+    try {
+      logger.debug(
+        `KeycloakClient.findUserByEmail: Searching for user with email: '${email}'`
+      );
+      const adminToken = await this._getRealmAdminToken();
+      const response = await axios.get(
+        `${this.serverUrl}/admin/realms/${this.realm}/users`,
+        {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+          params: {
+            email,
+            exact: true,
+          },
+        }
+      );
+
+      if (response.data.length > 0) {
+        const user = response.data[0];
+        logger.info(
+          `KeycloakClient.findUserByEmail: User found: '${user.id}' for email: '${email}'`
+        );
+        return { exists: true, id: user.id, username: user.username };
+      }
+
+      logger.info(
+        `KeycloakClient.findUserByEmail: No user found for email: '${email}'`
+      );
+      return null;
+    } catch (error: any) {
+      logger.error(
+        `KeycloakClient.findUserByEmail: Failed to find user by email: ${error}, ${JSON.stringify(error.response?.data)}`
+      );
+      throw new Error("Failed to find user by email in Keycloak");
+    }
+  }
+
   public async deleteUser(userId: string): Promise<void> {
     try {
       const adminToken = await this._getRealmAdminToken();

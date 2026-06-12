@@ -8,9 +8,13 @@ import {
 } from "../routes/authRoutes";
 import { AuthDetails, LoginRequestSchema } from "../schemas/authSchemas";
 import { AuthTokenSchema, UserNameSchema } from "../schemas/sharedSchemas";
+import { ForgotPasswordRequestSchema } from "../schemas/forgotPasswordSchemas";
 import appService from "../services/appService";
 import logger from "../utils/logger";
 import { validateRequestBody } from "../utils/validators";
+import keycloakClient from "../keycloakClient";
+import { generateToken, getExpiryDate, storeToken, buildResetLink } from "../services/passwordResetService";
+import { buildPasswordResetEmailHtml, sendEmail } from "../services/emailService";
 
 export const loginHandler = async (
   c: Context
@@ -219,7 +223,7 @@ export const resetPasswordEmailHandler = async (
   c: Context
 ): Promise<RouteConfigToTypedResponse<typeof sendForgotPasswordEmailRoute>> => {
   const reqBody = await c.req.json();
-  const reqValidationResult = UserNameSchema.safeParse(reqBody);
+  const reqValidationResult = ForgotPasswordRequestSchema.safeParse(reqBody);
 
   if (!reqValidationResult.success) {
     logger.warn(
@@ -232,81 +236,53 @@ export const resetPasswordEmailHandler = async (
     return c.json(errorResponse, 400);
   }
 
-  if (reqValidationResult.data && reqValidationResult.data.username) {
+  const { email } = reqValidationResult.data;
+  logger.info(
+    `AuthRouteHandlers.resetPasswordEmailHandler: Processing forgot password request for email: '${email}'`
+  );
+
+  // Always return a generic success message to prevent email enumeration
+  const genericMessage = "If an account with that email exists, a password reset link has been sent.";
+
+  try {
+    // Look up the user by email in Keycloak
+    const user = await keycloakClient.findUserByEmail(email);
+
+    if (!user || !user.exists) {
+      // Return generic success even if user not found (anti-enumeration)
+      logger.info(
+        `AuthRouteHandlers.resetPasswordEmailHandler: No user found for email: '${email}', returning generic response`
+      );
+      return c.json({ message: genericMessage }, 200);
+    }
+
+    // User exists — generate a reset token
+    const token = generateToken();
+    const expiresAt = getExpiryDate();
+
+    // Store the token in the database
+    await storeToken(user.id!, email, token, expiresAt);
+
+    // Build the reset link and send the email
+    const resetLink = buildResetLink(token);
+    const emailHtml = buildPasswordResetEmailHtml(resetLink);
+
+    await sendEmail({
+      to: email,
+      subject: "Password Reset Request — SMILE Platform",
+      html: emailHtml,
+    });
+
     logger.info(
-      `AuthRouteHandlers.resetPasswordEmailHandler: Attempting to send reset password email to user: '${reqValidationResult.data.username}'`
+      `AuthRouteHandlers.resetPasswordEmailHandler: Password reset email sent to: '${email}' for user: '${user.id}'`
     );
-    const username: string = reqValidationResult.data.username;
-    let userId: string = "";
-    // Check if the username is valid and exists in the system
-    try {
-      logger.debug(
-        `AuthRouteHandlers.resetPasswordEmailHandler: Checking if user: '${reqValidationResult.data.username}' exists in the system.`
-      );
-      const userExists = await appService.checkUserExists(username);
-      if (!userExists) {
-        logger.warn(
-          `AuthRouteHandlers.resetPasswordEmailHandler: User not found: '${username}'`
-        );
-        return c.json({ message: "User not found", code: 404 }, 404);
-      }
-      // If user exists, get the user ID
-      userId = userExists.id!;
-      logger.info(
-        `AuthRouteHandlers.resetPasswordEmailHandler: User '${username}' exists with id: '${userId}'`
-      );
-    } catch (error: any) {
-      logger.error(
-        `AuthRouteHandlers.resetPasswordEmailHandler: Internal server error while validating user: ${error}`
-      );
-      return c.json(
-        {
-          message:
-            "Internal server error, Failed to send reset password email to user as user validation failed.",
-          code: 500,
-        },
-        500
-      );
-    }
-    // Send the reset password email
-    try {
-      await appService.sendUpdatePwdActionEmailToUser(userId);
-      logger.info(
-        `UserRouteHandlers.updatePasswordEmailHandler: Password reset email sent to user: '${username}'`
-      );
-      return c.json({}, 200);
-    } catch (error: any) {
-      if (error.message.includes("User not found")) {
-        logger.warn(
-          `UserRouteHandlers.updatePasswordEmailHandler: User not found for password update: '${username}', Error: ${error.message}`
-        );
-        return c.json({ message: `User not found`, code: 404 }, 404);
-      }
-      if (error.message.includes("Bad or invalid request")) {
-        logger.warn(
-          `UserRouteHandlers.updatePasswordEmailHandler: Bad request for user password update: '${username}', Error: ${error.message}`
-        );
-        return c.json({ message: `${error.message}`, code: 400 }, 400);
-      }
-      logger.error(
-        `UserRouteHandlers.updatePasswordEmailHandler: Internal server error: ${error}`
-      );
-      return c.json(
-        {
-          message:
-            "Internal server error, Failed to send reset password email to user",
-          code: 500,
-        },
-        500
-      );
-    }
-  } else {
-    logger.warn(
-      `UserRouteHandlers.updatePasswordEmailHandler: Required user details are missing in the request parameters`
+
+    return c.json({ message: genericMessage }, 200);
+  } catch (error: any) {
+    logger.error(
+      `AuthRouteHandlers.resetPasswordEmailHandler: Failed to process forgot password request for '${email}': ${error}`
     );
-    return c.json(
-      { message: "Invalid request, user ID is missing", code: 400 },
-      400
-    );
+    // Still return generic success to prevent email enumeration
+    return c.json({ message: genericMessage }, 200);
   }
 };

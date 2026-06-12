@@ -5,6 +5,7 @@ import {
   LoginResponseSchema,
   UserInfoResponseSchema,
 } from "../schemas/authSchemas";
+import { ForgotPasswordRequestSchema, ForgotPasswordResponseSchema } from "../schemas/forgotPasswordSchemas";
 
 // Define the login route
 export const loginRoute: RouteConfig = createRoute({
@@ -153,68 +154,56 @@ export const logoutRoute: RouteConfig = createRoute({
   },
 });
 
-// Define the send forgot password email route
+// Define the forgot password route
 export const sendForgotPasswordEmailRoute: RouteConfig = createRoute({
-  method: "put",
+  method: "post",
   path: "/forgot-password",
-  summary:
-    "User forgot the password, send Update Password Action Email to User",
+  summary: "Send Password Reset Email",
   description:
-    "As the user is unable to use his existing credentials, send a password reset email to the user with a link",
+    "Send a password reset email with a magic link token to the user's email address",
   tags: ["Auth"],
   requestBody: {
     content: {
       "application/json": {
-        body: UserNameSchema,
+        body: ForgotPasswordRequestSchema,
         example: {
-          username: "testuser",
+          email: "user@example.com",
         },
       },
     },
   },
   responses: {
     200: {
-      description: "User action email sent successfully",
+      content: {
+        "application/json": {
+          schema: ForgotPasswordResponseSchema,
+        },
+      },
+      description: "Password reset email sent successfully (if account exists)",
     },
     400: {
-      description: "Bad request",
       content: {
         "application/json": {
           schema: ErrorResponseSchema,
         },
       },
+      description: "Bad request - invalid email",
     },
-    401: {
-      description: "Unauthorized",
+    429: {
       content: {
         "application/json": {
           schema: ErrorResponseSchema,
         },
       },
-    },
-    403: {
-      description: "Forbidden",
-      content: {
-        "application/json": {
-          schema: ErrorResponseSchema,
-        },
-      },
-    },
-    404: {
-      description: "User not found",
-      content: {
-        "application/json": {
-          schema: ErrorResponseSchema,
-        },
-      },
+      description: "Too many requests - rate limit exceeded",
     },
     500: {
-      description: "Internal server error",
       content: {
         "application/json": {
           schema: ErrorResponseSchema,
         },
       },
+      description: "Internal server error",
     },
   },
 });
