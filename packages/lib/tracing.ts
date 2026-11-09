@@ -6,7 +6,7 @@ import { OTLPTraceExporter as OTLPTraceHttpExporter } from "@opentelemetry/expor
 import { OTLPMetricExporter as OTLPMetricGrpcExporter } from "@opentelemetry/exporter-metrics-otlp-grpc";
 import { OTLPMetricExporter as OTLPMetricHttpExporter } from "@opentelemetry/exporter-metrics-otlp-http";
 import { PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics";
-import { Resource } from "@opentelemetry/resources";
+import { resourceFromAttributes } from "@opentelemetry/resources";
 import {
   ATTR_SERVICE_NAME,
   ATTR_SERVICE_VERSION,
@@ -41,7 +41,7 @@ const MetricExporter = useGrpc
 // Only initialize OpenTelemetry SDK if tracing is enabled
 if (otlpEnabled) {
   const sdk = new opentelemetry.NodeSDK({
-    resource: new Resource({
+    resource: resourceFromAttributes({
       [ATTR_SERVICE_NAME]: serviceName,
       [ATTR_SERVICE_VERSION]: serviceVersion,
       "service.environment": serviceEnvironment,
@@ -52,12 +52,14 @@ if (otlpEnabled) {
       url: `${otlpEndpoint}/v1/traces`,
       headers: {},
     }),
-    metricReader: new PeriodicExportingMetricReader({
-      exporter: new (MetricExporter as any)({
-        url: `${otlpEndpoint}/v1/metrics`,
-        headers: {},
+    metricReaders: [
+      new PeriodicExportingMetricReader({
+        exporter: new (MetricExporter as any)({
+          url: `${otlpEndpoint}/v1/metrics`,
+          headers: {},
+        }),
       }),
-    }),
+    ],
     instrumentations: [
       getNodeAutoInstrumentations({
         "@opentelemetry/instrumentation-http": {

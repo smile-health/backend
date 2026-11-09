@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import { promises as fs } from "fs";
-import { FileMigrationProvider, Migrator } from "kysely";
+import { FileMigrationProvider, Migrator } from "kysely/migration"
 import path from "path";
 import keycloakClient from "./keycloakClient";
 import { db, dialect } from "./common/infrastructure/database";

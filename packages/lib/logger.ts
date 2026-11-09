@@ -6,9 +6,9 @@ import type { LokiOptions } from "pino-loki";
 const sendLoki = {
   target: "pino-loki",
   options: {
-    batching: true,
-    interval: process.env.LOKI_INTERVAL ?? 5,
-    timeout: process.env.LOKI_TIMEOUT ?? 5e3,
+    // pino-loki 3 moved the flush interval into the batching option.
+    batching: { interval: Number(process.env.LOKI_INTERVAL ?? 5) },
+    timeout: Number(process.env.LOKI_TIMEOUT ?? 5e3),
     labels: {
       application: process.env.APP_ROOT_NAME ?? "smile5",
       service_name: process.env.APP_NAME ?? "smile5",
@@ -23,7 +23,7 @@ const sendLoki = {
 const shouldUseLoki =
   process.env.LOKI_SEND == "true" && process.env.LOKI_HOST ? true : false;
 
-const transport = pino.transport<LokiOptions>({
+const transport = pino.transport({
   targets: [
     ...(shouldUseLoki ? [sendLoki] : []),
     {

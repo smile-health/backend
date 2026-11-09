@@ -91,7 +91,7 @@ export async function reloadTranslations() {
 
 i18n.use(Backend).init({
   // debug: true,
-  initImmediate: false,
+  initAsync: false,
   lng: "en",
   fallbackLng: "en",
   resources: await loadResources(),

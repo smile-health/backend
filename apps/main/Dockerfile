@@ -4,7 +4,7 @@ FROM oven/bun:1 AS base
 # Install Node.js
 RUN apt-get update && \
     apt-get install -y --no-install-recommends jq wget && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
     apt-get install -y --no-install-recommends nodejs npm && \
 #     apt-get install -y --no-install-recommends build-essential python3 g++ make && \
     rm -rf /var/lib/apt/lists/*
