@@ -75,6 +75,9 @@ jobs:
       contents: read
       packages: write
     strategy:
+      # One service failing to push (e.g. a package permission problem) must
+      # not cancel the images of the other services.
+      fail-fast: false
       matrix:
         service: [auth-service, core, main, sync-service, warehouse-service, notification]
     steps:
