@@ -20,18 +20,13 @@ jobs:
       lib-version: ${{ steps.get-version.outputs.version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9.12.3
 
       - name: Configure .npmrc for GitHub Packages
         run: |
@@ -46,13 +41,14 @@ jobs:
           cd packages/lib
           echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: Install dependencies
+      # Install lib on its own: run inside the monorepo, npm resolves the whole
+      # workspace and crashed ("Cannot read properties of null (reading
+      # 'edgesOut')"). lib ships TypeScript source and has no build script,
+      # so this step only verifies its dependencies resolve.
+      - name: Install dependencies (isolated)
         run: |
-          cd packages/lib
-          npm install
-
-      - name: Build lib
-        run: pnpm --filter @smile-health/lib build
+          rm -rf /tmp/lib && cp -r packages/lib /tmp/lib && cp .npmrc /tmp/lib/.npmrc
+          cd /tmp/lib && npm install --ignore-scripts --no-audit --no-fund
 
       - name: Publish to GitHub Package Registry
         continue-on-error: true
@@ -83,7 +79,7 @@ jobs:
         service: [auth-service, core, main, sync-service, warehouse-service, notification]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -114,7 +110,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./apps/${{ matrix.service }}
           push: true
