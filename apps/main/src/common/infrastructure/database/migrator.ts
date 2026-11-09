@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Migrator } from "kysely"
+import { Migrator } from "kysely/migration"
 import path from "node:path"
 import { TSFileMigrationProvider } from "kysely-ctl"
 import { promisify } from "node:util"
