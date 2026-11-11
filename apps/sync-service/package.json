@@ -71,8 +71,6 @@
     "kysely-codegen": "^0.20.0"
   },
   "overrides": {
-    "decode-uri-component": "^0.5.1",
-    "tar": "^7.5.22",
-    "adm-zip": "^0.6.1"
+    "decode-uri-component": "^0.5.1"
   }
 }
