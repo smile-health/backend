@@ -22,8 +22,8 @@ export const ReconciliationQueryParamsSchema = z.intersection(
 export const ReconciliationEntityReportItemDTOSchema = z.object({
   entity_id: IdSchema,
   entity_name: z.string(),
-  month: z.number().int(),
-  year: z.number().int(),
+  month: z.int(),
+  year: z.int(),
   value: z.number().nonnegative(),
 })
 
@@ -51,8 +51,8 @@ export const ReconciliationEntityReportResponseSchema = z.object({
 })
 
 export const ReconciliationBarReportItemDTOSchema = z.object({
-  month: z.number().int(),
-  year: z.number().int(),
+  month: z.int(),
+  year: z.int(),
   value: z.number().nonnegative(),
 })
 

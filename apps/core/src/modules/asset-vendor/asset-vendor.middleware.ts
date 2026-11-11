@@ -61,7 +61,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
       }
     ).transform((rows) => rows.map(this.transformRowSchema))
 
-    const result = await usedSchema.safeParseAsync(rowsResult)
+    const result = await usedSchema.safeParseAsync(rowsResult, { reportInput: true })
 
     if (!result.success) {
       const newError: any = { issues: [] }
@@ -73,7 +73,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
             message: c.var.t("validator.required", {
               field: c.var.t(`asset_vendor.label.${err.path[1]}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         } else {
           newError.issues.push({
@@ -81,7 +81,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
             message: c.var.t(err.message, {
               field: c.var.t(`asset_vendor.label.${err.path[1]}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -107,7 +107,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
       message: c.var.t("validator.not_empty", {
         field: c.var.t("common.rows"),
       }),
-      code: z.ZodIssueCode.custom,
+      code: "custom",
     })
   }
 
@@ -132,7 +132,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
           message: c.var.t("validator.exist", {
             field: c.var.t("asset_vendor.label.name"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -149,7 +149,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_vendor.label.asset_vendor_type_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -182,7 +182,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -192,7 +192,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_by"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -212,7 +212,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
             message: c.var.t("validator.duplicated", {
               field: c.var.t("asset_vendor.label.name"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         } else {
           checkDuplicateNameList.push(d["name"])
@@ -229,7 +229,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
             message: c.var.t("validator.exist", {
               field: c.var.t("asset_vendor.label.name"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -246,7 +246,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
             message: c.var.t("validator.not_exist", {
               field: c.var.t("asset_vendor.label.asset_vendor_type_id"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }

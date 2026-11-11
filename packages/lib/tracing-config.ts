@@ -178,7 +178,8 @@ export const ServiceConfigs = {
  */
 export function quickSetupService(
   serviceName: keyof typeof ServiceConfigs,
-  app: Hono,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  app: Hono<any, any, any>,
 ) {
   const config = ServiceConfigs[serviceName];
   if (!config) {

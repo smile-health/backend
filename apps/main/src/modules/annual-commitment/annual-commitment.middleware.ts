@@ -40,7 +40,7 @@ export class AnnualCommitmentMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -50,7 +50,7 @@ export class AnnualCommitmentMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_by"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -201,7 +201,7 @@ export class AnnualCommitmentMiddleware extends BaseMiddleware {
     ctx.addIssue({
       path: path,
       message: validator,
-      code: z.ZodIssueCode.custom,
+      code: "custom",
     })
   }
 
@@ -611,7 +611,9 @@ export class AnnualCommitmentMiddleware extends BaseMiddleware {
       }
     ).transform((rows) => rows.map(this.transformRowSchema))
 
-    const result = await usedSchema.safeParseAsync(rowsResult)
+    const result = await usedSchema.safeParseAsync(rowsResult, {
+      reportInput: true,
+    })
 
     if (!result.success) {
       const newError: any = { issues: [] }
@@ -623,7 +625,7 @@ export class AnnualCommitmentMiddleware extends BaseMiddleware {
             message: c.var.t("validator.required", {
               field: c.var.t(`annual_commitment.label.${err.path[1]}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         } else {
           newError.issues.push({
@@ -631,7 +633,7 @@ export class AnnualCommitmentMiddleware extends BaseMiddleware {
             message: c.var.t(err.message, {
               field: c.var.t(`annual_commitment.label.${err.path[1]}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -663,7 +665,7 @@ export class AnnualCommitmentMiddleware extends BaseMiddleware {
       message: c.var.t("validator.not_empty", {
         field: c.var.t("common.rows"),
       }),
-      code: z.ZodIssueCode.custom,
+      code: "custom",
     })
   }
 

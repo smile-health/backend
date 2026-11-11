@@ -1,5 +1,4 @@
 import { Context } from "hono"
-import { ZodIssueCode } from "zod"
 import { GetBudgetSourceQueriesSchema } from "./budget-source.schema.js"
 
 export class BudgetSourceMiddleware {
@@ -13,7 +12,7 @@ export class BudgetSourceMiddleware {
 
       if (sort_by && !sortBys.includes(sort_by)) {
         cfx.addIssue({
-          code: ZodIssueCode.custom,
+          code: "custom",
           path: ["sort_by"],
           message: c.var.t("validator.one_of", {
             field: "sort_by",
@@ -24,7 +23,7 @@ export class BudgetSourceMiddleware {
 
       if (sort_type && !sortTypes.includes(sort_type)) {
         cfx.addIssue({
-          code: ZodIssueCode.custom,
+          code: "custom",
           path: ["sort_type"],
           message: c.var.t("validator.one_of", {
             field: "sort_type",

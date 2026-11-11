@@ -9,10 +9,15 @@ export const GetWorkspacesParamsSchema = PaginationQueriesSchema.extend({
       if (typeof value === "string") return parseInt(value, 10)
     },
     z
-      .number()
-      .min(0, { message: "Is Hierarchy must be boolean (1 or 0)" })
-      .max(1, { message: "Is Hierarchy must be boolean (1 or 0)" })
-      .int({ message: "ID must be an integer." })
+      .int({
+        error: "ID must be an integer.",
+      })
+      .min(0, {
+        error: "Is Hierarchy must be boolean (1 or 0)",
+      })
+      .max(1, {
+        error: "Is Hierarchy must be boolean (1 or 0)",
+      })
       .nullish()
   ),
 })
@@ -21,19 +26,37 @@ export const WorkspaceDTOSchema = z.object({
   id: z.preprocess(
     (value) => (typeof value === "string" ? parseInt(value, 10) : value),
     z
-      .number({ required_error: "Id is required" })
-      .int({ message: "Id must be an integer." })
-      .nonnegative({ message: "Id must be a positive number." })
+      .int({
+        error: "Id must be an integer.",
+      })
+      .nonnegative({
+        error: "Id must be a positive number.",
+      })
   ),
   key: z
-    .string({ required_error: "Key is required" })
-    .max(255, { message: "Key must not exceed 255 characters." }),
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "Key is required" : undefined,
+    })
+    .max(255, {
+      error: "Key must not exceed 255 characters.",
+    }),
   name: z
-    .string({ required_error: "Name is required" })
-    .max(255, { message: "Name must not exceed 255 characters." }),
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "Name is required" : undefined,
+    })
+    .max(255, {
+      error: "Name must not exceed 255 characters.",
+    }),
   config: z
-    .string({ required_error: "Config is required" })
-    .max(255, { message: "Config must not exceed 255 characters." })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "Config is required" : undefined,
+    })
+    .max(255, {
+      error: "Config must not exceed 255 characters.",
+    })
     .nullish(),
 })
 

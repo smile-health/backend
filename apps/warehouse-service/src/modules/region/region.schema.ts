@@ -10,7 +10,7 @@ export const RegionSchema = z.object({
   parent_id: IdSchema.nullish(),
   lat: z.string().nullish(),
   lng: z.string().nullish(),
-  level: z.number().int().nullish(),
+  level: z.int().nullish(),
   created_at: DateSchema,
   updated_at: DateSchema,
 })

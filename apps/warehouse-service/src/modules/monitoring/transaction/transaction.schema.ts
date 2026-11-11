@@ -23,45 +23,45 @@ export const MonitoringTransactionSchema = PaginationQueriesSchema.extend({
     .string()
     .nonempty("informationType is required")
     .refine((val) => !isNaN(Number(val)), {
-      message: "informationType must be a number",
+      error: "informationType must be a number",
     })
     .refine((val) => ["0", "1"].includes(val), {
-      message: "informationType must be 0 or 1",
+      error: "informationType must be 0 or 1",
     })
     .transform((val) => Number(val)),
   material_level_id: z.string().pipe(z.coerce.number().int()),
   sort_by_id: z
     .string()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort By Count must be 0 or 1",
+      error: "Sort By Count must be 0 or 1",
     })
     .transform((val) => Number(val))
     .optional(),
   sort_by_count: z
     .string()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort By Count must be 0 or 1",
+      error: "Sort By Count must be 0 or 1",
     })
     .transform((val) => Number(val))
     .optional(),
   sort_by_area: z
     .string()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort By Area must be 0 or 1",
+      error: "Sort By Area must be 0 or 1",
     })
     .transform((val) => Number(val))
     .optional(),
   sort_by_name: z
     .string()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort By Name must be 0 or 1",
+      error: "Sort By Name must be 0 or 1",
     })
     .transform((val) => Number(val))
     .optional(),
   sort: z
     .string()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort must be 0 or 1",
+      error: "Sort must be 0 or 1",
     })
     .transform((val) => Number(val))
     .optional(),

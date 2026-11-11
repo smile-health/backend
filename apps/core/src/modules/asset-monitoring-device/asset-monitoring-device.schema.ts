@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { Selectable } from "kysely"
@@ -71,7 +71,7 @@ export const AddAssetMonitoringDeviceDTOSchema =
     budget_year: true,
     budget_source_id: true,
     status: true,
-  }).merge(AuditAssetMonitoringDeviceDTOSchema)
+  }).extend(AuditAssetMonitoringDeviceDTOSchema.shape)
 
 export const EditAssetMonitoringDeviceDTOSchema =
   AssetMonitoringDeviceSchema.pick({
@@ -87,14 +87,14 @@ export const EditAssetMonitoringDeviceDTOSchema =
     budget_year: true,
     budget_source_id: true,
     status: true,
-  }).merge(PartialAuditAssetMonitoringDeviceDTOSchema)
+  }).extend(PartialAuditAssetMonitoringDeviceDTOSchema.shape)
 
 export const AddContactPersonDTOSchema = ContactPersonSchema.pick({
   name: true,
   phone: true,
   source_id: true,
   source_type: true,
-}).merge(AuditAssetMonitoringDeviceDTOSchema)
+}).extend(AuditAssetMonitoringDeviceDTOSchema.shape)
 
 export const AddAssetMonitoringDeviceRequestSchema =
   AssetMonitoringDeviceSchema.pick({
@@ -134,9 +134,9 @@ export const AddAssetMonitoringDeviceRequestSchema =
         return true
       },
       {
-        message: "Production Year must be lesser or equal than Budget Year",
         path: ["production_year"],
-      }
+          error: "Production Year must be lesser or equal than Budget Year"
+    }
     )
     .refine(
       (data) => {
@@ -146,9 +146,9 @@ export const AddAssetMonitoringDeviceRequestSchema =
         return true
       },
       {
-        message: "Budget Year must be greater or equal than Production Year",
         path: ["budget_year"],
-      }
+          error: "Budget Year must be greater or equal than Production Year"
+    }
     )
 
 export const EditAssetMonitoringDeviceRequestSchema =
@@ -190,9 +190,9 @@ export const EditAssetMonitoringDeviceRequestSchema =
         return true
       },
       {
-        message: "Production Year must be lesser or equal than Budget Year",
         path: ["production_year"],
-      }
+          error: "Production Year must be lesser or equal than Budget Year"
+    }
     )
     .refine(
       (data) => {
@@ -202,15 +202,13 @@ export const EditAssetMonitoringDeviceRequestSchema =
         return true
       },
       {
-        message: "Budget Year must be greater or equal than Production Year",
         path: ["budget_year"],
-      }
+          error: "Budget Year must be greater or equal than Production Year"
+    }
     )
 
 export const UpdateAssetMonitoringDeviceStatusSchema = z.object({
-  status: z
-    .number()
-    .int()
+  status: z.int()
     .refine((val) => val === STATUS.ACTIVE || val === STATUS.INACTIVE, {
       message: `Status must be either ${STATUS.INACTIVE} (inactive) or ${STATUS.ACTIVE} (active)`,
     }),
@@ -227,8 +225,8 @@ export const BulkDeleteAssetMonitoringDeviceRequestSchema = z.object({
 
 export const GetAssetMonitoringDevicesQueryParamsSchema =
   PaginationQueriesSchema.extend({
-    page: z.coerce.number().optional().default(1),
-    paginate: z.coerce.number().optional().default(10),
+    page: z.coerce.number().optional().prefault(1),
+    paginate: z.coerce.number().optional().prefault(10),
     asset_model_ids: z.preprocess(
       (val) => {
         if (typeof val === "string") {
@@ -257,7 +255,7 @@ export const GetAssetMonitoringDevicesQueryParamsSchema =
       z.array(z.number().refine((n) => !isNaN(n))).optional()
     ),
     is_device_related: z
-      .preprocess(Number, z.nativeEnum(FLAG))
+      .preprocess(Number, z.enum(FLAG))
       .optional()
       .describe("0 = belum terelasi, 1 = sudah terelasi"),
     keyword: z.string().optional(),

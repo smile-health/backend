@@ -22,9 +22,9 @@ const DisposalInstructionItemSchema = z
       return hasNewFields !== hasOldField || (!hasNewFields && !hasOldField)
     },
     {
-      message:
-        "Must provide either disposal_discard_qty/disposal_received_qty or quantity (but not both)",
       path: ["disposal_discard_qty"],
+      error:
+        "Must provide either disposal_discard_qty/disposal_received_qty or quantity (but not both)",
     }
   )
 const DisposalStockSchema = z.object({
@@ -76,9 +76,9 @@ const OldDisposalInstructionItemSchema = z
       return hasNewFields !== hasOldField || (!hasNewFields && !hasOldField)
     },
     {
-      message:
-        "Must provide either disposal_discard_qty/disposal_received_qty or quantity (but not both)",
       path: ["disposal_discard_qty"],
+      error:
+        "Must provide either disposal_discard_qty/disposal_received_qty or quantity (but not both)",
     }
   )
 

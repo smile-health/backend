@@ -5,7 +5,7 @@ import {
 } from "@/common/infrastructure/database/types/db.js"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { Selectable } from "kysely"
-import z from "zod"
+import { z } from "zod"
 
 export const UserSchema = z.object({
   id: z.number(),
@@ -38,7 +38,9 @@ export const GetUserQueriesSchema = PaginationQueriesSchema.extend({
   entity_id: z
     .string()
     .transform((v) => parseInt(v))
-    .refine((v) => !isNaN(v), { message: "Invalid type" })
+    .refine((v) => !isNaN(v), {
+      error: "Invalid type",
+    })
     .optional(),
   role: z.coerce.number().nullish(),
   province_id: z
@@ -50,7 +52,7 @@ export const GetUserQueriesSchema = PaginationQueriesSchema.extend({
           .filter((item) => item !== "")
           .every((num) => !isNaN(Number(num))),
       {
-        message: "INVALID_PROVINCE_ID_PARAM",
+        error: "INVALID_PROVINCE_ID_PARAM",
       }
     )
     .transform((val) => val.split(",").filter((item) => item !== ""))
@@ -64,7 +66,7 @@ export const GetUserQueriesSchema = PaginationQueriesSchema.extend({
           .filter((item) => item !== "")
           .every((num) => !isNaN(Number(num))),
       {
-        message: "INVALID_REGENCY_ID_PARAM",
+        error: "INVALID_REGENCY_ID_PARAM",
       }
     )
     .transform((val) => val.split(",").filter((item) => item !== ""))
@@ -81,9 +83,14 @@ export const GetUserQueriesSchema = PaginationQueriesSchema.extend({
 
 export const DetailSchema = z.object({
   id: z
-    .string({ required_error: "Id is required" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "Id is required" : undefined,
+    })
     .transform((v) => parseInt(v))
-    .refine((v) => !isNaN(v), { message: "Invalid type" }),
+    .refine((v) => !isNaN(v), {
+      error: "Invalid type",
+    }),
 })
 
 export const UpdateStatusRequestSchema = z.object({

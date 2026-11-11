@@ -3,13 +3,13 @@ import { WsActivities, WsEntityActivities } from "@/common/infrastructure/databa
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import { Selectable } from "kysely"
-import z from "zod"
+import { z } from "zod"
 
 const requiredTopDownBottomUpRegular = (minValue: number, maxValue: number) => {
   return z.unknown().superRefine((val, ctx) => {
     if (val === undefined || val === null) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.required",
       })
       return
@@ -17,7 +17,7 @@ const requiredTopDownBottomUpRegular = (minValue: number, maxValue: number) => {
 
     if (typeof val !== "number" || !Number.isInteger(val)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.integer",
       })
       return
@@ -25,14 +25,14 @@ const requiredTopDownBottomUpRegular = (minValue: number, maxValue: number) => {
 
     if (val < minValue) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_less_than_0",
       })
     }
 
     if (val > maxValue) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_greater_than_1",
       })
     }
@@ -43,7 +43,7 @@ const requiredTopDownBottomUpImport = () => {
   return z.unknown().superRefine((val, ctx) => {
     if (val === undefined || val === null) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.required",
       })
       return
@@ -51,7 +51,7 @@ const requiredTopDownBottomUpImport = () => {
 
     if (typeof val !== "string") {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.string",
       })
       return
@@ -60,7 +60,7 @@ const requiredTopDownBottomUpImport = () => {
     const trimmed = val.trim()
     if (trimmed.length === 0) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_empty",
       })
       return
@@ -69,7 +69,7 @@ const requiredTopDownBottomUpImport = () => {
     const allowValues = BOTTOM_UP_TOP_DOWN_LIST
     if (!allowValues.includes(trimmed.toUpperCase())) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.only_yes_no",
       })
     }
@@ -80,7 +80,7 @@ const requiredNameString = (minValue: number, maxValue: number) => {
   return z.unknown().superRefine((val, ctx) => {
     if (val === undefined || val === null) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.required",
       })
       return
@@ -88,7 +88,7 @@ const requiredNameString = (minValue: number, maxValue: number) => {
 
     if (typeof val !== "string") {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.string",
       })
       return
@@ -97,14 +97,14 @@ const requiredNameString = (minValue: number, maxValue: number) => {
     const trimmed = val.trim()
     if (trimmed.length < minValue) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_empty",
       })
     }
 
     if (trimmed.length > maxValue) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exceed_255",
       })
     }
@@ -117,7 +117,7 @@ const requiredProtocolString = (minValue: number, maxValue: number) => {
   return z.unknown().superRefine((val, ctx) => {
     if (val === undefined || val === null) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.required",
       })
       return
@@ -125,7 +125,7 @@ const requiredProtocolString = (minValue: number, maxValue: number) => {
 
     if (typeof val !== "string") {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.string",
       })
       return
@@ -135,21 +135,21 @@ const requiredProtocolString = (minValue: number, maxValue: number) => {
 
     if (trimmed.length < minValue) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_empty",
       })
     }
 
     if (trimmed.length > maxValue) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exceed_255",
       })
     }
 
     if (!allowedValues.includes(trimmed)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
       })
     }

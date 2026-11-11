@@ -1,4 +1,4 @@
-import z, { nullable } from "zod"
+import { z, nullable } from "zod"
 import { DateSchema, IdParamsSchema } from "@smile-health/lib/types/param.js"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { STATUS } from "@/common/constants/general.js"
@@ -34,7 +34,7 @@ export const AssetInventorySchema = z.object({
   production_year: z.number(),
   program_id: z.number().positive(),
   serial_number: z.string().min(1).max(255),
-  status: z.nativeEnum(STATUS),
+  status: z.enum(STATUS),
   updated_at: z.date(),
   updated_by: z.number().positive(),
   warranty_asset_vendor_id: z.number().positive().nullish(),
@@ -71,7 +71,7 @@ export const AddAssetInventoryDTOSchema = AssetInventorySchema.omit({
   created_at: true,
   updated_at: true,
   status: true,
-}).merge(AuditAssetInventoryDTOSchema)
+}).extend(AuditAssetInventoryDTOSchema.shape)
 
 export const EditAssetInventoryDTOSchema = AssetInventorySchema.omit({
   created_by: true,
@@ -80,11 +80,11 @@ export const EditAssetInventoryDTOSchema = AssetInventorySchema.omit({
   updated_at: true,
   program_id: true,
   status: true,
-}).merge(PartialAuditAssetInventoryDTOSchema)
+}).extend(PartialAuditAssetInventoryDTOSchema.shape)
 
 export const EditStatusAssetInventoryDTOSchema = AssetInventorySchema.pick({
   status: true,
-}).merge(PartialAuditAssetInventoryDTOSchema)
+}).extend(PartialAuditAssetInventoryDTOSchema.shape)
 
 /* Request Body Schema */
 export const AddAssetInventoryRequestSchema = AssetInventorySchema.omit({

@@ -7,13 +7,15 @@ import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { IdSchema } from "@smile-health/lib/types/param.js"
 import { Selectable } from "kysely"
 import moment from "moment"
-import z from "zod"
+import { z } from "zod"
 
 export const DetailSchema = z.object({
   entityId: z
     .string()
     .transform((v) => Number(v))
-    .refine((v) => !isNaN(v), { message: "Invalid param entity_id" }),
+    .refine((v) => !isNaN(v), {
+        error: "Invalid param entity_id"
+    }),
 })
 
 export const DeleteSchema = DetailSchema.extend({
@@ -21,7 +23,7 @@ export const DeleteSchema = DetailSchema.extend({
     .string()
     .transform((v) => Number(v))
     .refine((v) => !isNaN(v), {
-      message: "Invalid param entity_master_material_activity_id",
+        error: "Invalid param entity_master_material_activity_id"
     }),
 })
 
@@ -43,7 +45,7 @@ export const GeneralSchema = z.object({
   min: z.number().optional().nullable(),
   max: z.number().optional().nullable(),
   kfa_level: z.number().optional(),
-  entityMaterialId: z.number().default(0).optional(),
+  entityMaterialId: z.number().optional(),
 })
 
 export const GetEntityMaterialQueriesSchema = PaginationQueriesSchema.extend({
@@ -51,14 +53,18 @@ export const GetEntityMaterialQueriesSchema = PaginationQueriesSchema.extend({
   entity_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v), { message: "invalid entity_id" })
+    .refine((v) => !isNaN(v), {
+        error: "invalid entity_id"
+    })
     .optional(),
   kfa_level: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v), { message: "invalid kfa_level" })
+    .refine((v) => !isNaN(v), {
+        error: "invalid kfa_level"
+    })
     .refine((v) => KFA_LEVEL_CODE_LIST.includes(v), {
-      message: "kfa_level not registered",
+        error: "kfa_level not registered"
     })
     .optional(),
 })
@@ -66,17 +72,17 @@ export const GetEntityMaterialQueriesSchema = PaginationQueriesSchema.extend({
 export const CreateSchema = GeneralSchema.extend({}).refine(
   (data) => (data.max ?? 0) >= (data.min ?? 0),
   {
-    message: "max must be greater than min",
     path: ["max"],
-  }
+      error: "max must be greater than min"
+}
 )
 
 export const UpdateSchema = GeneralSchema.extend({
   entity_master_material_activities_id: z.number(),
   entity_master_material_id: z.number(),
 }).refine((data) => (data.max ?? 0) >= (data.min ?? 0), {
-  message: "max must be greater than min",
   path: ["max"],
+    error: "max must be greater than min"
 })
 
 export const generalMultipleIdSchema = z
@@ -88,7 +94,7 @@ export const generalMultipleIdSchema = z
         .filter((item) => item !== "")
         .every((num) => !isNaN(Number(num))),
     {
-      message: "validator.number",
+        error: "validator.number"
     }
   )
   .transform((val) => val.split(",").filter((item) => item !== ""))
@@ -235,8 +241,8 @@ export const ImportEntityMaterialRowSchema = (COL: ColumnImportSchema) =>
 
 export const ImportEntityMaterialRequestSchema = (COL: ColumnImportSchema) =>
   z.array(ImportEntityMaterialRowSchema(COL)).min(1, {
-    message: "rows cannot be empty",
-  })
+      error: "rows cannot be empty"
+})
 
 export type Ehmm = {
   id: number
@@ -275,7 +281,9 @@ const dateSchema = z
       if (!v) return true
       return moment(v).isValid()
     },
-    { message: "validator.date" }
+    {
+        error: "validator.date"
+    }
   )
   .optional()
 
@@ -287,7 +295,7 @@ export const GetImportEntityMaterialQueriesSchema =
     if (val.start_date && val.end_date) {
       if (val.start_date > val.end_date) {
         c.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.end_date_before_start_date",
           path: ["end_date"],
         })
@@ -295,14 +303,14 @@ export const GetImportEntityMaterialQueriesSchema =
     }
     if (val.start_date && moment(val.start_date).isValid() && !val.end_date) {
       c.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.required",
         path: ["end_date"],
       })
     }
     if (!val.start_date && val.end_date && moment(val.end_date).isValid()) {
       c.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.required",
         path: ["start_date"],
       })

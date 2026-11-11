@@ -1,7 +1,7 @@
 import { EntityTags } from "@/common/infrastructure/database/types/db.js"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { Selectable } from "kysely"
-import z from "zod"
+import { z } from "zod"
 
 export const GetListEntityTagSchema = PaginationQueriesSchema
 

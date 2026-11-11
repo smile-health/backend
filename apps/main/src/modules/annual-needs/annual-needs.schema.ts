@@ -1,12 +1,12 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export const ProgramPlanIdParamsSchema = z.object({
   programPlanId: z
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid programPlanId param",
+      error: "invalid programPlanId param",
     }),
 })
 
@@ -15,7 +15,7 @@ export const AnnualNeedIdParamsSchema = z.object({
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid annualNeedId param",
+      error: "invalid annualNeedId param",
     }),
 })
 
@@ -24,7 +24,7 @@ export const AnnualNeedIdParamsSchemaWithId = z.object({
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid id param",
+      error: "invalid id param",
     }),
 })
 
@@ -33,15 +33,18 @@ export const EntityIdParamsSchema = z.object({
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid entityId param",
+      error: "invalid entityId param",
     }),
 })
 
 export const UpdateAnnualNeedStatusSchema = z.object({
   status: z
-    .number({ required_error: "Status is required" })
+    .number({
+      error: (issue) =>
+        issue.input === undefined ? "Status is required" : undefined,
+    })
     .refine((v) => [0, 1, 2, 3, 4].includes(v), {
-      message:
+      error:
         "Status must be one of: 0 (New), 1 (Approved), 2 (Desk), 3 (Draft), 4 (Revision)",
     }),
 })
@@ -53,13 +56,13 @@ export const GetListAnnualNeedsSchema = PaginationQueriesSchema.extend({
     .string()
     .transform((val) => (val ? Number(val) : 0))
     .refine((v) => !isNaN(v!) && v > 0, {
-      message: "invalid province_id param",
+      error: "invalid province_id param",
     }),
   program_plan_year: z
     .string()
     .transform((val) => (val ? Number(val) : 0))
     .refine((v) => !isNaN(v!) && v > 0, {
-      message: "invalid program_plan_year param",
+      error: "invalid program_plan_year param",
     }),
   status: z
     .string()
@@ -68,26 +71,56 @@ export const GetListAnnualNeedsSchema = PaginationQueriesSchema.extend({
 })
 
 export const CreateAnnualNeedsSchema = z.object({
-  province_id: z.number({ required_error: "Province is required" }),
-  regency_id: z.number({ required_error: "Regency is required" }),
-  entity_id: z.number({ required_error: "Entity is required" }),
-  program_plan_id: z.number({ required_error: "Program Plan is required" }),
+  province_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Province is required" : undefined,
+  }),
+  regency_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Regency is required" : undefined,
+  }),
+  entity_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Entity is required" : undefined,
+  }),
+  program_plan_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Program Plan is required" : undefined,
+  }),
 })
 
 export const AnnualNeedPopulationSchema = z.object({
-  annual_need_id: z.number({ required_error: "Annual Need ID is required" }),
+  annual_need_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Annual Need ID is required" : undefined,
+  }),
   entities: z.array(
     z.object({
-      entity_id: z.number({ required_error: "Entity ID is required" }),
+      entity_id: z.number({
+        error: (issue) =>
+          issue.input === undefined ? "Entity ID is required" : undefined,
+      }),
       target_groups: z.array(
         z.object({
           target_group_id: z.number({
-            required_error: "Target Group ID is required",
+            error: (issue) =>
+              issue.input === undefined
+                ? "Target Group ID is required"
+                : undefined,
           }),
-          percentage: z.number({ required_error: "Percentage is required" }),
-          population: z.number({ required_error: "Population is required" }),
+          percentage: z.number({
+            error: (issue) =>
+              issue.input === undefined ? "Percentage is required" : undefined,
+          }),
+          population: z.number({
+            error: (issue) =>
+              issue.input === undefined ? "Population is required" : undefined,
+          }),
           population_correction: z.number({
-            required_error: "Population Correction is required",
+            error: (issue) =>
+              issue.input === undefined
+                ? "Population Correction is required"
+                : undefined,
           }),
         })
       ),
@@ -96,16 +129,35 @@ export const AnnualNeedPopulationSchema = z.object({
 })
 
 export const AnnualNeedIpvSchema = z.object({
-  annual_need_id: z.number({ required_error: "Annual Need ID is required" }),
+  annual_need_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Annual Need ID is required" : undefined,
+  }),
   ips: z.array(
     z.object({
-      material_id: z.number({ required_error: "Material ID is required" }),
-      activity_id: z.number({ required_error: "Activity ID is required" }),
-      sku: z.number({ required_error: "SKU is required" }),
-      national_ip: z.number({ required_error: "National IP is required" }),
-      regency_ip: z.number({ required_error: "Regency IP is required" }),
+      material_id: z.number({
+        error: (issue) =>
+          issue.input === undefined ? "Material ID is required" : undefined,
+      }),
+      activity_id: z.number({
+        error: (issue) =>
+          issue.input === undefined ? "Activity ID is required" : undefined,
+      }),
+      sku: z.number({
+        error: (issue) =>
+          issue.input === undefined ? "SKU is required" : undefined,
+      }),
+      national_ip: z.number({
+        error: (issue) =>
+          issue.input === undefined ? "National IP is required" : undefined,
+      }),
+      regency_ip: z.number({
+        error: (issue) =>
+          issue.input === undefined ? "Regency IP is required" : undefined,
+      }),
       target_group_id: z.number({
-        required_error: "Target Group ID is required",
+        error: (issue) =>
+          issue.input === undefined ? "Target Group ID is required" : undefined,
       }),
     })
   ),
@@ -118,19 +170,19 @@ export const GetMonthlyDistributionQueriesSchema = z.object({
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid entity_id param",
+      error: "invalid entity_id param",
     }),
   material_id: z
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid material_id param",
+      error: "invalid material_id param",
     }),
   activity_id: z
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid activity_id param",
+      error: "invalid activity_id param",
     }),
 })
 
@@ -139,7 +191,7 @@ export const GetPopulationQueriesSchema = z.object({
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid regencyId param",
+      error: "invalid regencyId param",
     })
     .optional(),
 })
@@ -148,54 +200,94 @@ export const GetAnnualNeedIpQueriesSchema = PaginationQueriesSchema
 
 export const UpdatePopulationStatusSchema = z.array(
   z.object({
-    id: z.number({ required_error: "Population ID is required" }),
-    entity_id: z.number({ required_error: "Entity ID is required" }),
+    id: z.number({
+      error: (issue) =>
+        issue.input === undefined ? "Population ID is required" : undefined,
+    }),
+    entity_id: z.number({
+      error: (issue) =>
+        issue.input === undefined ? "Entity ID is required" : undefined,
+    }),
     target_group_id: z.number({
-      required_error: "Target Group ID is required",
+      error: (issue) =>
+        issue.input === undefined ? "Target Group ID is required" : undefined,
     }),
     status: z
-      .number({ required_error: "Status is required" })
+      .number({
+        error: (issue) =>
+          issue.input === undefined ? "Status is required" : undefined,
+      })
       .refine((v) => [0, 1].includes(v), {
-        message: "Status must be one of: 0 (Rejected), 1 (Approved)",
+        error: "Status must be one of: 0 (Rejected), 1 (Approved)",
       }),
   })
 )
 
 export const UpdateIpStatusSchema = z.array(
   z.object({
-    id: z.number({ required_error: "IP ID is required" }),
+    id: z.number({
+      error: (issue) =>
+        issue.input === undefined ? "IP ID is required" : undefined,
+    }),
     status: z
-      .number({ required_error: "Status is required" })
+      .number({
+        error: (issue) =>
+          issue.input === undefined ? "Status is required" : undefined,
+      })
       .refine((v) => [0, 1].includes(v), {
-        message: "Status must be one of: 0 (Rejected), 1 (Approved)",
+        error: "Status must be one of: 0 (Rejected), 1 (Approved)",
       }),
   })
 )
 
 export const UpdatePopulationSchema = z.array(
   z.object({
-    id: z.number({ required_error: "Population ID is required" }),
-    percentage: z.number({ required_error: "Percentage is required" }),
-    population: z.number({ required_error: "Population is required" }),
+    id: z.number({
+      error: (issue) =>
+        issue.input === undefined ? "Population ID is required" : undefined,
+    }),
+    percentage: z.number({
+      error: (issue) =>
+        issue.input === undefined ? "Percentage is required" : undefined,
+    }),
+    population: z.number({
+      error: (issue) =>
+        issue.input === undefined ? "Population is required" : undefined,
+    }),
     population_correction: z.number({
-      required_error: "Population correction is required",
+      error: (issue) =>
+        issue.input === undefined
+          ? "Population correction is required"
+          : undefined,
     }),
     status: z
-      .number({ required_error: "Status is required" })
+      .number({
+        error: (issue) =>
+          issue.input === undefined ? "Status is required" : undefined,
+      })
       .refine((v) => [0, 1].includes(v), {
-        message: "Status must be one of: 0 (Rejected), 1 (Approved)",
+        error: "Status must be one of: 0 (Rejected), 1 (Approved)",
       }),
   })
 )
 
 export const UpdateIpSchema = z.array(
   z.object({
-    id: z.number({ required_error: "IP ID is required" }),
-    regency_ip: z.number({ required_error: "Regency IP is required" }),
+    id: z.number({
+      error: (issue) =>
+        issue.input === undefined ? "IP ID is required" : undefined,
+    }),
+    regency_ip: z.number({
+      error: (issue) =>
+        issue.input === undefined ? "Regency IP is required" : undefined,
+    }),
     status: z
-      .number({ required_error: "Status is required" })
+      .number({
+        error: (issue) =>
+          issue.input === undefined ? "Status is required" : undefined,
+      })
       .refine((v) => [0, 1].includes(v), {
-        message: "Status must be one of: 0 (Rejected), 1 (Approved)",
+        error: "Status must be one of: 0 (Rejected), 1 (Approved)",
       }),
   })
 )
@@ -227,39 +319,54 @@ export const GetAnnualNeedResultSchema = PaginationQueriesSchema.extend({
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid activity_id param",
+      error: "invalid activity_id param",
     })
     .optional(),
   material_id: z
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid material_id param",
+      error: "invalid material_id param",
     })
     .optional(),
   entity_id: z
     .string()
     .transform((val) => Number(val))
     .refine((v) => !isNaN(v) && v > 0, {
-      message: "invalid entity_id param",
+      error: "invalid entity_id param",
     })
     .optional(),
 })
 
 export const CreateAnnualNeedResultSchema = z.object({
-  annual_need_id: z.number({ required_error: "Annual Need ID is required" }),
+  annual_need_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Annual Need ID is required" : undefined,
+  }),
 })
 
 export const ActivatedMinMaxRegencySchema = z.object({
-  program_plan_id: z.number({ required_error: "Program Plan ID is required" }),
+  program_plan_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Program Plan ID is required" : undefined,
+  }),
   annual_need_ids: z.array(
-    z.number({ required_error: "Annual Need ID is required" })
+    z.number({
+      error: (issue) =>
+        issue.input === undefined ? "Annual Need ID is required" : undefined,
+    })
   ),
 })
 
 export const ActivatedMinMaxProvinceSchema = z.object({
-  program_plan_id: z.number({ required_error: "Program Plan ID is required" }),
-  province_id: z.number({ required_error: "Province ID is required" }),
+  program_plan_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Program Plan ID is required" : undefined,
+  }),
+  province_id: z.number({
+    error: (issue) =>
+      issue.input === undefined ? "Province ID is required" : undefined,
+  }),
 })
 
 export type GetAnnualNeedResultQueries = z.infer<

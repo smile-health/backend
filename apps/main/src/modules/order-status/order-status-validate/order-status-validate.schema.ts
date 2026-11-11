@@ -1,5 +1,5 @@
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
-import z, { optional } from "zod"
+import { z, optional } from "zod"
 
 /* Base Schema */
 export const OrderStatusValidateSchema = z.object({

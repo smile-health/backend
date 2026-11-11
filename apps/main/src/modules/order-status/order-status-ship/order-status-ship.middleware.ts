@@ -78,7 +78,7 @@ export class OrderStatusShipMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.cannot_less_than_actual_shipment_date",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -93,7 +93,7 @@ export class OrderStatusShipMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.only_one_zero",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }

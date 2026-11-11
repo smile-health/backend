@@ -11,8 +11,8 @@ const preprocessNumber = (value: unknown) => {
   if (typeof value === "number") return value
   return undefined
 }
-const PositiveIntSchema = z.number().int().positive()
-const statusSchema = z.nativeEnum(STATUS)
+const PositiveIntSchema = z.int().positive()
+const statusSchema = z.enum(STATUS)
 
 /*
  * Validation Rules
@@ -32,7 +32,7 @@ export const ManufactureSchema = z.object({
       z.literal(""),
     ])
     .nullable(),
-  email: z.union([z.string().email().max(255), z.literal("")]).nullable(),
+  email: z.union([z.email().max(255), z.literal("")]).nullable(),
   address: z.string().max(255).nullable(),
   status: statusSchema.optional(),
   created_by: PositiveIntSchema.optional(),
@@ -74,7 +74,7 @@ export const ManufacturePaginatedRequestSchema = PaginationQueriesSchema.extend(
       )
       .optional(),
     sort_by: z.string().optional(),
-    sort_type: z.nativeEnum(SORT_TYPE).optional(),
+    sort_type: z.enum(SORT_TYPE).optional(),
   }
 )
 

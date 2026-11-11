@@ -1,7 +1,7 @@
 import { FLAG, STATUS } from "@/common/constants/general.js"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { DateSchema, IdParamsSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 
 /* Base Schema */
 export const AssetInventorySchema = z.object({
@@ -28,7 +28,7 @@ export const AssetInventorySchema = z.object({
   production_year: z.number(),
   program_ids: z.array(z.number()).nullish(),
   serial_number: z.string().min(1).max(255),
-  status: z.nativeEnum(STATUS),
+  status: z.enum(STATUS),
   updated_at: z.date(),
   updated_by: z.number().positive(),
   warranty_asset_vendor_id: z.number().positive().nullish(),
@@ -78,7 +78,7 @@ export const AddAssetInventoryDTOSchema = AssetInventorySchema.omit({
   created_at: true,
   updated_at: true,
   status: true,
-}).merge(AuditAssetInventoryDTOSchema)
+}).extend(AuditAssetInventoryDTOSchema.shape)
 
 export const EditAssetInventoryDTOSchema = AssetInventorySchema.omit({
   created_by: true,
@@ -86,11 +86,11 @@ export const EditAssetInventoryDTOSchema = AssetInventorySchema.omit({
   created_at: true,
   updated_at: true,
   status: true,
-}).merge(PartialAuditAssetInventoryDTOSchema)
+}).extend(PartialAuditAssetInventoryDTOSchema.shape)
 
 export const EditStatusAssetInventoryDTOSchema = AssetInventorySchema.pick({
   status: true,
-}).merge(PartialAuditAssetInventoryDTOSchema)
+}).extend(PartialAuditAssetInventoryDTOSchema.shape)
 
 /* Request Body Schema */
 export const AddAssetInventoryRequestSchema = AssetInventorySchema.omit({
@@ -130,9 +130,9 @@ export const GetAssetInventoryQueryParamsSchema = PaginationQueriesSchema.extend
   health_center_id: z.coerce.number().optional(),
   working_status_id: z.coerce.number().optional(),
   status: z.coerce.number().optional(),
-  is_device_related: z.preprocess(Number, z.nativeEnum(FLAG)).optional(),
-  is_warehouse: z.preprocess(Number, z.nativeEnum(FLAG)).optional(),
-  is_other: z.preprocess(Number, z.nativeEnum(FLAG)).optional(),
+  is_device_related: z.preprocess(Number, z.enum(FLAG)).optional(),
+  is_warehouse: z.preprocess(Number, z.enum(FLAG)).optional(),
+  is_other: z.preprocess(Number, z.enum(FLAG)).optional(),
   asset_type_ids: z.preprocess(
     (val) => {
       if (typeof val === "string") {

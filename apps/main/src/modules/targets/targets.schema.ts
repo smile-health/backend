@@ -40,16 +40,21 @@ export interface SchoolEntitySchema {
 
 export const TargetDataRequestSchema = z.object({
   nik: z
-    .string({ required_error: "NIK is required" })
-    .min(1, { message: "NIK cannot be empty" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "NIK is required" : undefined,
+    })
+    .min(1, {
+      error: "NIK cannot be empty",
+    })
     .refine((val) => val.trim() !== "", {
-      message: "NIK cannot be empty or whitespace",
+      error: "NIK cannot be empty or whitespace",
     }),
-  gender: z.number().int().min(1).max(2),
+  gender: z.int().min(1).max(2),
   date_of_birth: z
     .string()
     .refine((date) => moment(date, "YYYY-MM-DD", true).isValid(), {
-      message: "Invalid date format",
+      error: "Invalid date format",
     }),
   registered_village_id: z.number(),
   registered_postal_code: z.number(),
@@ -73,7 +78,7 @@ export const TargetDataRequestSchema = z.object({
 
 export const CreateTargetDataInternalSchema = z.object({
   nik: z.string(),
-  gender: z.number().int().min(1).max(2),
+  gender: z.int().min(1).max(2),
   date_of_birth: z.string(),
   registered_province_id: z.number(),
   registered_regency_id: z.number(),
@@ -200,10 +205,15 @@ export const CreateTargetDataSuccessResponseSchema = z.object({
 
 export const NIKParamSchema = z.object({
   nik: z
-    .string({ required_error: "NIK is required" })
-    .min(1, { message: "NIK cannot be empty" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "NIK is required" : undefined,
+    })
+    .min(1, {
+      error: "NIK cannot be empty",
+    })
     .refine((val) => val.trim() !== "", {
-      message: "NIK cannot be empty or whitespace",
+      error: "NIK cannot be empty or whitespace",
     }),
 })
 
@@ -288,10 +298,15 @@ export const SummaryDetailQuerySchema = PaginationQueriesSchema.extend({
 
 export const SummaryDetailRequestSchema = PaginationQueriesSchema.extend({
   target_group_id: z
-    .string({ required_error: "target_group_id is required" })
-    .min(1, { message: "target_group_id cannot be empty" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "target_group_id is required" : undefined,
+    })
+    .min(1, {
+      error: "target_group_id cannot be empty",
+    })
     .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-      message: "target_group_id must be a valid positive number",
+      error: "target_group_id must be a valid positive number",
     })
     .refine(
       (val) => {
@@ -306,18 +321,28 @@ export const SummaryDetailRequestSchema = PaginationQueriesSchema.extend({
 
 export const NikListRequestSchema = PaginationQueriesSchema.extend({
   id: z
-    .string({ required_error: "id is required" })
-    .min(1, { message: "id cannot be empty" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "id is required" : undefined,
+    })
+    .min(1, {
+      error: "id cannot be empty",
+    })
     .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-      message: "id must be a valid positive number",
+      error: "id must be a valid positive number",
     }),
   keyword: z.string().optional(),
   prefix: z.enum(["school", "village"]),
   category_id: z
-    .string({ required_error: "id is required" })
-    .min(1, { message: "id cannot be empty" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "id is required" : undefined,
+    })
+    .min(1, {
+      error: "id cannot be empty",
+    })
     .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-      message: "id must be a valid positive number",
+      error: "id must be a valid positive number",
     })
     .refine(
       (val) => {
@@ -348,19 +373,24 @@ export const GroupedSummaryRequestSchema = z.object({
 
 export const AddTargetDataRequestSchema = z.object({
   nik: z
-    .string({ required_error: "NIK is required" })
-    .min(1, { message: "NIK cannot be empty" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "NIK is required" : undefined,
+    })
+    .min(1, {
+      error: "NIK cannot be empty",
+    })
     .refine((val) => val.trim() !== "", {
-      message: "NIK cannot be empty or whitespace",
+      error: "NIK cannot be empty or whitespace",
     }),
   name: z.string(),
   date_of_birth: z
     .string()
     .refine((date) => moment(date, "YYYY-MM-DD", true).isValid(), {
-      message: "Invalid date format",
+      error: "Invalid date format",
     }),
   phone_number: z.string(),
-  gender: z.number().int().min(1).max(2),
+  gender: z.int().min(1).max(2),
   registered_postal_code: z.number().optional(),
   registered_village_id: z.number(),
   registered_address: z.string().optional().nullable(),

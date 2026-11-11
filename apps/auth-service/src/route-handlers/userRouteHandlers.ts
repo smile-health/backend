@@ -27,11 +27,11 @@ export const createUserHandler = async (
   if (!reqValidationResult.success) {
     logger.warn(
       `UserRouteHandlers.createUserHandler: Validation failed: ${JSON.stringify(
-        reqValidationResult.error.errors
+        reqValidationResult.error.issues
       )}`
     );
     const errorResponse = {
-      message: reqValidationResult.error.errors,
+      message: reqValidationResult.error.issues,
       code: 400,
     };
     return c.json(errorResponse, 400);
@@ -122,10 +122,10 @@ export const updateUserHandler = async (
 
   if (!reqParamValidationResult.success) {
     logger.warn(
-      `UserRouteHandlers.updateUserHandler: User Id validation failed: ${JSON.stringify(reqParamValidationResult.error.errors)}`
+      `UserRouteHandlers.updateUserHandler: User Id validation failed: ${JSON.stringify(reqParamValidationResult.error.issues)}`
     );
     const errorResponse = {
-      message: reqParamValidationResult.error.errors,
+      message: reqParamValidationResult.error.issues,
       code: 400,
     };
     return c.json(errorResponse, 400);
@@ -134,11 +134,11 @@ export const updateUserHandler = async (
   if (!reqBodyValidationResult.success) {
     logger.warn(
       `UserRouteHandlers.updateUserHandler: User data Validation failed: ${JSON.stringify(
-        reqBodyValidationResult.error.errors
+        reqBodyValidationResult.error.issues
       )}`
     );
     const errorResponse = {
-      message: reqBodyValidationResult.error.errors,
+      message: reqBodyValidationResult.error.issues,
       code: 400,
     };
     return c.json(errorResponse, 400);
@@ -198,10 +198,10 @@ export const getUserHandler = async (
 
   if (!reqValidationResult.success) {
     logger.warn(
-      `UserRouteHandlers.getUserHandler: Validation failed: ${JSON.stringify(reqValidationResult.error.errors)}`
+      `UserRouteHandlers.getUserHandler: Validation failed: ${JSON.stringify(reqValidationResult.error.issues)}`
     );
     const errorResponse = {
-      message: reqValidationResult.error.errors,
+      message: reqValidationResult.error.issues,
       code: 400,
     };
     return c.json(errorResponse, 400);
@@ -248,10 +248,10 @@ export const deleteUserHandler = async (
 
   if (!reqValidationResult.success) {
     logger.warn(
-      `UserRouteHandlers.deleteUserHandler: Validation failed: ${JSON.stringify(reqValidationResult.error.errors)}`
+      `UserRouteHandlers.deleteUserHandler: Validation failed: ${JSON.stringify(reqValidationResult.error.issues)}`
     );
     const errorResponse = {
-      message: reqValidationResult.error.errors,
+      message: reqValidationResult.error.issues,
       code: 400,
     };
     return c.json(errorResponse, 400);
@@ -299,10 +299,10 @@ export const updatePasswordEmailHandler = async (
 
   if (!reqValidationResult.success) {
     logger.warn(
-      `UserRouteHandlers.updatePasswordEmailHandler: Validation failed: ${JSON.stringify(reqValidationResult.error.errors)}`
+      `UserRouteHandlers.updatePasswordEmailHandler: Validation failed: ${JSON.stringify(reqValidationResult.error.issues)}`
     );
     const errorResponse = {
-      message: reqValidationResult.error.errors,
+      message: reqValidationResult.error.issues,
       code: 400,
     };
     return c.json(errorResponse, 400);

@@ -6,7 +6,7 @@ import { MaterialRepository } from "@/modules/material/material.repository.js"
 import { ValidationError } from "@smile-health/lib/error.js"
 import { collect } from "@smile-health/lib/utils.js"
 import { createMiddleware } from "hono/factory"
-import { ZodError, ZodIssueCode } from "zod"
+import { ZodError } from "zod"
 import { DinContext } from "./din.context.js"
 import { DinRepository } from "./din.repository.js"
 import { CreateOrderDinRequest, WSEntitiesSchema } from "./din.schemas.js"
@@ -50,7 +50,7 @@ export class DinMiddleware {
     c.addZodError = (message, path) => {
       const errors = c.get("zodErrors") ?? []
       errors.push({
-        code: ZodIssueCode.custom,
+        code: "custom",
         message,
         path,
       })

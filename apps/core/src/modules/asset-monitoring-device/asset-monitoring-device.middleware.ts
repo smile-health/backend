@@ -32,7 +32,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.serial_number"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -42,7 +42,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.asset_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -52,7 +52,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.asset_model"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -62,7 +62,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.manufacture"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -72,7 +72,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.asset_vendor"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -84,7 +84,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
             "asset_monitoring_device.label.asset_communication_provider"
           ),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -94,7 +94,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.asset_rtmd_status"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -104,7 +104,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.entity"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -114,7 +114,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.budget_year"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -124,7 +124,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.budget_source"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -134,7 +134,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.production_year"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -152,7 +152,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.required", {
             field: c.var.t("asset_monitoring_device.label.serial_number"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -163,7 +163,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.asset_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -173,7 +173,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.asset_model"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -183,7 +183,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.manufacture"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -193,7 +193,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.asset_vendor"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -208,7 +208,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
             "asset_monitoring_device.label.asset_communication_provider"
           ),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -221,7 +221,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.asset_rtmd_status"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -231,7 +231,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.entity"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -241,7 +241,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.budget_year"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -251,7 +251,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.budget_source"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -261,7 +261,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.required", {
           field: c.var.t("asset_monitoring_device.label.production_year"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -284,7 +284,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.exist", {
             field: c.var.t("asset_monitoring_device.label.serial_number"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -301,7 +301,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
             min: 2000,
             max: currentYear + 10,
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -313,7 +313,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.at_least_one_required", {
             field: c.var.t("asset_monitoring_device.label.contact_persons"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -324,7 +324,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
             field: c.var.t("asset_monitoring_device.label.contact_persons"),
             max: 3,
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -337,7 +337,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
                 "asset_monitoring_device.label.contact_person_name"
               ),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -349,7 +349,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
                 "asset_monitoring_device.label.contact_person_phone"
               ),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -357,7 +357,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           ctx.addIssue({
             path: ["contact_persons", index, "phone"],
             message: c.var.t("validator.invalid_phone_format"),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -375,7 +375,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_monitoring_device.label.asset_type"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -391,7 +391,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_monitoring_device.label.asset_model"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -407,7 +407,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_monitoring_device.label.manufacture"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -423,7 +423,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_monitoring_device.label.asset_vendor"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -442,7 +442,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
               "asset_monitoring_device.label.asset_communication_provider"
             ),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -458,7 +458,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_monitoring_device.label.asset_rtmd_status"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -474,7 +474,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_monitoring_device.label.entity"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -490,7 +490,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_monitoring_device.label.budget_source"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -513,7 +513,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
             manufacture: c.var.t("asset_monitoring_device.label.manufacture"),
             asset_model: c.var.t("asset_monitoring_device.label.asset_model"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -543,7 +543,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -553,7 +553,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_by"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -619,7 +619,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
             message: c.var.t("validator.cannot_delete_related", {
               field: c.var.t("asset_monitoring_device.label.device"),
             }) || "Device cannot be deleted because it is already related to an asset",
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -635,7 +635,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
             ctx.addIssue({
               path: ["ids"],
               message: `Asset monitoring device with ID ${id} is not exist`,
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
             continue
           }
@@ -645,7 +645,7 @@ export class AssetMonitoringDeviceMiddleware extends BaseMiddleware {
             ctx.addIssue({
               path: ["ids"],
               message: `Asset monitoring device with ID ${id} cannot be deleted because it is already related to an asset`,
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
         }

@@ -17,7 +17,7 @@ export const ErrorResponseSchema = z.object({
   ]),
 });
 
-export const ActionByIdParamSchema = z.string().uuid().openapi({
+export const ActionByIdParamSchema = z.guid().openapi({
   description: "User ID to take action",
   example: "cec29cd1-9ac2-4f1f-8b48-ed60b525c046",
 });

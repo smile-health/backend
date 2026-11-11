@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-const dateSchema = z.string().date().optional()
+const dateSchema = z.iso.date().optional()
 
 export const GetEmonevProvinceSchema = z.object({
   year: z.coerce.number().int(),

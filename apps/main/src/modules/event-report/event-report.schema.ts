@@ -11,7 +11,9 @@ export const EventReportSchema = z.object({
   has_order: z.number().min(0).max(1),
   arrived_date: z
     .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, { message: "validator.date" })
+    .regex(/^\d{4}-\d{2}-\d{2}$/, {
+      error: "validator.date",
+    })
     .refine((val) => {
       const date = new Date(val)
       return !isNaN(date.getTime())
@@ -98,7 +100,9 @@ export const CreateEventReportSchema = EventReportSchema.omit({
           batch_code: z.string().min(1).max(255).nullish(),
           expired_date: z
             .string()
-            .regex(/^\d{4}-\d{2}-\d{2}$/, { message: "validator.date" })
+            .regex(/^\d{4}-\d{2}-\d{2}$/, {
+              error: "validator.date",
+            })
             .refine((val) => {
               const date = new Date(val)
               return !isNaN(date.getTime())
@@ -114,14 +118,14 @@ export const CreateEventReportSchema = EventReportSchema.omit({
   .superRefine((data, ctx) => {
     if (data.has_order === 1 && !data.order_id) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: `validator.required`,
         path: ["order_id"],
       })
     }
     if (data.has_order === 0 && !data.do_number) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: `validator.required`,
         path: ["do_number"],
       })
@@ -132,7 +136,7 @@ export const CreateEventReportSchema = EventReportSchema.omit({
       data.order_id
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: `validator.is_null`,
         path: [data.has_order === 0 ? "order_id" : "do_number"],
       })
@@ -156,7 +160,7 @@ export const UpdateLinkEventReportSchema = z.object({
         }
       },
       {
-        message: "validator.invalid_url",
+        error: "validator.invalid_url",
       }
     ),
 })
@@ -196,47 +200,65 @@ export const GetListEventReportSchema = PaginationQueriesSchema.extend({
   order_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid order_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid order_id",
+    })
     .optional(),
   status: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid status" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid status",
+    })
     .optional(),
   do_number: z.string().optional(),
   entity_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid entity_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid entity_id",
+    })
     .optional(),
   entity_tag_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid entity_tag_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid entity_tag_id",
+    })
     .optional(),
   regency_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid regency_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid regency_id",
+    })
     .optional(),
   province_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid province_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid province_id",
+    })
     .optional(),
   from_arrived_date: z.coerce
     .date()
-    .refine((value) => value, { message: "validator.date" })
+    .refine((value) => value, {
+      error: "validator.date",
+    })
     .optional(),
   to_arrived_date: z.coerce
     .date()
-    .refine((value) => value, { message: "validator.date" })
+    .refine((value) => value, {
+      error: "validator.date",
+    })
     .optional(),
   order_id_do_number: z.string().optional(),
   id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid id",
+    })
     .optional(),
 })
 

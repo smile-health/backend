@@ -5,11 +5,13 @@ export const PushLoggerHistoryDTOSchema = z.array(z.object({
   device_id: z.string().min(1, 'Device ID is required'),
   lat: z.number().optional(),
   lon: z.number().optional(),
-  curr_temp: z.number({ required_error: 'Current temperature is required' }),
+  curr_temp: z.number({
+      error: (issue) => issue.input === undefined ? 'Current temperature is required' : undefined
+}),
   actual_date: z.string().optional(),
   status_device: z.boolean().optional(),
-  battery: z.number().int().optional(),
-  signal: z.number().int().optional(),
+  battery: z.int().optional(),
+  signal: z.int().optional(),
   power: z.boolean().optional(),
   humidity: z.number().optional(),
 }))
@@ -19,11 +21,13 @@ export const PushSingleLoggerHistoryDTOSchema = z.object({
   device_id: z.string().min(1, 'Device ID is required'),
   lat: z.number().optional(),
   lng: z.number().optional(),
-  curr_temp: z.number({ required_error: 'Current temperature is required' }),
+  curr_temp: z.number({
+      error: (issue) => issue.input === undefined ? 'Current temperature is required' : undefined
+}),
   actual_date: z.string().optional(),
   status_device: z.boolean().optional(),
-  battery: z.number().int().optional(),
-  signal: z.number().int().optional(),
+  battery: z.int().optional(),
+  signal: z.int().optional(),
   power: z.boolean().optional(),
 })
 
@@ -36,8 +40,8 @@ export const PushLoggerHistoryResponseSchema = z.object({
     curr_temp: z.number(),
     actual_date: z.string().optional(),
     status_device: z.boolean().optional(),
-    battery: z.number().int().optional(),
-    signal: z.number().int().optional(),
+    battery: z.int().optional(),
+    signal: z.int().optional(),
     power: z.boolean().optional(),
     humidity: z.number().optional(),
     message: z.string(),

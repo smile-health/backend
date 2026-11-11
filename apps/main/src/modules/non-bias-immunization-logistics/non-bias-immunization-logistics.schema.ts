@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 
 export const NonBiasCalculateDetailQuerySchema = z.object({
   village_id: z.coerce.number().int().positive(),

@@ -1,5 +1,5 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export type ListStockConsumptionDTO = {
   entity_id: number | null
@@ -155,21 +155,21 @@ export const GetListStockConsumptionSchema = PaginationQueriesSchema.extend({
     .string()
     .transform((v) => Number(v))
     .refine((v) => !isNaN(v), {
-      message: "INVALID PARAM activity_id",
+      error: "INVALID PARAM activity_id",
     })
     .optional(),
   vendor_id: z
     .string()
     .transform((v) => Number(v))
     .refine((v) => !isNaN(v), {
-      message: "INVALID PARAM vendor_id",
+      error: "INVALID PARAM vendor_id",
     })
     .optional(),
   customer_id: z
     .string()
     .transform((v) => Number(v))
     .refine((v) => !isNaN(v), {
-      message: "INVALID PARAM customer_id",
+      error: "INVALID PARAM customer_id",
     })
     .optional(),
 })
@@ -179,19 +179,19 @@ export const GetDetailStockConsumptionSchema = z.object({
     .string()
     .transform((v) => Number(v))
     .refine((v) => !isNaN(v), {
-      message: "INVALID PARAM material_id",
+      error: "INVALID PARAM material_id",
     }),
   vendor_id: z
     .string()
     .transform((v) => Number(v))
     .refine((v) => !isNaN(v), {
-      message: "INVALID PARAM vendor_id",
+      error: "INVALID PARAM vendor_id",
     }),
   customer_id: z
     .string()
     .transform((v) => Number(v))
     .refine((v) => !isNaN(v), {
-      message: "INVALID PARAM customer_id",
+      error: "INVALID PARAM customer_id",
     }),
 })
 

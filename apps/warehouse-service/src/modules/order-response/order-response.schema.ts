@@ -100,7 +100,7 @@ export const OrderResponsePaginatedResponseSchema = z
       type: z.array(z.object({ key: z.string(), label: z.string() })),
     }),
   })
-  .merge(PaginationSchema)
+  .extend(PaginationSchema.shape)
 
 export type OrderResponsePaginatedResponse = z.infer<
   typeof OrderResponsePaginatedResponseSchema

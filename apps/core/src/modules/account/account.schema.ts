@@ -2,17 +2,23 @@ import { REGEX_PASS } from "@/common/constants/users.js"
 import { Users } from "@/common/infrastructure/database/types/db.js"
 import { conditionsMessage } from "@smile-health/lib/zod.js"
 import { Selectable } from "kysely"
-import z from "zod"
+import { z } from "zod"
 
 export const LoginSchema = z.object({
   username: z
-    .string({ required_error: "Username field is required" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "Username field is required" : undefined,
+    })
     .min(4, "Invalid username or password")
     .superRefine((val, c) => {
       conditionsMessage(c, "Username field is required", val.length == 0)
     }),
   password: z
-    .string({ required_error: "Password field is required" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "Password field is required" : undefined,
+    })
     .min(8, "Invalid username or password")
     .max(255, "Password provided exceeds the maximum length of 255 characters.")
     .superRefine((val, c) => {
@@ -27,14 +33,24 @@ export const ChangePasswordSchema = LoginSchema.pick({
 })
   .extend({
     new_password: z
-      .string({ required_error: "New Password field is required" })
+      .string({
+        error: (issue) =>
+          issue.input === undefined
+            ? "New Password field is required"
+            : undefined,
+      })
       .min(8, "Password must be at least 8 characters")
       .max(
         255,
         "Password provided exceeds the maximum length of 255 characters."
       ),
     password_confirmation: z
-      .string({ required_error: "Password Confirmation field is requried" })
+      .string({
+        error: (issue) =>
+          issue.input === undefined
+            ? "Password Confirmation field is requried"
+            : undefined,
+      })
       .min(8, "Password must be at least 8 characters")
       .max(
         255,

@@ -1,6 +1,6 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { OptionalIdSchema, OptionalIdsSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 import moment from "moment"
 
 // Date validation schema
@@ -11,7 +11,9 @@ const dateSchema = z
       if (!v) return true
       return moment(v).isValid()
     },
-    { message: "validator.date" }
+    {
+        error: "validator.date"
+    }
   )
   .transform((val) => moment(val).format("YYYY-MM-DD HH:mm:ss"))
   .nullish()
@@ -31,7 +33,9 @@ export const GetDisposalStocksQueriesSchema = PaginationQueriesSchema.extend({
   page: OptionalIdSchema.default("1").transform(Number).nullish(),
   material_level_id: OptionalIdSchema.default("2").transform(Number).nullish(),
   only_have_qty: z
-    .enum(["0", "1"], { message: "validator.only_0_or_1" })
+    .enum(["0", "1"], {
+        error: "validator.only_0_or_1"
+    })
     .default("1")
     .transform(Number)
     .nullish(),

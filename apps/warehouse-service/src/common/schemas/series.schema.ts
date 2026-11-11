@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 
 // Series configuration schema
 export const SeriesConfigSchema = z.object({

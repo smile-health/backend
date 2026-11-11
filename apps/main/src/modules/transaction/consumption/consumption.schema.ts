@@ -1,5 +1,5 @@
 import { DateSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 
 /*
  * Schema
@@ -10,7 +10,7 @@ const preprocessNumber = (value: unknown) => {
   if (typeof value === "number") return value
   return undefined
 }
-const PositiveIntSchema = z.number().int().positive()
+const PositiveIntSchema = z.int().positive()
 
 /*
  * Validation Rules
@@ -29,35 +29,35 @@ const PatientSchema = z.object({
       })
     )
     .optional(),
-  gender: z.number().int().optional().nullable(),
+  gender: z.int().optional().nullable(),
   birth_date: DateSchema.optional().nullable(),
-  marital_status: z.number().int().optional().nullable(),
-  religion_id: z.number().int().optional().nullable(),
-  ethnic_id: z.number().int().optional().nullable(),
+  marital_status: z.int().optional().nullable(),
+  religion_id: z.int().optional().nullable(),
+  ethnic_id: z.int().optional().nullable(),
   residential_address: z.string().optional().nullable(),
-  education_id: z.number().int().optional().nullable(),
-  occupation_id: z.number().int().optional().nullable(),
+  education_id: z.int().optional().nullable(),
+  occupation_id: z.int().optional().nullable(),
   address: z.string().optional().nullable(),
-  province_id: z.number().int().optional().nullable(),
-  city_id: z.number().int().optional().nullable(),
-  regency_id: z.number().int().optional().nullable(),
-  subdistrict_id: z.number().int().optional().nullable(),
-  village_id: z.number().int().optional().nullable(),
+  province_id: z.int().optional().nullable(),
+  city_id: z.int().optional().nullable(),
+  regency_id: z.int().optional().nullable(),
+  subdistrict_id: z.int().optional().nullable(),
+  village_id: z.int().optional().nullable(),
   pos_code: z.string().optional().nullable(),
   rt: z.string().optional().nullable(),
   rw: z.string().optional().nullable(),
-  residential_province_id: z.number().int().optional().nullable(),
-  residential_regency_id: z.number().int().optional().nullable(),
-  residential_subdistrict_id: z.number().int().optional().nullable(),
-  residential_village_id: z.number().int().optional().nullable(),
-  reaction_id: z.number().int().optional().nullable(),
+  residential_province_id: z.int().optional().nullable(),
+  residential_regency_id: z.int().optional().nullable(),
+  residential_subdistrict_id: z.int().optional().nullable(),
+  residential_village_id: z.int().optional().nullable(),
+  reaction_id: z.int().optional().nullable(),
   other_reaction: z.string().optional().nullable(),
-  is_diagnose_before: z.number().int().optional().nullable(),
+  is_diagnose_before: z.int().optional().nullable(),
   diagnosis_date: z.date().optional().nullable(),
-  month_before: z.number().int().optional().nullable(),
-  year_before: z.number().int().optional().nullable(),
-  received_medicine: z.number().int().optional().nullable(),
-  received_vaccine: z.number().int().optional().nullable(),
+  month_before: z.int().optional().nullable(),
+  year_before: z.int().optional().nullable(),
+  received_medicine: z.int().optional().nullable(),
+  received_vaccine: z.int().optional().nullable(),
   notes: z.string().optional().nullable(),
 })
 

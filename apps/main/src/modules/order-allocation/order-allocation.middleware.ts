@@ -184,7 +184,7 @@ export class OrderAllocationMiddleware {
   ) => {
     if (data.customer_id === data.vendor_id) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.not_same_value", {
           field1: "Customer",
           field2: "Vendor",
@@ -210,7 +210,7 @@ export class OrderAllocationMiddleware {
     const vendor = vendors.find((vendor) => vendor.id === data.vendor_id)
     if (!vendor) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["customer_vendor"],
       })
@@ -228,7 +228,7 @@ export class OrderAllocationMiddleware {
     for (const [index, orderItem] of data.order_items.entries()) {
       if (materialIdSet.has(orderItem.material_id)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.duplicated",
           path: ["order_items", toString(index), "material_id"],
         })
@@ -237,7 +237,7 @@ export class OrderAllocationMiddleware {
       for (const [stockIndex, stockItem] of orderItem.stocks.entries()) {
         if (stockIdSet.has(stockItem.stock_id)) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.duplicated",
             path: [
               "order_items",
@@ -266,7 +266,7 @@ export class OrderAllocationMiddleware {
 
     if (!moment(requiredDate).isSameOrAfter(now)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.order_required_date",
         path: ["required_date"],
       })
@@ -283,7 +283,7 @@ export class OrderAllocationMiddleware {
 
     if (!moment(estimatedDate).isSameOrAfter(now)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "Estimated date cannot be before today",
         path: ["estimated_date"],
       })
@@ -307,7 +307,7 @@ export class OrderAllocationMiddleware {
 
     if (material && mod !== 0) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.order_item_qty_not_multiple_of_ucpud", {
           material: material?.name,
         }),
@@ -327,7 +327,7 @@ export class OrderAllocationMiddleware {
         Number(material?.consumption_unit_per_distribution_unit)
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.not_less_than", {
           field1: c.var.t("common.qty"),
           field2: c.var.t(
@@ -359,7 +359,7 @@ export class OrderAllocationMiddleware {
 
     if (!material) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.inactive",
         path: ["order_items", toString(index), "material_id"],
       })
@@ -386,7 +386,7 @@ export class OrderAllocationMiddleware {
 
     if (!record) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: `validator.not_exist`,
         path: [
           "order_items",
@@ -400,7 +400,7 @@ export class OrderAllocationMiddleware {
 
     if (record?.qty! < orderedQty) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.max_order_quantity", {
           value: record?.qty,
         }),
@@ -417,7 +417,7 @@ export class OrderAllocationMiddleware {
     const totalAllocatedQtyTemp = record?.allocated_qty! + orderedQty
     if (record?.qty! < totalAllocatedQtyTemp) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.check_stock_allocation_qty", {
           value: record?.qty! - record?.allocated_qty!,
         }),
@@ -440,7 +440,7 @@ export class OrderAllocationMiddleware {
   ) => {
     if (!material) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["order_items", toString(index), "material_id"],
       })
@@ -459,7 +459,7 @@ export class OrderAllocationMiddleware {
 
     if (!isVendorExist) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["vendor_id"],
       })
@@ -467,7 +467,7 @@ export class OrderAllocationMiddleware {
 
     if (!isCustomerExist) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["customer_id"],
       })
@@ -485,7 +485,7 @@ export class OrderAllocationMiddleware {
     if (!isActivityExist) {
       const issuePath = typeof path === "string" ? [path] : path
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: issuePath,
       })
@@ -509,7 +509,7 @@ export class OrderAllocationMiddleware {
       (isMaterialExist?.is_temperature_sensitive == 0 && orderStatusId != null)
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.check_material_is_temperature_sensitive", {
           field: "order_stock_status_id",
           value: isMaterialExist?.is_temperature_sensitive,

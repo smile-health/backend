@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import { STATUS } from "@/common/constants/general.js"
@@ -25,7 +25,7 @@ export const UpdateAssetVendorParamSchema = IdParamsSchema
 
 /* Request Body Schema */
 export const EditStatusAssetVendorRequestSchema = z.object({
-  status: z.nativeEnum(STATUS),
+  status: z.enum(STATUS),
 })
 
 /* Params Type */

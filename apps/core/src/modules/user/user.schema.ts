@@ -25,7 +25,7 @@ import { conditionsMessage } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import { Selectable } from "kysely"
 import moment from "moment"
-import z from "zod"
+import { z } from "zod"
 
 export function extractJSONFromString(str) {
   const jsonRegex = /{(?:[^{}]|"(?:\\.|[^"\\])*")*}/g
@@ -59,7 +59,11 @@ export function stringNumber() {
 }
 
 export function stringMinMax(min?: number, max?: number) {
-  return z.coerce.string().min(min!).max(max!)
+  // zod 4: .min(undefined) menolak semua input, jadi batas hanya dipasang kalau diisi.
+  let schema = z.coerce.string()
+  if (min !== undefined) schema = schema.min(min)
+  if (max !== undefined) schema = schema.max(max)
+  return schema
 }
 
 export function positiveNumber() {
@@ -72,7 +76,7 @@ export function splitNumberArray() {
     z.coerce
       .string()
       .refine((val) => val.split("|").every((num) => !isNaN(Number(num))), {
-        message: "validator.string",
+        error: "validator.string",
       })
       .transform((val) => (val === "" ? [] : val.split("|").map(Number)))
   )
@@ -157,7 +161,7 @@ export const general = z.object({
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
   integration_client_id: z.number().optional(),
-  external_properties: z.record(z.any()).optional(),
+  external_properties: z.record(z.string(), z.any()).optional(),
 })
 
 export const profile = z.object({
@@ -214,7 +218,7 @@ export const UserQueriesSchema = PaginationQueriesSchema.omit({
           .filter((item) => item !== "")
           .every((num) => !isNaN(Number(num))),
       {
-        message: "INVALID_PROVINCE_ID_PARAM",
+        error: "INVALID_PROVINCE_ID_PARAM",
       }
     )
     .transform((val) => val.split(",").filter((item) => item !== ""))
@@ -228,7 +232,7 @@ export const UserQueriesSchema = PaginationQueriesSchema.omit({
           .filter((item) => item !== "")
           .every((num) => !isNaN(Number(num))),
       {
-        message: "INVALID_REGENCY_ID_PARAM",
+        error: "INVALID_REGENCY_ID_PARAM",
       }
     )
     .transform((val) => val.split(",").filter((item) => item !== ""))
@@ -242,8 +246,7 @@ export const UserQueriesSchema = PaginationQueriesSchema.omit({
     .transform((str) => new Date(str))
     .optional(),
   user_uuid: z
-    .string()
-    .uuid()
+    .guid()
     .superRefine((val, cfx) => {
       if (val) {
         conditionsMessage(
@@ -287,7 +290,7 @@ export const UpdateStatusSchema = z.object({
     const existVal = Object.values(USER_STATUS).indexOf(val)
     if (existVal === -1) {
       c.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.string",
         path: ["status"],
       })
@@ -300,7 +303,9 @@ export const UpdateLastLoginSchema = z.object({
   last_device: z.coerce.string().nullish(),
   last_login: z.coerce
     .date()
-    .refine((value) => value, { message: "validate.date" })
+    .refine((value) => value, {
+      error: "validate.date",
+    })
     .nullish(),
 })
 export type UpdateLastLoginRequest = z.infer<typeof UpdateLastLoginSchema>
@@ -322,7 +327,7 @@ export const ImportUserRowSchema = (c: Context) => {
     [columnExcel.Username]: stringMinMax(4, 255).superRefine((val, c) => {
       if (!containsOnlyUnderscoresPeriod(val) || !hasWhiteSpace(val)) {
         c.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.string",
         })
       }
@@ -334,7 +339,7 @@ export const ImportUserRowSchema = (c: Context) => {
         const existVal = USER_VIEW_ONLY.includes(val?.toLowerCase())
         if (!existVal) {
           c.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.string",
           })
         }
@@ -353,7 +358,7 @@ export const ImportUserRowSchema = (c: Context) => {
         const existVal = ["yes", "no"].includes(val?.toLowerCase())
         if (!existVal) {
           c.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.string",
           })
         }
@@ -370,7 +375,7 @@ export const ImportUserRowSchema = (c: Context) => {
     [columnExcel.Password]: stringMinMax(8, 255).superRefine((val, c) => {
       if (val.length < 8 || !REGEX_PASS.test(val)) {
         c.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.password",
         })
       }

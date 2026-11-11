@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 
 /* Base Schema */
@@ -93,12 +93,12 @@ export const ChangeOrderItemStockAllocateDTOSchema =
 export const AddOrderItemStockAllocateDTOSchema =
   ChangeOrderItemStockAllocateRequestSchema.omit({
     id: true,
-  }).merge(
+  }).extend(
     OrderStatusAllocateSchema.pick({
       material_id: true,
       order_id: true,
       order_item_kfa_id: true,
-    })
+    }).shape
   )
 
 export const ChangeOrderStatusAllocateDTOSchema =

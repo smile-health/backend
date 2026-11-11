@@ -29,7 +29,9 @@ export const CreateOrderAllocationSchema = OrderSchema.omit({
   activity_id: z.number().positive(),
   required_date: z.coerce
     .date()
-    .refine((value) => value, { message: "validator.date" })
+    .refine((value) => value, {
+      error: "validator.date",
+    })
     .nullish()
     .optional(),
   estimated_date: z
@@ -38,7 +40,7 @@ export const CreateOrderAllocationSchema = OrderSchema.omit({
     .refine(
       (value) => value instanceof Date || value === null || value === undefined,
       {
-        message: "validator.date",
+        error: "validator.date",
       }
     ),
 

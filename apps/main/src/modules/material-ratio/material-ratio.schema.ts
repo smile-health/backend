@@ -1,7 +1,7 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { IdSchema } from "@smile-health/lib/types/param.js"
 import { parseCommaSeparatedIds } from "@smile-health/lib/utils.js"
-import z from "zod"
+import { z } from "zod"
 
 /**
  * Transforms an optional comma-separated string of IDs into an array of numbers.

@@ -14,7 +14,7 @@ export const GetImportLogQueriesSchema = PaginationQueriesSchema.extend({
 
   if (hasStart && hasEnd && (val.start_date as Date) > (val.end_date as Date)) {
     c.addIssue({
-      code: z.ZodIssueCode.custom,
+      code: "custom",
       message: "validator.end_date_before_start_date",
       path: ["end_date"],
     })
@@ -22,7 +22,7 @@ export const GetImportLogQueriesSchema = PaginationQueriesSchema.extend({
 
   if (hasStart && !hasEnd) {
     c.addIssue({
-      code: z.ZodIssueCode.custom,
+      code: "custom",
       message: "validator.required",
       path: ["end_date"],
     })
@@ -30,7 +30,7 @@ export const GetImportLogQueriesSchema = PaginationQueriesSchema.extend({
 
   if (!hasStart && hasEnd) {
     c.addIssue({
-      code: z.ZodIssueCode.custom,
+      code: "custom",
       message: "validator.required",
       path: ["start_date"],
     })
@@ -40,16 +40,16 @@ export type GetImportLogQueries = z.infer<typeof GetImportLogQueriesSchema>
 
 export const PatientImportRequestSchema = z.object({
   name: z.string({
-    invalid_type_error: "validator.string",
-    required_error: "validator.required",
+    error: (issue) =>
+      issue.input === undefined ? "validator.required" : "validator.string",
   }),
   identity_type: z.string({
-    invalid_type_error: "validator.string",
-    required_error: "validator.required",
+    error: (issue) =>
+      issue.input === undefined ? "validator.required" : "validator.string",
   }),
   identity_number: z.string({
-    invalid_type_error: "validator.string",
-    required_error: "validator.required",
+    error: (issue) =>
+      issue.input === undefined ? "validator.required" : "validator.string",
   }),
   date_of_birth: z.preprocess(
     (v) => {
@@ -72,40 +72,96 @@ export const PatientImportRequestSchema = z.object({
     },
     z
       .string({
-        invalid_type_error: "validator.string",
-        required_error: "validator.required",
+        error: (issue) =>
+          issue.input === undefined ? "validator.required" : "validator.string",
       })
-      .regex(/^\d{4}-\d{2}-\d{2}$/, { message: "validator.date" })
+      .regex(/^\d{4}-\d{2}-\d{2}$/, {
+        error: "validator.date",
+      })
   ),
   gender: z.string({
-    invalid_type_error: "validator.string",
-    required_error: "validator.required",
+    error: (issue) =>
+      issue.input === undefined ? "validator.required" : "validator.string",
   }),
-  status: z.string({ invalid_type_error: "validator.string" }).nullish(),
-  education: z.string({ invalid_type_error: "validator.string" }).nullish(),
-  occupation: z.string({ invalid_type_error: "validator.string" }).nullish(),
-  religion: z.string({ invalid_type_error: "validator.string" }).nullish(),
-  ethnicity: z.string({ invalid_type_error: "validator.string" }).nullish(),
+  status: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
+    .nullish(),
+  education: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
+    .nullish(),
+  occupation: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
+    .nullish(),
+  religion: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
+    .nullish(),
+  ethnicity: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
+    .nullish(),
   phone_number: z
     .string({
-      invalid_type_error: "validator.string",
-      required_error: "validator.required",
+      error: (issue) =>
+        issue.input === undefined ? "validator.required" : "validator.string",
     })
-    .regex(/^[1-9]\d{7,14}$/, { message: "validator.string" }),
-  province: z.string({ invalid_type_error: "validator.string" }).nullish(),
-  city: z.string({ invalid_type_error: "validator.string" }).nullish(),
-  address: z.string({ invalid_type_error: "validator.string" }).nullish(),
+    .regex(/^[1-9]\d{7,14}$/, {
+      error: "validator.string",
+    }),
+  province: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
+    .nullish(),
+  city: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
+    .nullish(),
+  address: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
+    .nullish(),
   province_residence: z
-    .string({ invalid_type_error: "validator.string" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
     .nullish(),
   city_residence: z
-    .string({ invalid_type_error: "validator.string" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
     .nullish(),
   residential_address: z
-    .string({ invalid_type_error: "validator.string" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
     .nullish(),
   dengue_history: z
-    .string({ invalid_type_error: "validator.string" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
     .nullish(),
   month: z
     .union([z.string(), z.number()])
@@ -116,7 +172,10 @@ export const PatientImportRequestSchema = z.object({
     .nullish()
     .transform((v) => (v == null || v === "" ? null : Number(v))),
   vaccination_history: z
-    .string({ invalid_type_error: "validator.string" })
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? undefined : "validator.string",
+    })
     .nullish(),
 })
 export type PatientImportRequestDTO = z.infer<typeof PatientImportRequestSchema>

@@ -20,6 +20,7 @@ import { Hono } from "hono"
 import env from "./config/env.js"
 import moment from "moment"
 import { quickSetupService } from "@smile-health/lib/tracing-config"
+import { requestBodyLimit } from "@smile-health/lib/middlewares/body-limit.middleware.js"
 
 // construct app
 const app = new Hono()
@@ -34,6 +35,7 @@ app.get("/health", (c) => {
 })
 
 app.use(httpLogger)
+app.use("*", requestBodyLimit())
 
 // Locale middleware with tracing
 app.use("*", middlewareTracer.traceMiddleware("locale"), async (c, next) => {

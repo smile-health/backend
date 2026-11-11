@@ -1,5 +1,5 @@
 import { Context } from "hono"
-import z from "zod"
+import { z } from "zod"
 
 export const validateRequiredFields = <T extends Record<string, any>>(
   c: Context,
@@ -15,7 +15,7 @@ export const validateRequiredFields = <T extends Record<string, any>>(
         message: c.var.t("validator.required", {
           field: c.var.t(`${translationPrefix}.label.${String(field)}`),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -35,6 +35,6 @@ export const addValidationIssue = (
       field: c.var.t(translationFieldKey),
       ...params,
     }),
-    code: z.ZodIssueCode.custom,
+    code: "custom",
   })
 }

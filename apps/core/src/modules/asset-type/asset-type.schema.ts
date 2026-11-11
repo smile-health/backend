@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { FLAG } from "@/common/constants/general"
@@ -85,7 +85,7 @@ export const AddAssetTypeDTOSchema = AssetTypeSchema.pick({
   min_temperature: true,
   max_temperature: true,
 })
-  .merge(AuditAssetTypeDTOSchema)
+  .extend(AuditAssetTypeDTOSchema.shape)
   .extend({
     integration_client_id: z.number().nullish(),
   })
@@ -96,7 +96,7 @@ export const EditAssetTypeDTOSchema = AssetTypeSchema.pick({
   min_temperature: true,
   max_temperature: true,
 })
-  .merge(PartialAuditAssetTypeDTOSchema)
+  .extend(PartialAuditAssetTypeDTOSchema.shape)
   .extend({
     integration_client_id: z.number().nullish(),
   })
@@ -104,7 +104,7 @@ export const EditAssetTypeDTOSchema = AssetTypeSchema.pick({
 export const AddAssetTypeWorkspaceDTOSchema = AssetTypeSchema.pick({
   asset_type_id: true,
   workspace_id: true,
-}).merge(AuditAssetTypeDTOSchema)
+}).extend(AuditAssetTypeDTOSchema.shape)
 
 /* Request Body Schema */
 export const AddAssetTypeRequestSchema = AssetTypeSchema.pick({
@@ -137,7 +137,7 @@ export const AddAssetTypeRequestSchema = AssetTypeSchema.pick({
     )
     .optional(),
   integration_client_id: z.number().nullish(),
-  external_properties: z.record(z.any()).nullish(),
+  external_properties: z.record(z.string(), z.any()).nullish(),
 })
 
 export const AddAssetTypeImportSchema = AssetTypeSchema.pick({
@@ -155,6 +155,7 @@ export const AddAssetTypeImportSchema = AssetTypeSchema.pick({
       z.null(),
       z.undefined(),
     ])
+    .optional()
     .transform((val) => {
       if (val === "0" || val === 0) return 0
       if (val === "1" || val === 1) return 1
@@ -165,7 +166,7 @@ export const AddAssetTypeImportSchema = AssetTypeSchema.pick({
 
 export const EditAssetTypeRequestSchema = AddAssetTypeRequestSchema.extend({
   integration_client_id: z.number().nullish(),
-  external_properties: z.record(z.any()).nullish(),
+  external_properties: z.record(z.string(), z.any()).nullish(),
 })
 
 export const ImportAssetTypeRowRequestSchema = z.object({
@@ -174,6 +175,7 @@ export const ImportAssetTypeRowRequestSchema = z.object({
   ["temperature_thresholds"]: z
     .union([z.string(), z.number(), z.null(), z.undefined()])
     .nullable()
+    .optional()
     .transform((val) => {
       if (val === null || val === undefined || val === "") {
         return null
@@ -190,6 +192,7 @@ export const ImportAssetTypeRowRequestSchema = z.object({
       z.null(),
       z.undefined(),
     ])
+    .optional()
     .transform((val) => {
       if (val === "0" || val === 0) return 0
       if (val === "1" || val === 1) return 1
@@ -235,15 +238,15 @@ export const DownloadTemplateSchema = z.object({
   type_download_template: z
     .preprocess(
       (val) => (typeof val === "string" ? Number(val) : val),
-      z.nativeEnum(TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE)
+      z.enum(TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE)
     )
-    .default(TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE.IS_CCE),
+    .prefault(TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE.IS_CCE),
 })
 
 export const ImportTemplateSchema = z.object({
   type_download_template: z.preprocess(
     (val) => (typeof val === "string" ? Number(val) : val),
-    z.nativeEnum(TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE)
+    z.enum(TYPE_DOWNLOAD_TEMPLATE_ASSET_TYPE)
   ),
 })
 
@@ -254,24 +257,32 @@ export const GetAssetTypeParamSchema = IdParamsSchema
 
 export const GetAssetTypesQueryParamsSchema = PaginationQueriesSchema.extend({
   is_cce: z
-    .enum(["0", "1"], { message: "INVALID REQUEST IS_CCE" })
+    .enum(["0", "1"], {
+      error: "INVALID REQUEST IS_CCE",
+    })
     .transform((val) => Number(val))
     .optional(),
   type_by: z.enum(["rtmd"]).optional(),
   sort_by: z
-    .enum(["name", "updated_at"], { message: "INVALID REQUEST SORT_BY" })
+    .enum(["name", "updated_at"], {
+      error: "INVALID REQUEST SORT_BY",
+    })
     .default("updated_at"),
   sort_type: z
-    .enum(["asc", "desc"], { message: "INVALID REQUEST SORT_TYPE" })
+    .enum(["asc", "desc"], {
+      error: "INVALID REQUEST SORT_TYPE",
+    })
     .default("desc"),
   integration_client_id: z.number().nullish(),
   is_related_asset: z
-    .enum(["0", "1"], { message: "INVALID REQUEST IS_RELATED_ASSET" })
+    .enum(["0", "1"], {
+      error: "INVALID REQUEST IS_RELATED_ASSET",
+    })
     .transform((val) => Number(val))
     .optional(),
   dashboard_filter: z.string().nullish(),
-  is_warehouse: z.preprocess(Number, z.nativeEnum(FLAG)).optional(),
-  is_cce_warehouse: z.preprocess(Number, z.nativeEnum(FLAG)).optional(),
+  is_warehouse: z.preprocess(Number, z.enum(FLAG)).optional(),
+  is_cce_warehouse: z.preprocess(Number, z.enum(FLAG)).optional(),
 })
 
 /* DTO Type */

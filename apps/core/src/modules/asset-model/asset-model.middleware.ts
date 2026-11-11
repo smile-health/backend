@@ -204,7 +204,9 @@ export class AssetModelMiddleware extends BaseMiddleware {
       }
     ).transform((rows) => rows.map(this.transformRowSchema))
 
-    const result = await usedSchema.safeParseAsync(rowsResult)
+    const result = await usedSchema.safeParseAsync(rowsResult, {
+      reportInput: true,
+    })
 
     if (!result.success) {
       const newError: any = { issues: [] }
@@ -216,7 +218,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t("validator.required", {
               field: c.var.t(`asset_model.label.${err.path[1]}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         } else {
           newError.issues.push({
@@ -224,7 +226,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t(err.message, {
               field: c.var.t(`asset_model.label.${err.path[1]}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -267,7 +269,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
       message: c.var.t("validator.not_empty", {
         field: c.var.t("common.rows"),
       }),
-      code: z.ZodIssueCode.custom,
+      code: "custom",
     })
   }
 
@@ -298,7 +300,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
     ctx.addIssue({
       path,
       message,
-      code: z.ZodIssueCode.custom,
+      code: "custom",
     })
   }
 
@@ -857,7 +859,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -867,7 +869,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_by"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -927,7 +929,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
                 "asset_model.label.asset_type_name"
               )}, ${c.var.t("asset_model.label.manufacture_name")}`,
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         } else {
           seen.add(key)
@@ -944,7 +946,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t("validator.asset_type.not_cce", {
               field: c.var.t("asset_model.label.asset_type_name"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -954,7 +956,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t("validator.asset_type.cce", {
               field: c.var.t("asset_model.label.asset_type_name"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -965,7 +967,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t("validator.exist", {
               field: c.var.t("asset_model.label.name"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -976,7 +978,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t("validator.not_exist", {
               field: c.var.t("asset_model.label.asset_type_id"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -987,7 +989,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t("validator.not_exist", {
               field: c.var.t("asset_model.label.manufacture_id"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -1087,7 +1089,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
                   value: `${idx + 1}`,
                 }),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
             ctx.addIssue({
               path: [index, `gross_capacity${idx + 1}`],
@@ -1099,7 +1101,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
                   value: `${idx + 1}`,
                 }),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
         })
@@ -1153,7 +1155,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: [index, "asset_type_id"],
           message: c.var.t("validator.asset_type.data_net_capacity_mismatch"),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -1179,7 +1181,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
               invalidIds: invalidThresholds.join(", "),
             }
           ),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -1200,7 +1202,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
           message: c.var.t("validator.must_be_filled", {
             field: c.var.t("asset_model.label.pqs_code"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -1213,7 +1215,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_required", {
             field: c.var.t("asset_model.label.pqs_code"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -1227,7 +1229,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
           message: c.var.t("validator.must_be_filled", {
             field: c.var.t("Capacities"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
       // Validate each capacity
@@ -1258,7 +1260,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
                 value: convertMappingKey,
               }),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -1271,7 +1273,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
                 value: convertMappingKey,
               }),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -1291,7 +1293,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
                 value: convertMappingKey,
               }),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
 
           ctx.addIssue({
@@ -1304,7 +1306,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
                 value: convertMappingKey,
               }),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -1331,7 +1333,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
                   ),
                 }
               ),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
         }
@@ -1347,7 +1349,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t(
               "validator.asset_type.selected_net_capacity_vs_capacity_in_asset_type"
             ),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -1361,7 +1363,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t("validator.must_be_filled", {
               field: c.var.t(`asset_model.label.gross_capacity_${mappingKey}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -1375,7 +1377,7 @@ export class AssetModelMiddleware extends BaseMiddleware {
             message: c.var.t("validator.must_be_filled", {
               field: c.var.t(`asset_model.label.net_capacity_${mappingKey}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       })

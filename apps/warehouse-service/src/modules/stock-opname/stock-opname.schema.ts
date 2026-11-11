@@ -46,11 +46,8 @@ export const StockOpnameSchema = z.object({
     .preprocess((arg) => {
       if (typeof arg === "string" || arg instanceof Date) return new Date(arg)
     }, z.date())
-    .default(new Date()), // DEFAULT formatDateTime(now(), '%Y-%m-%d %H:%i:%S', 'Asia/Jakarta')
-  version: z
-    .number()
-    .int()
-    .default(Math.floor(Date.now() / 1000)), // DEFAULT toUnixTimestamp(now())
+    .prefault(new Date()), // DEFAULT formatDateTime(now(), '%Y-%m-%d %H:%i:%S', 'Asia/Jakarta')
+  version: z.int().default(Math.floor(Date.now() / 1000)), // DEFAULT toUnixTimestamp(now())
 })
 
 export const StockOpnameQueryParamsSchema = QueryParamsSchema

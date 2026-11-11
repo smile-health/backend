@@ -63,7 +63,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.asset_electricity_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -98,7 +98,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.asset_model_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -113,7 +113,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.other_gross_capacity"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -127,7 +127,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.other_net_capacity"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -143,7 +143,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           field1: c.var.t("asset_inventory.label.other_net_capacity"),
           field2: c.var.t("asset_inventory.label.other_gross_capacity"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
 
       ctx.addIssue({
@@ -152,7 +152,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           field1: c.var.t("asset_inventory.label.other_gross_capacity"),
           field2: c.var.t("asset_inventory.label.other_net_capacity"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -162,7 +162,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.other_net_capacity"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -172,7 +172,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.other_gross_capacity"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -206,7 +206,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.asset_type_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -221,7 +221,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.other_max_temperature"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -235,7 +235,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.other_min_temperature"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -251,7 +251,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           field1: c.var.t("asset_inventory.label.other_min_temperature"),
           field2: c.var.t("asset_inventory.label.other_max_temperature"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
 
       ctx.addIssue({
@@ -260,7 +260,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           field1: c.var.t("asset_inventory.label.other_max_temperature"),
           field2: c.var.t("asset_inventory.label.other_min_temperature"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -270,7 +270,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.other_min_temperature"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -280,7 +280,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.other_max_temperature"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -314,7 +314,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.manufacture_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -349,7 +349,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.budget_source_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -367,7 +367,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.asset_working_status_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -385,7 +385,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.calibration_asset_vendor_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -400,7 +400,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.calibration_schedule_id"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -414,7 +414,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.calibration_last_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -435,7 +435,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.calibration_schedule_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -446,7 +446,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.calibration_last_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -456,7 +456,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.calibration_schedule_id"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -473,7 +473,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.maintenance_asset_vendor_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -488,7 +488,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.maintenance_schedule_id"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -502,7 +502,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.maintenance_last_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -523,7 +523,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.maintenance_schedule_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -534,7 +534,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.maintenance_last_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -544,7 +544,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.maintenance_schedule_id"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -569,7 +569,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.borrowed_from_entity_id"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -585,7 +585,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
             "asset_inventory.label.other_borrowed_from_entity_name"
           ),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -621,7 +621,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.exist", {
             field: c.var.t("asset_inventory.label.serial_number"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -639,7 +639,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_exist", {
             field: c.var.t("asset_inventory.label.warranty_asset_vendor_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -654,7 +654,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.warranty_end_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -668,7 +668,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("asset_inventory.label.warranty_start_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -684,7 +684,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           field1: c.var.t("asset_inventory.label.warranty_start_date"),
           field2: c.var.t("asset_inventory.label.warranty_end_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
 
       ctx.addIssue({
@@ -693,7 +693,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           field1: c.var.t("asset_inventory.label.warranty_end_date"),
           field2: c.var.t("asset_inventory.label.warranty_start_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -703,7 +703,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.warranty_start_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -713,7 +713,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.not_allowed", {
           field: c.var.t("asset_inventory.label.warranty_end_date"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -748,7 +748,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
               message: c.var.t("validator.not_allowed", {
                 field: c.var.t("asset_inventory.label.borrowed_from_entity_id"),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
         }
@@ -784,7 +784,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
               message: c.var.t("validator.not_allowed", {
                 field: c.var.t("asset_inventory.label.borrowed_from_entity_id"),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
         }
@@ -825,7 +825,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
               message: c.var.t("validator.not_allowed", {
                 field: c.var.t("asset_inventory.label.borrowed_from_entity_id"),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
 
@@ -850,7 +850,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
                   message: c.var.t("validator.must_be_other", {
                     field: c.var.t(`asset_inventory.label.${fieldName}`),
                   }),
-                  code: z.ZodIssueCode.custom,
+                  code: "custom",
                 })
               }
             }
@@ -870,7 +870,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           message: c.var.t("validator.not_allowed", {
             field: c.var.t("asset_inventory.label.entity_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -882,7 +882,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           field1: c.var.t("asset_inventory.label.budget_year"),
           field2: c.var.t("asset_inventory.label.production_year"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
 
       ctx.addIssue({
@@ -891,7 +891,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
           field1: c.var.t("asset_inventory.label.production_year"),
           field2: c.var.t("asset_inventory.label.budget_year"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -916,7 +916,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
             message: c.var.t("validator.must_be_other", {
               field: c.var.t(`asset_inventory.label.${fieldName}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -960,7 +960,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -970,7 +970,7 @@ export class AssetInventoryMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_by"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }

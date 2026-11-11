@@ -1,7 +1,6 @@
 import { Context } from "hono";
 import { createMiddleware } from "hono/factory";
 import momentTZ from "moment-timezone";
-import { ZodIssueCode } from "zod";
 import { ValidationError } from "../error.js";
 import i18n from "../i18n.js";
 import { Event } from "../rabbitmq/type.js";
@@ -57,7 +56,7 @@ export class RequestMiddleware {
     c.addZodError = (message, path) => {
       const errors = c.get("zodErrors") ?? [];
       errors.push({
-        code: ZodIssueCode.custom,
+        code: "custom" as const,
         message,
         path,
       });

@@ -8,7 +8,7 @@ export const UserActivitySchema = QueryParamSchema.and(
       .string()
       .refine((val) => ["0", "1"].includes(val))
       .transform((val) => parseInt(val, 10))
-      .default("0"),
+      .prefault("0"),
     customer_tag_ids: IdsSchema.optional(),
   })
 )

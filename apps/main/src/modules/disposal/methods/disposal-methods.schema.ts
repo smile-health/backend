@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 
 const preprocessToString = (value: unknown) =>

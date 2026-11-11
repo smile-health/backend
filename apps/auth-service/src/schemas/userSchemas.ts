@@ -60,7 +60,7 @@ const UserAccessSchema = z.object({
 // Define the schema for the attributes
 const UserAttributesSchema = z
   .object({
-    locale: z.string().default("en").optional().openapi({
+    locale: z.string().optional().openapi({
       description: "Locale of the user",
       example: "en",
     }),
@@ -70,7 +70,7 @@ const UserAttributesSchema = z
     }),
     programId: z
       .array(z.string())
-      .default([])
+      
       .optional()
       .openapi({
         description: "Program IDs",
@@ -115,11 +115,11 @@ export const CreateUserSchema = z
       description: "Email address of the user",
       example: "test.user@smile",
     }),
-    emailVerified: z.boolean().default(false).optional().openapi({
+    emailVerified: z.boolean().optional().openapi({
       description: "Indicates if the email is verified",
       example: true,
     }),
-    enabled: z.boolean().default(true).optional().openapi({
+    enabled: z.boolean().optional().openapi({
       description: "Indicates if the user is enabled",
       example: true,
     }),
@@ -138,7 +138,7 @@ export const CreateUserSchema = z
       }),
     requiredActions: z
       .array(z.string())
-      .default([])
+      
       .optional()
       .openapi({
         description: "List of required actions",
@@ -154,7 +154,7 @@ export const CreateUserSchema = z
     }),
     roles: z
       .array(z.string())
-      .default([])
+      
       .optional()
       .openapi({
         description: "List of realm roles",
@@ -162,7 +162,7 @@ export const CreateUserSchema = z
       }),
     clients: z
       .array(ClientRoleSchema)
-      .default([])
+      
       .optional()
       .openapi({
         description: "List of client roles",
@@ -199,11 +199,11 @@ export const UpdateUserSchema = z
       description: "Email address of the user",
       example: "test.user@smile",
     }),
-    emailVerified: z.boolean().default(false).optional().openapi({
+    emailVerified: z.boolean().optional().openapi({
       description: "Indicates if the email is verified",
       example: true,
     }),
-    enabled: z.boolean().default(true).optional().openapi({
+    enabled: z.boolean().optional().openapi({
       description: "Indicates if the user is enabled",
       example: true,
     }),
@@ -223,7 +223,7 @@ export const UpdateUserSchema = z
       }),
     requiredActions: z
       .array(z.string())
-      .default([])
+      
       .optional()
       .openapi({
         description: "List of required actions",
@@ -239,7 +239,7 @@ export const UpdateUserSchema = z
     }),
     roles: z
       .array(z.string())
-      .default([])
+      
       .optional()
       .openapi({
         description: "List of realm roles",
@@ -247,7 +247,7 @@ export const UpdateUserSchema = z
       }),
     clients: z
       .array(ClientRoleSchema)
-      .default([])
+      
       .optional()
       .openapi({
         description: "List of client roles",

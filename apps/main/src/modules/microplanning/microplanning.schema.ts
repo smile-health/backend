@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 
 export const MicroplanningStepsQuerySchema = z.object({
   category: z.enum(["bias", "non-bias"]).optional(),

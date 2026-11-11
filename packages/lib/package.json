@@ -1,7 +1,7 @@
 {
   "name": "@smile-health/lib",
   "type": "module",
-  "version": "1.0.241",
+  "version": "1.0.242",
   "scripts": {
     "dev": "bun --watch index.ts",
     "test": "bun test",
@@ -46,7 +46,7 @@
     "pino-loki": "^3.0.0",
     "xlsx-populate": "^1.21.0",
     "xml2js": "^0.6.2",
-    "zod": "^3.25.76"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/bun": "latest",

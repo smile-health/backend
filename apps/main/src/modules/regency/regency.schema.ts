@@ -1,9 +1,11 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export const GetListRegencySchema = PaginationQueriesSchema.extend({
   province_id: z
-    .string({ message: "PROVINCE_ID_IS_REQUIRED" })
+    .string({
+      error: "PROVINCE_ID_IS_REQUIRED",
+    })
     .refine(
       (val) =>
         val
@@ -11,7 +13,7 @@ export const GetListRegencySchema = PaginationQueriesSchema.extend({
           .filter((item) => item !== "")
           .every((num) => !isNaN(Number(num))),
       {
-        message: "INVALID_PROVINCE_ID_PARAM",
+        error: "INVALID_PROVINCE_ID_PARAM",
       }
     )
     .transform((val) => val.split(",").filter((item) => item !== "")),

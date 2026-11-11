@@ -23,6 +23,7 @@ import {
   orderStatusFulfilledConsumer,
   programConsumer,
 } from "./wire.js"
+import { requestBodyLimit } from "@smile-health/lib/middlewares/body-limit.middleware.js"
 
 axios.interceptors.request.use((config) => {
   const allowedHeaders = ["authorization", "content-type"]
@@ -86,6 +87,7 @@ axios.interceptors.response.use(
 
 // Setup HTTP server for health checks
 const app = new Hono()
+app.use("*", requestBodyLimit())
 
 // Health check endpoint
 app.get("/health", (c) => {

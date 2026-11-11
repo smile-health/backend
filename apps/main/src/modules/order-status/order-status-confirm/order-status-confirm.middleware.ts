@@ -155,7 +155,7 @@ export class OrderStatusConfirmMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.must_be_zero",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
     // Check if confirmedQty is not multiple of material.consumption_unit_per_distribution_unit
@@ -167,7 +167,7 @@ export class OrderStatusConfirmMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_multiples",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
     // Check if confirmedQty is greater than stocks[0].total_available_qty
@@ -176,7 +176,7 @@ export class OrderStatusConfirmMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.cannot_greater_than_available_stock",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -191,7 +191,7 @@ export class OrderStatusConfirmMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -223,7 +223,7 @@ export class OrderStatusConfirmMiddleware extends BaseMiddleware {
 
     if (orderItem.confirmed_qty !== sumChildrenMaterialQty) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.unmatch_quantity_with_total_children_quantity",
         path: ["order_items", index, "confirmed_qty"],
       })
@@ -247,7 +247,7 @@ export class OrderStatusConfirmMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["order_items", index, "children", subIndex, "id"],
           message: "validator.not_exist",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -274,7 +274,7 @@ export class OrderStatusConfirmMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["order_items", index, "children", subIndex, "id"],
           message: "validator.not_children_of_parent_item",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -288,7 +288,7 @@ export class OrderStatusConfirmMiddleware extends BaseMiddleware {
     ctx.addIssue({
       path: issuePath,
       message: "validator.have_no_stock_must_zero",
-      code: z.ZodIssueCode.custom,
+      code: "custom",
     })
   }
 

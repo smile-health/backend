@@ -8,7 +8,7 @@ import {
   UpdateTargetDataRequestSchema,
   LocationDetailsResponse,
 } from "./targets.schema.js"
-import z from "zod"
+import { z } from "zod"
 import { TargetsRepository } from "./targets.repository.js"
 import { LocationRepository } from "../location/location.repository.js"
 import { doEncrypt } from "../transaction/utils/transaction.encryption.js"

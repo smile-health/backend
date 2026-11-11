@@ -1,6 +1,6 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 
 export type ListUserShipmentDTO = {
   id: number

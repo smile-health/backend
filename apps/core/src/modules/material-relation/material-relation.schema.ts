@@ -6,18 +6,27 @@ export const MaterialRelationSchema = z.object({
   id: z.preprocess(
     (value) => (typeof value === "string" ? parseInt(value, 10) : value),
     z
-      .number()
-      .int({ message: "ID must be an integer." })
-      .nonnegative({ message: "ID must be a positive number." })
+      .int({
+        error: "ID must be an integer.",
+      })
+      .nonnegative({
+        error: "ID must be a positive number.",
+      })
   ),
   child_material_id: z
-    .number()
-    .int({ message: "Material ID must be an integer" })
-    .nonnegative({ message: "Material ID must be a positive number" }),
+    .int({
+      error: "Material ID must be an integer",
+    })
+    .nonnegative({
+      error: "Material ID must be a positive number",
+    }),
   parent_material_id: z
-    .number()
-    .int({ message: "Workspace ID must be an integer" })
-    .nonnegative({ message: "Workspace ID must be a positive number" }),
+    .int({
+      error: "Workspace ID must be an integer",
+    })
+    .nonnegative({
+      error: "Workspace ID must be a positive number",
+    }),
   created_at: z.date(),
   updated_at: z.date(),
   deleted_at: z.date().nullable(),
@@ -38,12 +47,20 @@ export const MaterialRelationDetailDTOSchema = MaterialRelationSchema.pick({
   parent_material_id: true,
 }).extend({
   name: z
-    .string({ required_error: "Name is required" })
-    .max(255, { message: "Name must not exceed 255 characters." }),
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "Name is required" : undefined,
+    })
+    .max(255, {
+      error: "Name must not exceed 255 characters.",
+    }),
   material_level_id: z
-    .number({ required_error: "Material Level ID is required" })
-    .int({ message: "Material Level ID be an integer." })
-    .nonnegative({ message: "Material Level ID be a positive number." }),
+    .int({
+      error: "Material Level ID be an integer.",
+    })
+    .nonnegative({
+      error: "Material Level ID be a positive number.",
+    }),
 })
 
 // Request

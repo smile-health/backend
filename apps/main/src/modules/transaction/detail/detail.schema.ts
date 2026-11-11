@@ -11,7 +11,7 @@ const preprocessNumber = (value: unknown) => {
  * Request
  */
 export const TransactionDetailRequestSchema = z.object({
-  id: z.preprocess(preprocessNumber, z.number().int().positive()),
+  id: z.preprocess(preprocessNumber, z.int().positive()),
 })
 
 export type TransactionDetailRequestDTO = z.infer<

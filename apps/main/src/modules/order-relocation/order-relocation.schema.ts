@@ -38,7 +38,9 @@ export const CreateOrderRelocationSchema = OrderSchema.omit({
   activity_id: z.number().positive(),
   required_date: z.coerce
     .date()
-    .refine((value) => value, { message: "validator.date" })
+    .refine((value) => value, {
+        error: "validator.date"
+    })
     .nullish()
     .optional(),
 

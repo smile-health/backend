@@ -10,13 +10,11 @@ const UserCredentialSchema = z.object({
 })
 
 // Define the schema for the attributes
-const UserAttributesSchema = z
-  .object({
-    locale: z.string().default("en").optional(),
+const UserAttributesSchema = z.strictObject({
+    locale: z.string().optional(),
     appUserId: z.string().optional(),
-    programId: z.array(z.string()).default([]).optional(),
+    programId: z.array(z.string()).optional(),
   })
-  .strict()
 
 // Define the schema for the create user request
 export const CreateUserKeycloakSchema = z.object({
@@ -26,16 +24,16 @@ export const CreateUserKeycloakSchema = z.object({
   firstName: z
     .string()
     .min(4, "First name is required and must be at least 4 characters long"),
-  lastName: z.string().default("").optional(),
-  email: z.string().email("Invalid email address"),
-  emailVerified: z.boolean().default(false).optional(),
-  enabled: z.boolean().default(true).optional(),
+  lastName: z.string().optional(),
+  email: z.email("Invalid email address"),
+  emailVerified: z.boolean().optional(),
+  enabled: z.boolean().optional(),
   credentials: z
     .array(UserCredentialSchema)
     .min(1, "At least one credential is required"),
-  requiredActions: z.array(z.string()).default([]).optional(),
+  requiredActions: z.array(z.string()).optional(),
   attributes: UserAttributesSchema.optional(),
-  roles: z.array(z.string()).default([]).optional(),
+  roles: z.array(z.string()).optional(),
   clients: z.array(
     z.object({
       id: z.string(),

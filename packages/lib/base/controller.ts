@@ -1,11 +1,11 @@
 import { Context } from "hono";
 import { validator } from "hono/validator";
-import { ZodSchema } from "zod";
+import { ZodType } from "zod";
 import { ValidationError } from "../error";
 import { BadRequestError } from "../error.js";
 import BaseTemplate from "../excel/";
 import { FileResponse } from "../types/file.js";
-import { formatErrors, formatExcelErrors } from "../zod";
+import { formatErrors, formatExcelErrors, PARSE_OPTIONS } from "../zod";
 
 export type AsyncCallback<T> = (c: Context, data: T) => Promise<T>;
 export type AsyncExcelCallback<T> = (
@@ -17,7 +17,7 @@ export type AsyncExcelCallback<T> = (
 export class BaseController {
   constructor(protected key?: string) {}
 
-  protected validateRequest<T extends ZodSchema>(
+  protected validateRequest<T extends ZodType>(
     type: "json" | "param" | "query" | "header",
     schema: T | ((c: Context) => T) | ((c: Context) => Promise<T>),
     callback?: AsyncCallback<ReturnType<T["parse"]>>
@@ -27,7 +27,7 @@ export class BaseController {
       async (value, c): Promise<ReturnType<T["parse"]>> => {
         const usedSchema =
           typeof schema === "function" ? await schema(c) : schema;
-        const result = await usedSchema.safeParseAsync(value);
+        const result = await usedSchema.safeParseAsync(value, PARSE_OPTIONS);
         if (!result.success) {
           c.set("errors", formatErrors(result.error, c.var.t, this.key));
           throw new ValidationError();
@@ -67,7 +67,7 @@ export class BaseController {
     });
   }
 
-  protected validateExcelRequest<T extends ZodSchema>(
+  protected validateExcelRequest<T extends ZodType>(
     schema: T | ((c: Context) => T) | ((c: Context) => Promise<T>),
     template:
       | BaseTemplate
@@ -91,7 +91,7 @@ export class BaseController {
 
         const rows = await usedtemplate.getRows();
         const startRow = usedtemplate.getStartRow();
-        const result = await usedschema.safeParseAsync(rows);
+        const result = await usedschema.safeParseAsync(rows, PARSE_OPTIONS);
 
         if (!result.success) {
           c.set("errors", formatExcelErrors(result.error, startRow, c.var.t));

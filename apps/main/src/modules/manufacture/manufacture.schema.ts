@@ -11,14 +11,14 @@ const preprocessNumber = (value: unknown) => {
   if (typeof value === "number") return value
   return undefined
 }
-const PositiveIntSchema = z.number().int().positive()
-const statusSchema = z.nativeEnum(STATUS)
+const PositiveIntSchema = z.int().positive()
+const statusSchema = z.enum(STATUS)
 
 /*
  * Validation Rules
  */
 const ManufactureSchema = z.object({
-  id: z.preprocess(preprocessNumber, z.number().int().nonnegative()),
+  id: z.preprocess(preprocessNumber, z.int().nonnegative()),
 })
 
 /*
@@ -30,7 +30,7 @@ export const ManufacturePaginatedRequestSchema = PaginationQueriesSchema.extend(
     status: z.preprocess(preprocessNumber, statusSchema.optional()),
     material_id: z.preprocess(preprocessNumber, PositiveIntSchema.optional()),
     sort_by: z.string().optional(),
-    sort_type: z.nativeEnum(SORT_TYPE).optional(),
+    sort_type: z.enum(SORT_TYPE).optional(),
     is_temperature_sensitive: z.preprocess(
       (v) => (v === "0" || v === 0 ? 0 : v === "1" || v === 1 ? 1 : v),
       z.union([z.literal(0), z.literal(1)]).optional()

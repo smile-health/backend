@@ -1,4 +1,11 @@
 import { TFunction } from "i18next"
+import {
+  expectedType,
+  isInvalidDate,
+  isMissing,
+  receivedValue,
+  v3Issues,
+} from "@smile-health/lib/zod.js"
 import { z, ZodError, ZodIssue } from "zod"
 
 type ZodIssueWithData = ZodIssue & { data?: unknown }
@@ -10,7 +17,7 @@ export const formatErrorsWithData = (
 ) => {
   const errorObject: Record<string, unknown> = {}
 
-  for (const rawIssue of error.issues) {
+  for (const rawIssue of v3Issues(error.issues)) {
     const issue = rawIssue as ZodIssueWithData
     let currentErrorObject = errorObject
     const path = issue.path
@@ -47,7 +54,7 @@ export const formatExcelErrors = (
 ) => {
   const errorObject = {}
 
-  for (const err of error.issues) {
+  for (const err of v3Issues(error.issues)) {
     if (err.path.length >= 2) {
       const row = `${startRow + Number(err.path[0])}`
       const path = err.path.filter((p) => typeof p === "string")
@@ -89,16 +96,21 @@ export const translateError = (
     field = `${field} ${items}`
   }
 
+  // v3: kode invalid_date jatuh ke cabang default.
+  if (isInvalidDate(error)) {
+    return msg.startsWith("validator.") ? t(msg, { field: field }) : msg
+  }
+
   switch (error.code) {
     case "invalid_type":
-      return error.received === "undefined"
+      return isMissing(error)
         ? t(`validator.not_empty`, { field: field })
-        : t(`validator.${error.expected}`, {
+        : t(`validator.${expectedType(error)}`, {
             field: field,
           })
 
     case "too_small":
-      return error.minimum === 1
+      return Number(error.minimum) === 1
         ? t(`validator.not_empty`, { field: field })
         : t(`validator.greater_than`, {
             field1: field,
@@ -111,9 +123,12 @@ export const translateError = (
         field2: error.maximum,
       })
 
-    case "invalid_enum_value":
+    case "invalid_value":
+      if (isMissing(error)) {
+        return t(`validator.not_empty`, { field: field })
+      }
       return t(`validator.not_exist`, {
-        field: `${field} ${error.received}`,
+        field: `${field} ${receivedValue(error)}`,
       })
 
     default:
@@ -166,7 +181,7 @@ export const conditionsMessageWithData = (
     // console.log(issue);
     c.addIssue({
       ...issue,
-      code: z.ZodIssueCode.custom,
+      code: "custom",
       ...(path ? { path } : {}),
     })
   }

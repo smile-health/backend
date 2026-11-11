@@ -5,10 +5,10 @@ import { z } from "zod"
  * Stock back to normal
  */
 export const StockBackToNormalRequest = z.object({
-  entity_id: z.number().int(),
-  material_id: z.number().int(),
-  activity_id: z.number().int(),
-  old_stock: z.number().int(),
+  entity_id: z.int(),
+  material_id: z.int(),
+  activity_id: z.int(),
+  old_stock: z.int(),
 })
 
 export type StockBackToNormalRequestType = z.infer<
@@ -55,7 +55,7 @@ export const StopNotificationReasonPaginatedRequestSchema =
       .optional()
       .transform((val) => (val ? Number(val) : undefined))
       .refine((val) => val === undefined || (!Number.isNaN(val) && val > 0), {
-        message: "INVALID_PROTOCOL_ID",
+        error: "INVALID_PROTOCOL_ID",
       }),
   })
 
@@ -82,7 +82,7 @@ export const TriggerPatientReminderNotificationSchema = z.object({
           .filter((item) => item !== "")
           .every((num) => !isNaN(Number(num))),
       {
-        message: "INVALID_ENTITY_IDS_PARAM",
+        error: "INVALID_ENTITY_IDS_PARAM",
       }
     )
     .transform((val) =>
@@ -102,9 +102,9 @@ export type TriggerPatientReminderNotificationQueries = z.infer<
  * Stop notification
  */
 export const StopNotificationRequest = z.object({
-  notification_id: z.number().int(),
-  consumption_id: z.number().int(),
-  reason_id: z.number().int(),
+  notification_id: z.int(),
+  consumption_id: z.int(),
+  reason_id: z.int(),
 })
 
 export type StopNotificationRequestType = z.infer<

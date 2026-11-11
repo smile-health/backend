@@ -69,6 +69,7 @@ const RolesSchema = z.array(z.string()).openapi({
 // Define the schema for resource access
 const ResourceAccessSchema = z
   .record(
+    z.string(),
     z.object({
       roles: RolesSchema,
     })

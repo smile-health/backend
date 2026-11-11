@@ -68,7 +68,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
             field1: c.var.t("asset_vendor.label.id"),
             field2: c.var.t("asset_inventory.label.id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -95,7 +95,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -105,7 +105,7 @@ export class AssetVendorMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_by"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }

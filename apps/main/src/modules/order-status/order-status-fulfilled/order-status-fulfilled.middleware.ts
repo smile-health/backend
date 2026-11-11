@@ -152,7 +152,7 @@ export class OrderStatusFulfilledMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -167,7 +167,7 @@ export class OrderStatusFulfilledMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_empty",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -182,7 +182,7 @@ export class OrderStatusFulfilledMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -198,7 +198,7 @@ export class OrderStatusFulfilledMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.same_value_shipment_quantity",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -221,7 +221,7 @@ export class OrderStatusFulfilledMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.cannot_greater_than_current_date",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -238,7 +238,7 @@ export class OrderStatusFulfilledMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.duplicated",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -285,7 +285,7 @@ export class OrderStatusFulfilledMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -298,7 +298,7 @@ export class OrderStatusFulfilledMiddleware extends BaseMiddleware {
     ctx.addIssue({
       path: issuePath,
       message: "validator.not_required",
-      code: z.ZodIssueCode.custom,
+      code: "custom",
     })
   }
 

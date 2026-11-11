@@ -1,5 +1,5 @@
 import { DateSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 
 /*
  * Schema
@@ -10,7 +10,7 @@ const preprocessNumber = (value: unknown) => {
   if (typeof value === "number") return value
   return undefined
 }
-const PositiveIntSchema = z.number().int().positive()
+const PositiveIntSchema = z.int().positive()
 
 /*
  * Validation Rules

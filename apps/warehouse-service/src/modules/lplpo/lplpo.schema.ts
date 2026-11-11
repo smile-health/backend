@@ -10,24 +10,26 @@ export const LplpoQueryParamsSchema = z
     search: z.string().optional(),
     sub_district_id: z.string().optional(),
     period: z.string().optional(), // "monthly" or "yearly"
-    start_date: z.string().date(), // Format: YYYY-MM-DD
-    end_date: z.string().date(), // Format: YYYY-MM-DD
+    start_date: z.iso.date(), // Format: YYYY-MM-DD
+    end_date: z.iso.date(), // Format: YYYY-MM-DD
     export: z
       .string()
       .optional()
       .transform((val) => val === "true")
-      .default("false"),
+      .prefault("false"),
     page: z
       .string()
       .optional()
       .transform((val) => (val ? Number(val) : 1))
-      .refine((v) => !isNaN(v!) && v > 0, { message: "invalid page param" }),
+      .refine((v) => !isNaN(v!) && v > 0, {
+        error: "invalid page param",
+      }),
     paginate: z
       .string()
       .optional()
       .transform((val) => (val ? Number(val) : 50))
       .refine((v) => !isNaN(v!) && v > 0 && LIST_PAGINATION.includes(v), {
-        message: "invalid paginate param",
+        error: "invalid paginate param",
       }),
   })
   .refine(
@@ -54,9 +56,9 @@ export const LplpoQueryParamsSchema = z
       return sameMonth && sameYear
     },
     {
-      message:
-        "start_date and end_date must be in the same month and year (e.g., 2025-11-01 to 2025-11-30)",
       path: ["start_date"],
+      error:
+        "start_date and end_date must be in the same month and year (e.g., 2025-11-01 to 2025-11-30)",
     }
   )
 export const LplpoQueryParamsExportSchema = z
@@ -68,19 +70,21 @@ export const LplpoQueryParamsExportSchema = z
     search: z.string().optional(),
     sub_district_id: z.string().optional(),
     period: z.string().optional(), // "monthly" or "yearly"
-    start_date: z.string().date(), // Format: YYYY-MM-DD
-    end_date: z.string().date(), // Format: YYYY-MM-DD
+    start_date: z.iso.date(), // Format: YYYY-MM-DD
+    end_date: z.iso.date(), // Format: YYYY-MM-DD
     page: z
       .string()
       .optional()
       .transform((val) => (val ? Number(val) : 1))
-      .refine((v) => !isNaN(v!) && v > 0, { message: "invalid page param" }),
+      .refine((v) => !isNaN(v!) && v > 0, {
+        error: "invalid page param",
+      }),
     limit: z
       .string()
       .optional()
       .transform((val) => (val ? Number(val) : 50))
       .refine((v) => !isNaN(v!) && v > 0 && LIST_PAGINATION.includes(v), {
-        message: "invalid paginate param",
+        error: "invalid paginate param",
       }),
   })
   .refine(
@@ -106,8 +110,8 @@ export const LplpoQueryParamsExportSchema = z
       return sameMonth && sameYear
     },
     {
-      message:
-        "start_date and end_date must be in the same month and year (e.g., 2025-11-01 to 2025-11-30)",
       path: ["start_date"],
+      error:
+        "start_date and end_date must be in the same month and year (e.g., 2025-11-01 to 2025-11-30)",
     }
   )

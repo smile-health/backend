@@ -25,8 +25,8 @@ export const MaterialSchema = z.object({
   min_retail_price: z.number().nonnegative(),
   max_retail_price: z.number().nonnegative(),
   is_temperature_sensitive: z.number().min(0).max(1),
-  min_temperature: z.number().int().nullish(),
-  max_temperature: z.number().int().nullish(),
+  min_temperature: z.int().nullish(),
+  max_temperature: z.int().nullish(),
   material_type_id: z.number().positive(),
   material_subtype_id: z.number().positive().optional().nullish(),
   is_managed_in_batch: z.number().min(0).max(1),
@@ -78,7 +78,9 @@ export const GetMaterialsQueryParamSchema = PaginationQueriesSchema.extend({
       val ? transformStringNumbersToArrayNumbers(val) : null
     ),
   is_hierarchy: z
-    .enum(["0", "1"], { message: "INVALID REQUEST IS HIERARCHY" })
+    .enum(["0", "1"], {
+      error: "INVALID REQUEST IS HIERARCHY",
+    })
     .transform((val) => Number(val))
     .optional(),
   sort_by: z
@@ -92,12 +94,14 @@ export const GetMaterialsQueryParamSchema = PaginationQueriesSchema.extend({
         "created_at",
       ],
       {
-        message: "INVALID REQUEST SORT_BY",
+        error: "INVALID REQUEST SORT_BY",
       }
     )
     .default("created_at"),
   sort_type: z
-    .enum(["asc", "desc"], { message: "INVALID REQUEST SORT_TYPE" })
+    .enum(["asc", "desc"], {
+      error: "INVALID REQUEST SORT_TYPE",
+    })
     .default("desc"),
   integration_client_id: z.number().nullish(),
 })

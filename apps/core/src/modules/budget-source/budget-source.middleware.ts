@@ -1,6 +1,6 @@
 import { collect } from "@smile-health/lib/utils.js"
 import { Context } from "hono"
-import { z, ZodIssueCode } from "zod"
+import { z } from "zod"
 import { WorkspaceRepository } from "../workspace/workspace.repository.js"
 import { BudgetSourceRepository } from "./budget-source.repository.js"
 import {
@@ -78,14 +78,14 @@ export class BudgetSourceMiddleware {
 
       if (nameExist) {
         cfx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["name"],
           message: "validator.exist",
         })
       }
       if (workspaceExist) {
         cfx.addIssue({
-          code: ZodIssueCode.custom,
+          code: "custom",
           path: ["program_ids"],
           message: "validator.unmatch",
         })
@@ -110,14 +110,14 @@ export class BudgetSourceMiddleware {
 
       if (nameSamePrevious) {
         cfx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["name"],
           message: "validator.exist",
         })
       }
       if (workspaceExist || workspaceIncluded) {
         cfx.addIssue({
-          code: ZodIssueCode.custom,
+          code: "custom",
           path: ["program_ids"],
           message: "validator.unmatch",
         })
@@ -133,7 +133,7 @@ export class BudgetSourceMiddleware {
 
       if (sort_by && !sortBys.includes(sort_by)) {
         cfx.addIssue({
-          code: ZodIssueCode.custom,
+          code: "custom",
           path: ["sort_by"],
           message: c.var.t("validator.one_of", {
             field: "sort_by",
@@ -144,7 +144,7 @@ export class BudgetSourceMiddleware {
 
       if (sort_type && !sortTypes.includes(sort_type)) {
         cfx.addIssue({
-          code: ZodIssueCode.custom,
+          code: "custom",
           path: ["sort_type"],
           message: c.var.t("validator.one_of", {
             field: "sort_type",

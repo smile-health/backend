@@ -8,7 +8,7 @@ const preprocessNumber = (value: unknown) => {
   return undefined
 }
 
-const PositiveIntSchema = z.number().int().positive()
+const PositiveIntSchema = z.int().positive()
 
 export const GetPatientsQuerySchema = PaginationQueriesSchema.extend({
   keyword: z.string().optional(),

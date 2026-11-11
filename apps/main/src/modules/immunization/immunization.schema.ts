@@ -35,9 +35,9 @@ export const CreateImmunizationDataSchema = z.object({
 })
 
 export const CreateWeighingHistorySchema = z.object({
-  patient_immunization_id: z.number().int().positive(),
+  patient_immunization_id: z.int().positive(),
   input_date: z.string(),
-  gender: z.number().int().min(1).max(2),
+  gender: z.int().min(1).max(2),
   weight: z.number().positive(),
   height: z.number().positive(),
   z_score_weight: z.number(),
@@ -46,9 +46,9 @@ export const CreateWeighingHistorySchema = z.object({
 })
 
 export const UpdateWeighingHistorySchema = z.object({
-  patient_immunization_id: z.number().int().positive(),
+  patient_immunization_id: z.int().positive(),
   input_date: z.string().optional(),
-  gender: z.number().int().min(1).max(2).optional(),
+  gender: z.int().min(1).max(2).optional(),
   weight: z.number().positive().optional(),
   height: z.number().positive().optional(),
   z_score_weight: z.number().optional(),
@@ -89,7 +89,7 @@ export const UpdateImmunizationStatusSchema = z.object({
     .enum(["note_only_date", "note_with_batch", "not_given"])
     .optional(),
   injection_date: z.string().optional(),
-  batch_id: z.number().int().positive().optional(),
+  batch_id: z.int().positive().optional(),
 })
 
 export type GetImmunizationQuery = z.TypeOf<typeof GetImmunizationSchema>

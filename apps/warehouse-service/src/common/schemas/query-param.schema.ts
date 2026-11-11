@@ -19,7 +19,9 @@ export const stringDate = (format?: string) =>
         if (!v) return true
         return moment(v).isValid()
       },
-      { message: "validator.date" }
+      {
+        error: "validator.date",
+      }
     )
   )
 
@@ -80,35 +82,35 @@ export const QueryParamSchema = PaginationQueriesSchema.extend({
     .string()
     .optional()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort By Count must be 0 or 1",
+      error: "Sort By Count must be 0 or 1",
     })
     .transform((val) => Number(val)),
   sort_by_count: z
     .string()
     .optional()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort By Count must be 0 or 1",
+      error: "Sort By Count must be 0 or 1",
     })
     .transform((val) => Number(val)),
   sort_by_area: z
     .string()
     .optional()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort By Area must be 0 or 1",
+      error: "Sort By Area must be 0 or 1",
     })
     .transform((val) => Number(val)),
   sort_by_name: z
     .string()
     .optional()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort By Name must be 0 or 1",
+      error: "Sort By Name must be 0 or 1",
     })
     .transform((val) => Number(val)),
   sort: z
     .string()
     .optional()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Sort must be 0 or 1",
+      error: "Sort must be 0 or 1",
     })
     .transform((val) => Number(val)),
 })
@@ -144,8 +146,8 @@ export const QueryParamsSchema = z
     start_expired_date: stringDate("YYYY-MM-DD 00:00:00").nullish(),
     end_expired_date: stringDate("YYYY-MM-DD 23:59:59").nullish(),
     material_level_id: IdSchema.nullish().default("3"),
-    page: z.coerce.number().int().min(1).default(1),
-    paginate: z.coerce.number().int().min(10).default(10),
+    page: z.coerce.number().int().min(1).prefault(1),
+    paginate: z.coerce.number().int().min(10).prefault(10),
     program_id: z.number().nullish(),
   })
   .transform((queryParams) => ({
