@@ -93,5 +93,8 @@
     "kysely-codegen": "^0.20.0",
     "mocha": "^12.0.3",
     "sinon": "^22.1.0"
+  },
+  "overrides": {
+    "decode-uri-component": "^0.5.1"
   }
 }
