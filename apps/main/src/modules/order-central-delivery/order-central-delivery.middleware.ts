@@ -138,7 +138,7 @@ export class OrderCentralDeliveryMiddleware {
         )
         if (!materialActivity) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.not_exist",
             path: ["order_items", i, "material_activity"],
           })
@@ -146,7 +146,7 @@ export class OrderCentralDeliveryMiddleware {
 
         if (item.stocks.length < 1) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.not_empty",
             path: ["order_items", i, "stocks"],
           })
@@ -190,7 +190,7 @@ export class OrderCentralDeliveryMiddleware {
   ) => {
     if (data.customer_id === data.vendor_id) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.not_same_value", {
           field1: "Customer",
           field2: "Vendor",
@@ -227,7 +227,7 @@ export class OrderCentralDeliveryMiddleware {
     if (!record) {
       const issuePath = typeof path === "string" ? [path] : path
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: issuePath,
       })
@@ -247,7 +247,7 @@ export class OrderCentralDeliveryMiddleware {
     const vendor = vendors.find((vendor) => vendor.id === data.vendor_id)
     if (!vendor) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["customer_vendor"],
       })
@@ -268,7 +268,7 @@ export class OrderCentralDeliveryMiddleware {
 
     if (!moment(dateCompare).isSameOrAfter(now)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.order_required_date",
         path,
       })
@@ -289,7 +289,7 @@ export class OrderCentralDeliveryMiddleware {
 
     if (!moment(dateCompare).isSameOrBefore(now)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "Required date cannot be more than today",
         path,
       })
@@ -309,7 +309,7 @@ export class OrderCentralDeliveryMiddleware {
     for (const [index, orderItem] of data.order_items.entries()) {
       if (materialIdSet.has(orderItem.material_id)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.duplicated",
           path: ["order_items", index, "material_id"],
         })
@@ -351,7 +351,7 @@ export class OrderCentralDeliveryMiddleware {
           }
 
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.duplicated",
             path,
           })
@@ -378,7 +378,7 @@ export class OrderCentralDeliveryMiddleware {
 
     if (!findMaterial) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.inactive",
         path: ["order_items", index, "material_id"],
       })
@@ -386,7 +386,7 @@ export class OrderCentralDeliveryMiddleware {
 
     if (!!findMaterial?.is_managed_in_batch != isManagedBatch) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.unmatch",
         path: ["order_items", index, "is_managed_in_batch"],
       })
@@ -394,7 +394,7 @@ export class OrderCentralDeliveryMiddleware {
 
     if (!!findMaterial?.is_managed_in_batch == false && length > 1) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message:
           "validator.material_non_batch_cannot_have_more_than_one_stocks",
         path: ["order_items", index, "is_managed_in_batch"],
@@ -411,7 +411,7 @@ export class OrderCentralDeliveryMiddleware {
   ) => {
     if (entityMaterial.length == 0) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["order_items", index, "material_id"],
       })
@@ -444,7 +444,7 @@ export class OrderCentralDeliveryMiddleware {
 
     if (!findEntityActivityDate?.start_date) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.entity_activity_date_missing", {
           field: "transaction",
         }),
@@ -456,7 +456,7 @@ export class OrderCentralDeliveryMiddleware {
       moment(now).isBefore(startActivityDate)
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.entity_activity_date_not_yet_active", {
           field: "transaction",
         }),
@@ -468,7 +468,7 @@ export class OrderCentralDeliveryMiddleware {
       moment(now).isAfter(endActivityDate)
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.entity_activity_date_not_active", {
           field: "transaction",
         }),
@@ -493,7 +493,7 @@ export class OrderCentralDeliveryMiddleware {
 
     if (material && mod !== 0) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.order_item_qty_not_multiple_of_ucpud", {
           material: material?.name,
         }),
@@ -507,7 +507,7 @@ export class OrderCentralDeliveryMiddleware {
         Number(material?.consumption_unit_per_distribution_unit)
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.not_less_than", {
           field1: c.var.t("common.qty"),
           field2: c.var.t(
@@ -527,14 +527,14 @@ export class OrderCentralDeliveryMiddleware {
   ) {
     if (!stock.expired_date!) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_empty",
         path: [`order_items`, parentIndex, "stocks", j, "expired_date"],
       })
     }
     if (!stock.manufacture_name!) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_empty",
         path: [`order_items`, parentIndex, "stocks", j, "manufacture_name"],
       })
@@ -588,14 +588,14 @@ export class OrderCentralDeliveryMiddleware {
         ])
       if (!findManufactureName) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.not_exist",
           path: [`order_items`, parentIndex, "stocks", j, "manufacture_name"],
         })
       }
       if (!findBudgetSourceId) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.not_exist",
           path: [`order_items`, parentIndex, "stocks", j, "budget_source_id"],
         })
@@ -623,7 +623,7 @@ export class OrderCentralDeliveryMiddleware {
       ) {
         if (!manufactureNames.includes(stock.manufacture_name.toLowerCase())) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.not_exist",
             path: [`order_items`, parentIndex, "stocks", j, "manufacture_name"],
           })
@@ -728,7 +728,7 @@ export class OrderCentralDeliveryMiddleware {
 
     if (!record) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["activity_id_customer"],
       })

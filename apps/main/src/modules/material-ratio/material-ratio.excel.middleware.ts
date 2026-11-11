@@ -3,7 +3,7 @@ import BaseTemplate from "@smile-health/lib/excel/index.js"
 import { PROCESSOR } from "@smile-health/lib/excel/types.js"
 import { Context } from "hono"
 import { validator } from "hono/validator"
-import z from "zod"
+import { z } from "zod"
 import {
   ImportRequestDTO,
   importSchema,

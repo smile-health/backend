@@ -132,7 +132,9 @@ export class ConsumptionMiddleware {
 
   consumption = async (c: Context) => {
     return z.preprocess(async (input, ctx: RefinementCtx) => {
-      const parsed = await ConsumptionRequestSchema.safeParseAsync(input)
+      const parsed = await ConsumptionRequestSchema.safeParseAsync(input, {
+        reportInput: true,
+      })
 
       if (parsed.success) {
         const programId = c.var.programId

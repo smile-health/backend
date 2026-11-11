@@ -12,8 +12,7 @@ import { z } from "zod"
 import { CreateOrderRequestSchema } from "../order/order.schema.js"
 
 const positiveNumberZod = z.coerce.number().positive()
-const dateZod = z.coerce
-  .string()
+const dateZod = z.iso
   .date()
   .nullish()
   .superRefine((val, cfx) => {

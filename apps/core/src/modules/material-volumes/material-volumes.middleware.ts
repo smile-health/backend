@@ -1,5 +1,5 @@
 import { Context } from "hono"
-import { z, ZodSchema } from "zod"
+import { z, ZodType } from "zod"
 import { MaterialRepository } from "../material/material.repository.js"
 import { ManufactureRepository } from "../manufacture/manufacture.repository.js"
 import {
@@ -89,7 +89,7 @@ export class MaterialVolumesMiddleware {
           if (seen.has(key)) {
             const firstIndex = seen.get(key)!
             ctx.addIssue({
-              code: z.ZodIssueCode.custom,
+              code: "custom",
               message: `validator.duplicate_material_manufacture`,
               path: [index, "material_id"],
               params: {
@@ -98,7 +98,7 @@ export class MaterialVolumesMiddleware {
               },
             })
             ctx.addIssue({
-              code: z.ZodIssueCode.custom,
+              code: "custom",
               message: `validator.duplicate_material_manufacture`,
               path: [index, "manufacture_id"],
               params: {
@@ -120,7 +120,7 @@ export class MaterialVolumesMiddleware {
 
   attachCommonRefinements = (
     c: Context,
-    schema: ZodSchema,
+    schema: ZodType,
     isvalidateConsumptionUnit = true
   ) => {
     return schema.superRefine(
@@ -129,7 +129,7 @@ export class MaterialVolumesMiddleware {
 
         if (!material) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.not_exist",
             path: ["material_id"],
           })
@@ -166,7 +166,7 @@ export class MaterialVolumesMiddleware {
   ) => {
     if (material.material_level_id === MATERIAL_LEVEL.TEMPLATE) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.material_must_level_3",
         path: ["material_id"],
       })
@@ -183,7 +183,7 @@ export class MaterialVolumesMiddleware {
     })
     if (!manufacture) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["manufacture_id"],
       })
@@ -191,7 +191,7 @@ export class MaterialVolumesMiddleware {
 
     if (manufacture?.status === STATUS.INACTIVE) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.manufacture_is_inactive",
         path: ["manufacture_id"],
       })
@@ -211,7 +211,7 @@ export class MaterialVolumesMiddleware {
       consumptionUnitPerDistributionUnit
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.invalid_consumption_unit",
         path: ["consumption_unit_per_distribution_unit"],
       })
@@ -233,12 +233,12 @@ export class MaterialVolumesMiddleware {
 
     if (result && result.id !== Number(id)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.material_and_manufacture_exist",
         path: ["material_id"],
       })
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.material_and_manufacture_exist",
         path: ["manufacture_id"],
       })

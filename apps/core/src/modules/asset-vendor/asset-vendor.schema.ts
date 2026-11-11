@@ -1,6 +1,6 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 
 /* Base Schema */
 export const AssetVendorSchema = z.object({
@@ -30,13 +30,13 @@ export const AddAssetVendorDTOSchema = AssetVendorSchema.pick({
   name: true,
   asset_vendor_type_id: true,
   description: true,
-}).merge(AuditAssetVendorDTOSchema)
+}).extend(AuditAssetVendorDTOSchema.shape)
 
 export const EditAssetVendorDTOSchema = AssetVendorSchema.pick({
   name: true,
   asset_vendor_type_id: true,
   description: true,
-}).merge(PartialAuditAssetVendorDTOSchema)
+}).extend(PartialAuditAssetVendorDTOSchema.shape)
 
 /* Request Body Schema */
 export const AddAssetVendorRequestSchema = AssetVendorSchema.pick({

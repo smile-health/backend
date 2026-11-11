@@ -61,8 +61,8 @@ const convertExcelDate = (val) => {
   return val;
 }
 
-const PositiveIntSchema = z.number().int().positive()
-const NonNegativeIntSchema = z.number().int().nonnegative()
+const PositiveIntSchema = z.int().positive()
+const NonNegativeIntSchema = z.int().nonnegative()
 const PositiveIntArraySchema = z.array(PositiveIntSchema).min(1)
 
 const PatientSchema = z.object({
@@ -94,14 +94,14 @@ const SpecimenSchema = z.object({
   specimen_id: z.preprocess(preprocessNumber, PositiveIntSchema).optional().nullable(),
   patient_id: z.preprocess(preprocessNumber, PositiveIntSchema).optional(),
   patient_dengue_id: z.preprocess(preprocessNumber, PositiveIntSchema).optional(),
-  specimen_type_id: z.preprocess(preprocessNumber, z.number().int()).optional(),
+  specimen_type_id: z.preprocess(preprocessNumber, z.int()).optional(),
   specimen_code: z.string().optional(),
   collection_date: DateSchema.optional(),
   release_date: DateSchema.optional(),
-  examination_method_id: z.preprocess(preprocessNumber, z.number().int()).optional(),
+  examination_method_id: z.preprocess(preprocessNumber, z.int()).optional(),
   equipment_id: z.preprocess(preprocessNumberArray, z.array(PositiveIntSchema)).optional(),
   reagent_id: z.preprocess(preprocessNumberArray, z.array(PositiveIntSchema)).optional(),
-  examination_result_id: z.preprocess(preprocessNumber, z.number().int()).optional(),
+  examination_result_id: z.preprocess(preprocessNumber, z.int()).optional(),
 })
 
 export const CreateSpecimenSchema = z.object({
@@ -126,10 +126,10 @@ export const DengueCaseSchema = z.object({
   pe_result_id: z.preprocess(preprocessNumber, NonNegativeIntSchema).optional(),
   vector_control_id: z.string().optional(),
   laboratory_examination: z.preprocess(preprocessNumber, NonNegativeIntSchema).optional(),
-  examination_type: z.preprocess(preprocessNumber, z.number().int()).optional(),
-  laboratory_id: z.preprocess(preprocessNumber, z.number().int().optional()),
+  examination_type: z.preprocess(preprocessNumber, z.int()).optional(),
+  laboratory_id: z.preprocess(preprocessNumber, z.int().optional()),
   laboratory_name: z.string().optional(),
-  entity_id: z.preprocess(preprocessNumber, z.number().int().optional()),
+  entity_id: z.preprocess(preprocessNumber, z.int().optional()),
   patient_id: z.preprocess(preprocessNumber, PositiveIntSchema).optional(),
   input_date: z.string(),
 })
@@ -142,8 +142,8 @@ export const CreateDengueCaseRequestSchema = z.object({
   pe_result_id: z.preprocess(preprocessNumber, NonNegativeIntSchema.optional()),
   vector_control_id: z.preprocess(preprocessNumberArray, PositiveIntArraySchema),
   laboratory_examination: z.preprocess(preprocessNumber, NonNegativeIntSchema).optional(),
-  examination_type: z.preprocess(preprocessNumber, z.number().int()).optional(),
-  laboratory_id: z.preprocess(preprocessNumber, z.number().int().optional()),
+  examination_type: z.preprocess(preprocessNumber, z.int()).optional(),
+  laboratory_id: z.preprocess(preprocessNumber, z.int().optional()),
   laboratory_name: z.string().optional(),
   patient_id: z.preprocess(preprocessNumber, PositiveIntSchema).optional(),
   input_date: z.string(),
@@ -261,46 +261,45 @@ export type ImportDengueCaseRequest = {
 }
 
 export const ImportDengueCaseRowSchema = (COL: ColumnImportDengueCaseSchema) =>
-  z.object({
-    [COL.InputDate]: z.union([z.string(), z.number()]).optional().transform(convertExcelDate),
-    [COL.NIK]: z.string().or(z.number()).optional(),
-    [COL.FullName]: z.string().optional(),
-    [COL.StatusID]: z.string().or(z.number()).optional(),
-    [COL.PhoneNumber]: z.string().or(z.number()).optional(),
-    [COL.LastEducationID]: z.string().or(z.number()).optional(),
-    [COL.OccupationID]: z.string().or(z.number()).optional(),
-    [COL.ReligionID]: z.string().or(z.number()).optional(),
-    [COL.EthnicID]: z.string().or(z.number()).optional(),
-    [COL.RegisteredVillageID]: z.string().or(z.number()).optional(),
-    [COL.RegisteredPostalCode]: z.string().or(z.number()).optional(),
-    [COL.RegisteredAddress]: z.string().optional(),
-    [COL.SameAddress]: z.preprocess(preprocessYesNo, z.number().int()).optional(),
-    [COL.ResidentialProvinceID]: z.string().or(z.number()).optional(),
-    [COL.ResidentialCityID]: z.string().or(z.number()).optional(),
-    [COL.ResidentialDistrictID]: z.string().or(z.number()).optional(),
-    [COL.ResidentialVilageID]: z.string().or(z.number()).optional(),
-    [COL.ResidentialPostalCode]: z.string().or(z.number()).optional(),
-    [COL.ResidentialAddress]: z.string().optional(),
-    [COL.ClinicalDiagnosisID]: z.number().or(z.string()).optional(),
-    [COL.SymptomsID]: z.string().optional(),
-    [COL.LastStatusID]: z.number().or(z.string()).optional(),
-    [COL.EpidemiologyType]: z.preprocess(preprocessYesNo, z.number().int()).optional(),
-    [COL.PEResultID]: z.string().or(z.number()).optional(),
-    [COL.VectorControlID]: z.string().or(z.number()).optional(),
-    [COL.LaboratoryExamination]: z.preprocess(preprocessYesNo, z.number().int()).optional(),
-    [COL.ExaminationType]: z.string().or(z.number()).optional(),
-    [COL.LaboratoryId]: z.string().or(z.number()).optional(),
-    [COL.LaboratoryName]: z.string().optional(),
-    [COL.SpecimenType]: z.string().or(z.number()).optional(),
-    [COL.SpecimenCode]: z.string().optional(),
-    [COL.CollectionDate]: z.union([z.string(), z.number()]).optional().transform(convertExcelDate),
-    [COL.ReleaseDate]: z.union([z.string(), z.number()]).optional().transform(convertExcelDate),
-    [COL.ExaminationMethodID]: z.string().or(z.number()).optional(),
-    [COL.EquipmentID]: z.string().optional(),
-    [COL.ReagentID]: z.string().optional(),
-    [COL.ExaminationResult]: z.string().or(z.number()).optional(),
-  })
-    .passthrough()
+  z.looseObject({
+        [COL.InputDate]: z.union([z.string(), z.number()]).optional().transform(convertExcelDate),
+        [COL.NIK]: z.string().or(z.number()).optional(),
+        [COL.FullName]: z.string().optional(),
+        [COL.StatusID]: z.string().or(z.number()).optional(),
+        [COL.PhoneNumber]: z.string().or(z.number()).optional(),
+        [COL.LastEducationID]: z.string().or(z.number()).optional(),
+        [COL.OccupationID]: z.string().or(z.number()).optional(),
+        [COL.ReligionID]: z.string().or(z.number()).optional(),
+        [COL.EthnicID]: z.string().or(z.number()).optional(),
+        [COL.RegisteredVillageID]: z.string().or(z.number()).optional(),
+        [COL.RegisteredPostalCode]: z.string().or(z.number()).optional(),
+        [COL.RegisteredAddress]: z.string().optional(),
+        [COL.SameAddress]: z.preprocess(preprocessYesNo, z.int()).optional(),
+        [COL.ResidentialProvinceID]: z.string().or(z.number()).optional(),
+        [COL.ResidentialCityID]: z.string().or(z.number()).optional(),
+        [COL.ResidentialDistrictID]: z.string().or(z.number()).optional(),
+        [COL.ResidentialVilageID]: z.string().or(z.number()).optional(),
+        [COL.ResidentialPostalCode]: z.string().or(z.number()).optional(),
+        [COL.ResidentialAddress]: z.string().optional(),
+        [COL.ClinicalDiagnosisID]: z.number().or(z.string()).optional(),
+        [COL.SymptomsID]: z.string().optional(),
+        [COL.LastStatusID]: z.number().or(z.string()).optional(),
+        [COL.EpidemiologyType]: z.preprocess(preprocessYesNo, z.int()).optional(),
+        [COL.PEResultID]: z.string().or(z.number()).optional(),
+        [COL.VectorControlID]: z.string().or(z.number()).optional(),
+        [COL.LaboratoryExamination]: z.preprocess(preprocessYesNo, z.int()).optional(),
+        [COL.ExaminationType]: z.string().or(z.number()).optional(),
+        [COL.LaboratoryId]: z.string().or(z.number()).optional(),
+        [COL.LaboratoryName]: z.string().optional(),
+        [COL.SpecimenType]: z.string().or(z.number()).optional(),
+        [COL.SpecimenCode]: z.string().optional(),
+        [COL.CollectionDate]: z.union([z.string(), z.number()]).optional().transform(convertExcelDate),
+        [COL.ReleaseDate]: z.union([z.string(), z.number()]).optional().transform(convertExcelDate),
+        [COL.ExaminationMethodID]: z.string().or(z.number()).optional(),
+        [COL.EquipmentID]: z.string().optional(),
+        [COL.ReagentID]: z.string().optional(),
+        [COL.ExaminationResult]: z.string().or(z.number()).optional(),
+      })
     .transform((row) => ({
       InputDate: row[COL.InputDate],
       NIK: row[COL.NIK],

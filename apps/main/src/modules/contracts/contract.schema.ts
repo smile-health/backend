@@ -14,7 +14,8 @@ const ContractFilterSchema = z.object({
     .optional(),
 })
 
-export const GetListContractSchema =
-  PaginationQueriesSchema.merge(ContractFilterSchema)
+export const GetListContractSchema = PaginationQueriesSchema.extend(
+  ContractFilterSchema.shape
+)
 
 export type GetListContractQueries = z.infer<typeof GetListContractSchema>

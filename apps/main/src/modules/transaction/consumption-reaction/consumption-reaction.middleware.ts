@@ -2,7 +2,7 @@ import { ValidationError } from "@smile-health/lib/error.js"
 import { formatErrors } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import moment from "moment"
-import z from "zod"
+import { z } from "zod"
 import { ConsumptionReactionRepository } from "./consumption-reaction.repository.js"
 import { ConsumptionReactionRequestSchema } from "./consumption-reaction.schema.js"
 
@@ -11,8 +11,10 @@ export class ConsumptionReactionMiddleware {
 
   create = (c: Context) => {
     return z.preprocess(async (input) => {
-      const result =
-        await ConsumptionReactionRequestSchema.safeParseAsync(input)
+      const result = await ConsumptionReactionRequestSchema.safeParseAsync(
+        input,
+        { reportInput: true }
+      )
 
       const parsed = {
         success: result.success,
@@ -29,7 +31,7 @@ export class ConsumptionReactionMiddleware {
       if (!consumption) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["id"],
           message: "validator.not_exist",
         })
@@ -55,7 +57,7 @@ export class ConsumptionReactionMiddleware {
         if (provided < start || provided > end) {
           parsed.success = false
           parsed.error.issues.push({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             path: ["actual_date"],
             message: c.var.t("validator.between", {
               field: "actual_date",
@@ -69,7 +71,7 @@ export class ConsumptionReactionMiddleware {
       if (!reaction) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["reaction_id"],
           message: "validator.not_exist",
         })

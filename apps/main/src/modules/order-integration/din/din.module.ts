@@ -4,7 +4,7 @@ import { OrderCentralDeliveryModule } from "@/modules/order-central-delivery/ord
 import { OrderStatusCancelModule } from "@/modules/order-status/order-status-cancel/order-status-cancel.module.js"
 import { AuthKeycloakService } from "@smile-health/lib/api/auth.service.js"
 import { Context } from "hono"
-import z from "zod"
+import { z } from "zod"
 import { DinContext } from "./din.context.js"
 import { DinRepository } from "./din.repository.js"
 import {

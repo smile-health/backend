@@ -11,7 +11,7 @@ import {
 import { Context } from "hono"
 import { ReferenceExpression, sql } from "kysely"
 import { isStringObject } from "util/types"
-import { z, ZodSchema } from "zod"
+import { z, ZodType } from "zod"
 import { MaterialLevelRepository } from "../material-level/material-level.repository.js"
 import { MaterialTypeRepository } from "../material-type/material-type.repository.js"
 import { MaterialUnitRepository } from "../material-unit/material-unit.repository.js"
@@ -66,7 +66,7 @@ export class MaterialMiddleware {
       [EXCEL_COLUMNS.is_temperature_sensitive]: z.union(
         [z.literal(0), z.literal(1)],
         {
-          errorMap: () => ({ message: "validator.only_0_or_1" }),
+          error: () => "validator.only_0_or_1",
         }
       ),
       [EXCEL_COLUMNS.min_temperature]: MaterialSchema.shape.min_temperature,
@@ -78,16 +78,16 @@ export class MaterialMiddleware {
       [EXCEL_COLUMNS.is_managed_in_batch]: z.union(
         [z.literal(0), z.literal(1)],
         {
-          errorMap: () => ({ message: "validator.only_0_or_1" }),
+          error: () => "validator.only_0_or_1",
         }
       ),
       [EXCEL_COLUMNS.min_retail_price]: MaterialSchema.shape.min_retail_price,
       [EXCEL_COLUMNS.max_retail_price]: MaterialSchema.shape.max_retail_price,
       [EXCEL_COLUMNS.is_stock_opname_mandatory]: z
         .union([z.literal(0), z.literal(1)], {
-          errorMap: () => ({ message: "validator.only_0_or_1" }),
+          error: () => "validator.only_0_or_1",
         })
-        .default(0)
+
         .optional(),
     })
 
@@ -183,9 +183,9 @@ export class MaterialMiddleware {
       transformedMaterialRowSchema
     )
 
-    return z
-      .array(refinedMaterialRowSchema)
-      .min(1, { message: "rows cannot be empty" })
+    return z.array(refinedMaterialRowSchema).min(1, {
+      error: "rows cannot be empty",
+    })
   }
 
   importTemplate = async () => {
@@ -193,7 +193,7 @@ export class MaterialMiddleware {
     return template
   }
 
-  attachCommonRefinements = (c: Context, schema: ZodSchema) => {
+  attachCommonRefinements = (c: Context, schema: ZodType) => {
     return schema.superRefine(async (data, ctx) => {
       const { id } = c.req.param() // if update
       const materialId = id ? Number(id) : undefined
@@ -316,7 +316,7 @@ export class MaterialMiddleware {
 
     if (record && record.id !== id) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.exist",
         path: [typeof field === "string" ? field : JSON.stringify(field)],
       })
@@ -333,7 +333,7 @@ export class MaterialMiddleware {
     const record = await repo.findById(c, value)
     if (!record) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: [field],
       })
@@ -357,7 +357,7 @@ export class MaterialMiddleware {
     material_parent_ids.forEach((materialParentid: number) => {
       if (!collectedMaterialParentIds.includes(materialParentid)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.not_exist", {
             field: `${c.var.t("material.label.parent_material")} id ${materialParentid}`,
           }),
@@ -399,7 +399,7 @@ export class MaterialMiddleware {
         parentLevel.order >= targetLevel.order
       ) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.invalid_material_parent", {
             field: parent.id,
           }),
@@ -422,7 +422,7 @@ export class MaterialMiddleware {
     program_ids.forEach((programId: number) => {
       if (!collectedProgramIds.includes(programId)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.not_exist", {
             field: `Program id ${programId}`,
           }),
@@ -451,7 +451,7 @@ export class MaterialMiddleware {
     program_ids.forEach((programId: number) => {
       if (programsWithInvertedHierarchy.includes(programId)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.invalid_program", {
             field: programId,
           }),
@@ -468,7 +468,7 @@ export class MaterialMiddleware {
   ) => {
     if (!is_hierarchy && material_level_id !== MATERIAL_LEVEL.VARIANT) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.non_hierarchy_material_level"),
         path: ["material_level_id"],
       })
@@ -476,7 +476,7 @@ export class MaterialMiddleware {
 
     if (!is_hierarchy && hierarchy_code) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.non_hierarchy_material_cannot_set_field", {
           field1: `${c.var.t("material_level.label.template")} ${c.var.t("common.and")} ${c.var.t("material_level.label.variant")}`,
           field2: "hierarchy_code",
@@ -487,7 +487,7 @@ export class MaterialMiddleware {
 
     if (!is_hierarchy && material_parent_ids) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.non_hierarchy_material_cannot_set_field", {
           field1: `${c.var.t("material_level.label.template")} ${c.var.t("common.and")} ${c.var.t("material_level.label.variant")}`,
           field2: "material_parent_ids",
@@ -503,7 +503,7 @@ export class MaterialMiddleware {
       material_level_id !== MATERIAL_LEVEL.VARIANT
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.hierarchy_material_level"),
         path: ["material_level_id"],
       })
@@ -513,7 +513,7 @@ export class MaterialMiddleware {
       console.log(1)
 
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.hierarchy_material_need_to_set_field", {
           field1: `${c.var.t("material_level.label.template")} ${c.var.t("common.and")} ${c.var.t("material_level.label.variant")}`,
           field2: "hierarchy_code",
@@ -530,7 +530,7 @@ export class MaterialMiddleware {
       console.log(2)
 
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.hierarchy_material_need_to_set_field", {
           field1: c.var.t("material_level.label.variant"),
           field2: "material_parent_ids",
@@ -545,7 +545,7 @@ export class MaterialMiddleware {
       material_parent_ids
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.non_hierarchy_material_cannot_set_field", {
           field1: c.var.t("material_level.label.template"),
           field2: "material_parent_ids",
@@ -576,7 +576,7 @@ export class MaterialMiddleware {
     for (const field of restrictedFields) {
       if (material[field] !== data[field]) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.update_has_transaction",
           path: [field],
         })
@@ -594,7 +594,7 @@ export class MaterialMiddleware {
   ) => {
     if (min > max) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.not_greater_than", {
           field1: minField,
           field2: maxField,
@@ -605,7 +605,7 @@ export class MaterialMiddleware {
 
     if (max < min) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.not_less_than", {
           field1: maxField,
           field2: minField,
@@ -632,7 +632,7 @@ export class MaterialMiddleware {
     }
 
     ctx.addIssue({
-      code: z.ZodIssueCode.custom,
+      code: "custom",
       message: "validator.update_has_stock_opname",
       path: ["is_stock_opname_mandatory"],
     })
@@ -651,7 +651,7 @@ export class MaterialMiddleware {
 
     if (!res) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.material_subtype_not_related",
         path: ["material_subtype_id"],
       })

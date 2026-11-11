@@ -17,7 +17,6 @@ function fromStringToNumber(field?: string) {
             return value
           })(),
     z
-      .number()
       .int()
       .nonnegative()
       .refine((v) => !isNaN(v))
@@ -25,11 +24,15 @@ function fromStringToNumber(field?: string) {
 }
 
 function stringMinMax(min?: number, max?: number) {
-  return z.string().min(min!).max(max!)
+  // zod 4: .min(undefined) menolak semua input, jadi batas hanya dipasang kalau diisi.
+  let schema = z.string()
+  if (min !== undefined) schema = schema.min(min)
+  if (max !== undefined) schema = schema.max(max)
+  return schema
 }
 
 function positifNumber() {
-  return z.number().int().nonnegative()
+  return z.int().nonnegative()
 }
 
 export const GeneralSchema = z.object({
@@ -46,14 +49,14 @@ export const BudgetSourceSyncSchema = GeneralSchema.extend({
   created_at: z
     .string()
     .transform((str) => new Date(str))
-    .default(`${new Date()}`),
+    .prefault(`${new Date()}`),
 })
 
 export const GetBudgetSourceQueriesSchema = PaginationQueriesSchema.extend({
   is_restricted: z
     .string()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "is_restricted must be 0 or 1",
+      error: "is_restricted must be 0 or 1",
     })
     .transform((val) => Number(val))
     .optional(),
@@ -62,7 +65,7 @@ export const GetBudgetSourceQueriesSchema = PaginationQueriesSchema.extend({
   status: z
     .string()
     .refine((val) => !val || ["0", "1"].includes(val), {
-      message: "Status must be 0 or 1",
+      error: "Status must be 0 or 1",
     })
     .transform((val) => Number(val))
     .optional(),
@@ -97,6 +100,6 @@ export interface TExportBudgetSource {
 }
 
 export const UpdateStatusRequestSchema = z.object({
-  status: z.nativeEnum(STATUS),
+  status: z.enum(STATUS),
 })
 export type UpdateStatusRequest = z.infer<typeof UpdateStatusRequestSchema>

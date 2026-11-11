@@ -11,7 +11,7 @@ import {
   UpdateEstimationSchema,
   UpdateEstimationBiasSchema,
 } from "./target-estimation.schema.js"
-import z from "zod"
+import { z } from "zod"
 import {
   validateRequiredFields,
   addValidationIssue,

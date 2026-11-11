@@ -29,7 +29,7 @@ export interface ExportLogs {
 
 export const codeParamSchema = z.object({
   code: IdSchema.refine((val) => val >= 1 && val <= 60, {
-    message: "validator.not_found",
+    error: "validator.not_found",
   }),
   month: z.coerce.number().int().min(1).max(12).optional(),
   year: z.coerce.number().int().min(2000).max(2100).optional(),

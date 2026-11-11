@@ -1,5 +1,5 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export const GetListGroupTargetSchema = PaginationQueriesSchema.extend({
   keyword: z.string().optional(),
@@ -8,13 +8,25 @@ export const GetListGroupTargetSchema = PaginationQueriesSchema.extend({
 export const SubmitGroupTargetSchema = z.array(z.number().positive())
 
 export const GetListGroupTargetParamsSchema = z.object({
-  id: z.string({ required_error: "id is required" }),
-  year: z.string({ required_error: "year is required" }),
+  id: z.string({
+    error: (issue) =>
+      issue.input === undefined ? "id is required" : undefined,
+  }),
+  year: z.string({
+    error: (issue) =>
+      issue.input === undefined ? "year is required" : undefined,
+  }),
 })
 
 export const DeleteGroupTargetParamsSchema = z.object({
-  id: z.string({ required_error: "id is required" }),
-  group_id: z.string({ required_error: "group id is required" }),
+  id: z.string({
+    error: (issue) =>
+      issue.input === undefined ? "id is required" : undefined,
+  }),
+  group_id: z.string({
+    error: (issue) =>
+      issue.input === undefined ? "group id is required" : undefined,
+  }),
 })
 
 export type GetListGroupTargetQueries = z.infer<typeof GetListGroupTargetSchema>

@@ -10,9 +10,9 @@ export const MaterialSchema = z.object({
   parent_global_id: IdSchema.nullish(),
   parent_id: IdSchema.nullish(),
   program_id: IdSchema,
-  status: z.number().int().nullish(),
-  is_open_vial: z.number().int().nullish(),
-  is_addremove: z.number().int().nullish(),
+  status: z.int().nullish(),
+  is_open_vial: z.int().nullish(),
+  is_addremove: z.int().nullish(),
   description: z.string().nullish(),
   material_level_id: IdSchema,
   code: z.string(),
@@ -21,16 +21,16 @@ export const MaterialSchema = z.object({
   unit_of_consumption: z.string(),
   unit_of_distribution: z.string(),
   unit_of_distribution_id: IdSchema,
-  consumption_unit_per_distribution_unit: z.number().int(),
-  is_temperature_sensitive: z.number().int(),
+  consumption_unit_per_distribution_unit: z.int(),
+  is_temperature_sensitive: z.int(),
   min_retail_price: z.number(),
   max_retail_price: z.number(),
   min_temperature: z.number().nullish(),
   max_temperature: z.number().nullish(),
   material_type_id: IdSchema,
   material_type: IdSchema,
-  is_stock_opname_mandatory: z.number().int().nullish(),
-  is_managed_in_batch: z.number().int(),
+  is_stock_opname_mandatory: z.int().nullish(),
+  is_managed_in_batch: z.int(),
   created_by: IdSchema,
   updated_by: IdSchema,
   deleted_by: IdSchema.nullish(),
@@ -53,7 +53,7 @@ export const MaterialEntityQueryParamsSchema = MaterialQueryParamsSchema.and(
       entity_ids: IdsSchema.optional(),
     })
     .refine((data) => data.entity_id || data.entity_ids, {
-      message: "Either entity_id or entity_ids must be provided",
+        error: "Either entity_id or entity_ids must be provided"
     })
 )
 

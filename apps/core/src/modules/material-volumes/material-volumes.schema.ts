@@ -76,12 +76,14 @@ export const GetMaterialVolumesQueryParamSchema =
           "updated_at",
         ],
         {
-          message: "INVALID REQUEST SORT_BY",
+          error: "INVALID REQUEST SORT_BY",
         }
       )
       .default("updated_at"),
     sort_type: z
-      .enum(["asc", "desc"], { message: "INVALID REQUEST SORT_TYPE" })
+      .enum(["asc", "desc"], {
+        error: "INVALID REQUEST SORT_TYPE",
+      })
       .default("desc"),
   })
 

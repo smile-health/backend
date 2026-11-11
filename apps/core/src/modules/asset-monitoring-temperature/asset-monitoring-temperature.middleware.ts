@@ -39,7 +39,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
           message: c.var.t("validator.required", {
             field: c.var.t("asset_monitoring_temperature.label.device_id"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -54,7 +54,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
           message: c.var.t("validator.required", {
             field: c.var.t("asset_monitoring_temperature.label.curr_temp"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -67,7 +67,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
             message: c.var.t("validator.invalid_date_format", {
               field: c.var.t("asset_monitoring_temperature.label.actual_date"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -88,7 +88,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
           ctx.addIssue({
             path: [prefix, "device_id"],
             message: `Device with ID '${item.device_id}' not found. Please ensure the device is registered in the system.`,
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
           return // Exit early for this item
         }
@@ -105,7 +105,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
           ctx.addIssue({
             path: [prefix, "device_id"],
             message: `Device '${item.device_id}' is not connected to any asset inventory. Please connect the device to an asset first.`,
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -152,7 +152,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
               "asset_monitoring_temperature.label.temperature_capacity"
             ),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -167,7 +167,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
           message: c.var.t("validator.date_range_invalid", {
             field: c.var.t("asset_monitoring_temperature.label.date_range"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
 
@@ -180,7 +180,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
           message: c.var.t("validator.date_too_old", {
             field: c.var.t("asset_monitoring_temperature.label.from_date"),
           }),
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -189,7 +189,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: ["page"],
         message: c.var.t("validator.invalid_page"),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -197,7 +197,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: ["paginate"],
         message: c.var.t("validator.invalid_paginate"),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -237,7 +237,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_type"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
 
@@ -247,7 +247,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
         message: c.var.t("validator.must_be_filled", {
           field: c.var.t("common.sort_by"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -386,7 +386,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
                 "asset_monitoring_temperature.label.temperature_threshold"
               ),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -404,7 +404,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
                 "asset_monitoring_temperature.label.temperature_threshold"
               ),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -424,7 +424,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
               message: c.var.t("validator.date_range_invalid", {
                 field: c.var.t("asset_monitoring_temperature.label.date_range"),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
 
@@ -437,7 +437,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
               message: c.var.t("validator.date_too_old", {
                 field: c.var.t("asset_monitoring_temperature.label.from_date"),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
         }
@@ -446,7 +446,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
           ctx.addIssue({
             path: ["page"],
             message: c.var.t("validator.invalid_page"),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -454,7 +454,7 @@ export class AssetMonitoringTemperatureMiddleware extends BaseMiddleware {
           ctx.addIssue({
             path: ["paginate"],
             message: c.var.t("validator.invalid_paginate"),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }

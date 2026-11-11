@@ -1,7 +1,7 @@
 import { ValidationError } from "@smile-health/lib/error.js"
 import { formatErrors } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
-import z from "zod"
+import { z } from "zod"
 import {
   CreateInput,
   UpdateInput,
@@ -24,7 +24,7 @@ export class MaterialRatioMiddleware {
    */
   create = (c: Context) => {
     return z.preprocess(async (input) => {
-      const parsed = createSchema.safeParse(input)
+      const parsed = createSchema.safeParse(input, { reportInput: true })
       const issues: z.ZodIssue[] = parsed.success
         ? []
         : [...parsed.error.issues]
@@ -48,7 +48,7 @@ export class MaterialRatioMiddleware {
 
   update = (c: Context) => {
     return z.preprocess(async (input) => {
-      const parsed = updateSchema.safeParse(input)
+      const parsed = updateSchema.safeParse(input, { reportInput: true })
       const issues: z.ZodIssue[] = parsed.success
         ? []
         : [...parsed.error.issues]

@@ -48,7 +48,7 @@ export class NotificationMiddleware extends BaseMiddleware {
       if (!province) {
         ctx.addIssue({
           path: ["province_id"],
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.not_exist",
         })
       }
@@ -59,7 +59,7 @@ export class NotificationMiddleware extends BaseMiddleware {
       if (!city) {
         ctx.addIssue({
           path: ["city_id"],
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.not_exist",
         })
       }
@@ -76,7 +76,7 @@ export class NotificationMiddleware extends BaseMiddleware {
       if (data.entity_tag_ids.length !== entityTags.length) {
         ctx.addIssue({
           path: ["entity_tag_ids"],
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.not_exist",
         })
       }
@@ -93,7 +93,7 @@ export class NotificationMiddleware extends BaseMiddleware {
       if (data.program_ids.length !== programs.length) {
         ctx.addIssue({
           path: ["program_ids"],
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.not_exist",
         })
       }
@@ -110,7 +110,7 @@ export class NotificationMiddleware extends BaseMiddleware {
       if (!healthCenter) {
         ctx.addIssue({
           path: ["health_center_id"],
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.not_exist",
         })
       }
@@ -126,7 +126,7 @@ export class NotificationMiddleware extends BaseMiddleware {
     if (!notification) {
       ctx.addIssue({
         path: ["id"],
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
       })
     }
@@ -134,7 +134,7 @@ export class NotificationMiddleware extends BaseMiddleware {
     if (notification && notification.read_at) {
       ctx.addIssue({
         path: ["id"],
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.has_marked_as_read",
       })
     }

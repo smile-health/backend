@@ -1,11 +1,11 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export const LocationTypeParamsSchema = z.object({
   type: z
     .string()
     .refine((v) => ["province", "city", "district", "village"].includes(v), {
-      message: "type must be one of: province, city, district, village",
+        error: "type must be one of: province, city, district, village"
     }),
 })
 
@@ -74,7 +74,7 @@ export const TargetConsumptionQueriesSchema = PaginationQueriesSchema.extend({
       return num === 1 || num === 2 ? num : undefined
     })
     .refine((val) => val === undefined || val === 1 || val === 2, {
-      message: "gender must be 1 (male) or 2 (female)",
+        error: "gender must be 1 (male) or 2 (female)"
     }),
   target_group: z
     .union([z.string(), z.array(z.string())])

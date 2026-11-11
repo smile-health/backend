@@ -1,5 +1,5 @@
 import { IdParamsSchema } from "@smile-health/lib/types/param"
-import z from "zod"
+import { z } from "zod"
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { STATUS_CAPACITY_COLDSTORAGE } from "@/common/constants/assets"
 
@@ -36,7 +36,7 @@ export const AddColdStorageRequestSchema = ColdStorageSchema.pick({
   user_id: true,
 }).extend({
   program_id: z.number().positive(),
-  is_send_notification: z.boolean().default(false).optional(),
+  is_send_notification: z.boolean().optional(),
 })
 
 export const BulkAddColdStorageRequestSchema = ColdStorageSchema.pick({
@@ -58,7 +58,7 @@ export const GetDetailColdstorageParamSchema = z.object({
 export const GetColdstorageListQuerySchema = PaginationQueriesSchema.extend({
   capacities_status: z
     .enum(["empty", "low", "normal", "high"], {
-      message: "INVALID REQUEST CAPACITY STATUS",
+      error: "INVALID REQUEST CAPACITY STATUS",
     })
     .optional(),
   province_id: z.preprocess(
@@ -79,11 +79,13 @@ export const GetColdstorageListQuerySchema = PaginationQueriesSchema.extend({
   ),
   sort_by: z
     .enum(["entity_name", "total_volume", "percentage_capacity"], {
-      message: "INVALID REQUEST SORT_BY",
+      error: "INVALID REQUEST SORT_BY",
     })
     .optional(),
   sort_type: z
-    .enum(["asc", "desc"], { message: "INVALID REQUEST SORT_TYPE" })
+    .enum(["asc", "desc"], {
+      error: "INVALID REQUEST SORT_TYPE",
+    })
     .optional(),
 })
 

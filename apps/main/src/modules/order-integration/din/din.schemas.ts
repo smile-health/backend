@@ -38,7 +38,7 @@ const OrderItemSchema = z.object({
 
 /* Request Body Schema */
 export const OrderDinRequestSchema = z.object({
-  key: z.string().uuid(),
+  key: z.guid(),
   doc_num: z.string(),
   ref_num: z.string(),
   code: z.string().nullish(),
@@ -73,7 +73,7 @@ export const OrderDinRequestSchema = z.object({
 export const CreateOrderResponseSchema = z
   .object({
     success: z.boolean(),
-    code: z.number().int(),
+    code: z.int(),
     message: z.string(),
   })
   .describe("Create Order Response")

@@ -1,5 +1,4 @@
 import { Context } from "hono"
-import { ZodIssueCode } from "zod"
 import { GetDisposalStocksQueriesSchema } from "./disposal-stock.schema.js"
 
 export class DisposalStockMiddleware {
@@ -10,7 +9,7 @@ export class DisposalStockMiddleware {
       const { expired_from, expired_to } = data
       if (expired_from && !expired_to) {
         ctx.addIssue({
-          code: ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.required", {
             field: c.var.t("common.expired_to"),
           }),
@@ -19,7 +18,7 @@ export class DisposalStockMiddleware {
       }
       if (!expired_from && expired_to) {
         ctx.addIssue({
-          code: ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.required", {
             field: c.var.t("common.expired_from"),
           }),
@@ -29,7 +28,7 @@ export class DisposalStockMiddleware {
       if (expired_from && expired_to) {
         if (expired_from > expired_to) {
           ctx.addIssue({
-            code: ZodIssueCode.custom,
+            code: "custom",
             message: c.var.t("validator.end_date_before_start_date"),
             path: ["expired_from"],
           })

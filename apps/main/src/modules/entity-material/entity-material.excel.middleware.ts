@@ -43,7 +43,7 @@ export class EntityMaterialExcelMiddleware {
     if (!value) {
       ctx.addIssue({
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }

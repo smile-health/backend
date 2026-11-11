@@ -1,5 +1,5 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export const GetListProtocolSchema = PaginationQueriesSchema
 export const GetListVaccineSequenceSchema = PaginationQueriesSchema.extend({
@@ -8,34 +8,38 @@ export const GetListVaccineSequenceSchema = PaginationQueriesSchema.extend({
 
 export const SequenceSchema = z.object({
   protocolId: z
-    .string({ required_error: "Protocol Id is required" })
+    .string({
+        error: (issue) => issue.input === undefined ? "Protocol Id is required" : undefined
+    })
     .transform((v) => parseInt(v))
-    .refine((v) => !isNaN(v), { message: "Invalid type" }),
+    .refine((v) => !isNaN(v), {
+        error: "Invalid type"
+    }),
 })
 
 export const DeleteProtocolMaterialActivitySchema = SequenceSchema.extend({
   id: z
-    .string({ required_error: "ID is required" })
+    .string({
+        error: (issue) => issue.input === undefined ? "ID is required" : undefined
+    })
     .transform((v) => parseInt(v))
-    .refine((v) => !isNaN(v), { message: "Invalid type" }),
+    .refine((v) => !isNaN(v), {
+        error: "Invalid type"
+    }),
 })
 
 export const ProtocolMateralActivitySchema = z.object({
-  protocol_id: z.number({ required_error: "Protocol ID is required" }).int(),
+  protocol_id: z.int(),
   material_activities: z.array(
     z.object({
-      material_id: z
-        .number({ required_error: "Material ID is required" })
-        .int(),
-      activity_id: z
-        .number({ required_error: "Activity ID is required" })
-        .int(),
+      material_id: z.int(),
+      activity_id: z.int(),
     })
   ),
 })
 
 export const StatusProtocolSchema =  z.object({
-  status: z.number({ required_error: "Status is required" }).int().min(0).max(1),
+  status: z.int().min(0).max(1),
 })
 
 export type GetProtocolQueries = z.infer<typeof GetListProtocolSchema>

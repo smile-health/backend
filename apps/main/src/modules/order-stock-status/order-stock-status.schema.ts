@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 
 const preprocessToString = (value: unknown) =>
   typeof value === "number" ? String(value) : value

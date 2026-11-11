@@ -9,7 +9,7 @@ import { formatExcelErrors } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import { createMiddleware } from "hono/factory"
 import { validator } from "hono/validator"
-import z from "zod"
+import { z } from "zod"
 import { ProgramRepository } from "../program/program.repository.js"
 import { ActivityExcel } from "./activity.excel.js"
 import { ActivityRepository } from "./activity.repository.js"
@@ -108,7 +108,9 @@ export class ActivityMiddleware extends BaseMiddleware {
       }
     ).transform((rows) => rows.map(this.transformRowSchema))
 
-    const result = await usedSchema.safeParseAsync(rowsResult)
+    const result = await usedSchema.safeParseAsync(rowsResult, {
+      reportInput: true,
+    })
 
     if (!result.success) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -123,7 +125,7 @@ export class ActivityMiddleware extends BaseMiddleware {
                 field1: c.var.t("activity.label.is_ordered_sales"),
                 field2: c.var.t("activity.label.is_ordered_purchase"),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           } else {
             newError.issues.push({
@@ -132,7 +134,7 @@ export class ActivityMiddleware extends BaseMiddleware {
                 field1: c.var.t("activity.label.is_ordered_purchase"),
                 field2: c.var.t("activity.label.is_ordered_sales"),
               }),
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             })
           }
         } else {
@@ -141,7 +143,7 @@ export class ActivityMiddleware extends BaseMiddleware {
             message: c.var.t(err.message, {
               field: c.var.t(`activity.label.${err.path[1]}`),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -173,7 +175,7 @@ export class ActivityMiddleware extends BaseMiddleware {
       message: c.var.t("validator.not_empty", {
         field: c.var.t("common.rows"),
       }),
-      code: z.ZodIssueCode.custom,
+      code: "custom",
     })
   }
 
@@ -189,7 +191,7 @@ export class ActivityMiddleware extends BaseMiddleware {
           field1: c.var.t("activity.label.is_ordered_sales"),
           field2: c.var.t("activity.label.is_ordered_purchase"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
 
       ctx.addIssue({
@@ -198,7 +200,7 @@ export class ActivityMiddleware extends BaseMiddleware {
           field1: c.var.t("activity.label.is_ordered_purchase"),
           field2: c.var.t("activity.label.is_ordered_sales"),
         }),
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -215,13 +217,13 @@ export class ActivityMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: [index, "is_ordered_sales"],
           message: "validator.selected_atleast_one",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
 
         ctx.addIssue({
           path: [index, "is_ordered_purchase"],
           message: "validator.selected_atleast_one",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     })
@@ -239,7 +241,7 @@ export class ActivityMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["name"],
           message: "validator.exist",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -256,7 +258,7 @@ export class ActivityMiddleware extends BaseMiddleware {
           ctx.addIssue({
             path: [index, "name"],
             message: "validator.duplicated",
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         } else {
           checkDuplicateNameList.push(String(d[COL.Name]))
@@ -283,7 +285,7 @@ export class ActivityMiddleware extends BaseMiddleware {
           ctx.addIssue({
             path: [index, "name"],
             message: "validator.exist",
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
       }
@@ -306,7 +308,7 @@ export class ActivityMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["name"],
           message: "validator.exist",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -321,7 +323,7 @@ export class ActivityMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["id"],
           message: "validator.not_exist",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -381,7 +383,7 @@ export class ActivityMiddleware extends BaseMiddleware {
           ctx.addIssue({
             path: ["id"],
             message: "validator.number",
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
           return
         }
@@ -399,7 +401,7 @@ export class ActivityMiddleware extends BaseMiddleware {
             message: c.var.t(`validator.${message}`, {
               field: c.var.t("common.status"),
             }),
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           })
         }
 
@@ -427,7 +429,7 @@ export class ActivityMiddleware extends BaseMiddleware {
 
       if (sort_by && !sortBys.includes(sort_by)) {
         cfx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["sort_by"],
           message: c.var.t("validator.one_of", {
             field: "sort_by",
@@ -438,7 +440,7 @@ export class ActivityMiddleware extends BaseMiddleware {
 
       if (sort_type && !sortTypes.includes(sort_type)) {
         cfx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["sort_type"],
           message: c.var.t("validator.one_of", {
             field: "sort_type",

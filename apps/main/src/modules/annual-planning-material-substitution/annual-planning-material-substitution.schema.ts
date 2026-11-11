@@ -1,5 +1,5 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 import { Context } from "hono"
 import {
   IdParamsSchema,
@@ -37,14 +37,14 @@ export const QuerySchema = PaginationQueriesSchema.extend({
   is_for_filter: z
     .string()
     .refine((val) => val === "0" || val === "1", {
-      message: "validator.boolean_number",
+      error: "validator.boolean_number",
     })
     .transform((val) => Boolean(Number(val)))
     .nullish(),
   is_planned_only: z
     .string()
     .refine((val) => val === "0" || val === "1", {
-      message: "validator.boolean_number",
+      error: "validator.boolean_number",
     })
     .transform((val) => Boolean(Number(val)))
     .nullish(),
@@ -88,7 +88,9 @@ const numbersFromString = z.union([
     .transform((n) => [n]),
   z
     .string()
-    .nonempty({ message: "Input required" })
+    .nonempty({
+      error: "Input required",
+    })
     .refine(
       (s) => {
         const parts = s
@@ -98,7 +100,7 @@ const numbersFromString = z.union([
         return parts.length > 0 && parts.every((p) => /^\d+$/.test(p))
       },
       {
-        message:
+        error:
           "Must be a number or semicolon-separated numbers (e.g. '2' or '2;3;4')",
       }
     )
@@ -125,5 +127,5 @@ export const ImportMaterialSubstitutionRequestSchema = (
   inputCol: ColumnImportSchema
 ) =>
   z.array(ImportMaterialSubstitutionRequestRowSchema(inputCol)).min(1, {
-    message: "rows cannot be empty",
+    error: "rows cannot be empty",
   })

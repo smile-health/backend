@@ -1,5 +1,5 @@
 import { DateSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 
 const preprocessNumber = (value: unknown) => {
   if (value === null || value === "") return undefined
@@ -8,7 +8,7 @@ const preprocessNumber = (value: unknown) => {
   return undefined
 }
 
-const PositiveIntSchema = z.number().int().positive()
+const PositiveIntSchema = z.int().positive()
 
 export const ConsumptionReactionParamSchema = z.object({
   id: z.preprocess(preprocessNumber, PositiveIntSchema),

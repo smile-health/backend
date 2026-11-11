@@ -8,8 +8,7 @@ const preprocessNumber = (value: unknown) => {
   return undefined
 }
 
-const optionalDateSchema = z
-  .string()
+const optionalDateSchema = z.iso
   .date()
   .or(z.literal(""))
   .nullish()

@@ -21,6 +21,7 @@ import { StatusCodes } from "http-status-codes"
 import env from "./config/env.js"
 import { app as openapiApp } from "./openapi.js"
 import { quickSetupService } from "@smile-health/lib/tracing-config"
+import { requestBodyLimit } from "@smile-health/lib/middlewares/body-limit.middleware.js"
 
 // construct app
 const app = new Hono()
@@ -29,6 +30,7 @@ quickSetupService("core-service", app)
 
 // Add HTTP request tracing as the first middleware
 app.use("*", httpRequestTracer.traceRequest())
+app.use("*", requestBodyLimit())
 
 // Health check endpoint
 app.get("/health", (c) => {

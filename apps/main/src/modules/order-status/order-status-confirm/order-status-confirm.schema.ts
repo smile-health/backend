@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 import { IdParamsSchema } from "@smile-health/lib/types/param.js"
 
 /* Base Schema */

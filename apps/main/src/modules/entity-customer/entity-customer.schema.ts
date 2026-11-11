@@ -1,5 +1,5 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export type CustomerHasActivitiesDTO = {
   customer_vendor_id: number
@@ -58,14 +58,18 @@ export const GetListEntityCustomerSchema = PaginationQueriesSchema.extend({
       if (!val) return true;
       return !isNaN(Number(val));
     }, {
-      message: "INVALID ACTIVITY ID",
+        error: "INVALID ACTIVITY ID"
     })
     .transform((val) => (val ? Number(val) : null)),
   is_consumption: z
-    .enum(["0", "1"], { message: "INVALID ENUM IS_CONSUMPTION" })
+    .enum(["0", "1"], {
+        error: "INVALID ENUM IS_CONSUMPTION"
+    })
     .transform((val) => Number(val)),
   is_vendor: z
-    .enum(["0", "1"], { message: "INVALID ENUM IS_VENDOR" })
+    .enum(["0", "1"], {
+        error: "INVALID ENUM IS_VENDOR"
+    })
     .transform((val) => Number(val))
     .optional(),
 })
@@ -73,24 +77,28 @@ export const GetListEntityCustomerSchema = PaginationQueriesSchema.extend({
 export const GetListEntityCustomerRelationSchema =
   PaginationQueriesSchema.extend({
     is_consumption: z
-      .enum(["0", "1"], { message: "INVALID ENUM IS_CONSUMPTION" })
+      .enum(["0", "1"], {
+          error: "INVALID ENUM IS_CONSUMPTION"
+    })
       .transform((val) => Number(val)),
   })
 
 export const CreateEntityCustomerRequestSchema = z.object({
   entity_id: z
     .number({
-      message: "INVALID ENTITY ID PARAM",
+        error: "INVALID ENTITY ID PARAM"
     })
     .nonnegative(),
   is_consumption: z
-    .enum(["0", "1"], { message: "INVALID ENUM IS_CONSUMPTION" })
+    .enum(["0", "1"], {
+        error: "INVALID ENUM IS_CONSUMPTION"
+    })
     .transform((val) => Number(val)),
   add: z.array(
     z.object({
       entity_id_relation: z
         .number({
-          message: "INVALID ENTITY ID PARAM",
+            error: "INVALID ENTITY ID PARAM"
         })
         .nonnegative(),
       activity_ids: z.array(z.number().nonnegative()),
@@ -101,12 +109,12 @@ export const CreateEntityCustomerRequestSchema = z.object({
 export const UpdateEntityCustomerRequestSchema = z.object({
   entity_id: z
     .number({
-      message: "INVALID ENTITY ID PARAM",
+        error: "INVALID ENTITY ID PARAM"
     })
     .nonnegative(),
   entity_id_relation: z
     .number({
-      message: "INVALID ENTITY ID PARAM",
+        error: "INVALID ENTITY ID PARAM"
     })
     .nonnegative(),
   activity_ids: z.array(z.number().nonnegative()),
@@ -115,7 +123,7 @@ export const UpdateEntityCustomerRequestSchema = z.object({
 export const DeleteEntityCustomerRequestSchema = z.object({
   entity_id: z
     .number({
-      message: "INVALID ENTITY ID PARAM",
+        error: "INVALID ENTITY ID PARAM"
     })
     .nonnegative(),
   entity_ids_relation: z.array(z.number().nonnegative()),
@@ -124,7 +132,7 @@ export const DeleteEntityCustomerRequestSchema = z.object({
 export const UpdateImportEntityCustomerRequestSchema = z.object({
   entity_id_relation: z
     .number({
-      message: "INVALID ENTITY ID PARAM",
+        error: "INVALID ENTITY ID PARAM"
     })
     .nonnegative(),
   activity_ids: z.array(z.number().nonnegative()),
@@ -163,8 +171,8 @@ export const ImportEntityRowSchema = z
 export const ImportEntityCustomerRequestSchema = z
   .array(ImportEntityRowSchema)
   .min(1, {
-    message: "rows cannot be empty",
-  })
+      error: "rows cannot be empty"
+})
 
 export type GetEntitiesCustomersQueries = z.infer<
   typeof GetListEntityCustomerSchema

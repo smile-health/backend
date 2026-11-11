@@ -14,8 +14,8 @@ export const getListBatchSchema = PaginationQueriesSchema.extend({
   }),
   material_level_id: z.preprocess(
     (val) => (typeof val === 'string' ? Number(val) : val),
-    z.nativeEnum(KFA_LEVEL_ID)
-  ).default(KFA_LEVEL_ID.VARIANT),
+    z.enum(KFA_LEVEL_ID)
+  ).prefault(KFA_LEVEL_ID.VARIANT),
 })
 
 export type GetListBatchQueries = z.infer<typeof getListBatchSchema>

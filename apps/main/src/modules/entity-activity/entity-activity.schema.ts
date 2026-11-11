@@ -1,6 +1,6 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import moment from "moment"
-import z from "zod"
+import { z } from "zod"
 
 export type InsertEntityActivityDateDTO = {
   entity_id: number
@@ -36,15 +36,19 @@ export const IsOngoingSchema = z.object({
     .optional(),
 })
 
-export const GetListEntityActivityAdditionalSchema = IsOngoingSchema.merge(
-  PaginationQueriesSchema
+export const GetListEntityActivityAdditionalSchema = IsOngoingSchema.extend(
+  PaginationQueriesSchema.shape
 )
 
 export const SubmitEntityActivityRequestSchema = z.object({
-  entity_id: z.number({ message: "ID IS REQUIRED" }).nonnegative(),
+  entity_id: z
+    .number({
+      error: "ID IS REQUIRED",
+    })
+    .nonnegative(),
   activities: z.array(
     z.object({
-      id: z.number().int().nonnegative().optional(),
+      id: z.int().nonnegative().optional(),
       activity_id: z.number().nonnegative(),
       start_date: z
         .string()
@@ -54,7 +58,7 @@ export const SubmitEntityActivityRequestSchema = z.object({
             return isValid
           },
           {
-            message: "INVALID START DATE PARAM",
+            error: "INVALID START DATE PARAM",
           }
         )
         .transform((val) => new Date(val))
@@ -68,7 +72,7 @@ export const SubmitEntityActivityRequestSchema = z.object({
             return isValid
           },
           {
-            message: "INVALID END DATE PARAM",
+            error: "INVALID END DATE PARAM",
           }
         )
         .transform((val) => new Date(val))

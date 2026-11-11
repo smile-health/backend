@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 import { DateSchema } from "@smile-health/lib/types/param.js"
 
 /* Base Schema */
@@ -58,8 +58,8 @@ const OrderItemStockRequestSchema = z.object({
   ),
 })
 
-export const OrderReturnRequestSchema = OrderRequestSchema.merge(
-  OrderItemStockRequestSchema
+export const OrderReturnRequestSchema = OrderRequestSchema.extend(
+  OrderItemStockRequestSchema.shape
 )
 
 /* DTO Schema */

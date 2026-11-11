@@ -2,7 +2,7 @@ import { z } from "zod"
 
 // Transactions
 export const SismalTransactionsQueries = z.object({
-  page: z.coerce.number().int().min(1).default(1),
+  page: z.coerce.number().int().min(1).prefault(1),
   paginate: z.coerce.number().int().min(1),
   activity_id: z.string().optional(),
   province_id: z.string().optional(),
@@ -32,7 +32,7 @@ export const SismalTransactionResponse = z.object({
       stock: z.object({
         batch: z.object({
           code: z.string().nullable(),
-          expired_date: z.string().datetime().nullable(),
+          expired_date: z.iso.datetime().nullable(),
         }),
       }),
       change_qty: z.number().nullable(),
@@ -53,7 +53,7 @@ export type SismalTransactionResponseType = z.infer<
 
 // Orders
 export const SismalOrdersQueries = z.object({
-  page: z.coerce.number().int().min(1).default(1),
+  page: z.coerce.number().int().min(1).prefault(1),
   paginate: z.coerce.number().int().min(1),
   from_date: z.string().optional(),
   to_date: z.string().optional(),
@@ -71,7 +71,7 @@ export const SismalOrdersResponse = z.object({
   perPage: z.number(),
   list: z.array(
     z.object({
-      created_at: z.string().datetime().nullable(),
+      created_at: z.iso.datetime().nullable(),
       id: z.number().nullable(),
       status: z.number().nullable(),
       total_order_item: z.number().nullable(),

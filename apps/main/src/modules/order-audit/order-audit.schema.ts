@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 
 /* Base Schema */
 export const OrderAuditSchema = z.object({

@@ -1,7 +1,7 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { IdParamsSchema } from "@smile-health/lib/types/param"
 import { Context } from "hono"
-import z from "zod"
+import { z } from "zod"
 
 export const GetListGroupTargetSchema = PaginationQueriesSchema.extend({
   keyword: z.string().optional(),
@@ -67,7 +67,7 @@ export const ImportTargetGroupRequestSchema = (c: Context) => {
   }))
 
   return z.array(transformedRow).min(1, {
-    message: "rows cannot be empty",
+    error: "rows cannot be empty",
   })
 }
 

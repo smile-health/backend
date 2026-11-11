@@ -133,7 +133,7 @@ export class OrderStatusValidateMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.must_be_zero",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
     if (
@@ -143,14 +143,14 @@ export class OrderStatusValidateMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_multiples",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
     if (confirmedQty > stocks[0].total_available_qty) {
       ctx.addIssue({
         path: issuePath,
         message: "validator.cannot_greater_than_available_stock",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -165,7 +165,7 @@ export class OrderStatusValidateMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -183,7 +183,7 @@ export class OrderStatusValidateMiddleware extends BaseMiddleware {
 
     if (orderItem.qty !== sumChildrenMaterialQty) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.unmatch_quantity_with_total_children_quantity",
         path: ["order_items", index, "qty"],
       })
@@ -207,7 +207,7 @@ export class OrderStatusValidateMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["order_items", index, "children", subIndex, "id"],
           message: "validator.not_exist",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -234,7 +234,7 @@ export class OrderStatusValidateMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["order_items", index, "children", subIndex, "id"],
           message: "validator.not_children_of_parent_item",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }

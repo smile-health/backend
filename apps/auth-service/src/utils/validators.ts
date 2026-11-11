@@ -5,17 +5,17 @@ import logger from "./logger";
 
 export const validateRequestBody = async <T>(
   c: Context,
-  schema: z.ZodSchema<T>
+  schema: z.ZodType<T>
 ): Promise<{ success: boolean; data?: T; errorResponse?: ErrorResponse }> => {
   const reqBody = await c.req.parseBody();
   const reqValidationResult = schema.safeParse(reqBody);
 
   if (!reqValidationResult.success) {
     logger.warn(
-      `ValidationHelper.validateRequest: Validation failed: ${JSON.stringify(reqValidationResult.error.errors)}`
+      `ValidationHelper.validateRequest: Validation failed: ${JSON.stringify(reqValidationResult.error.issues)}`
     );
     const errorResponse = {
-      message: reqValidationResult.error.errors,
+      message: reqValidationResult.error.issues,
       code: 400,
     };
     return {

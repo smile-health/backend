@@ -5,18 +5,18 @@ import { z } from "zod"
 /* Schemas */
 export const ActivitySchema = z.object({
   id: IdSchema,
-  program_id: z.number().int(),
+  program_id: z.int(),
   name: z.string(),
-  is_ordered_sales: z.number().int().nullish(),
-  is_ordered_purchase: z.number().int().nullish(),
-  created_by: z.number().int().nullish(),
-  updated_by: z.number().int().nullish(),
-  deleted_by: z.number().int().nullish(),
+  is_ordered_sales: z.int().nullish(),
+  is_ordered_purchase: z.int().nullish(),
+  created_by: z.int().nullish(),
+  updated_by: z.int().nullish(),
+  deleted_by: z.int().nullish(),
   created_at: DateSchema,
   updated_at: DateSchema,
   deleted_at: DateSchema.nullish(),
   protocol: z.string().nullish(),
-  status: z.number().int().nullish(),
+  status: z.int().nullish(),
   code: z.string().nullish(),
 })
 

@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 
 export type MaterialItem = {
   material_id: number

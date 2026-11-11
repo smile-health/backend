@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 
 const ImmunizationDataSchema = z.object({
   hb0: z.number(),

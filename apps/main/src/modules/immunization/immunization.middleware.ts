@@ -43,7 +43,7 @@ export class ImmunizationMiddleware {
         await this.repository.checkPatientImmunizationExists(c, Number(data.id))
       if (!patientExists) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.patient_not_found"),
           path: ["id"],
         })
@@ -65,7 +65,7 @@ export class ImmunizationMiddleware {
 
         if (existingPatient) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "NIK already exists",
             path: ["nik"],
           })
@@ -82,7 +82,7 @@ export class ImmunizationMiddleware {
       )
       if (!immunizationExists) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.immunization_not_found"),
           path: ["patient_immunization_id"],
         })
@@ -103,7 +103,7 @@ export class ImmunizationMiddleware {
 
       if (!hasAnyField) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "At least one field must be provided for update",
           path: ["_"],
         })
@@ -132,7 +132,7 @@ export class ImmunizationMiddleware {
       )
       if (!immunizationExists) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.immunization_not_found"),
           path: ["patient_immunization_id"],
         })
@@ -151,7 +151,7 @@ export class ImmunizationMiddleware {
       const immunization = await this.repository.findById(c, Number(data.id))
       if (!immunization) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: c.var.t("validator.not_exist", {
             field: c.var.t("immunization.label.id"),
           }),
@@ -176,7 +176,7 @@ export class ImmunizationMiddleware {
     const numericId = Number(id)
     if (isNaN(numericId) || numericId <= 0) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.invalid_id"),
         path: [fieldName],
       })
@@ -192,7 +192,7 @@ export class ImmunizationMiddleware {
     if (vaccine_status) {
       if (vaccine_status === "note_with_batch" && !batch_id) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "Batch ID is required for note with batch",
           path: ["batch_id"],
         })
@@ -204,14 +204,14 @@ export class ImmunizationMiddleware {
         !injection_date
       ) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "Injection date is required",
           path: ["injection_date"],
         })
       }
     } else if (!injection_date && !batch_id) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "At least injection_date or batch_id is required",
         path: ["_"],
       })
@@ -236,7 +236,7 @@ export class ImmunizationMiddleware {
       this.#validateNIKData(c, ctx, nikData)
     } catch (error) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.invalid_nik"),
         path: ["patient", "identity_number"],
       })
@@ -250,7 +250,7 @@ export class ImmunizationMiddleware {
   ): boolean => {
     if (!nik || nik.length !== 16) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.invalid_nik_length"),
         path: ["patient", "identity_number"],
       })
@@ -259,7 +259,7 @@ export class ImmunizationMiddleware {
 
     if (!/^\d+$/.test(nik)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.invalid_nik_format"),
         path: ["patient", "identity_number"],
       })
@@ -276,7 +276,7 @@ export class ImmunizationMiddleware {
   ) => {
     if (!nikData.province_id || !nikData.city_id || !nikData.district_id) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.invalid_nik_location"),
         path: ["patient", "identity_number"],
       })
@@ -293,7 +293,7 @@ export class ImmunizationMiddleware {
 
     if (!isValidDate) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.invalid_date_of_birth"),
         path: ["patient", "identity_number"],
       })
@@ -302,7 +302,7 @@ export class ImmunizationMiddleware {
 
     if (parsedDate > new Date()) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.date_of_birth_future"),
         path: ["patient", "identity_number"],
       })

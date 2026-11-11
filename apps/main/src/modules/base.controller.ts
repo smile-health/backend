@@ -5,7 +5,7 @@ import { Consumer } from "@smile-health/lib/rabbitmq"
 import { formatErrors } from "@smile-health/lib/zod.js"
 import { Context, Hono } from "hono"
 import { validator } from "hono/validator"
-import { ZodSchema } from "zod"
+import { ZodType } from "zod"
 
 export class BaseController {
   public getRoutes(): Hono {
@@ -16,7 +16,7 @@ export class BaseController {
     throw new BadRequestError("Not implemented")
   }
 
-  protected validateRequest<T extends ZodSchema>(
+  protected validateRequest<T extends ZodType>(
     type: "json" | "param" | "query" | "header",
     schema: T | ((c: Context) => T)
   ) {
@@ -24,7 +24,9 @@ export class BaseController {
       type,
       async (value, c): Promise<ReturnType<T["parse"]>> => {
         const usedSchema = typeof schema === "function" ? schema(c) : schema
-        const result = await usedSchema.safeParseAsync(value)
+        const result = await usedSchema.safeParseAsync(value, {
+          reportInput: true,
+        })
         if (result.success) {
           return result.data
         }

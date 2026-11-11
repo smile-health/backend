@@ -10,6 +10,7 @@ import { AuthController } from "./controllers/authController";
 import { UserController } from "./controllers/userController";
 import { quickSetupService } from "@smile-health/lib/tracing-config";
 import "./common/infrastructure/database";
+import { requestBodyLimit } from "@smile-health/lib/middlewares/body-limit.middleware.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ const appPrefix = env.API_PREFIX ?? "";
 quickSetupService("auth-service", app);
 app.use(cors());
 app.use(httpLogger);
+app.use("*", requestBodyLimit());
 app.openAPIRegistry.registerComponent("securitySchemes", "Bearer", {
   type: "http",
   scheme: "bearer",

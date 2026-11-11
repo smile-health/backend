@@ -1,7 +1,7 @@
 import { ValidationError } from "@smile-health/lib/error.js"
 import { formatErrors } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
-import z from "zod"
+import { z } from "zod"
 import { MaterialRepository } from "../material/material.repository.js"
 import { ReconciliationRepository } from "./reconciliation.repository.js"
 import {
@@ -84,7 +84,9 @@ export class ReconciliationMiddleware {
 
   create = (c: Context) => {
     return z.preprocess(async (input) => {
-      const result = await CreateReconciliationSchema.safeParseAsync(input)
+      const result = await CreateReconciliationSchema.safeParseAsync(input, {
+        reportInput: true,
+      })
 
       const parsed = {
         success: result.success,
@@ -102,7 +104,7 @@ export class ReconciliationMiddleware {
       if (!materialExists) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["material_id"],
           message: c.var.t("validator.not_exist", {
             field: c.var.t("reconciliation.label.material_id"),
@@ -117,7 +119,7 @@ export class ReconciliationMiddleware {
       ) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["end_date"],
           message: "validator.end_date_before_start_date",
         })
@@ -133,7 +135,7 @@ export class ReconciliationMiddleware {
         if (!categoryExists) {
           parsed.success = false
           parsed.error.issues.push({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             path: ["items", `${i}`, "reconciliation_category"],
             message: c.var.t("validator.not_exist", {
               field: c.var.t("reconciliation.label.reconciliation_category"),
@@ -148,7 +150,7 @@ export class ReconciliationMiddleware {
             if (!reasonExists) {
               parsed.success = false
               parsed.error.issues.push({
-                code: z.ZodIssueCode.custom,
+                code: "custom",
                 path: ["items", `${i}`, "reasons"],
                 message: c.var.t("validator.not_exist", {
                   field: c.var.t("reconciliation.label.reason"),
@@ -165,7 +167,7 @@ export class ReconciliationMiddleware {
             if (!actionExists) {
               parsed.success = false
               parsed.error.issues.push({
-                code: z.ZodIssueCode.custom,
+                code: "custom",
                 path: ["items", `${i}`, "actions"],
                 message: c.var.t("validator.not_exist", {
                   field: c.var.t("reconciliation.label.action"),
@@ -182,7 +184,7 @@ export class ReconciliationMiddleware {
         ) {
           parsed.success = false
           parsed.error.issues.push({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             path: ["items", `${i}`, "reasons"],
             message: c.var.t("validator.duplicated", {
               field:
@@ -205,7 +207,10 @@ export class ReconciliationMiddleware {
 
   generate = (c: Context) => {
     return z.preprocess(async (input) => {
-      const result = await GetGenerateReconciliationSchema.safeParseAsync(input)
+      const result = await GetGenerateReconciliationSchema.safeParseAsync(
+        input,
+        { reportInput: true }
+      )
 
       const parsed = {
         success: result.success,
@@ -222,7 +227,7 @@ export class ReconciliationMiddleware {
       if (!materialExists) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["material_id"],
           message: c.var.t("validator.not_exist", {
             field: c.var.t("reconciliation.label.material_id"),
@@ -237,7 +242,7 @@ export class ReconciliationMiddleware {
       ) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["end_date"],
           message: "validator.end_date_before_start_date",
         })

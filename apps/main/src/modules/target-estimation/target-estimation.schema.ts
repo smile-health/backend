@@ -1,4 +1,4 @@
-import z from "zod"
+import { z } from "zod"
 
 export const CalculateTargetEstimationPathRequestSchema = z.object({
   id: z.coerce.number(),
@@ -110,35 +110,33 @@ export type TargetSummaryResponse =
 export type GetDetailCalculateDTO = z.infer<typeof GetDetailCalculateSchema>
 
 export const SaveEstimationSchema = z.object({
-  village_id: z
-    .number()
-    .int()
+  village_id: z.int()
     .positive("village_id must be a positive integer"),
-  service_percentage_outreach: z.number().int().min(0).max(100),
-  service_percentage_facility: z.number().int().min(0).max(100),
-  required_monthly_outreach: z.number().int().min(0),
-  required_monthly_facility: z.number().int().min(0),
-  available_service_outreach: z.number().int().min(0),
-  available_service_facility: z.number().int().min(0),
-  required_additional_outreach: z.number().int(),
-  required_vaccinator_outreach: z.number().int().min(0),
-  required_additional_facility: z.number().int(),
-  required_vaccinator_facility: z.number().int().min(0),
-  ideal_needs: z.number().int().min(0),
-  available_worker: z.number().int().min(0),
-  gap_worker: z.number().int(),
+  service_percentage_outreach: z.int().min(0).max(100),
+  service_percentage_facility: z.int().min(0).max(100),
+  required_monthly_outreach: z.int().min(0),
+  required_monthly_facility: z.int().min(0),
+  available_service_outreach: z.int().min(0),
+  available_service_facility: z.int().min(0),
+  required_additional_outreach: z.int(),
+  required_vaccinator_outreach: z.int().min(0),
+  required_additional_facility: z.int(),
+  required_vaccinator_facility: z.int().min(0),
+  ideal_needs: z.int().min(0),
+  available_worker: z.int().min(0),
+  gap_worker: z.int(),
 })
 
 export type SaveEstimationRequest = z.infer<typeof SaveEstimationSchema>
 
 export const SaveEstimationBiasSchema = z.object({
-  school_id: z.number().int().positive("school_id must be a positive integer"),
-  august_service_point: z.number().int().min(0),
-  august_service_days: z.number().int().min(0),
-  august_vaccinator: z.number().int().min(0),
-  november_service_point: z.number().int().min(0),
-  november_service_days: z.number().int().min(0),
-  november_vaccinator: z.number().int().min(0),
+  school_id: z.int().positive("school_id must be a positive integer"),
+  august_service_point: z.int().min(0),
+  august_service_days: z.int().min(0),
+  august_vaccinator: z.int().min(0),
+  november_service_point: z.int().min(0),
+  november_service_days: z.int().min(0),
+  november_vaccinator: z.int().min(0),
 })
 
 export type SaveEstimationBiasRequest = z.infer<typeof SaveEstimationBiasSchema>

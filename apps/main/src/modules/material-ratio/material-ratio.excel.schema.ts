@@ -1,13 +1,20 @@
-import z from "zod"
+import { z } from "zod"
 import { materialIdQueryTransform } from "./material-ratio.schema.js"
 
 /**
  * Coerces input to a positive finite number.
  */
 const positiveNumber = z.coerce
-  .number({ invalid_type_error: "validator.number" })
-  .refine((v) => Number.isFinite(v), { message: "validator.number" })
-  .refine((v) => v > 0, { message: "validator.positive" })
+  .number({
+    error: (issue) =>
+      issue.input === undefined ? undefined : "validator.number",
+  })
+  .refine((v) => Number.isFinite(v), {
+    error: "validator.number",
+  })
+  .refine((v) => v > 0, {
+    error: "validator.positive",
+  })
 
 /**
  * Import

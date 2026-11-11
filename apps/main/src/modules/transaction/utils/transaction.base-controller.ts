@@ -1,7 +1,7 @@
 import { ValidationError } from "@smile-health/lib/error.js"
 import { Context } from "hono"
 import { validator } from "hono/validator"
-import { ZodSchema } from "zod"
+import { ZodType } from "zod"
 import { formatErrorsWithData } from "./transaction.zod.js"
 
 export type AsyncCallback<T> = (c: Context, data: T) => Promise<T>
@@ -9,7 +9,7 @@ export type AsyncCallback<T> = (c: Context, data: T) => Promise<T>
 export class BaseController {
   constructor(protected key?: string) {}
 
-  protected validateRequest<T extends ZodSchema>(
+  protected validateRequest<T extends ZodType>(
     type: "json" | "param" | "query" | "header",
     schema: T | ((c: Context) => T) | ((c: Context) => Promise<T>),
     callback?: AsyncCallback<ReturnType<T["parse"]>>
@@ -19,7 +19,9 @@ export class BaseController {
       async (value, c): Promise<ReturnType<T["parse"]>> => {
         const usedSchema =
           typeof schema === "function" ? await schema(c) : schema
-        const result = await usedSchema.safeParseAsync(value)
+        const result = await usedSchema.safeParseAsync(value, {
+          reportInput: true,
+        })
         if (!result.success) {
           c.set("errors", formatErrorsWithData(result.error, c.var.t, this.key))
           throw new ValidationError()

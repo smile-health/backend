@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Context } from "hono";
-import { z, ZodEffects, ZodSchema, ZodTypeAny } from "zod";
+import { ZodType } from "zod";
 import { ValidationError } from "../error.js";
 import BaseTemplate from "../excel/";
 import { collect, consist, differ } from "../utils.js";
-import { formatErrors, formatExcelErrors } from "../zod";
+import { formatErrors, formatExcelErrors, PARSE_OPTIONS } from "../zod";
 
 export interface IRepository {
   find(c: Context, where: object);
@@ -28,7 +28,7 @@ export interface DBValidation {
 }
 
 export class BaseMiddleware {
-  public validateRequest = async <T extends ZodSchema>(
+  public validateRequest = async <T extends ZodType>(
     c: Context,
     schema: T,
     value: unknown,
@@ -38,7 +38,7 @@ export class BaseMiddleware {
       ? this.applyDBValidation(c, schema, dbValidations)
       : schema;
 
-    const result = await usedSchema.safeParseAsync(value);
+    const result = await usedSchema.safeParseAsync(value, PARSE_OPTIONS);
     if (!result.success) {
       c.set("errors", formatErrors(result.error, c.var.t, "materials"));
       throw new ValidationError();
@@ -48,7 +48,7 @@ export class BaseMiddleware {
   };
 
   public validateExcelRequest = async <
-    T extends ZodSchema,
+    T extends ZodType,
     U extends BaseTemplate,
   >(
     c: Context,
@@ -66,7 +66,7 @@ export class BaseMiddleware {
     const usedSchema = dbValidations
       ? this.applyDBValidation(c, schema, dbValidations)
       : schema;
-    const result = await usedSchema.safeParseAsync(rows);
+    const result = await usedSchema.safeParseAsync(rows, PARSE_OPTIONS);
 
     if (!result.success) {
       c.set("errors", formatExcelErrors(result.error, startRow, c.var.t));
@@ -76,11 +76,11 @@ export class BaseMiddleware {
     return result.data;
   };
 
-  protected applyDBValidation<T extends ZodSchema>(
+  protected applyDBValidation<T extends ZodType>(
     c: Context,
     schema: T,
     dbValidations: DBValidation[]
-  ): ZodEffects<T> {
+  ): T {
     return schema.superRefine(async (data, ctx) => {
       for (const v of dbValidations) {
         let errors: DBValidationError[] = [];
@@ -122,18 +122,18 @@ export class BaseMiddleware {
           ctx.addIssue({
             path: [v.key, index],
             message: `${error.message}^${error.items}`,
-            code: z.ZodIssueCode.custom,
+            code: "custom",
           });
         });
       }
     });
   }
 
-  protected applyExcelDBValidation<T extends ZodTypeAny>(
+  protected applyExcelDBValidation<T extends ZodType>(
     c: Context,
     schema: T,
     dbValidations: DBValidation[]
-  ): ZodEffects<T> {
+  ): T {
     return schema.superRefine(async (rows, ctx) => {
       if (!rows) {
         return;
@@ -199,7 +199,7 @@ export class BaseMiddleware {
             ctx.addIssue({
               path: [index, v.key],
               message: `${error.message}^${error.items}`,
-              code: z.ZodIssueCode.custom,
+              code: "custom",
             });
           });
         });

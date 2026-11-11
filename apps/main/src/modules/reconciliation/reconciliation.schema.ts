@@ -10,8 +10,8 @@ const preprocessNumber = (value: unknown) => {
   if (typeof value === "number") return value
   return undefined
 }
-const PositiveIntSchema = z.number().int().positive()
-const NonNegativeIntSchema = z.number().int().nonnegative()
+const PositiveIntSchema = z.int().positive()
+const NonNegativeIntSchema = z.int().nonnegative()
 
 /*
  * Use Case - Request
@@ -49,46 +49,62 @@ export const GetListReconciliationSchema = PaginationQueriesSchema.extend({
   activity_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid activity_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid activity_id",
+    })
     .optional(),
   created_from: z.string().optional(),
   created_to: z.string().optional(),
-  start_date: z.string().date().optional(),
-  end_date: z.string().date().optional(),
+  start_date: z.iso.date().optional(),
+  end_date: z.iso.date().optional(),
   entity_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid entity_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid entity_id",
+    })
     .optional(),
   entity_tag_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid entity_tag_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid entity_tag_id",
+    })
     .optional(),
   material_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid material_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid material_id",
+    })
     .optional(),
   parent_material_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid material_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid material_id",
+    })
     .optional(),
   material_type_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid material_type_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid material_type_id",
+    })
     .optional(),
   province_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid province_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid province_id",
+    })
     .optional(),
   regency_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid regency_id" })
+    .refine((v) => !isNaN(v!), {
+      error: "invalid regency_id",
+    })
     .optional(),
 })
 

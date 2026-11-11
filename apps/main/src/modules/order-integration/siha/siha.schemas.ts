@@ -587,8 +587,8 @@ export const EntitiesQueryParamsSchema = z.object({
 
 export const PaginationQueryParamsSchema = z
   .object({
-    page: z.coerce.number().default(1),
-    paginate: z.coerce.number().default(10),
+    page: z.coerce.number().prefault(1),
+    paginate: z.coerce.number().prefault(10),
   })
   .transform(({ page, paginate }) => ({
     page,

@@ -13,7 +13,7 @@ export const CursorPaginationQueriesSchema = z.object({
     .optional()
     .transform((val) => (val ? Number(val) : 50))
     .refine((v) => !isNaN(v!) && v > 0 && LIST_PAGINATION.includes(v), {
-      message: "invalid paginate param",
+      error: "invalid paginate param",
     }),
   cursor: z
     .string()
@@ -21,9 +21,15 @@ export const CursorPaginationQueriesSchema = z.object({
     .describe("Base64 encoded cursor for pagination"),
   keyword: z
     .string()
-    .max(255, { message: "MAX_LIMIT_CHARACTER_IS_255" })
+    .max(255, {
+      error: "MAX_LIMIT_CHARACTER_IS_255",
+    })
     .optional(),
-  status: z.enum(["0", "1"], { message: "INVALID REQUEST STATUS" }).optional(),
+  status: z
+    .enum(["0", "1"], {
+      error: "INVALID REQUEST STATUS",
+    })
+    .optional(),
 });
 
 export interface ICursorPaginatedResponse<T> {

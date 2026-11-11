@@ -1,31 +1,42 @@
 import { IdSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 
 /**
  * Coerces input to a positive finite number.
  */
 const positiveNumber = z.coerce
-  .number({ invalid_type_error: "validator.number" })
-  .refine((v) => Number.isFinite(v), { message: "validator.number" })
-  .refine((v) => v > 0, { message: "validator.positive" })
+  .number({
+    error: (issue) =>
+      issue.input === undefined ? undefined : "validator.number",
+  })
+  .refine((v) => Number.isFinite(v), {
+    error: "validator.number",
+  })
+  .refine((v) => v > 0, {
+    error: "validator.positive",
+  })
 
 /**
  * Coverage value from Excel. Blank -> 0, negative/invalid -> validation error.
  */
-const coverageNumberSchema = z.any().transform((v, ctx) => {
-  if (v == null || v === "") return 0
+// zod 4: z.any().transform() menjadikan key wajib; .optional() menjaga kolom kosong tetap jadi 0.
+const coverageNumberSchema = z
+  .any()
+  .optional()
+  .transform((v, ctx) => {
+    if (v == null || v === "") return 0
 
-  const n = Number(v)
-  if (!Number.isFinite(n) || n < 0) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: "validator.number",
-    })
-    return z.NEVER
-  }
+    const n = Number(v)
+    if (!Number.isFinite(n) || n < 0) {
+      ctx.addIssue({
+        code: "custom",
+        message: "validator.number",
+      })
+      return z.NEVER
+    }
 
-  return n
-})
+    return n
+  })
 
 /**
  * Import Param
@@ -52,8 +63,13 @@ export const importSchema = z.object({
       return String(v).trim()
     },
     z
-      .string({ invalid_type_error: "validator.string" })
-      .min(1, { message: "validator.required" })
+      .string({
+        error: (issue) =>
+          issue.input === undefined ? undefined : "validator.string",
+      })
+      .min(1, {
+        error: "validator.required",
+      })
       .superRefine((raw, ctx) => {
         let months: number[] = []
 
@@ -72,7 +88,7 @@ export const importSchema = z.object({
 
         if (!months.length) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: "validator.number",
           })
         }
@@ -84,8 +100,13 @@ export const importSchema = z.object({
     .array(
       z.object({
         province_name: z
-          .string({ invalid_type_error: "validator.string" })
-          .min(1, { message: "validator.required" }),
+          .string({
+            error: (issue) =>
+              issue.input === undefined ? undefined : "validator.string",
+          })
+          .min(1, {
+            error: "validator.required",
+          }),
         coverage_number: coverageNumberSchema,
       })
     )

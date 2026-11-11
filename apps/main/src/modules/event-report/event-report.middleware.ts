@@ -84,14 +84,14 @@ export class EventReportMiddleware {
 
       if (!result) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: `validator.not_exist`,
           path: ["entity_id"],
         })
       }
     } else if (data.entity_id !== c.var.userEntity.id && USER_ROLE.MANAGER) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: `validator.not_exist`,
         path: ["entity_id"],
       })
@@ -112,7 +112,7 @@ export class EventReportMiddleware {
 
       if (!result) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: `validator.not_exist`,
           path: ["order_id"],
         })
@@ -130,7 +130,7 @@ export class EventReportMiddleware {
     const issuePath = Array.isArray(path) ? path : [path]
     if (customMaterial && materialId) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: `validator.event_report_material_id_is_null`,
         path: issuePath,
       })
@@ -146,7 +146,7 @@ export class EventReportMiddleware {
 
       if (!result) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: `validator.not_exist`,
           path: issuePath,
         })
@@ -166,7 +166,7 @@ export class EventReportMiddleware {
         const allowedRoles = flow.roles.includes(Number(roleId))
         if (!allowedRoles) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: c.var.t(`auth.forbidden`),
             path: ["status"],
           })
@@ -182,7 +182,7 @@ export class EventReportMiddleware {
 
     if (dataHistory) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t(`validator.status_event_report_has_been_changed`),
         path: ["update_status_id"],
       })
@@ -213,7 +213,7 @@ export class EventReportMiddleware {
         if (!findChildReason) {
           const issuePath = ["items", itemIndex.toString(), "child_reason_id"]
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message: `validator.not_exist`,
             path: issuePath,
           })
@@ -221,7 +221,7 @@ export class EventReportMiddleware {
       } else if (!findParentReason) {
         const issuePath = ["items", itemIndex.toString(), "reason_id"]
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: `validator.not_exist`,
           path: issuePath,
         })
@@ -255,7 +255,7 @@ export class EventReportMiddleware {
       )
     ) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: `validator.change_status_not_allowed`,
         path: ["update_status_id"],
       })
@@ -268,7 +268,7 @@ export class EventReportMiddleware {
           field: c.var.t("event_report.label.packing_slip_link"),
         })
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: messageErrorLink,
           path: ["link"],
         })
@@ -305,7 +305,7 @@ export class EventReportMiddleware {
 
       if (nextStatusAllowed?.addOrUpdatePackagingSlip !== true) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: `validator.change_update_packaging_slip_not_allowed`,
           path: ["link"],
         })

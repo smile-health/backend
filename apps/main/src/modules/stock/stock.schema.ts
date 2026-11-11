@@ -10,7 +10,7 @@ import {
 } from "@smile-health/lib/types/param.js"
 import { Insertable, Selectable, Updateable } from "kysely"
 import moment from "moment"
-import z from "zod"
+import { z } from "zod"
 
 // TODO: move this to shared package
 const dateSchema = z
@@ -20,7 +20,9 @@ const dateSchema = z
       if (!v) return true
       return moment(v).isValid()
     },
-    { message: "validator.date" }
+    {
+      error: "validator.date",
+    }
   )
   .transform((val) => moment(val).format("YYYY-MM-DD HH:mm:ss"))
   .nullish()
@@ -58,8 +60,8 @@ export const GetStockDetailsQueriesSchema = z
     only_have_qty: z.enum(["0", "1"]).default("0").transform(Number).nullish(),
   })
   .refine((data) => data.material_id || data.parent_material_id, {
-    message: "Either material_id or parent_material_id must be provided",
     path: ["material_id"],
+    error: "Either material_id or parent_material_id must be provided",
   })
 
 export const GetListEntityStockSchema = z.object({
@@ -72,7 +74,7 @@ export const GetListEntityStockSchema = z.object({
           .filter((item) => item !== "")
           .every((num) => !isNaN(Number(num))),
       {
-        message: "INVALID_ENTITY_ID_PARAM",
+        error: "INVALID_ENTITY_ID_PARAM",
       }
     )
     .transform((val) =>

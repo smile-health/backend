@@ -1,26 +1,32 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export const GetListProtocolSchema = PaginationQueriesSchema.extend({
     program_id: z.string().optional(),
 })
 export const SequenceSchema = z.object({
   protocolId: z
-    .string({ required_error: "Protocol Id is required" })
+    .string({
+        error: (issue) => issue.input === undefined ? "Protocol Id is required" : undefined
+    })
     .transform((v) => parseInt(v))
-    .refine((v) => !isNaN(v), { message: "Invalid type" }),
+    .refine((v) => !isNaN(v), {
+        error: "Invalid type"
+    }),
 })
 
 export const PrococolSchema = z.object({
-  name: z.string({ required_error: "Protocol name is required" }),
+  name: z.string({
+      error: (issue) => issue.input === undefined ? "Protocol name is required" : undefined
+}),
   is_kipi: z.number().optional(),
   is_medical_history: z.number().optional(),
 })
 
 export const ProtocolProgramSchema = z.object({
-  program_id: z.number({ required_error: "Program ID is required" }).int(),
+  program_id: z.int(),
   protocol_ids: z.array(
-    z.number({ required_error: "Protocol ID is required" }).int()
+    z.int()
   ),
 })
 

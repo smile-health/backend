@@ -1,5 +1,5 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
-import z from "zod"
+import { z } from "zod"
 
 export type ProgramDetailDTO = {
   id: number
@@ -12,7 +12,9 @@ export const ListProgramSchema = z.object({
   entity_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid entity_id" }),
+    .refine((v) => !isNaN(v!), {
+      error: "invalid entity_id",
+    }),
   keyword: z.string().optional(),
 })
 
@@ -20,22 +22,30 @@ export const ListActivitySchema = z.object({
   destination_program_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid destination_program_id" }),
+    .refine((v) => !isNaN(v!), {
+      error: "invalid destination_program_id",
+    }),
   material_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid material_id" }),
+    .refine((v) => !isNaN(v!), {
+      error: "invalid material_id",
+    }),
 })
 
 export const ListStockSchema = PaginationQueriesSchema.extend({
   destination_program_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid destination_program_id" }),
+    .refine((v) => !isNaN(v!), {
+      error: "invalid destination_program_id",
+    }),
   entity_id: z
     .string()
     .transform((val) => Number(val))
-    .refine((v) => !isNaN(v!), { message: "invalid entity_id" }),
+    .refine((v) => !isNaN(v!), {
+      error: "invalid entity_id",
+    }),
   with_details: z.enum(["0", "1"]).default("0").transform(Number).optional(),
 })
 

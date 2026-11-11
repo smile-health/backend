@@ -595,7 +595,7 @@ export class EntityMiddleware {
       province_id: z
         .string()
         .refine((val) => valCondition(val), {
-          message: "validator.number",
+          error: "validator.number",
         })
         .superRefine(validateOptionalId(this.locationRepo, "province_id"))
         .optional(),
@@ -603,7 +603,7 @@ export class EntityMiddleware {
       regency_id: z
         .string()
         .refine((val) => valCondition(val), {
-          message: "validator.number",
+          error: "validator.number",
         })
         .superRefine(validateOptionalId(this.locationRepo, "regency_id"))
         .optional(),
@@ -611,7 +611,7 @@ export class EntityMiddleware {
       sub_district_id: z
         .string()
         .refine((val) => valCondition(val), {
-          message: "validator.number",
+          error: "validator.number",
         })
         .superRefine(validateOptionalId(this.locationRepo, "sub_district_id"))
         .optional(),
@@ -619,7 +619,7 @@ export class EntityMiddleware {
       village_id: z
         .string()
         .refine((val) => valCondition(val), {
-          message: "validator.number",
+          error: "validator.number",
         })
         .superRefine(validateOptionalId(this.locationRepo, "village_id"))
         .optional(),
@@ -645,7 +645,9 @@ export class EntityMiddleware {
       }),
 
       program_ids: z
-        .array(z.number(), { message: "validator.array" })
+        .array(z.number(), {
+          error: "validator.array",
+        })
         .superRefine(async (val, ctx) => {
           if (val.length === 0) return
           const result = await this.workspaceRepo.findAllByIds(c, val)
@@ -664,7 +666,7 @@ export class EntityMiddleware {
         })
         .nullish(),
 
-      external_properties: z.record(z.any()).optional(),
+      external_properties: z.record(z.string(), z.any()).optional(),
 
       integration_client_id: z
         .number()
@@ -687,9 +689,12 @@ export class EntityMiddleware {
 
       id_satu_sehat: z
         .number({
-          invalid_type_error: c.var.t("validator.number", {
-            field: c.var.t("entity.label.msi_code"),
-          }),
+          error: (issue) =>
+            issue.input === undefined
+              ? undefined
+              : c.var.t("validator.number", {
+                  field: c.var.t("entity.label.msi_code"),
+                }),
         })
         .nullable()
         .optional()

@@ -9,11 +9,11 @@ export const EntityTagSchema = z.object({
   created_at: DateSchema,
   updated_at: DateSchema,
   deleted_at: DateSchema.nullish(),
-  integration_type: z.number().int().nullish(),
+  integration_type: z.int().nullish(),
   external_properties: z.string().nullish(),
-  is_open_vial: z.number().int().nullish(),
+  is_open_vial: z.int().nullish(),
   ingested_at: DateSchema,
-  version: z.number().int(),
+  version: z.int(),
 })
 
 export const EntityTagQueryParamsSchema = QueryParamsSchema

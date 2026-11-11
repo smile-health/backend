@@ -1,17 +1,17 @@
 import { Context } from "hono"
-import z from "zod"
+import { z } from "zod"
 import { AnnualPlanningProgramPlanRepository } from "../annual-planning-program-plan/annual-planning-program-plan.repository.js"
 import { MaterialSubtypeRepository } from "../material-subtype/material-subtype.repository.js"
 import { MaterialRepository } from "../material/material.repository.js"
 
 const notExistIssue = (path: string): z.ZodIssue => ({
-  code: z.ZodIssueCode.custom,
+  code: "custom",
   path: [path],
   message: "validator.not_exist",
 })
 
 const notMatchIssue = (path: string): z.ZodIssue => ({
-  code: z.ZodIssueCode.custom,
+  code: "custom",
   path: [path],
   message: "validator.not_match",
 })

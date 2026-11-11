@@ -71,7 +71,7 @@ export class DisposalShipmentMiddleware {
       await next()
     } catch (error) {
       if (error instanceof z.ZodError) {
-        console.error("Validation error:", error.errors)
+        console.error("Validation error:", error.issues)
         throw new ValidationError("Invalid create shipment request")
       }
       throw error
@@ -87,7 +87,7 @@ export class DisposalShipmentMiddleware {
       await next()
     } catch (error) {
       if (error instanceof z.ZodError) {
-        console.error("Validation error:", error.errors)
+        console.error("Validation error:", error.issues)
         throw new ValidationError("Invalid create shipment request")
       }
       throw error

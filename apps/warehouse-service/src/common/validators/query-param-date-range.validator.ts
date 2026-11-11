@@ -15,7 +15,7 @@ export class QueryParamDateRangeValidator {
     ) {
       ctx.addIssue({
         path: ["to"],
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.greater_than", {
           field1: "to",
           field2: "from",
@@ -33,7 +33,7 @@ export class QueryParamDateRangeValidator {
     if (hasStart && !hasEnd) {
       ctx.addIssue({
         path: ["endExpiredDate"],
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.is_empty"),
       })
     }
@@ -41,7 +41,7 @@ export class QueryParamDateRangeValidator {
     if (hasEnd && !hasStart) {
       ctx.addIssue({
         path: ["startExpiredDate"],
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.is_empty"),
       })
     }
@@ -55,7 +55,7 @@ export class QueryParamDateRangeValidator {
     ) {
       ctx.addIssue({
         path: ["endExpiredDate"],
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: c.var.t("validator.greater_than", {
           field1: "endExpiredDate",
           field2: "startExpiredDate",

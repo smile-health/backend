@@ -146,7 +146,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -161,7 +161,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -176,7 +176,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -192,7 +192,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.unmatch",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -211,7 +211,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_multiples",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -231,7 +231,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.required",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
     if (
@@ -242,7 +242,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_required",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -257,7 +257,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -274,7 +274,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.duplicated",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -289,7 +289,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
       ctx.addIssue({
         path: issuePath,
         message: "validator.not_exist",
-        code: z.ZodIssueCode.custom,
+        code: "custom",
       })
     }
   }
@@ -312,7 +312,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
         !childrenMaterialLevelIds.includes(item.material_id)
       ) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.not_exist",
           path: ["order_items", index, "children", subIndex, "material_id"],
         })
@@ -339,7 +339,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
     for (const [subIndex, item] of orderItem.children.entries()) {
       if (childrenDuplicate.includes(item.material_id)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.duplicated",
           path: ["order_items", index, "children", subIndex, "material_id"],
         })
@@ -372,7 +372,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
 
       if (materialRelations.length === 0) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.parent_material_have_no_relation",
           path: ["order_items", index, "material_id"],
         })
@@ -387,7 +387,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
         ] of childrenMaterialGlobalIds.entries()) {
           if (!fromMaterialIds.includes(childrenMaterialGlobalId)) {
             ctx.addIssue({
-              code: z.ZodIssueCode.custom,
+              code: "custom",
               message: "validator.unmatch_relation_with_parent_material",
               path: ["order_items", index, "children", subIndex, "material_id"],
             })
@@ -412,7 +412,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
 
       if (!parentLessThanChild) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message:
             "validator.parent_material_level_must_be_less_than_children_material",
           path: ["order_items", index, "material_id"],
@@ -426,7 +426,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
             parentMaterials[0]!.material_level_id!
         ) {
           ctx.addIssue({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             message:
               "validator.children_material_level_must_be_greater_than_parent_material",
             path: ["order_items", index, "children", subIndex, "material_id"],
@@ -449,7 +449,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
 
     if (orderItem.ordered_qty !== sumChildrenMaterialQty) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.unmatch_quantity_with_total_children_quantity",
         path: ["order_items", index, "ordered_qty"],
       })
@@ -473,7 +473,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["order_items", index, "children", subIndex, "id"],
           message: "validator.not_exist",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -500,7 +500,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["order_items", index, "children", subIndex, "id"],
           message: "validator.not_children_of_parent_item",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }
@@ -526,7 +526,7 @@ export class OrderItemStockMiddleware extends BaseMiddleware {
         ctx.addIssue({
           path: ["order_items", index, "children", subIndex, "material_id"],
           message: "validator.exist",
-          code: z.ZodIssueCode.custom,
+          code: "custom",
         })
       }
     }

@@ -5,7 +5,7 @@ import { collect } from "@smile-health/lib/utils.js"
 import { formatErrors, translateError } from "@smile-health/lib/zod.js"
 import { Context } from "hono"
 import { validator } from "hono/validator"
-import z from "zod"
+import { z } from "zod"
 import { WorkspaceRepository } from "../workspace/workspace.repository.js"
 import { ManufactureTemplateXlsx } from "./manufacture.excel.js"
 import { ManufactureRepository } from "./manufacture.repository.js"
@@ -165,7 +165,7 @@ export class ManufactureMiddleware {
   }
 
   #parseRow(row, schema, columns, c, mapError, rowKey) {
-    const parsed = schema.safeParse(row)
+    const parsed = schema.safeParse(row, { reportInput: true })
 
     if (!parsed.success) {
       parsed.error.issues.forEach((issue) => {
@@ -174,7 +174,7 @@ export class ManufactureMiddleware {
         if (
           (issue.path.includes(columns.PhoneNumber) ||
             issue.path.includes(columns.Email)) &&
-          issue.code === "invalid_string"
+          issue.code === "invalid_format"
         ) {
           issue.message = "validator.string"
         }
@@ -283,7 +283,10 @@ export class ManufactureMiddleware {
    */
   create = (c: Context) => {
     return z.preprocess(async (input) => {
-      const result = await ManufactureCreateRequestSchema.safeParseAsync(input)
+      const result = await ManufactureCreateRequestSchema.safeParseAsync(
+        input,
+        { reportInput: true }
+      )
 
       const parsed = {
         success: result.success,
@@ -297,7 +300,7 @@ export class ManufactureMiddleware {
         if (
           (issue.path.includes("phone_number") ||
             issue.path.includes("email")) &&
-          issue.code === "invalid_string"
+          issue.code === "invalid_format"
         ) {
           issue.message = "validator.string"
         }
@@ -311,7 +314,7 @@ export class ManufactureMiddleware {
       if (nameExist) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["name"],
           message: "validator.exist",
         })
@@ -321,7 +324,7 @@ export class ManufactureMiddleware {
       if (!typeExist) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["type"],
           message: "validator.not_exist",
         })
@@ -332,7 +335,7 @@ export class ManufactureMiddleware {
         if (!workspaceExist) {
           parsed.success = false
           parsed.error.issues.push({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             path: ["program_ids"],
             message: "validator.not_exist",
           })
@@ -353,7 +356,10 @@ export class ManufactureMiddleware {
    */
   update = (c: Context) => {
     return z.preprocess(async (input) => {
-      const result = await ManufactureUpdateRequestSchema.safeParseAsync(input)
+      const result = await ManufactureUpdateRequestSchema.safeParseAsync(
+        input,
+        { reportInput: true }
+      )
 
       const keys = Object.keys(input as Record<string, unknown>)
       if (keys.length === 1 && keys[0] === "status") {
@@ -372,7 +378,7 @@ export class ManufactureMiddleware {
         if (
           (issue.path.includes("phone_number") ||
             issue.path.includes("email")) &&
-          issue.code === "invalid_string"
+          issue.code === "invalid_format"
         ) {
           issue.message = "validator.string"
         }
@@ -386,7 +392,7 @@ export class ManufactureMiddleware {
       if (!previousData) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["name"],
           message: "validator.exist",
         })
@@ -396,7 +402,7 @@ export class ManufactureMiddleware {
       if (!typeExist) {
         parsed.success = false
         parsed.error.issues.push({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           path: ["type"],
           message: "validator.not_exist",
         })
@@ -407,7 +413,7 @@ export class ManufactureMiddleware {
         if (!workspaceExist) {
           parsed.success = false
           parsed.error.issues.push({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             path: ["program_ids"],
             message: "validator.not_exist",
           })
@@ -420,7 +426,7 @@ export class ManufactureMiddleware {
         if (!workspaceIncluded) {
           parsed.success = false
           parsed.error.issues.push({
-            code: z.ZodIssueCode.custom,
+            code: "custom",
             path: ["program_ids"],
             message: "validator.unmatch",
           })

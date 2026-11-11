@@ -96,7 +96,7 @@ export const StockBookItemDTOSchema = z.object({
   stock_activity_name: z.string(),
   transaction_reason_name: z.string(),
   transaction_other_reason: z.string().nullish(),
-  quantity: z.number().int(),
+  quantity: z.int(),
   is_closing: z.boolean().nullish(),
 })
 

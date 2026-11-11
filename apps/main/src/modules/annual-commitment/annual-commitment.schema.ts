@@ -1,6 +1,6 @@
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { DateSchema } from "@smile-health/lib/types/param.js"
-import z from "zod"
+import { z } from "zod"
 
 /* Filter Schema */
 const AnnualCommitmentFilterSchema = z.object({
@@ -45,7 +45,7 @@ export const AnnualCommitmentAuditSchema = z.object({
 
 /* Query Param Schema */
 export const GetAnnualCommitmentQueryParamsSchema =
-  PaginationQueriesSchema.merge(AnnualCommitmentFilterSchema)
+  PaginationQueriesSchema.extend(AnnualCommitmentFilterSchema.shape)
 
 /* Body Request Schema */
 const CommitmentRequestSchema = AnnualCommitmentRequestSchema.omit({
@@ -83,10 +83,10 @@ const UpdateCommitmentItemRequestSchema = z.object({
 })
 
 export const CreateAnnualCommitmentBodyRequestSchema =
-  CommitmentRequestSchema.merge(CreateCommitmentItemRequestSchema)
+  CommitmentRequestSchema.extend(CreateCommitmentItemRequestSchema.shape)
 
 export const UpdatesAnnualCommitmentBodyRequestSchema =
-  CommitmentRequestSchema.merge(UpdateCommitmentItemRequestSchema)
+  CommitmentRequestSchema.extend(UpdateCommitmentItemRequestSchema.shape)
 
 export const ImportAnnualCommitmentRowRequestSchema = z.object({
   ["contract_number"]: AnnualCommitmentRequestSchema.shape.contract_number,
@@ -135,7 +135,7 @@ export const DeleteAuditDTOSchema = AnnualCommitmentAuditSchema.pick({
 
 export const CreateContractDTOSchema = AnnualCommitmentRequestSchema.pick({
   contract_number: true,
-}).merge(CreateAuditDTOSchema)
+}).extend(CreateAuditDTOSchema.shape)
 
 export const CreateCommitmentDTOSchema = AnnualCommitmentRequestSchema.pick({
   program_id: true,
@@ -145,7 +145,7 @@ export const CreateCommitmentDTOSchema = AnnualCommitmentRequestSchema.pick({
   year: true,
   vendor_id: true,
   information: true,
-}).merge(CreateAuditDTOSchema)
+}).extend(CreateAuditDTOSchema.shape)
 
 export const CreateCommitmentItemDTOSchema = AnnualCommitmentRequestSchema.pick(
   {
@@ -157,7 +157,7 @@ export const CreateCommitmentItemDTOSchema = AnnualCommitmentRequestSchema.pick(
     vial_quantity: true,
     dose_quantity: true,
   }
-).merge(CreateAuditDTOSchema)
+).extend(CreateAuditDTOSchema.shape)
 
 export const UpdateCommitmentDTOSchema = AnnualCommitmentRequestSchema.pick({
   contract_id: true,
@@ -166,7 +166,7 @@ export const UpdateCommitmentDTOSchema = AnnualCommitmentRequestSchema.pick({
   year: true,
   vendor_id: true,
   information: true,
-}).merge(UpdateAuditDTOSchema)
+}).extend(UpdateAuditDTOSchema.shape)
 
 export const UpdateCommitmentItemDTOSchema = AnnualCommitmentRequestSchema.pick(
   {
@@ -174,7 +174,7 @@ export const UpdateCommitmentItemDTOSchema = AnnualCommitmentRequestSchema.pick(
     vial_quantity: true,
     dose_quantity: true,
   }
-).merge(UpdateAuditDTOSchema)
+).extend(UpdateAuditDTOSchema.shape)
 
 /* Query Param Type */
 export type GetAnnualCommitmentQueryParams = z.infer<

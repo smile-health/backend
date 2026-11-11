@@ -2,17 +2,17 @@ import { z } from 'zod'
 
 // Base Logger Schema
 export const LoggerSchema = z.object({
-  id: z.number().int().positive(),
+  id: z.int().positive(),
   serial_number: z.string().min(1),
   gsm_no: z.string().optional(),
   location: z.string().optional(),
   vendor: z.string().optional(),
-  asset_id: z.number().int().positive().optional(),
+  asset_id: z.int().positive().optional(),
   position: z.string().optional(),
   max: z.number().optional(),
   min: z.number().optional(),
   temp: z.string().optional(),
-  status: z.number().int().optional(),
+  status: z.int().optional(),
   prod_year: z.string().optional(),
   created_at: z.date(),
   updated_at: z.date(),
@@ -24,12 +24,12 @@ export const AddLoggerDTOSchema = z.object({
   gsm_no: z.string().optional(),
   location: z.string().optional(),
   vendor: z.string().optional(),
-  asset_id: z.number().int().positive().optional(),
+  asset_id: z.int().positive().optional(),
   position: z.string().optional(),
   max: z.number().optional(),
   min: z.number().optional(),
   temp: z.string().optional(),
-  status: z.number().int().optional(),
+  status: z.int().optional(),
   prod_year: z.string().optional(),
 })
 
@@ -39,7 +39,7 @@ export const EditLoggerDTOSchema = z.object({
   gsm_no: z.string().optional(),
   location: z.string().optional(),
   vendor: z.string().optional(),
-  asset_id: z.number().int().positive().optional(),
+  asset_id: z.int().positive().optional(),
   position: z.string().optional(),
   max: z.number().optional(),
   min: z.number().optional(),
@@ -49,7 +49,7 @@ export const EditLoggerDTOSchema = z.object({
 
 // Schema for updating logger status
 export const UpdateLoggerStatusDTOSchema = z.object({
-  status: z.number().int(),
+  status: z.int(),
 })
 
 // Query parameters schema

@@ -12,6 +12,7 @@ export const GetTemperatureThresholdsQueryParamsSchema =
         z.null(),
         z.undefined(),
       ])
+      .optional()
       .transform((val) => {
         if (val === "0") return 0
         if (val === "1") return 1

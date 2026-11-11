@@ -5,7 +5,7 @@ import {
   transformStringNumbersToArrayNumbers,
 } from "@smile-health/lib/utils.js"
 import { Selectable } from "kysely"
-import z from "zod"
+import { z } from "zod"
 import { TWorkspaces, UserResponse } from "../user/user.schema.js"
 
 function fromStringToNumber() {
@@ -16,7 +16,6 @@ function fromStringToNumber() {
       return value
     },
     z
-      .number()
       .int()
       .nonnegative()
       .refine((v) => !isNaN(v))
@@ -24,11 +23,15 @@ function fromStringToNumber() {
 }
 
 function stringMinMax(min?: number, max?: number) {
-  return z.string().min(min!).max(max!)
+  // zod 4: .min(undefined) menolak semua input, jadi batas hanya dipasang kalau diisi.
+  let schema = z.string()
+  if (min !== undefined) schema = schema.min(min)
+  if (max !== undefined) schema = schema.max(max)
+  return schema
 }
 
 function positiveNumber() {
-  return z.number().int().nonnegative()
+  return z.int().nonnegative()
 }
 
 export const GeneralSchema = z.object({
@@ -40,7 +43,7 @@ export const GeneralSchema = z.object({
     .string()
     .transform((str) => new Date(str))
     .nullish(),
-  is_restricted: z.number().int(),
+  is_restricted: z.int(),
 })
 
 export const CreateBudgetSourceWorkspaceSchema = z.object({

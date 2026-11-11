@@ -12,7 +12,7 @@ import { CursorPaginationQueriesSchema } from "@smile-health/lib/types/cursor-pa
 import { PaginationQueriesSchema } from "@smile-health/lib/types/paginate.js"
 import { IdSchema } from "@smile-health/lib/types/param.js"
 import { Selectable, Updateable } from "kysely"
-import z from "zod"
+import { z } from "zod"
 import { RabiesPatientDTO } from "./consumption-rabies/consumption-rabies.schema.js"
 
 const optionalNumber = z
@@ -77,7 +77,7 @@ export const ConsumptionSchema = z.object({
       z.date()
     )
     .refine((date) => date <= new Date(), {
-      message: "Date cannot be in the future",
+        error: "Date cannot be in the future"
     }),
   materials: z.array(ConsumptionMaterialSchema).nonempty().min(1),
 })
@@ -85,9 +85,7 @@ export const ConsumptionSchema = z.object({
 const CancelationDiscardTransactionSchema = z.object({
   stock_id: IdSchema.or(z.number()).nullable(),
   transaction_reason_id: IdSchema.or(z.number()),
-  transaction_ids: z
-    .array(IdSchema.or(z.number()).nullable())
-    .nonempty()
+  transaction_ids: z.array(IdSchema.or(z.number()).nullable()).nonempty()
     .min(1),
 })
 
@@ -116,7 +114,7 @@ export const SubmitReturnOfHealthFacilitiesTrxSchema =
     entity_id: z.number().positive(),
     customer_id: z.number().positive(),
     activity_id: z.number().positive(),
-    actual_transaction_date: z.string().date(),
+    actual_transaction_date: z.iso.date(),
     entity_activity_id: z.number().positive().optional(),
     transactions: z.array(
       SubmitReturnOfHealthAdditionalRequestTrx.extend({
@@ -303,10 +301,12 @@ export const TransactionTypePaginatedRequestSchema =
 
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Type must be an integer." })
-        .nonnegative({ message: "Type must be a positive number." })
+      z.int({
+                    error: "Type must be an integer."
+                })
+        .nonnegative({
+            error: "Type must be a positive number."
+        })
         .optional()
     ),
   })
@@ -322,10 +322,12 @@ export const TransactionReasonPaginatedRequestSchema =
 
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Type must be an integer." })
-        .nonnegative({ message: "Type must be a positive number." })
+      z.int({
+                    error: "Type must be an integer."
+                })
+        .nonnegative({
+            error: "Type must be a positive number."
+        })
         .optional()
     ),
     // status adalah from params query 0,1
@@ -349,10 +351,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Activity ID must be an integer." })
-        .nonnegative({ message: "Activity ID must be a positive number." })
+      z.int({
+                    error: "Activity ID must be an integer."
+                })
+        .nonnegative({
+            error: "Activity ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -364,10 +368,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Material type ID must be an integer." })
-        .nonnegative({ message: "Material type ID must be a positive number." })
+      z.int({
+                    error: "Material type ID must be an integer."
+                })
+        .nonnegative({
+            error: "Material type ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -379,10 +385,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Material ID must be an integer." })
-        .nonnegative({ message: "Material ID must be a positive number." })
+      z.int({
+                    error: "Material ID must be an integer."
+                })
+        .nonnegative({
+            error: "Material ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -398,7 +406,9 @@ export const TransactionListPaginatedRequestSchema =
       z
         .union([
           z.string().min(0),
-          z.string().datetime({ message: "Invalid start date format." }),
+          z.iso.datetime({
+                          error: "Invalid start date format."
+                    }),
         ])
         .optional()
     ),
@@ -415,7 +425,9 @@ export const TransactionListPaginatedRequestSchema =
       z
         .union([
           z.string().min(0),
-          z.string().datetime({ message: "Invalid start date format." }),
+          z.iso.datetime({
+                          error: "Invalid start date format."
+                    }),
         ])
         .optional()
     ),
@@ -428,11 +440,11 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Transaction type ID must be an integer." })
+      z.int({
+                    error: "Transaction type ID must be an integer."
+                })
         .nonnegative({
-          message: "Transaction type ID must be a positive number.",
+            error: "Transaction type ID must be a positive number."
         })
         .optional()
     ),
@@ -445,11 +457,11 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Transaction reason ID must be an integer." })
+      z.int({
+                    error: "Transaction reason ID must be an integer."
+                })
         .nonnegative({
-          message: "Transaction reason ID must be a positive number.",
+            error: "Transaction reason ID must be a positive number."
         })
         .optional()
     ),
@@ -469,10 +481,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Order type must be an integer." })
-        .nonnegative({ message: "Order type must be a positive number." })
+      z.int({
+                    error: "Order type must be an integer."
+                })
+        .nonnegative({
+            error: "Order type must be a positive number."
+        })
         .optional()
     ),
 
@@ -484,10 +498,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Entity tag ID must be an integer." })
-        .nonnegative({ message: "Entity tag ID must be a positive number." })
+      z.int({
+                    error: "Entity tag ID must be an integer."
+                })
+        .nonnegative({
+            error: "Entity tag ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -499,11 +515,11 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Primary vendor ID must be an integer." })
+      z.int({
+                    error: "Primary vendor ID must be an integer."
+                })
         .nonnegative({
-          message: "Primary vendor ID must be a positive number.",
+            error: "Primary vendor ID must be a positive number."
         })
         .optional()
     ),
@@ -516,10 +532,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Province ID must be an integer." })
-        .nonnegative({ message: "Province ID must be a positive number." })
+      z.int({
+                    error: "Province ID must be an integer."
+                })
+        .nonnegative({
+            error: "Province ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -531,10 +549,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Regency ID must be an integer." })
-        .nonnegative({ message: "Regency ID must be a positive number." })
+      z.int({
+                    error: "Regency ID must be an integer."
+                })
+        .nonnegative({
+            error: "Regency ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -546,10 +566,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Customer tag ID must be an integer." })
-        .nonnegative({ message: "Customer tag ID must be a positive number." })
+      z.int({
+                    error: "Customer tag ID must be an integer."
+                })
+        .nonnegative({
+            error: "Customer tag ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -561,11 +583,11 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Entity consumption ID must be an integer." })
+      z.int({
+                    error: "Entity consumption ID must be an integer."
+                })
         .nonnegative({
-          message: "Entity consumption ID must be a positive number.",
+            error: "Entity consumption ID must be a positive number."
         })
         .optional()
     ),
@@ -578,10 +600,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Entity ID must be an integer." })
-        .nonnegative({ message: "Entity ID must be a positive number." })
+      z.int({
+                    error: "Entity ID must be an integer."
+                })
+        .nonnegative({
+            error: "Entity ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -593,10 +617,12 @@ export const TransactionListPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Entity user ID must be an integer." })
-        .nonnegative({ message: "Entity user ID must be a positive number." })
+      z.int({
+                    error: "Entity user ID must be an integer."
+                })
+        .nonnegative({
+            error: "Entity user ID must be a positive number."
+        })
         .optional()
     ),
     parent_material_id: z.preprocess((value) => {
@@ -618,10 +644,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Activity ID must be an integer." })
-        .nonnegative({ message: "Activity ID must be a positive number." })
+      z.int({
+                    error: "Activity ID must be an integer."
+                })
+        .nonnegative({
+            error: "Activity ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -633,10 +661,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Material type ID must be an integer." })
-        .nonnegative({ message: "Material type ID must be a positive number." })
+      z.int({
+                    error: "Material type ID must be an integer."
+                })
+        .nonnegative({
+            error: "Material type ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -648,10 +678,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Material ID must be an integer." })
-        .nonnegative({ message: "Material ID must be a positive number." })
+      z.int({
+                    error: "Material ID must be an integer."
+                })
+        .nonnegative({
+            error: "Material ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -667,7 +699,9 @@ export const TransactionListCursorPaginatedRequestSchema =
       z
         .union([
           z.string().min(0),
-          z.string().datetime({ message: "Invalid start date format." }),
+          z.iso.datetime({
+                          error: "Invalid start date format."
+                    }),
         ])
         .optional()
     ),
@@ -684,7 +718,9 @@ export const TransactionListCursorPaginatedRequestSchema =
       z
         .union([
           z.string().min(0),
-          z.string().datetime({ message: "Invalid start date format." }),
+          z.iso.datetime({
+                          error: "Invalid start date format."
+                    }),
         ])
         .optional()
     ),
@@ -697,11 +733,11 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Transaction type ID must be an integer." })
+      z.int({
+                    error: "Transaction type ID must be an integer."
+                })
         .nonnegative({
-          message: "Transaction type ID must be a positive number.",
+            error: "Transaction type ID must be a positive number."
         })
         .optional()
     ),
@@ -714,11 +750,11 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Transaction reason ID must be an integer." })
+      z.int({
+                    error: "Transaction reason ID must be an integer."
+                })
         .nonnegative({
-          message: "Transaction reason ID must be a positive number.",
+            error: "Transaction reason ID must be a positive number."
         })
         .optional()
     ),
@@ -738,10 +774,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Order type must be an integer." })
-        .nonnegative({ message: "Order type must be a positive number." })
+      z.int({
+                    error: "Order type must be an integer."
+                })
+        .nonnegative({
+            error: "Order type must be a positive number."
+        })
         .optional()
     ),
 
@@ -753,10 +791,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Entity tag ID must be an integer." })
-        .nonnegative({ message: "Entity tag ID must be a positive number." })
+      z.int({
+                    error: "Entity tag ID must be an integer."
+                })
+        .nonnegative({
+            error: "Entity tag ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -768,11 +808,11 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Primary vendor ID must be an integer." })
+      z.int({
+                    error: "Primary vendor ID must be an integer."
+                })
         .nonnegative({
-          message: "Primary vendor ID must be a positive number.",
+            error: "Primary vendor ID must be a positive number."
         })
         .optional()
     ),
@@ -785,10 +825,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Province ID must be an integer." })
-        .nonnegative({ message: "Province ID must be a positive number." })
+      z.int({
+                    error: "Province ID must be an integer."
+                })
+        .nonnegative({
+            error: "Province ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -800,10 +842,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Regency ID must be an integer." })
-        .nonnegative({ message: "Regency ID must be a positive number." })
+      z.int({
+                    error: "Regency ID must be an integer."
+                })
+        .nonnegative({
+            error: "Regency ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -815,10 +859,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Customer tag ID must be an integer." })
-        .nonnegative({ message: "Customer tag ID must be a positive number." })
+      z.int({
+                    error: "Customer tag ID must be an integer."
+                })
+        .nonnegative({
+            error: "Customer tag ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -830,11 +876,11 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Entity consumption ID must be an integer." })
+      z.int({
+                    error: "Entity consumption ID must be an integer."
+                })
         .nonnegative({
-          message: "Entity consumption ID must be a positive number.",
+            error: "Entity consumption ID must be a positive number."
         })
         .optional()
     ),
@@ -847,10 +893,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Entity ID must be an integer." })
-        .nonnegative({ message: "Entity ID must be a positive number." })
+      z.int({
+                    error: "Entity ID must be an integer."
+                })
+        .nonnegative({
+            error: "Entity ID must be a positive number."
+        })
         .optional()
     ),
 
@@ -862,10 +910,12 @@ export const TransactionListCursorPaginatedRequestSchema =
         }
         return typeof value === "number" ? value : undefined
       },
-      z
-        .number()
-        .int({ message: "Entity user ID must be an integer." })
-        .nonnegative({ message: "Entity user ID must be a positive number." })
+      z.int({
+                    error: "Entity user ID must be an integer."
+                })
+        .nonnegative({
+            error: "Entity user ID must be a positive number."
+        })
         .optional()
     ),
     parent_material_id: z.preprocess((value) => {
@@ -889,8 +939,8 @@ export const TransactionListDiscardRequestSchema =
   })
 
 export const TransactionListConsumptionSchema = PaginationQueriesSchema.extend({
-  start_date: z.string().date().optional(),
-  end_date: z.string().date().optional(),
+  start_date: z.iso.date().optional(),
+  end_date: z.iso.date().optional(),
   entity_id: z
     .string()
     .transform((val) => Number(val))

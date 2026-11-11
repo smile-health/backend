@@ -10,7 +10,7 @@ import {
   UpdateWhoPqsRequest,
   UpdateWhoPqsSchema,
 } from "./who-pqs.schema"
-import z, { ZodSchema } from "zod"
+import { z, ZodType } from "zod"
 import { NotFoundError, ValidationError } from "@smile-health/lib/error"
 import { AssetModelRepository } from "../asset-model/asset-model.repository"
 
@@ -30,7 +30,7 @@ export class WhoPqsMiddleware {
     return this.updateCommonRefinements(c, UpdateWhoPqsSchema)
   }
 
-  updateCommonRefinements = (c: Context, schema: ZodSchema) => {
+  updateCommonRefinements = (c: Context, schema: ZodType) => {
     return schema.superRefine(
       async (data: UpdateWhoPqsRequest, ctx: z.RefinementCtx) => {
         const id = c.req.param("id")
@@ -65,7 +65,7 @@ export class WhoPqsMiddleware {
     )
   }
 
-  attachCommonRefinements = (c: Context, schema: ZodSchema) => {
+  attachCommonRefinements = (c: Context, schema: ZodType) => {
     return schema.superRefine(
       async (data: CreateWhoPqsRequest, ctx: z.RefinementCtx) => {
         const [pqsCode, typePqs, cceigat] = await Promise.all([
@@ -99,7 +99,7 @@ export class WhoPqsMiddleware {
   ) => {
     if (pqsCode && isUpdate === false) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.exist",
         path: ["code"],
       })
@@ -109,7 +109,7 @@ export class WhoPqsMiddleware {
       const id = c.req.param("id")
       if (pqsCode.id !== Number(id)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: "custom",
           message: "validator.exist",
           path: ["code"],
         })
@@ -123,7 +123,7 @@ export class WhoPqsMiddleware {
   ) => {
     if (!typePqs) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["pqs_type_id"],
       })
@@ -136,7 +136,7 @@ export class WhoPqsMiddleware {
   ) => {
     if (!cceigat) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "validator.not_exist",
         path: ["cceigat_description_id"],
       })
@@ -149,7 +149,7 @@ export class WhoPqsMiddleware {
   ) => {
     if (isHasNotCapacity) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: "At least one net capacity must be provided.",
         path: ["net_capacity5"],
       })
