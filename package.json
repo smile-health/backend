@@ -16,11 +16,11 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.14.0",
     "globals": "^17.14.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.0",
     "ts-node": "^10.9.2",
-    "turbo": "^2.11.10",
+    "turbo": "^2.11.11",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1"
+    "typescript-eslint": "^8.72.2"
   },
   "optionalDependencies": {
     "@oven/bun-windows-x64": "^1.4.4",
@@ -31,7 +31,7 @@
     "apps/3.0/*",
     "packages/*"
   ],
-  "packageManager": "pnpm@12.18.0",
+  "packageManager": "pnpm@12.20.0",
   "engines": {
     "node": ">=18"
   },
@@ -39,7 +39,7 @@
     "@smile-health/lib": "^1.0.235",
     "bun": "^1.4.4",
     "kysely-ctl": "^0.22.0",
-    "pnpm": "^12.18.0"
+    "pnpm": "^12.20.0"
   },
   "pnpm": {
     "overrides": {
