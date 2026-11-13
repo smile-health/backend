@@ -20,17 +20,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "amqplib": "^2.3.0",
+    "amqplib": "^2.3.1",
     "aws-sdk": "^2.1693.0",
-    "axios": "^1.21.0",
-    "dotenv": "^18.0.9",
+    "axios": "^1.21.1",
+    "dotenv": "^18.0.10",
     "elastic-apm-node": "^4.18.0",
-    "google-auth-library": "^11.3.3",
+    "google-auth-library": "^11.3.4",
     "make-runnable": "^1.4.1",
     "moment": "^2.31.0",
     "mysql2": "^3.24.6",
     "node-cache": "^5.1.2",
-    "nodemailer": "^10.4.0",
+    "nodemailer": "^10.5.0",
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "mocha": "^12.0.3",
-    "prettier": "^3.9.10"
+    "prettier": "^3.10.0"
   },
   "overrides": {
     "decode-uri-component": "^0.5.1"
